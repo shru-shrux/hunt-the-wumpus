@@ -1,0 +1,20 @@
+# Ignore Godot auto-generated files
+*.import
+*.translation
+*.gen.*
+*.remap
+*.stex
+*.fnt
+*.godot
+*.cfg
+*.md5
+*.converted.*
+*.vulkan.cache
+
+# Ignore Godot folders
+/.godot/
+/.import/
+/.cache/
+/export/
+/shader_cache/
+/mono/
