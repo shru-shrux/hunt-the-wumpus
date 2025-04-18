@@ -1,8 +1,12 @@
-TextureRect
-Sprite2D
+RichTextLabel
 Button
-LineEdit
+TextEdit
+HBoxContainer
 VBoxContainer
+Panel
+Sprite2D
+TextureRect
+LineEdit
 Label
 CenterContainer
 TextureButton
