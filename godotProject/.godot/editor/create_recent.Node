@@ -1,0 +1,9 @@
+TextureRect
+Sprite2D
+Button
+LineEdit
+VBoxContainer
+Label
+CenterContainer
+TextureButton
+AnimatedSprite2D
