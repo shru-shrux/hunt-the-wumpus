@@ -1,5 +1,4 @@
 # Ignore Godot auto-generated files
-*.import
 *.translation
 *.gen.*
 *.remap
