@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://1rwkhcnn8ciw"]
+
+[ext_resource type="Script" uid="uid://f7x8k21w7858" path="res://Scenes/profile/profile.gd" id="1_ff4px"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_swusl"]
+[ext_resource type="PackedScene" uid="uid://dfsuuew2hwexr" path="res://Scenes/profile/settings_tab_container.tscn" id="3_3iqus"]
+
+[node name="Profile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ff4px")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -48
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_swusl")
+theme_override_font_sizes/font_size = 32
+text = "Profile"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_3iqus")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Exit"
