@@ -1,9 +1,12 @@
+Label
+VBoxContainer
+MarginContainer
+TabBar
+TabContainer
+Button
 TextureRect
 Sprite2D
-Button
 LineEdit
-VBoxContainer
-Label
 CenterContainer
 TextureButton
 AnimatedSprite2D
