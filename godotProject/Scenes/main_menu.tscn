@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://ddd771qs8acxj"]
+[gd_scene load_steps=3 format=3 uid="uid://ddd771qs8acxj"]
+
+[ext_resource type="Script" uid="uid://bs5bhekw4nryb" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_1ehe0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +10,107 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_48xlc")
+
+[node name="HuntTheWumpusLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 80.0
+offset_right = 785.0
+offset_bottom = 190.0
+theme_override_fonts/normal_font = ExtResource("2_1ehe0")
+theme_override_font_sizes/normal_font_size = 100
+text = "Hunt The Wumpus"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 358.0
+offset_right = 229.0
+offset_bottom = 550.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NewGame" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "New Game"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="Profile" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Profile"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 917.0
+offset_top = 608.0
+offset_right = 1115.0
+offset_bottom = 632.0
+theme_override_fonts/normal_font = ExtResource("2_1ehe0")
+theme_override_font_sizes/normal_font_size = 20
+text = "Made by Pixel Perfect"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 354.0
+offset_right = 476.0
+offset_bottom = 597.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_1ehe0")
+theme_override_font_sizes/normal_font_size = 50
+text = "Difficulty"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Easy" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Easy"
+
+[node name="Medium" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Medium"
+
+[node name="Hard" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Hard"
+
+[node name="Start" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Profile" to="." method="_on_profile_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
