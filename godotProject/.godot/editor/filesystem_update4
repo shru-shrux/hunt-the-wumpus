@@ -1,1 +1,6 @@
+res://Scenes/main_menu.gd
+res://Scenes/main_menu.tscn
+res://Scripts/main_menu.gd
 res://Scenes/login.tscn
+res://Scenes/profile.tscn
+res://Scenes/in_game_menu.tscn

@@ -1,15 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1744996092
-icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741218647::1741218734::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Assets/::1744753841
-::res://Assets/Art/::1744752964
-wumpus pixel art.png::CompressedTexture2D/CompressedTexture2D::759430950196114274::1744752963::1744752964::1::::<><><>0<>0<>68461e117dede77857e3cef1e2c8bd54<>res://.godot/imported/wumpus pixel art.png-2e6cd24cf7bba2108e01dd3b9dcb6e63.ctex::
-::res://Assets/Fonts/::1744753921
-ThaleahFat.ttf::FontFile/FontFile::1177311444755467962::1744753848::1744753848::1::::<><><>0<>0<>c3988d3b08fdf94d400878e4b67bf132<>res://.godot/imported/ThaleahFat.ttf-fb6fd3f0bc299efd675f1d554a03248c.fontdata::
-::res://Scenes/::1744755716
-in_game_menu.tscn::PackedScene/PackedScene::2603799768548294209::1744750415::0::1::::<><><>0<>0<><>::
-login.tscn::PackedScene::6090578301147766304::1744755716::0::1::::<><><>0<>0<><>::uid://b23u7yiclh72l::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-main_menu.tscn::PackedScene/PackedScene::7378023195614977391::1744750307::0::1::::<><><>0<>0<><>::
-profile.tscn::PackedScene/PackedScene::8719215390342068566::1744750425::0::1::::<><><>0<>0<><>::
-::res://Scripts/::1744755511
-login.gd::GDScript::4340594797318657481::1744755511::0::1::::<>Control<><>0<>0<><>::
+::res://::1744997147
+icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741237481::1744997147::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Assets/::1744996199
+::res://Assets/Art/::1744997149
+wumpus pixel art.png::CompressedTexture2D/CompressedTexture2D::759430950196114274::1744996199::1744997148::1::::<><><>0<>0<>68461e117dede77857e3cef1e2c8bd54<>res://.godot/imported/wumpus pixel art.png-2e6cd24cf7bba2108e01dd3b9dcb6e63.ctex::
+::res://Assets/Fonts/::1744997147
+ThaleahFat.ttf::FontFile/FontFile::1177311444755467962::1744996199::1744997147::1::::<><><>0<>0<>c3988d3b08fdf94d400878e4b67bf132<>res://.godot/imported/ThaleahFat.ttf-fb6fd3f0bc299efd675f1d554a03248c.fontdata::
+::res://Scenes/::1745000317
+in_game_menu.tscn::PackedScene::2603799768548294209::1744996200::0::1::::<><><>0<>0<><>::
+login.tscn::PackedScene::6090578301147766304::1744996200::0::1::::<><><>0<>0<><>::uid://b23u7yiclh72l::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
+main_menu.tscn::PackedScene::7378023195614977391::1745000464::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scenes/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+profile.tscn::PackedScene::8719215390342068566::1744996200::0::1::::<><><>0<>0<><>::
+main_menu.gd::GDScript::3711824645929887213::1745000317::0::1::::<>Control<><>0<>0<><>::
+::res://Scripts/::1744996200
+login.gd::GDScript::4340594797318657481::1744996200::0::1::::<>Control<><>0<>0<><>::

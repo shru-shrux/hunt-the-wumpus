@@ -1,8 +1,11 @@
+Panel
+RichTextLabel
+Button
+VBoxContainer
+MarginContainer
 TextureRect
 Sprite2D
-Button
 LineEdit
-VBoxContainer
 Label
 CenterContainer
 TextureButton
