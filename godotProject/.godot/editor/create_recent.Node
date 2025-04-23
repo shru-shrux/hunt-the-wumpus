@@ -1,3 +1,4 @@
+Label
 RichTextLabel
 Button
 TextEdit
@@ -7,7 +8,6 @@ Panel
 Sprite2D
 TextureRect
 LineEdit
-Label
 CenterContainer
 TextureButton
 AnimatedSprite2D
