@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ofk88gf0pnm"]
+
+[ext_resource type="Script" uid="uid://bf4melmow3qx7" path="res://Scripts/sign_up.gd" id="1_u1ho7"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_vdcsv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2t14d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hejgq"]
+font = ExtResource("2_vdcsv")
+font_size = 66
+
+[node name="SignUpPanel" type="Panel"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2t14d")
+script = ExtResource("1_u1ho7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -155.0
+offset_right = 196.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Welcome!"
+label_settings = SubResource("LabelSettings_hejgq")
+horizontal_alignment = 1
+
+[node name="Username" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Username"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Username"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Username"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Password" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Password"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Password"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Password"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConfirmPassword" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ConfirmPassword"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm Password"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/ConfirmPassword"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 376.0
+offset_top = 352.5
+offset_right = 728.0
+offset_bottom = 352.5
+grow_horizontal = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[center]Welcome"
+
+[node name="SignInButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 378.5
+offset_right = 746.0
+offset_bottom = 409.5
+size_flags_horizontal = 4
+text = "Sign In"
+
+[node name="CancelButton2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 404.0
+offset_top = 379.5
+offset_right = 555.0
+offset_bottom = 410.5
+size_flags_horizontal = 4
+text = "Cancel"
+
+[node name="ToLoginButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 444.5
+offset_right = 655.0
+offset_bottom = 475.5
+size_flags_horizontal = 4
+text = "Login Instead"
+
+[connection signal="button_down" from="SignInButton" to="." method="_on_sign_in_button_button_down"]
+[connection signal="button_down" from="CancelButton2" to="." method="_on_cancel_button_2_button_down"]

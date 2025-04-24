@@ -1,21 +1,24 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1745446326
+::res://::1745527965
 icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741218647::1741218734::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1744753841
 ::res://Assets/Art/::1744752964
 wumpus pixel art.png::CompressedTexture2D/CompressedTexture2D::759430950196114274::1744752963::1744752964::1::::<><><>0<>0<>68461e117dede77857e3cef1e2c8bd54<>res://.godot/imported/wumpus pixel art.png-2e6cd24cf7bba2108e01dd3b9dcb6e63.ctex::
 ::res://Assets/Fonts/::1744753921
 ThaleahFat.ttf::FontFile/FontFile::1177311444755467962::1744753848::1744753848::1::::<><><>0<>0<>c3988d3b08fdf94d400878e4b67bf132<>res://.godot/imported/ThaleahFat.ttf-fb6fd3f0bc299efd675f1d554a03248c.fontdata::
-::res://Scenes/::1745430758
+::res://Scenes/::1745458692
 in_game_menu.tscn::PackedScene/PackedScene::2603799768548294209::1744750415::0::1::::<><><>0<>0<><>::
-login.tscn::PackedScene/PackedScene::6090578301147766304::1744996584::0::1::::<><><>0<>0<><>::uid://b23u7yiclh72l::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-login_new.tscn::PackedScene::3937243045266902888::1745430741::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-main_menu.tscn::PackedScene::7378023195614977391::1745430758::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-profile.tscn::PackedScene/PackedScene::9047691974675234903::1745005821::0::1::::<><><>0<>0<><>::
+login.tscn::PackedScene::1285524868438441202::1745458692::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
+main_menu.tscn::PackedScene/PackedScene::7378023195614977391::1745448070::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+::res://Scenes/login_signup/::1745528295
+login_new.tscn::PackedScene::3937243045266902888::1745528250::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png<>uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://2ofk88gf0pnm::::res://Scenes/login_signup/sign_up.tscn
+login.tscn::PackedScene::5609555464399907283::1745528365::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+sign_up.tscn::PackedScene::1924323294215987610::1745528295::0::1::::<><><>0<>0<><>::uid://bf4melmow3qx7::::res://Scripts/sign_up.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 ::res://Scenes/profile/::1745016163
 profile.gd::GDScript/GDScript::418460296507803009::1745005796::0::1::::Profile<>Control<><>0<>0<><>::
 profile.tscn::PackedScene/PackedScene::1861358359550161702::1745005796::0::1::::<><><>0<>0<><>::uid://f7x8k21w7858::::res://Scenes/profile/profile.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
 settings_tab_container.tscn::PackedScene/PackedScene::7548615369892046895::1745005796::0::1::::<><><>0<>0<><>::
-::res://Scripts/::1745005796
-login.gd::GDScript/GDScript::4340594797318657481::1744755511::0::1::::<>Control<><>0<>0<><>::
+::res://Scripts/::1745528250
+login.gd::GDScript::3134399103335102016::1745528250::0::1::::<>Panel<><>0<>0<><>::
 main_menu.gd::GDScript/GDScript::3711824645929887213::1745005796::0::1::::<>Control<><>0<>0<><>::
+sign_up.gd::GDScript::2797968200800933358::1745448722::0::1::::<>Panel<><>0<>0<><>::

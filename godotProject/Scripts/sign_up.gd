@@ -1,6 +1,6 @@
 extends Panel
 
-signal createUser(user, password)
+signal CreateUser(user, password)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_sign_in_button_button_down() -> void:
-	createUser.emit($VBoxContainer/Username/TextEdit, $VBoxContainer/Password/TextEdit)
+	CreateUser.emit($VBoxContainer/Username/TextEdit, $VBoxContainer/Password/TextEdit)
 
 func _on_cancel_button_2_button_down():
 	queue_free()

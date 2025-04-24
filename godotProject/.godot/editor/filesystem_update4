@@ -1,2 +1,4 @@
-res://Scenes/login_new.tscn
-res://Scenes/sign_up.gd
+res://Scenes/login_signup/login_new.tscn
+res://Scripts/login.gd
+res://Scenes/login_signup/sign_up.tscn
+res://Scenes/login_old.tscn
