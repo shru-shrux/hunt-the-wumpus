@@ -1,12 +1,13 @@
-Panel
+Label
 RichTextLabel
 Button
+TextEdit
+HBoxContainer
 VBoxContainer
-MarginContainer
-TextureRect
+Panel
 Sprite2D
+TextureRect
 LineEdit
-Label
 CenterContainer
 TextureButton
 AnimatedSprite2D
