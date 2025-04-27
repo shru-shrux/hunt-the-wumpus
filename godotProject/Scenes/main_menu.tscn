@@ -66,17 +66,17 @@ theme_override_fonts/normal_font = ExtResource("2_1ehe0")
 theme_override_font_sizes/normal_font_size = 20
 text = "Made by Pixel Perfect"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="game_start_difficulty" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_left = 263.0
 offset_top = 354.0
 offset_right = 476.0
 offset_bottom = 597.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="game_start_difficulty"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer2/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="game_start_difficulty/VBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_1ehe0")
@@ -85,32 +85,29 @@ text = "Difficulty"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Easy" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Easy" type="Button" parent="game_start_difficulty/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_font_sizes/font_size = 40
 text = "Easy"
 
-[node name="Medium" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Medium" type="Button" parent="game_start_difficulty/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_font_sizes/font_size = 40
 text = "Medium"
 
-[node name="Hard" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Hard" type="Button" parent="game_start_difficulty/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_font_sizes/font_size = 40
 text = "Hard"
 
-[node name="Start" type="Button" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_1ehe0")
-theme_override_font_sizes/font_size = 40
-text = "Start"
-
 [connection signal="pressed" from="MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Profile" to="." method="_on_profile_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="ready" from="game_start_difficulty" to="." method="_on_game_start_difficulty_ready"]
+[connection signal="pressed" from="game_start_difficulty/VBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="game_start_difficulty/VBoxContainer/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="game_start_difficulty/VBoxContainer/Hard" to="." method="_on_hard_pressed"]

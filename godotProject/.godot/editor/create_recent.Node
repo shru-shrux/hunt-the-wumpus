@@ -1,3 +1,9 @@
+CollisionShape2D
+AnimatedSprite2D
+Area2D
+GridContainer
+TabBar
+PopupPanel
 Label
 RichTextLabel
 Button
@@ -6,8 +12,3 @@ HBoxContainer
 VBoxContainer
 Panel
 Sprite2D
-TextureRect
-LineEdit
-CenterContainer
-TextureButton
-AnimatedSprite2D

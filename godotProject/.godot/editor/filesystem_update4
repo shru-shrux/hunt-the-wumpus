@@ -1,4 +1,9 @@
-res://Scenes/login_signup/login_new.tscn
-res://Scripts/login.gd
-res://Scenes/login_signup/sign_up.tscn
-res://Scenes/login_old.tscn
+res://Scripts/main_menu.gd
+res://Scenes/main_menu.tscn
+res://Scenes/profile/profile.gd
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/profile/profile.tscn
+res://Scripts/Global.gd
+res://Scenes/profile/settings_tab_container.gd
+res://Scenes/player.tscn
+res://Scripts/player.gd
