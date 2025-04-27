@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://onq0e03n2eh2"]
+
+[ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scenes/cave_default.gd" id="1_twc2g"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
+font = ExtResource("2_urmdh")
+font_size = 25
+
+[node name="CaveDefault" type="Node2D"]
+script = ExtResource("1_twc2g")
+
+[node name="0" type="Area2D" parent="."]
+position = Vector2(254, 459)
+scale = Vector2(5.28, 5.08)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
+shape = SubResource("RectangleShape2D_twc2g")
+
+[node name="1" type="Area2D" parent="."]
+position = Vector2(583, 461)
+scale = Vector2(5.28, 5.08)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
+shape = SubResource("RectangleShape2D_twc2g")
+
+[node name="2" type="Area2D" parent="."]
+position = Vector2(915, 462)
+scale = Vector2(5.28, 5.08)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
+shape = SubResource("RectangleShape2D_twc2g")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 449.0
+offset_top = 570.0
+offset_right = 730.0
+offset_bottom = 595.0
+text = "Press 'E' to enter cave 25"
+label_settings = SubResource("LabelSettings_rcyi4")
