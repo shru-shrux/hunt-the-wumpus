@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_twc2g"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
-[ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/BatSound.mp3" id="3_rcyi4"]
+[ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
