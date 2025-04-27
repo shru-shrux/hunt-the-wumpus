@@ -1,15 +1,30 @@
-extends Control
+extends Panel
 
-@onready var login_form = $CenterContainer/MainContaienr/LoginForm
-@onready var signup_form = $CenterContainer/MainContaienr/SignUpForm
+signal LoginUser(username, password)
+signal CreateUser(username, password)
 
-func _on_to_sign_up_pressed():
-	login_form.visible = false
-	signup_form.visible = true
+@export var CreateUserWindow : PackedScene
 
-func _on_to_login_pressed():
-	signup_form.visible = false
-	login_form.visible = true
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
-func _on_quit_pressed():
-	get_tree().quit()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_cancel_button_button_down() -> void:
+	queue_free()
+
+func _on_login_button_button_down() -> void:
+	LoginUser.emit($VBoxContainer/HBoxContainer/Username.text, $VBoxContainer/HBoxContainer2/Password.text)
+
+func _on_to_sign_up_button_button_down() -> void:
+	var createUserWindow = CreateUserWindow.instantiate()
+	add_child(createUserWindow) 
+	createUserWindow.CreateUser.connect()
+	
+func createUser(username, password):
+	CreateUser.emit(username, password)

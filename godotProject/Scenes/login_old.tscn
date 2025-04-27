@@ -1,11 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs1k61un4cwjw"]
+[gd_scene load_steps=8 format=3 uid="uid://skyn3hrtwiic"]
 
-[ext_resource type="Script" uid="uid://b23u7yiclh72l" path="res://Scripts/login.gd" id="1_hbxdl"]
-[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_fxa43"]
-[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="3_vrdhx"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_oq8jh"]
+[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="2_phy6h"]
+
+[sub_resource type="GDScript" id="GDScript_hbxdl"]
+script/source = "extends Control
+
+@onready var login_form = $CenterContainer/MainContaienr/LoginForm
+@onready var signup_form = $CenterContainer/MainContaienr/SignUpForm
+
+func _on_to_sign_up_pressed():
+	login_form.visible = false
+	signup_form.visible = true
+
+func _on_to_login_pressed():
+	signup_form.visible = false
+	login_form.visible = true
+
+func _on_quit_pressed():
+	get_tree().quit()
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_5iow8"]
-font = ExtResource("2_fxa43")
+font = ExtResource("1_oq8jh")
 font_size = 79
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxa43"]
@@ -22,7 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hbxdl")
+script = SubResource("GDScript_hbxdl")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -43,7 +60,7 @@ layout_mode = 2
 
 [node name="Hunt the Wumpus" type="Label" parent="CenterContainer/MainContaienr"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_fonts/font = ExtResource("1_oq8jh")
 text = "Hunt the Wumpus"
 label_settings = SubResource("LabelSettings_5iow8")
 horizontal_alignment = 1
@@ -51,7 +68,7 @@ horizontal_alignment = 1
 [node name="Logo" type="TextureRect" parent="CenterContainer/MainContaienr"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-texture = ExtResource("3_vrdhx")
+texture = ExtResource("2_phy6h")
 expand_mode = 1
 stretch_mode = 5
 
@@ -69,7 +86,7 @@ secret = true
 
 [node name="Login" type="Button" parent="CenterContainer/MainContaienr/LoginForm"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_fonts/font = ExtResource("1_oq8jh")
 theme_override_font_sizes/font_size = 46
 theme_override_styles/normal = SubResource("StyleBoxFlat_fxa43")
 text = "Log In
@@ -77,7 +94,7 @@ text = "Log In
 
 [node name="ToSignUp" type="Button" parent="CenterContainer/MainContaienr/LoginForm"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_fonts/font = ExtResource("1_oq8jh")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vrdhx")
 text = "Sign Up Instead"
@@ -114,7 +131,7 @@ offset_left = 1078.0
 offset_top = 613.0
 offset_right = 1148.0
 offset_bottom = 642.0
-theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_fonts/font = ExtResource("1_oq8jh")
 theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5iow8")
 text = "Quit"
