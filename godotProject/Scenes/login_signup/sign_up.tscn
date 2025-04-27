@@ -97,7 +97,7 @@ offset_top = 378.5
 offset_right = 746.0
 offset_bottom = 409.5
 size_flags_horizontal = 4
-text = "Sign In"
+text = "Sign Up"
 
 [node name="CancelButton2" type="Button" parent="."]
 layout_mode = 2
@@ -117,5 +117,12 @@ offset_bottom = 475.5
 size_flags_horizontal = 4
 text = "Login Instead"
 
+[node name="Error" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 493.0
+offset_right = 688.0
+offset_bottom = 516.0
+
 [connection signal="button_down" from="SignInButton" to="." method="_on_sign_in_button_button_down"]
 [connection signal="button_down" from="CancelButton2" to="." method="_on_cancel_button_2_button_down"]
+[connection signal="button_down" from="ToLoginButton" to="." method="_on_to_login_button_button_down"]
