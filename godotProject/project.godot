@@ -14,3 +14,7 @@ config/name="HuntTheWumpus"
 run/main_scene="uid://onq0e03n2eh2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LoginManager="*res://Scripts/loginManager.gd"

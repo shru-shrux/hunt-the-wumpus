@@ -1,21 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwdh22js34u4w"]
+[gd_scene load_steps=7 format=3 uid="uid://bwdh22js34u4w"]
 
-[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_mv0xy"]
-[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="2_0qmd4"]
-[ext_resource type="PackedScene" uid="uid://cl6ktaejouga2" path="res://Scenes/login_signup/login.tscn" id="3_mv0xy"]
-[ext_resource type="PackedScene" uid="uid://2ofk88gf0pnm" path="res://Scenes/login_signup/sign_up.tscn" id="4_t888p"]
+[ext_resource type="Script" uid="uid://d4joxdu37hrht" path="res://Scenes/login_signup/opening_scene.gd" id="1_es2kt"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_wd26m"]
+[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="2_es2kt"]
+[ext_resource type="PackedScene" uid="uid://cl6ktaejouga2" path="res://Scenes/login_signup/login.tscn" id="3_vtknk"]
+[ext_resource type="PackedScene" uid="uid://2ofk88gf0pnm" path="res://Scenes/login_signup/sign_up.tscn" id="4_y3pro"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpglw"]
-font = ExtResource("1_mv0xy")
+font = ExtResource("1_wd26m")
 font_size = 79
 
-[node name="login_new" type="Control"]
+[node name="opening_scene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_es2kt")
 
 [node name="Hunt the Wumpus" type="Label" parent="."]
 layout_mode = 1
@@ -27,7 +29,7 @@ offset_top = 49.0
 offset_right = 276.5
 offset_bottom = 122.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_mv0xy")
+theme_override_fonts/font = ExtResource("1_wd26m")
 text = "Hunt the Wumpus"
 label_settings = SubResource("LabelSettings_rpglw")
 horizontal_alignment = 1
@@ -35,9 +37,9 @@ horizontal_alignment = 1
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(579, 285)
 scale = Vector2(0.162778, 0.162778)
-texture = ExtResource("2_0qmd4")
+texture = ExtResource("2_es2kt")
 
-[node name="LoginPanelButton" type="Button" parent="."]
+[node name="SignUpPanelButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -50,11 +52,11 @@ offset_right = 224.0
 offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_mv0xy")
+theme_override_fonts/font = ExtResource("1_wd26m")
 theme_override_font_sizes/font_size = 55
 text = "Sign Up"
 
-[node name="SignUpPanelButton" type="Button" parent="."]
+[node name="LoginPanelButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -67,7 +69,7 @@ offset_right = -22.0
 offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_mv0xy")
+theme_override_fonts/font = ExtResource("1_wd26m")
 theme_override_font_sizes/font_size = 55
 text = "Log In"
 
@@ -84,13 +86,16 @@ offset_right = 61.5
 offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_mv0xy")
+theme_override_fonts/font = ExtResource("1_wd26m")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="LoginPanel" parent="." instance=ExtResource("3_mv0xy")]
+[node name="LoginPanel" parent="." instance=ExtResource("3_vtknk")]
+visible = false
 layout_mode = 0
-CreateUserWindow = ExtResource("4_t888p")
 
-[node name="SignUpPanel" parent="." instance=ExtResource("4_t888p")]
+[node name="SignUpPanel" parent="." instance=ExtResource("4_y3pro")]
 layout_mode = 0
+
+[connection signal="button_down" from="SignUpPanelButton" to="." method="_on_sign_up_panel_button_button_down"]
+[connection signal="button_down" from="LoginPanelButton" to="." method="_on_login_panel_button_button_down"]
