@@ -1,7 +1,7 @@
-res://Scenes/profile.tscn
-res://Scenes/profile.gd
-res://Scenes/profile/settings_tab_container.tscn
-res://Scenes/profile/profile.tscn
+res://Scenes/in_game_menu.tscn
+res://Scenes/in_game_menu.gdshader
 res://Scenes/login.tscn
 res://Scenes/main_menu.tscn
-res://Scenes/in_game_menu.tscn
+res://Scenes/profile/profile.tscn
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/in_game_menu.gd
