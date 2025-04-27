@@ -5,6 +5,7 @@ GridContainer
 TabBar
 PopupPanel
 Label
+AudioStreamPlayer2D
 RichTextLabel
 Button
 TextEdit

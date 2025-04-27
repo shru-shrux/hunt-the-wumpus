@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=7 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_twc2g"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
+[ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/BatSound.mp3" id="3_rcyi4"]
 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8311"]
+font = ExtResource("2_urmdh")
+font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
 font = ExtResource("2_urmdh")
@@ -20,12 +25,34 @@ scale = Vector2(5.28, 5.08)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
 shape = SubResource("RectangleShape2D_twc2g")
 
+[node name="CaveNumber" type="Label" parent="0"]
+texture_filter = 1
+offset_left = -12.6894
+offset_top = -70.8661
+offset_right = 11.3106
+offset_bottom = -47.8661
+text = "1"
+label_settings = SubResource("LabelSettings_y8311")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="1" type="Area2D" parent="."]
 position = Vector2(583, 461)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
 shape = SubResource("RectangleShape2D_twc2g")
+
+[node name="CaveNumber" type="Label" parent="1"]
+texture_filter = 1
+offset_left = -10.4167
+offset_top = -70.8661
+offset_right = 13.5833
+offset_bottom = -47.8661
+text = "6"
+label_settings = SubResource("LabelSettings_y8311")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="2" type="Area2D" parent="."]
 position = Vector2(915, 462)
@@ -34,7 +61,18 @@ scale = Vector2(5.28, 5.08)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
 shape = SubResource("RectangleShape2D_twc2g")
 
-[node name="Label" type="Label" parent="."]
+[node name="CaveNumber" type="Label" parent="2"]
+texture_filter = 1
+offset_left = -12.3106
+offset_top = -71.063
+offset_right = 11.6894
+offset_bottom = -48.063
+text = "7"
+label_settings = SubResource("LabelSettings_y8311")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnterCave" type="Label" parent="."]
 texture_filter = 1
 offset_left = 449.0
 offset_top = 570.0
@@ -42,3 +80,13 @@ offset_right = 730.0
 offset_bottom = 595.0
 text = "Press 'E' to enter cave 25"
 label_settings = SubResource("LabelSettings_rcyi4")
+
+[node name="BatSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rcyi4")
+
+[connection signal="area_entered" from="0" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="0" to="." method="_on_area_exited"]
+[connection signal="area_entered" from="1" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="1" to="." method="_on_area_exited"]
+[connection signal="area_entered" from="2" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="2" to="." method="_on_area_exited"]
