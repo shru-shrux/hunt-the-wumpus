@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1rwkhcnn8ciw"]
 
-[ext_resource type="Script" uid="uid://f7x8k21w7858" path="res://Scenes/profile/profile.gd" id="1_ff4px"]
+[ext_resource type="Script" uid="uid://f7x8k21w7858" path="res://profile.gd" id="1_ff4px"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_swusl"]
 [ext_resource type="PackedScene" uid="uid://dfsuuew2hwexr" path="res://Scenes/profile/settings_tab_container.tscn" id="3_3iqus"]
 
@@ -38,7 +38,7 @@ text = "Profile"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_3iqus")]
+[node name="settings_tab_container" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_3iqus")]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -47,4 +47,8 @@ custom_minimum_size = Vector2(50, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_swusl")
+theme_override_font_sizes/font_size = 30
 text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]

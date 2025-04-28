@@ -1,30 +1,27 @@
 extends Panel
 
-signal LoginUser(username, password)
-signal CreateUser(username, password)
+@onready var username_field = $VBoxContainer/HBoxContainer/Username
+@onready var password_field = $VBoxContainer/HBoxContainer2/Password
+@onready var error_label = $Error
+var login_manager = LoginManager
 
-@export var CreateUserWindow : PackedScene
+func _ready():
+	$LoginButton.pressed.connect(_on_login_button_button_down)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+func _on_login_button_button_down():
+	var user = username_field.text.strip_edges()
+	var password = password_field.text
+	if login_manager.login(user, password):
+		error_label.text = "Login successful!"
+		# proceed to main menu
+	else:
+		error_label.text = "Incorrect password."
 
 func _on_cancel_button_button_down() -> void:
-	queue_free()
+	get_parent().call_deferred("close_panels")
+	#visible = false
 
-func _on_login_button_button_down() -> void:
-	LoginUser.emit($VBoxContainer/HBoxContainer/Username.text, $VBoxContainer/HBoxContainer2/Password.text)
-
-func _on_to_sign_up_button_button_down() -> void:
-	var createUserWindow = CreateUserWindow.instantiate()
-	add_child(createUserWindow) 
-	createUserWindow.CreateUser.connect()
-	
-func createUser(username, password):
-	CreateUser.emit(username, password)
+func _on_to_sign_up_button_button_down():
+	# Tell the parent OpeningScene to show signup
+	get_parent().call_deferred("show_signup")
+	#visible = false

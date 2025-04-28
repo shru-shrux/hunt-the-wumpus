@@ -98,6 +98,13 @@ offset_right = 690.0
 offset_bottom = 436.0
 text = "Sign Up Instead"
 
+[node name="Error" type="Label" parent="."]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 493.0
+offset_right = 688.0
+offset_bottom = 516.0
+
 [connection signal="button_down" from="LoginButton" to="." method="_on_login_button_button_down"]
 [connection signal="button_down" from="CancelButton" to="." method="_on_cancel_button_button_down"]
 [connection signal="button_down" from="ToSignUpButton" to="." method="_on_to_sign_up_button_button_down"]
