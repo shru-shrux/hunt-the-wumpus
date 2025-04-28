@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj08oicr11nu0"]
+
+[ext_resource type="Script" uid="uid://bkwldifkd1g2s" path="res://Scripts/login.gd" id="1_hbxdl"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_fxa43"]
+[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="3_vrdhx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5iow8"]
+font = ExtResource("2_fxa43")
+font_size = 79
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxa43"]
+bg_color = Color(0.6, 0.6, 1, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vrdhx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5iow8"]
+
+[node name="Login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hbxdl")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -315.0
+offset_right = 581.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContaienr" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Hunt the Wumpus" type="Label" parent="CenterContainer/MainContaienr"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fxa43")
+text = "Hunt the Wumpus"
+label_settings = SubResource("LabelSettings_5iow8")
+horizontal_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="CenterContainer/MainContaienr"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+texture = ExtResource("3_vrdhx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LoginForm" type="VBoxContainer" parent="CenterContainer/MainContaienr"]
+layout_mode = 2
+
+[node name="UsernameInput" type="LineEdit" parent="CenterContainer/MainContaienr/LoginForm"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="PasswordInput" type="LineEdit" parent="CenterContainer/MainContaienr/LoginForm"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="Login" type="Button" parent="CenterContainer/MainContaienr/LoginForm"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_fxa43")
+text = "Log In
+"
+
+[node name="ToSignUp" type="Button" parent="CenterContainer/MainContaienr/LoginForm"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vrdhx")
+text = "Sign Up Instead"
+
+[node name="SignUpForm" type="VBoxContainer" parent="CenterContainer/MainContaienr"]
+visible = false
+layout_mode = 2
+
+[node name="NewUsernameInput" type="LineEdit" parent="CenterContainer/MainContaienr/SignUpForm"]
+layout_mode = 2
+placeholder_text = "Username"
+
+[node name="NewPasswordInput" type="LineEdit" parent="CenterContainer/MainContaienr/SignUpForm"]
+layout_mode = 2
+placeholder_text = "Password"
+secret = true
+
+[node name="ConfirmPasswordInput" type="LineEdit" parent="CenterContainer/MainContaienr/SignUpForm"]
+layout_mode = 2
+placeholder_text = "Confirm Password"
+secret = true
+
+[node name="Create Account" type="Button" parent="CenterContainer/MainContaienr/SignUpForm"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="ToLogin" type="Button" parent="CenterContainer/MainContaienr/SignUpForm"]
+layout_mode = 2
+text = "Back to Log In"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1078.0
+offset_top = 613.0
+offset_right = 1148.0
+offset_bottom = 642.0
+theme_override_fonts/font = ExtResource("2_fxa43")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5iow8")
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/MainContaienr/LoginForm/ToSignUp" to="." method="_on_to_sign_up_pressed"]
+[connection signal="pressed" from="CenterContainer/MainContaienr/SignUpForm/ToLogin" to="." method="_on_to_login_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

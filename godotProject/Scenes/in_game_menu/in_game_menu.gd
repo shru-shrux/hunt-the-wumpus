@@ -14,11 +14,11 @@ func _on_resume_pressed() -> void:
 
 
 func _on_shop_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/in_game_menu/shop.tscn")
 
 
 func _on_options_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/in_game_menu/options.tscn")
 
 
 func _on_leave_game_pressed() -> void:

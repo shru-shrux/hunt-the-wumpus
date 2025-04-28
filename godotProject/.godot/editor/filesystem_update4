@@ -1,7 +1,8 @@
-res://Scenes/in_game_menu.tscn
-res://Scenes/in_game_menu.gdshader
+res://Scenes/in_game_menu/options.tscn
+res://Scenes/in_game_menu/in_game_menu.gdshader
+res://Scenes/in_game_menu/options.gd
 res://Scenes/login.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/profile/profile.tscn
-res://Scenes/profile/settings_tab_container.tscn
-res://Scenes/in_game_menu.gd
+res://Scenes/in_game_menu/in_game_menu.tscn
+res://Scenes/in_game_menu/in_game_menu.gd
+res://Scenes/in_game_menu/shop.gd
+res://Scenes/in_game_menu/shop.tscn
