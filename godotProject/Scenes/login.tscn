@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf4kowpyu6q2u"]
+[gd_scene load_steps=8 format=3 uid="uid://cj08oicr11nu0"]
 
 [ext_resource type="Script" uid="uid://bkwldifkd1g2s" path="res://Scripts/login.gd" id="1_hbxdl"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_fxa43"]
