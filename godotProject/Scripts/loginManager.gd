@@ -4,6 +4,7 @@ class_name loginManager
 var account_data: Dictionary = {}
 
 func _ready():
+	clear_user_directory()
 	load_accounts()
 
 func load_accounts():
@@ -34,3 +35,14 @@ func signup(username: String, password: String) -> bool:
 	account_data[username] = password
 	save_accounts()
 	return true
+
+func clear_user_directory():
+	var dir = DirAccess.open("user://")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir():
+				dir.remove(file_name)
+			file_name = dir.get_next()
+		dir.list_dir_end()

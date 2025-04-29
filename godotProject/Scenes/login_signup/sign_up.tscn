@@ -118,6 +118,7 @@ size_flags_horizontal = 4
 text = "Login Instead"
 
 [node name="Error" type="Label" parent="."]
+layout_mode = 0
 offset_left = 542.0
 offset_top = 493.0
 offset_right = 688.0
