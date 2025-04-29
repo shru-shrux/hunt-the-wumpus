@@ -12,7 +12,7 @@ func _ready():
 func _on_sign_in_button_button_down():
 	var user = username_field.text.strip_edges()
 	var password = password_field.text
-	var password2 = password_check_field.text
+	var password2 = password_check_field	.text
 	if password != password2:
 		error_label.text = "Passwords do not match."
 		return
