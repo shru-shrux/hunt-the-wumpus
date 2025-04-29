@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1rwkhcnn8ciw"]
 
-[ext_resource type="Script" uid="uid://f7x8k21w7858" path="res://profile.gd" id="1_ff4px"]
+[ext_resource type="Script" uid="uid://dmu8eelddqexq" path="res://profile.gd" id="1_ff4px"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_swusl"]
 [ext_resource type="PackedScene" uid="uid://dfsuuew2hwexr" path="res://Scenes/profile/settings_tab_container.tscn" id="3_3iqus"]
 
