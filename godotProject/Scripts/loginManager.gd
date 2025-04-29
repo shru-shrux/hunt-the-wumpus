@@ -2,9 +2,10 @@ extends Node
 class_name loginManager
 
 var account_data: Dictionary = {}
+var current_user: String = ""
 
 func _ready():
-	clear_user_directory()
+	#clear_user_directory()
 	load_accounts()
 
 func load_accounts():
@@ -16,6 +17,8 @@ func load_accounts():
 	else:
 		account_data = {}
 
+	print("Loaded accounts: ", account_data)
+
 func save_accounts():
 	var file = FileAccess.open("user://accounts.save", FileAccess.WRITE)
 	file.store_var(account_data)
@@ -24,17 +27,41 @@ func save_accounts():
 # Returns true if login successful or new account created.
 func login(username: String, password: String) -> bool:
 	if username in account_data:
-		return account_data[username] == password
-	else:
+		if account_data[username].password == password:
+			current_user = username
+			return true
 		return false
+	return false
 
 # Returns false if username taken, otherwise creates account.
 func signup(username: String, password: String) -> bool:
+	print("Attempting signup for:", username)
 	if username in account_data:
 		return false
-	account_data[username] = password
+		
+	account_data[username] = {
+		"password": password,
+		"gold": 0,
+		"achievements": [],
+		"settings": {}
+	}
+	
+	current_user = username
 	save_accounts()
+	print("Signup successful. Account data now:", account_data)
+	
 	return true
+	
+func get_user_data() -> Dictionary:
+	if current_user in account_data:
+		return account_data[current_user]
+	return {}
+	
+func update_user_data(new_data: Dictionary):
+	if current_user in account_data:
+		for key in new_data.keys():
+			account_data[current_user][key] = new_data[key]
+		save_accounts()
 
 func clear_user_directory():
 	var dir = DirAccess.open("user://")

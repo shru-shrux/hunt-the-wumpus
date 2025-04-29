@@ -14,6 +14,10 @@ config/name="HuntTheWumpus"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LoginManager="*res://Scripts/loginManager.gd"
+
 [input]
 
 move_right={
