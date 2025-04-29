@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://t64m4op7vywn"]
+[gd_scene load_steps=3 format=3 uid="uid://t64m4op7vywn"]
 
-[ext_resource type="Script" path="res://Scenes/in_game_menu.gd" id="1_5crhr"]
-[ext_resource type="Shader" path="res://Scenes/in_game_menu.gdshader" id="1_c42cd"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_n0mag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5crhr"]
-shader = ExtResource("1_c42cd")
-shader_parameter/lod = 0.506
 
 [node name="InGameMenu" type="Control"]
 process_mode = 3
@@ -16,7 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5crhr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_5crhr")
