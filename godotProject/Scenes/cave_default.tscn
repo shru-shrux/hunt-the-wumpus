@@ -1,9 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://onq0e03n2eh2"]
 
-[ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_twc2g"]
+[ext_resource type="Script" uid="uid://cbnjlaesvtrfq" path="res://Scenes/cave_default.gd" id="1_twc2g"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
 [ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
 
@@ -19,7 +18,7 @@ font_size = 25
 script = ExtResource("1_twc2g")
 
 [node name="0" type="Area2D" parent="."]
-position = Vector2(254, 459)
+position = Vector2(240, 459)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
@@ -37,7 +36,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="1" type="Area2D" parent="."]
-position = Vector2(583, 461)
+position = Vector2(576, 461)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
@@ -45,10 +44,10 @@ shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="1"]
 texture_filter = 1
-offset_left = -10.4167
-offset_top = -70.8661
-offset_right = 13.5833
-offset_bottom = -47.8661
+offset_left = -11.235
+offset_top = -70.866
+offset_right = 12.765
+offset_bottom = -47.866
 text = "6"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
@@ -73,6 +72,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnterCave" type="Label" parent="."]
+visible = false
 texture_filter = 1
 offset_left = 449.0
 offset_top = 570.0
@@ -83,6 +83,10 @@ label_settings = SubResource("LabelSettings_rcyi4")
 
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 23.0
 
 [connection signal="area_entered" from="0" to="." method="_on_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]
