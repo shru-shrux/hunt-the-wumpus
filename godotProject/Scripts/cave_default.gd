@@ -8,7 +8,7 @@ class_name Cave
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
 # the caves the player can go into from this one
-var connectingCaves: Array[Cave] = []
+var connectingCaves: Array = []
 # the answer for the riddle and the cave the player 
 # wants to go into
 var bestOption = 0
@@ -27,6 +27,7 @@ var hasPit = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+		
 	# if game control sets this to bat cave start minigame
 	if hasBat:
 		pass
@@ -97,13 +98,22 @@ func updateCave(newCave:Cave):
 			return
 	
 
-# if the player enters any of the 3 Area2D this runs
-# it updates the text to the right number cave and shows it
-func _on_area_entered(area: Area2D) -> void:
-	$EnterCave.text = "Press 'E' to enter cave " + connectingCaves[int(area.name)].currentCaveNumber
-	$EnterCave.visible = true
-
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
 func _on_area_exited(area: Area2D) -> void:
 	$EnterCave.visible = false
+
+
+func _on_0_area_entered(area: Area2D) -> void:
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber)
+	$EnterCave.visible = true
+
+
+func _on_1_area_entered(area: Area2D) -> void:
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber)
+	$EnterCave.visible = true
+
+
+func _on_2_area_entered(area: Area2D) -> void:
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber)
+	$EnterCave.visible = true

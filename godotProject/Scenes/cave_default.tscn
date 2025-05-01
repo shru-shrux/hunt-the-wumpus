@@ -12,7 +12,7 @@ font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
 font = ExtResource("2_urmdh")
-font_size = 25
+font_size = 35
 
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
@@ -30,7 +30,7 @@ offset_left = -12.6894
 offset_top = -70.8661
 offset_right = 11.3106
 offset_bottom = -47.8661
-text = "1"
+text = "2"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -74,10 +74,10 @@ vertical_alignment = 1
 [node name="EnterCave" type="Label" parent="."]
 visible = false
 texture_filter = 1
-offset_left = 449.0
-offset_top = 570.0
-offset_right = 730.0
-offset_bottom = 595.0
+offset_left = 381.0
+offset_top = 573.0
+offset_right = 773.0
+offset_bottom = 606.0
 text = "Press 'E' to enter cave 25"
 label_settings = SubResource("LabelSettings_rcyi4")
 
@@ -88,9 +88,9 @@ stream = ExtResource("3_rcyi4")
 offset_right = 1152.0
 offset_bottom = 23.0
 
-[connection signal="area_entered" from="0" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]
-[connection signal="area_entered" from="1" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="1" to="." method="_on_1_area_entered"]
 [connection signal="area_exited" from="1" to="." method="_on_area_exited"]
-[connection signal="area_entered" from="2" to="." method="_on_area_entered"]
+[connection signal="area_entered" from="2" to="." method="_on_2_area_entered"]
 [connection signal="area_exited" from="2" to="." method="_on_area_exited"]
