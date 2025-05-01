@@ -1,6 +1,8 @@
 extends Area2D
 signal hit
 
+# this is basic player movement from tutorial, will need to be adapted and changed
+
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window
 

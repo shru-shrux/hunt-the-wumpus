@@ -43,6 +43,7 @@ func signup(username: String, password: String) -> bool:
 		"password": password,
 		"gold": 0,
 		"achievements": [],
+		"inventory": [],
 		"settings": {}
 	}
 	
