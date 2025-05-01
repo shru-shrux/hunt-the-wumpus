@@ -1,3 +1,6 @@
+CheckButton
+HSlider
+RichTextLabel
 Label
 Button
 TextureRect
@@ -10,5 +13,3 @@ AnimationPlayer
 Panel
 TabBar
 TabContainer
-Sprite2D
-LineEdit

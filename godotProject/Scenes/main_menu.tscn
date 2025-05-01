@@ -56,6 +56,10 @@ theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "                                                              "
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 917.0
@@ -68,9 +72,9 @@ text = "Made by Pixel Perfect"
 
 [node name="game_start_difficulty" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 263.0
+offset_left = 360.0
 offset_top = 354.0
-offset_right = 476.0
+offset_right = 573.0
 offset_bottom = 597.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="game_start_difficulty"]
