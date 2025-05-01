@@ -111,9 +111,52 @@ theme_override_constants/margin_bottom = 24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "setting 1"
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_06deq")
+theme_override_font_sizes/normal_font_size = 35
+text = "Music Volume"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_06deq")
+theme_override_font_sizes/normal_font_size = 35
+text = "SFX Volume"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_06deq")
+theme_override_font_sizes/font_size = 35
+text = "Timer"
+
+[node name="Label" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_06deq")
+theme_override_font_sizes/font_size = 50
+text = "          "
+horizontal_alignment = 1

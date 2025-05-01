@@ -42,12 +42,16 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_jhfpi")
+theme_override_font_sizes/normal_font_size = 30
 text = "Username"
 
 [node name="Username" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_jhfpi")
+theme_override_font_sizes/font_size = 30
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -56,12 +60,16 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_jhfpi")
+theme_override_font_sizes/normal_font_size = 30
 text = "Password"
 
 [node name="Password" type="TextEdit" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_jhfpi")
+theme_override_font_sizes/font_size = 30
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -71,6 +79,7 @@ offset_right = 790.0
 offset_bottom = 355.0
 grow_horizontal = 2
 size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_jhfpi")
 bbcode_enabled = true
 text = "[center]Welcome"
 
@@ -80,6 +89,8 @@ offset_left = 630.0
 offset_top = 339.0
 offset_right = 781.0
 offset_bottom = 370.0
+theme_override_fonts/font = ExtResource("2_jhfpi")
+theme_override_font_sizes/font_size = 30
 text = "Login"
 
 [node name="CancelButton" type="Button" parent="."]
@@ -88,14 +99,19 @@ offset_left = 439.0
 offset_top = 340.0
 offset_right = 590.0
 offset_bottom = 371.0
+theme_override_fonts/font = ExtResource("2_jhfpi")
+theme_override_font_sizes/font_size = 30
 text = "Cancel"
 
 [node name="ToSignUpButton" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 20)
 layout_mode = 0
-offset_left = 539.0
-offset_top = 405.0
-offset_right = 690.0
-offset_bottom = 436.0
+offset_left = 484.0
+offset_top = 402.0
+offset_right = 734.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("2_jhfpi")
+theme_override_font_sizes/font_size = 30
 text = "Sign Up Instead"
 
 [node name="Error" type="Label" parent="."]

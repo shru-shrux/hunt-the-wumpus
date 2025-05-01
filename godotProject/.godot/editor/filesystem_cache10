@@ -1,5 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1746077675
+::res://::1746115086
+default_bus_layout.tres::AudioBusLayout::7451237478222333559::1746114328::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741237481::1744997147::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1745780702
 ::res://Assets/Art/::1744997149
@@ -81,31 +82,31 @@ Walk (7).png::CompressedTexture2D/CompressedTexture2D::3722890286017487987::1745
 Walk (8).png::CompressedTexture2D/CompressedTexture2D::7531020615576367602::1745779546::1745779635::1::::<><><>0<>0<>b9cb014cc8d07a9d7593904d21c920e3<>res://.godot/imported/Walk (8).png-5047072177f0761d444abcd5d57ad3bf.ctex::
 Walk (9).png::CompressedTexture2D/CompressedTexture2D::6176897966740114917::1745779546::1745779635::1::::<><><>0<>0<>79d990b2f0b77aeecd0db6fdae1437d6<>res://.godot/imported/Walk (9).png-ea3d75c467ba7bf664da051b9b02f70f.ctex::
 Walk (10).png::CompressedTexture2D/CompressedTexture2D::2140461934010827787::1745779545::1745779635::1::::<><><>0<>0<>8d00b73e9eaa5e1c594fe66716f3286a<>res://.godot/imported/Walk (10).png-c00291f1a79f97c796bf8888aabd8f49.ctex::
-::res://Scenes/::1746072897
-cave_default.tscn::PackedScene::1010497088471257601::1746072897::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
+::res://Scenes/::1746114773
+cave_default.tscn::PackedScene/PackedScene::1010497088471257601::1746072897::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
 in_game_menu.tscn::PackedScene/PackedScene::1399367507345118561::1745951920::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-login.tscn::PackedScene::2797865207597513826::1746072809::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
+login.tscn::PackedScene/PackedScene::2797865207597513826::1746072809::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
 login_old.tscn::PackedScene/PackedScene::1285524868438441202::1745773953::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-main.tscn::PackedScene::132530188378800052::1746072809::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
-main_menu.tscn::PackedScene/PackedScene::7378023195614977391::1745780456::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+main.tscn::PackedScene/PackedScene::132530188378800052::1746072809::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
+main_menu.tscn::PackedScene::7378023195614977391::1746114773::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 player.tscn::PackedScene/PackedScene::2949665607513518438::1745951026::0::1::::<><><>0<>0<><>::res://Scripts/player.gd<>uid://bc35xyh03ry8d::::res://Assets/Player/Walk/Walk (1).png<>uid://52ucmkq7cqyh::::res://Assets/Player/Walk/Walk (2).png<>uid://dto0xccyeqcud::::res://Assets/Player/Walk/Walk (3).png<>uid://dv8b84pt88ueh::::res://Assets/Player/Walk/Walk (4).png<>uid://2bijkucj6yd6::::res://Assets/Player/Walk/Walk (5).png<>uid://7a16os2aym24::::res://Assets/Player/Walk/Walk (6).png<>uid://btbnpuyb884nn::::res://Assets/Player/Walk/Walk (7).png<>uid://dfkc2rqqdn01c::::res://Assets/Player/Walk/Walk (8).png<>uid://cuaeuv0y7k2v6::::res://Assets/Player/Walk/Walk (9).png<>uid://5q4dig06apux::::res://Assets/Player/Walk/Walk (10).png
-::res://Scenes/in_game_menu/::1745951026
+::res://Scenes/in_game_menu/::1746114773
 in_game_menu.gd::GDScript/GDScript::2461226282746829484::1745951026::0::1::::<>Control<><>0<>0<><>::
 in_game_menu.gdshader::Shader/Shader::8303135117772150903::1745951026::0::1::::<><><>0<>0<><>::
-in_game_menu.tscn::PackedScene/PackedScene::2603799768548294209::1745951026::0::1::::<><><>0<>0<><>::uid://bbcibjdsg3que::::res://Scenes/in_game_menu/in_game_menu.gd<>uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-options.gd::GDScript/GDScript::3295673814632310780::1745951026::0::1::::<>Control<><>0<>0<><>::
-options.tscn::PackedScene/PackedScene::5204710495518512441::1745951026::0::1::::<><><>0<>0<><>::uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://bm7pjb0vn73ki::::res://Scenes/in_game_menu/options.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+in_game_menu.tscn::PackedScene::2603799768548294209::1746114773::0::1::::<><><>0<>0<><>::uid://bbcibjdsg3que::::res://Scenes/in_game_menu/in_game_menu.gd<>uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+options.gd::GDScript::3295673814632310780::1746114771::0::1::::<>Control<><>0<>0<><>::
+options.tscn::PackedScene::5204710495518512441::1746114773::0::1::::<><><>0<>0<><>::uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://bm7pjb0vn73ki::::res://Scenes/in_game_menu/options.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 shop.gd::GDScript/GDScript::6341877352917133559::1745951026::0::1::::<>Control<><>0<>0<><>::
-shop.tscn::PackedScene/PackedScene::6317847337041257556::1745951026::0::1::::<><><>0<>0<><>::uid://cwmb18hqabn80::::res://Scenes/in_game_menu/shop.gd<>uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-::res://Scenes/login_signup/::1745951026
-login.tscn::PackedScene/PackedScene::5609555464399907283::1745780672::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+shop.tscn::PackedScene::6317847337041257556::1746114773::0::1::::<><><>0<>0<><>::uid://cwmb18hqabn80::::res://Scenes/in_game_menu/shop.gd<>uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+::res://Scenes/login_signup/::1746114773
+login.tscn::PackedScene::5609555464399907283::1746114773::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 opening_scene.gd::GDScript/GDScript::9214209217308711805::1745951026::0::1::::<>Control<><>0<>0<><>::
-opening_scene.tscn::PackedScene/PackedScene::3937243045266902888::1745780713::0::1::::<><><>0<>0<><>::uid://d4joxdu37hrht::::res://Scenes/login_signup/opening_scene.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png<>uid://cl6ktaejouga2::::res://Scenes/login_signup/login.tscn<>uid://2ofk88gf0pnm::::res://Scenes/login_signup/sign_up.tscn
-sign_up.tscn::PackedScene/PackedScene::1924323294215987610::1745951026::0::1::::<><><>0<>0<><>::uid://bf4melmow3qx7::::res://Scripts/sign_up.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-::res://Scenes/profile/::1746072809
-profile.tscn::PackedScene::1861358359550161702::1746072809::0::1::::<><><>0<>0<><>::uid://dmu8eelddqexq::::res://Scripts/profile.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
-settings_tab_container.tscn::PackedScene::7548615369892046895::1746072809::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-::res://Scripts/::1746072169
+opening_scene.tscn::PackedScene::3937243045266902888::1746114773::0::1::::<><><>0<>0<><>::uid://d4joxdu37hrht::::res://Scenes/login_signup/opening_scene.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png<>uid://cl6ktaejouga2::::res://Scenes/login_signup/login.tscn<>uid://2ofk88gf0pnm::::res://Scenes/login_signup/sign_up.tscn
+sign_up.tscn::PackedScene::1924323294215987610::1746114773::0::1::::<><><>0<>0<><>::uid://bf4melmow3qx7::::res://Scripts/sign_up.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+::res://Scenes/profile/::1746114773
+profile.tscn::PackedScene::1861358359550161702::1746114773::0::1::::<><><>0<>0<><>::uid://dmu8eelddqexq::::res://Scripts/profile.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
+settings_tab_container.tscn::PackedScene/PackedScene::7548615369892046895::1746072809::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+::res://Scripts/::1746079649
 cave_default.gd::GDScript/GDScript::9078974782839006102::1745952068::0::1::::Cave<>Node2D<><>0<>0<><>::
 game_control.gd::GDScript/GDScript::8011032809508811240::1745951920::0::1::::<>Node2D<><>0<>0<><>::
 Global.gd::GDScript/GDScript::6955066484218890644::1745776071::0::1::::<>Node<><>0<>0<><>::
@@ -113,7 +114,7 @@ login.gd::GDScript/GDScript::3134399103335102016::1745951026::0::1::::<>Panel<><
 loginManager.gd::GDScript/GDScript::5446578691556592263::1746072169::0::1::::loginManager<>Node<><>0<>0<><>::
 main_menu.gd::GDScript/GDScript::3711824645929887213::1745776071::0::1::::<>Control<><>0<>0<><>::
 player.gd::GDScript/GDScript::2922624653754044578::1746070135::0::1::::<>Area2D<><>0<>0<><>::
-profile.gd::GDScript/GDScript::8044826760980998910::1745775054::0::1::::Profile<>Control<><>0<>0<><>::
+profile.gd::GDScript::8044826760980998910::1746079649::0::1::::Profile<>Control<><>0<>0<><>::
 settings_tab_container.gd::GDScript/GDScript::1544288660884576796::1745776987::0::1::::<>Control<><>0<>0<><>::
 sign_up.gd::GDScript/GDScript::2797968200800933358::1745951026::0::1::::<>Panel<><>0<>0<><>::
 ::res://user/::1746070066

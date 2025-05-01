@@ -1,11 +1,12 @@
 res://Scenes/login_signup/login.tscn
 res://Scenes/login_signup/opening_scene.tscn
 res://Scenes/login_signup/sign_up.tscn
-res://Scenes/in_game_menu/in_game_menu.tscn
-res://Scripts/profile.gd
 res://Scenes/profile/profile.tscn
+res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/options.tscn
 res://Scenes/in_game_menu/shop.tscn
 res://Scenes/main_menu.tscn
-res://Scenes/in_game_menu/options.gd
-res://default_bus_layout.tres
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/login_old.tscn
+res://Scenes/login.tscn
+res://Scenes/in_game_menu.tscn
