@@ -1,10 +1,10 @@
+VBoxContainer
 CheckButton
 HSlider
 RichTextLabel
 Label
 Button
 TextureRect
-VBoxContainer
 MarginContainer
 ScrollContainer
 PanelContainer
@@ -12,4 +12,3 @@ ColorRect
 AnimationPlayer
 Panel
 TabBar
-TabContainer
