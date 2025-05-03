@@ -16,3 +16,12 @@
 /export/
 /shader_cache/
 /mono/
+
+# Ignore OpenAI API key
+openai_key.txt
+
+# Ignore specific Godot cache/editor files
+.godot/uid_cache.bin
+.godot/editor/recent_dirs
+.godot/editor/filesystem_update4
+.godot/editor/filesystem_cache10

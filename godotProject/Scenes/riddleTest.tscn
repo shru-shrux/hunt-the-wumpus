@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2fgpii0ms85h"]
+
+[ext_resource type="Script" uid="uid://dfr2mfjes6tli" path="res://Scripts/riddle_test.gd" id="1_6dejr"]
+
+[node name="RiddleTest" type="Node2D"]
+script = ExtResource("1_6dejr")

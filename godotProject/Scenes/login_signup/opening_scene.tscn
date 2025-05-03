@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwdh22js34u4w"]
 
-[ext_resource type="Script" uid="uid://d4joxdu37hrht" path="res://Scenes/login_signup/opening_scene.gd" id="1_es2kt"]
+[ext_resource type="Script" uid="uid://d4joxdu37hrht" path="res://Scripts/opening_scene.gd" id="1_es2kt"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_wd26m"]
 [ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="2_es2kt"]
 [ext_resource type="PackedScene" uid="uid://cl6ktaejouga2" path="res://Scenes/login_signup/login.tscn" id="3_vtknk"]

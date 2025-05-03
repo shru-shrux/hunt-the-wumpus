@@ -50,9 +50,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_olqyp"]
-radius = 19.0
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gymyn"]
+size = Vector2(87, 155)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_gymyn")
@@ -64,4 +63,5 @@ sprite_frames = SubResource("SpriteFrames_l6n3p")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_olqyp")
+position = Vector2(-6.5, -1.5)
+shape = SubResource("RectangleShape2D_gymyn")

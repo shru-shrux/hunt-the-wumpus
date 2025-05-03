@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="HuntTheWumpus"
+run/main_scene="uid://bwdh22js34u4w"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-LoginManager="*res://Scripts/loginManager.gd"
+LoginManager="*res://Scripts/login_manager.gd"
 Global="*res://Scripts/Global.gd"
 
 [input]
