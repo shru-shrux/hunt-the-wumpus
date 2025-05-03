@@ -1,5 +1,6 @@
 extends Area2D
 signal hit
+signal interact
 
 # this is basic player movement from tutorial, will need to be adapted and changed
 
@@ -34,7 +35,10 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = false
 		# See the note below about the following boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-
+	
+	
+	if Input.is_action_pressed("Interact"):
+		interact.emit()
 
 
 func _on_body_entered(_body):

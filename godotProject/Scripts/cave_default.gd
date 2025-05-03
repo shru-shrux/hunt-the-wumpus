@@ -73,7 +73,7 @@ func updateCave(newCave:Cave):
 	var i : int = 0
 	for cave in connectingCaves:
 		var path : String = str(i) + "/CaveNumber"
-		get_node(path).text = currentCaveNumber
+		get_node(path).text = str(cave.currentCaveNumber)
 		i += 1
 	
 	
@@ -103,17 +103,45 @@ func updateCave(newCave:Cave):
 func _on_area_exited(area: Area2D) -> void:
 	$EnterCave.visible = false
 
+# if the player enters area2D of the cave on the left, show its number in the
+# enter cave text
 
+# side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_0_area_entered(area: Area2D) -> void:
-	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber)
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber) + " "
 	$EnterCave.visible = true
 
 
+# if the player enters area2D of the cave in the middle, show its number in the
+# enter cave text
+
+# side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_1_area_entered(area: Area2D) -> void:
-	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber)
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber) + " "
 	$EnterCave.visible = true
 
+# if the player enters area2D of the cave on the right, show its number in the
+# enter cave text
 
+# side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_2_area_entered(area: Area2D) -> void:
-	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber)
+	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber) + " "
 	$EnterCave.visible = true
+
+
+func _on_player_interact() -> void:
+	
+	# the cave the player is standing in front of
+	var selectedCave:Cave
+	
+	if $EnterCave.visible == true:	
+		
+		# check which cave the player is standing in front of
+		
+		# iterates through each connecting cave and checks if that number is
+		# in the EnterCave text because that is updated when a player enters
+		# the area2D
+		for cave in connectingCaves:
+			if $EnterCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
+				# update numbers in scene and attributes on the object
+				updateCave(cave)

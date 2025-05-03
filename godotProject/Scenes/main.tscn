@@ -11,3 +11,5 @@ script = ExtResource("1_jjgbg")
 position = Vector2(408, 431)
 
 [node name="CaveDefault" parent="." instance=ExtResource("3_jjvhh")]
+
+[connection signal="interact" from="Player" to="CaveDefault" method="_on_player_interact"]
