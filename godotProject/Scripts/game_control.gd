@@ -1,25 +1,29 @@
 extends Node2D
 
-# array of all connecting caves
+# 2D array of the connecting caves for each cave
 var connectingCavesMaster = []
 
+# array of all the caves going from 1-30
 var caveList: Array[Cave] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	# creates the cave objects
 	create_caves()
-	#assign_special_caves()
+	# assings the connecting cave array to each
 	populate_connecting_caves()
+	# sets the first cave
 	initialize_cave(caveList[0])
 	
-
+# creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
 	for i in range(30):
 		var cave = Cave.new()
 		cave.currentCaveNumber = i+1
 		caveList.append(cave)
 
+# randomly picks 2 caves to be the bat caves and two to be pit caves
 func assign_special_caves():
 	var available_caves = caveList
 	available_caves.shuffle()
@@ -47,6 +51,7 @@ func initialize_cave(pickedCave:Cave):
 	for cave in pickedCave.connectingCaves:
 		print(cave.currentCaveNumber)
 
+# gives each cave an array of its 3 connecting caves to make the map
 func populate_connecting_caves():
 	
 	connectingCavesMaster = [
