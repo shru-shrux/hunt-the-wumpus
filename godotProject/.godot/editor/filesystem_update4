@@ -1,11 +1,8 @@
-res://Scripts/Global.gd
-res://Scripts/settings_tab_container.gd
-res://Scripts/game_control.gd
-res://Scripts/cave_default.gd
-res://Scenes/cave_default.tscn
-res://Scripts/player.gd
 res://Scenes/login.tscn
 res://Scenes/main_menu.tscn
+res://Scenes/cave_default.tscn
 res://Scenes/player.tscn
 res://Scenes/main.tscn
 res://Scenes/in_game_menu.tscn
+res://Scripts/game_control.gd
+res://Scripts/cave_default.gd

@@ -13,6 +13,8 @@ func _ready() -> void:
 	create_caves()
 	# assings the connecting cave array to each
 	populate_connecting_caves()
+	# gives each cave gold
+	distribute_gold(100)
 	# sets the first cave
 	initialize_cave(caveList[0])
 	
@@ -28,15 +30,48 @@ func assign_special_caves():
 	var available_caves = caveList
 	available_caves.shuffle()
 	
+	# assigning bat
 	for i in range(2):
-		available_caves[i].hasBat = true
+		var caveNumber = available_caves[i].currentCaveNumber
+		caveList[caveNumber-1].hasBat = true
 	
+	# assigning pit
 	for i in range(2, 4):
-		available_caves[i].hasPit = true
+		var caveNumber = available_caves[i].currentCaveNumber
+		caveList[caveNumber-1].hasPit = true
 
+# give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
-	pass
+	# counter that keeps track of total gold given
+	var givenGold : int
+	randomize()
+	
+	# shuffled list of all caves
+	var available_caves = caveList
+	available_caves.shuffle()
+	
+	# goes through all 30 caves
+	for i in range(30):
+		# finding the cave that is in the shuffled list in the actual list
+		var caveNumber = available_caves[i].currentCaveNumber
+		var cave = caveList[caveNumber-1]
+		
+		# if all the gold is given stop looping
+		if givenGold >= 100:
+			break
+		# if there is 90 or more gold, then give the next cave the rest
+		if givenGold >= 90:
+			cave.roomGoldAmount = total_gold - givenGold
+			givenGold += total_gold - givenGold
+		# add random amount between 0 and 10 gold, and increment counter
+		else:
+			var gold = randi() % 10 + 1
+			cave.roomGoldAmount = gold
+			givenGold += gold
+		
+	print(givenGold)
 
+# for this first cave sets all the first amounts before the system takes control
 func initialize_cave(pickedCave:Cave):
 	# updating attributes
 	$CaveDefault.roomGoldAmount = pickedCave.roomGoldAmount
@@ -47,9 +82,6 @@ func initialize_cave(pickedCave:Cave):
 	$CaveDefault.hasWumpus = pickedCave.hasWumpus
 	$CaveDefault.hasPit = pickedCave.hasPit
 	
-	print("Current Cave Number: " + str(pickedCave.currentCaveNumber))
-	for cave in pickedCave.connectingCaves:
-		print(cave.currentCaveNumber)
 
 # gives each cave an array of its 3 connecting caves to make the map
 func populate_connecting_caves():

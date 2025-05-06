@@ -1,8 +1,8 @@
+Label
 VBoxContainer
 CheckButton
 HSlider
 RichTextLabel
-Label
 Button
 TextureRect
 MarginContainer

@@ -67,6 +67,9 @@ func updateCave(newCave:Cave):
 	hasBat = newCave.hasBat
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
+	$CaveNumber.text = str(currentCaveNumber)
+	
+	print("This room has " + str(roomGoldAmount) + " gold")
 	
 	# loops through the connecting caves and updates the numbers above the
 	# cave entrances in the scene
