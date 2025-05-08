@@ -1,5 +1,6 @@
 extends Node2D
 class_name Cave
+signal new_cave_entered
 
 #to do: make hazards for bottomless pit and wumpus. Figure out what will
 # happen when a player enters a hazard cave (all three). Coordinate with
@@ -46,25 +47,29 @@ func _process(delta: float) -> void:
 	pass
 
 # currentCave - the cave the player is in currently
-# destination - the cave the player is trying to go to
-func changeCaves(currentCave:Cave, destination:Cave):
-	# if the destination has a connection to currentCave change caves
-	if destination in currentCave.connectingCaves:
-		updateCave(destination)
-	# if the destination DOES NOT have a connection we can't change
-	else:
-		print("Cave is not accessible from current cave")
-		return
+## destination - the cave the player is trying to go to
+#func changeCaves(currentCave:Cave, destination:Cave):
+	## if the destination has a connection to currentCave change caves
+	#if destination in currentCave.connectingCaves:
+		#updateCave(destination)
+	## if the destination DOES NOT have a connection we can't change
+	#else:
+		#print("Cave is not accessible from current cave")
+		#return
 
 # change all of the attributes of the currentCave to our the cave the player
 # is changing to
 func updateCave(newCave:Cave):
+		
+	$WarningText.visible = false
+	
 	# updating attributes
 	roomGoldAmount = newCave.roomGoldAmount
 	connectingCaves = newCave.connectingCaves
 	bestOption = newCave.bestOption
 	currentCaveNumber = newCave.currentCaveNumber
 	hasBat = newCave.hasBat
+	print(newCave.hasBat)
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
 	$CaveNumber.text = str(currentCaveNumber)
@@ -77,10 +82,15 @@ func updateCave(newCave:Cave):
 	for cave in connectingCaves:
 		var path : String = str(i) + "/CaveNumber"
 		get_node(path).text = str(cave.currentCaveNumber)
-		i += 1
+		i += 1	
 	
+	if hasPit:
+		print("Game over u are done, there is a pit here")
 	
-	# checking connecting caves for hazards to show ----
+	if hasBat:
+		pass
+	
+	# checking connecting caves for hazards to show -----------------------
 	
 	# if there is a bat cave nearby, let the user know
 	for cave in connectingCaves:
@@ -91,13 +101,14 @@ func updateCave(newCave:Cave):
 	# if there is a pit cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasPit:
-			# figure out what should happen here -------------------------------
+			$WarningText.text = "You hear a rock fall and hit the sides of some hole"
+			$WarningText.visible = true
 			return
 	
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			# figure out what should happen here -------------------------------
+			# figure out what should happen here -------------
 			return
 	
 
@@ -148,3 +159,7 @@ func _on_player_interact() -> void:
 			if $EnterCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
 				# update numbers in scene and attributes on the object
 				updateCave(cave)
+				new_cave_entered.emit()
+				
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout

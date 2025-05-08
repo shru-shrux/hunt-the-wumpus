@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1746560164
+::res://::1746733382
 default_bus_layout.tres::AudioBusLayout/AudioBusLayout::7451237478222333559::1746127710::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1745428642::1745428762::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1745948263
@@ -82,14 +82,14 @@ Walk (7).png::CompressedTexture2D/CompressedTexture2D::3722890286017487987::1745
 Walk (8).png::CompressedTexture2D/CompressedTexture2D::7531020615576367602::1745948263::1745948276::1::::<><><>0<>0<>b9cb014cc8d07a9d7593904d21c920e3<>res://.godot/imported/Walk (8).png-5047072177f0761d444abcd5d57ad3bf.ctex::
 Walk (9).png::CompressedTexture2D/CompressedTexture2D::6176897966740114917::1745948263::1745948276::1::::<><><>0<>0<>79d990b2f0b77aeecd0db6fdae1437d6<>res://.godot/imported/Walk (9).png-ea3d75c467ba7bf664da051b9b02f70f.ctex::
 Walk (10).png::CompressedTexture2D/CompressedTexture2D::2140461934010827787::1745948263::1745948276::1::::<><><>0<>0<>8d00b73e9eaa5e1c594fe66716f3286a<>res://.godot/imported/Walk (10).png-c00291f1a79f97c796bf8888aabd8f49.ctex::
-::res://Scenes/::1746554663
-cave_default.tscn::PackedScene::1010497088471257601::1746554663::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
-in_game_menu.tscn::PackedScene::1399367507345118561::1746554663::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-login.tscn::PackedScene::2797865207597513826::1746554662::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
+::res://Scenes/::1746732503
+cave_default.tscn::PackedScene::1010497088471257601::1746732502::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
+in_game_menu.tscn::PackedScene::1399367507345118561::1746732503::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+login.tscn::PackedScene::2797865207597513826::1746732502::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
 login_old.tscn::PackedScene/PackedScene::1285524868438441202::1745773953::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-main.tscn::PackedScene::132530188378800052::1746554663::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
-main_menu.tscn::PackedScene::7378023195614977391::1746554663::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-player.tscn::PackedScene::2949665607513518438::1746554663::0::1::::<><><>0<>0<><>::uid://bhv0g3n6ya8ws::::res://Scripts/player.gd<>uid://bc35xyh03ry8d::::res://Assets/Player/Walk/Walk (1).png<>uid://52ucmkq7cqyh::::res://Assets/Player/Walk/Walk (2).png<>uid://dto0xccyeqcud::::res://Assets/Player/Walk/Walk (3).png<>uid://dv8b84pt88ueh::::res://Assets/Player/Walk/Walk (4).png<>uid://2bijkucj6yd6::::res://Assets/Player/Walk/Walk (5).png<>uid://7a16os2aym24::::res://Assets/Player/Walk/Walk (6).png<>uid://btbnpuyb884nn::::res://Assets/Player/Walk/Walk (7).png<>uid://dfkc2rqqdn01c::::res://Assets/Player/Walk/Walk (8).png<>uid://cuaeuv0y7k2v6::::res://Assets/Player/Walk/Walk (9).png<>uid://5q4dig06apux::::res://Assets/Player/Walk/Walk (10).png
+main.tscn::PackedScene::132530188378800052::1746732502::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
+main_menu.tscn::PackedScene::7378023195614977391::1746732502::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+player.tscn::PackedScene::2949665607513518438::1746732502::0::1::::<><><>0<>0<><>::uid://bhv0g3n6ya8ws::::res://Scripts/player.gd<>uid://bc35xyh03ry8d::::res://Assets/Player/Walk/Walk (1).png<>uid://52ucmkq7cqyh::::res://Assets/Player/Walk/Walk (2).png<>uid://dto0xccyeqcud::::res://Assets/Player/Walk/Walk (3).png<>uid://dv8b84pt88ueh::::res://Assets/Player/Walk/Walk (4).png<>uid://2bijkucj6yd6::::res://Assets/Player/Walk/Walk (5).png<>uid://7a16os2aym24::::res://Assets/Player/Walk/Walk (6).png<>uid://btbnpuyb884nn::::res://Assets/Player/Walk/Walk (7).png<>uid://dfkc2rqqdn01c::::res://Assets/Player/Walk/Walk (8).png<>uid://cuaeuv0y7k2v6::::res://Assets/Player/Walk/Walk (9).png<>uid://5q4dig06apux::::res://Assets/Player/Walk/Walk (10).png
 riddleTest.tscn::PackedScene/PackedScene::4292232873253351287::1746238997::0::1::::<><><>0<>0<><>::uid://dfr2mfjes6tli::::res://Scripts/riddle_test.gd
 ::res://Scenes/in_game_menu/::1746127705
 in_game_menu.gd::GDScript/GDScript::2461226282746829484::1745948263::0::1::::<>Control<><>0<>0<><>::
@@ -106,9 +106,9 @@ sign_up.tscn::PackedScene/PackedScene::1924323294215987610::1745950067::0::1::::
 ::res://Scenes/profile/::1746238992
 profile.tscn::PackedScene/PackedScene::1861358359550161702::1746127705::0::1::::<><><>0<>0<><>::uid://dmu8eelddqexq::::res://Scripts/profile.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
 settings_tab_container.tscn::PackedScene/PackedScene::7548615369892046895::1746238992::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-::res://Scripts/::1746554720
-cave_default.gd::GDScript/GDScript::9078974782839006102::1746240143::0::1::::Cave<>Node2D<><>0<>0<><>::
-game_control.gd::GDScript::8011032809508811240::1746554720::0::1::::<>Node2D<><>0<>0<><>::
+::res://Scripts/::1746561860
+cave_default.gd::GDScript/GDScript::9078974782839006102::1746561860::0::1::::Cave<>Node2D<><>0<>0<><>::
+game_control.gd::GDScript/GDScript::8011032809508811240::1746561329::0::1::::<>Node2D<><>0<>0<><>::
 Global.gd::GDScript/GDScript::6955066484218890644::1746238992::0::1::::<>Node<><>0<>0<><>::
 login.gd::GDScript/GDScript::3134399103335102016::1745951315::0::1::::<>Panel<><>0<>0<><>::
 login_manager.gd::GDScript/GDScript::5446578691556592263::1746238992::0::1::::loginManager<>Node<><>0<>0<><>::

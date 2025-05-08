@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=9 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
@@ -17,6 +17,10 @@ font_size = 35
 [sub_resource type="LabelSettings" id="LabelSettings_2tao4"]
 font = ExtResource("2_urmdh")
 font_size = 130
+
+[sub_resource type="LabelSettings" id="LabelSettings_pklks"]
+font = ExtResource("2_urmdh")
+font_size = 33
 
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
@@ -97,6 +101,16 @@ text = "1"
 label_settings = SubResource("LabelSettings_2tao4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WarningText" type="Label" parent="."]
+visible = false
+offset_left = 238.0
+offset_top = 56.0
+offset_right = 632.0
+offset_bottom = 87.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]

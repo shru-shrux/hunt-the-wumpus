@@ -7,6 +7,10 @@ signal interact
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window
 
+# in game attributes
+var goldCount : int
+var arrowConut : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -52,3 +56,7 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+# when the player enters a new cave set position
+func _on_new_cave_entered() -> void:
+	position = Vector2(87, 434)

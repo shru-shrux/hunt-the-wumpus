@@ -15,8 +15,20 @@ func _ready() -> void:
 	populate_connecting_caves()
 	# gives each cave gold
 	distribute_gold(100)
+	# assigns the pit and bat caves
+	assign_special_caves()
 	# sets the first cave
 	initialize_cave(caveList[0])
+	
+	print("bats-------------")
+	for cave in caveList:
+		if cave.hasBat:
+			print(cave.currentCaveNumber)
+	
+	print("pits------------------")
+	for cave in caveList:
+		if cave.hasPit:
+			print(cave.currentCaveNumber)
 	
 # creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
@@ -27,18 +39,20 @@ func create_caves():
 
 # randomly picks 2 caves to be the bat caves and two to be pit caves
 func assign_special_caves():
-	var available_caves = caveList
-	available_caves.shuffle()
 	
-	# assigning bat
-	for i in range(2):
-		var caveNumber = available_caves[i].currentCaveNumber
-		caveList[caveNumber-1].hasBat = true
+	randomize()
 	
-	# assigning pit
-	for i in range(2, 4):
-		var caveNumber = available_caves[i].currentCaveNumber
-		caveList[caveNumber-1].hasPit = true
+	var numbers = []
+	for i in range(30):
+		numbers.append(i)
+		numbers.shuffle()
+
+	var result = numbers.slice(0, 4)
+	
+	caveList[result[0]].hasBat = true
+	caveList[result[1]].hasBat = true
+	caveList[result[2]].hasPit = true
+	caveList[result[3]].hasPit = true
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
@@ -46,15 +60,15 @@ func distribute_gold(total_gold: int):
 	var givenGold : int
 	randomize()
 	
-	# shuffled list of all caves
-	var available_caves = caveList
-	available_caves.shuffle()
+	var numbers = []
+	for i in range(30):
+		numbers.append(i)
+		numbers.shuffle()
 	
 	# goes through all 30 caves
-	for i in range(30):
+	for i in numbers:
 		# finding the cave that is in the shuffled list in the actual list
-		var caveNumber = available_caves[i].currentCaveNumber
-		var cave = caveList[caveNumber-1]
+		var cave = caveList[i]
 		
 		# if all the gold is given stop looping
 		if givenGold >= 100:
@@ -69,7 +83,6 @@ func distribute_gold(total_gold: int):
 			cave.roomGoldAmount = gold
 			givenGold += gold
 		
-	print(givenGold)
 
 # for this first cave sets all the first amounts before the system takes control
 func initialize_cave(pickedCave:Cave):
@@ -81,6 +94,8 @@ func initialize_cave(pickedCave:Cave):
 	$CaveDefault.hasBat = pickedCave.hasBat
 	$CaveDefault.hasWumpus = pickedCave.hasWumpus
 	$CaveDefault.hasPit = pickedCave.hasPit
+	
+	print($CaveDefault.currentCaveNumber)
 	
 
 # gives each cave an array of its 3 connecting caves to make the map
