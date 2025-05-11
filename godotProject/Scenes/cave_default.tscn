@@ -102,12 +102,22 @@ label_settings = SubResource("LabelSettings_2tao4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WarningText" type="Label" parent="."]
+[node name="PitWarning" type="Label" parent="."]
 visible = false
 offset_left = 238.0
 offset_top = 56.0
 offset_right = 632.0
 offset_bottom = 87.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
+[node name="BatWarning" type="Label" parent="."]
+visible = false
+offset_left = 238.0
+offset_top = 95.0
+offset_right = 632.0
+offset_bottom = 126.0
 text = "Warning:"
 label_settings = SubResource("LabelSettings_pklks")
 horizontal_alignment = 1

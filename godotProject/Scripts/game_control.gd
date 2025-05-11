@@ -6,6 +6,7 @@ var connectingCavesMaster = []
 # array of all the caves going from 1-30
 var caveList: Array[Cave] = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -18,7 +19,9 @@ func _ready() -> void:
 	# assigns the pit and bat caves
 	assign_special_caves()
 	# sets the first cave
-	initialize_cave(caveList[0])
+	$CaveDefault.updateCave(caveList[0])
+	# loads the caveList to caveDefault
+	$CaveDefault.loadCave()
 	
 	print("bats-------------")
 	for cave in caveList:
@@ -94,8 +97,6 @@ func initialize_cave(pickedCave:Cave):
 	$CaveDefault.hasBat = pickedCave.hasBat
 	$CaveDefault.hasWumpus = pickedCave.hasWumpus
 	$CaveDefault.hasPit = pickedCave.hasPit
-	
-	print($CaveDefault.currentCaveNumber)
 	
 
 # gives each cave an array of its 3 connecting caves to make the map

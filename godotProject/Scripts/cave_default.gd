@@ -6,6 +6,11 @@ signal new_cave_entered
 # happen when a player enters a hazard cave (all three). Coordinate with
 # Emily for in game menu (riddles, etc). 
 
+var player : Node2D
+
+# empty variable that is set later from game control
+var caveList : Array[Cave] = []
+
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
 # the caves the player can go into from this one
@@ -28,40 +33,20 @@ var hasPit = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		
-	# if game control sets this to bat cave start minigame
-	if hasBat:
-		pass
-	
-	# if game control sets this to wumpus cave start minigame
-	if hasWumpus:
-		pass
-	
-	# if game control sets this to pit cave start minigame
-	if hasPit:
-		pass
-
+	player = get_parent().get_node("Player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-# currentCave - the cave the player is in currently
-## destination - the cave the player is trying to go to
-#func changeCaves(currentCave:Cave, destination:Cave):
-	## if the destination has a connection to currentCave change caves
-	#if destination in currentCave.connectingCaves:
-		#updateCave(destination)
-	## if the destination DOES NOT have a connection we can't change
-	#else:
-		#print("Cave is not accessible from current cave")
-		#return
-
 # change all of the attributes of the currentCave to our the cave the player
 # is changing to
 func updateCave(newCave:Cave):
-		
-	$WarningText.visible = false
+	
+	# make warnings not visible in new cave
+	$PitWarning.visible = false
+	$BatWarning.visible = false
+	$BatSound.stop()
 	
 	# updating attributes
 	roomGoldAmount = newCave.roomGoldAmount
@@ -69,12 +54,13 @@ func updateCave(newCave:Cave):
 	bestOption = newCave.bestOption
 	currentCaveNumber = newCave.currentCaveNumber
 	hasBat = newCave.hasBat
-	print(newCave.hasBat)
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
 	$CaveNumber.text = str(currentCaveNumber)
 	
+	print("\nNew Room entered \n --------------------------------")
 	print("This room has " + str(roomGoldAmount) + " gold")
+	player.goldChange(roomGoldAmount)
 	
 	# loops through the connecting caves and updates the numbers above the
 	# cave entrances in the scene
@@ -82,34 +68,28 @@ func updateCave(newCave:Cave):
 	for cave in connectingCaves:
 		var path : String = str(i) + "/CaveNumber"
 		get_node(path).text = str(cave.currentCaveNumber)
-		i += 1	
+		i += 1
 	
 	if hasPit:
 		print("Game over u are done, there is a pit here")
 	
 	if hasBat:
-		pass
+		print("your are in a bat cave")
+		var cavePicked = false
+		var randomCave : Cave
+		while not cavePicked:
+			randomCave = caveList[randi_range(0, 29)]
+			if randomCave.hasBat == false and randomCave.hasPit == false and randomCave.hasWumpus == false and randomCave.currentCaveNumber != currentCaveNumber:
+				cavePicked = true
+		updateCave(randomCave)
+		$BatWarning.text = "A bat picked you up and dropped you, -5 gold"
+		$BatWarning.visible = true
+		player.goldChange(-5)
 	
 	# checking connecting caves for hazards to show -----------------------
 	
-	# if there is a bat cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasBat:
-			$BatSound.play()
-			return
+	checkHazards()
 	
-	# if there is a pit cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasPit:
-			$WarningText.text = "You hear a rock fall and hit the sides of some hole"
-			$WarningText.visible = true
-			return
-	
-	# if there is a wumpus cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasWumpus:
-			# figure out what should happen here -------------
-			return
 	
 
 # if the player exists any of the 3 Area2D this runs
@@ -160,6 +140,30 @@ func _on_player_interact() -> void:
 				# update numbers in scene and attributes on the object
 				updateCave(cave)
 				new_cave_entered.emit()
-				
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
+
+# called by game control once caveList is defined
+func loadCave():
+	caveList = get_parent().caveList
+
+# checks the surrounding caves for special caves and lets the user know
+func checkHazards():
+	# if there is a bat nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasBat:
+			$BatSound.play()
+			$BatWarning.text = "You hear high pitched squeaks near you"
+			$BatWarning.visible = true
+			return
+	
+	# if there is a pit cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasPit:
+			$PitWarning.text = "You hear a rock fall and hit the sides of some hole"
+			$PitWarning.visible = true
+			return
+	
+	# if there is a wumpus cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasWumpus:
+			# figure out what should happen here -------------
+			return

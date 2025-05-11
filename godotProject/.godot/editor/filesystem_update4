@@ -1,9 +1,9 @@
-res://Scripts/player.gd
 res://Scenes/main.tscn
 res://Scripts/cave_default.gd
+res://Scripts/game_control.gd
 res://Scenes/login.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/cave_default.tscn
 res://Scenes/player.tscn
 res://Scenes/in_game_menu.tscn
-res://Scripts/game_control.gd
+res://Scripts/player.gd
