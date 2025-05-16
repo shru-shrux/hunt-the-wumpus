@@ -74,7 +74,7 @@ func updateCave(newCave:Cave):
 		print("Game over u are done, there is a pit here")
 	
 	if hasBat:
-		print("your are in a bat cave")
+		print("you are in a bat cave")
 		var cavePicked = false
 		var randomCave : Cave
 		while not cavePicked:

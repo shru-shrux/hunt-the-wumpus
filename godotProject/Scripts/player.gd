@@ -9,7 +9,7 @@ var screen_size # Size of the game window
 
 # in game attributes
 var goldCount : int
-var arrowConut : int
+var arrowCount : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
