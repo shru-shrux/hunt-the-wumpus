@@ -1,8 +1,8 @@
-res://Scenes/riddleTest.tscn
-res://Scripts/riddle_generator.gd
-res://Scripts/game_control.gd
-res://Scenes/in_game_menu.tscn
-res://Scenes/main.tscn
 res://Scenes/cave_default.tscn
-res://Scenes/login_signup/login.tscn
+res://Scenes/login.tscn
+res://Scenes/main_menu.tscn
 res://Scenes/player.tscn
+res://Scenes/main.tscn
+res://Scenes/in_game_menu.tscn
+res://Scenes/cps_minigame.tscn
+res://Scripts/player.gd
