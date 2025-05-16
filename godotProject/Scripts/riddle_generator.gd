@@ -22,7 +22,7 @@ func _ready():
 	# Set up HTTPRequest
 	add_child(http_request)
 	
-	 # Connect request_completed from http to function, so called when HTTP request finished
+	# Connect request_completed from http to function, so called when HTTP request finished
 	http_request.request_completed.connect(_on_request_completed)
 
 
