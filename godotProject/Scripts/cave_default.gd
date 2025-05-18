@@ -38,6 +38,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot_arrow"):
+		error #error here, InputMap action shoot_arrow doesn't exist
 		_on_player_shoot_arrow()
 
 # change all of the attributes of the currentCave to our the cave the player
@@ -63,6 +64,8 @@ func updateCave(newCave:Cave):
 	print("This room has " + str(roomGoldAmount) + " gold")
 	player.goldChange(roomGoldAmount)
 	
+	newCave.roomGoldAmount = 0
+	
 	# loops through the connecting caves and updates the numbers above the
 	# cave entrances in the scene
 	var i : int = 0
@@ -72,7 +75,10 @@ func updateCave(newCave:Cave):
 		i += 1
 	
 	if hasPit:
-		print("Game over u are done, there is a pit here")
+		$PitWarning.text = "You are Falling"
+		$PitWarning.visible = true
+		await wait(2.0)
+		get_tree().change_scene_to_file("res://Scenes/cps_minigame.tscn")
 	
 	if hasBat:
 		print("you are in a bat cave")
@@ -217,3 +223,6 @@ func checkHazards():
 		if cave.hasWumpus:
 			# figure out what should happen here -------------
 			return
+
+func wait(seconds:float):
+	await get_tree().create_timer(seconds).timeout

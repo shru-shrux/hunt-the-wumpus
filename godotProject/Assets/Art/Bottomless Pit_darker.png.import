@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl8fqvmyuejf7"
-path="res://.godot/imported/Bottomless Pit.png-558a5488319d665f5454f2f966a0e4ce.ctex"
+uid="uid://bjeudwppis32d"
+path="res://.godot/imported/Bottomless Pit_darker.png-1d597cc46eb0f6c08b6e101897a15da0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Bottomless Pit.png"
-dest_files=["res://.godot/imported/Bottomless Pit.png-558a5488319d665f5454f2f966a0e4ce.ctex"]
+source_file="res://Assets/Art/Bottomless Pit_darker.png"
+dest_files=["res://.godot/imported/Bottomless Pit_darker.png-1d597cc46eb0f6c08b6e101897a15da0.ctex"]
 
 [params]
 
