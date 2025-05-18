@@ -31,10 +31,11 @@ position = Vector2(580, 327)
 texture = ExtResource("2_y8311")
 
 [node name="0" type="Area2D" parent="."]
-position = Vector2(240, 459)
+position = Vector2(261, 459)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
+position = Vector2(0.568183, 0.196851)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="0"]
@@ -67,10 +68,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="2" type="Area2D" parent="."]
-position = Vector2(915, 462)
+position = Vector2(892, 462)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
+position = Vector2(-0.56818, -0.590552)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="2"]
@@ -94,14 +96,44 @@ offset_bottom = 606.0
 text = "Press 'E' to enter cave 25"
 label_settings = SubResource("LabelSettings_rcyi4")
 
+[node name="ShootCave" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 287.0
+offset_top = 598.0
+offset_right = 891.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press 'Q' to shoot an arrow into cave 25"
+label_settings = SubResource("LabelSettings_rcyi4")
+
+[node name="ShootCaveResult" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 524.0
+offset_top = 598.0
+offset_right = 627.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESULT"
+label_settings = SubResource("LabelSettings_rcyi4")
+
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
 
 [node name="CaveNumber" type="Label" parent="."]
-offset_left = 39.0
-offset_top = 8.0
-offset_right = 104.0
-offset_bottom = 128.0
+offset_left = 33.0
+offset_top = 17.0
+offset_right = 98.0
+offset_bottom = 137.0
 text = "1"
 label_settings = SubResource("LabelSettings_2tao4")
 horizontal_alignment = 1

@@ -5,7 +5,10 @@ signal interact
 # this is basic player movement from tutorial, will need to be adapted and changed
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
+@export var sprint_multiplier = 1.5 # How much faster the player moves when sprinting
+
 var screen_size # Size of the game window
+var current_speed = speed
 
 # in game attributes
 var goldCount : int
@@ -24,26 +27,39 @@ func _process(delta):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= 1
+	
+	# Sprint check
+	var sprinting = Input.is_action_pressed("sprint") # Make sure you set this input action in Project Settings > Input Map
+	if sprinting:
+		current_speed = speed * sprint_multiplier
+	
+	var jumping : bool = Input.is_action_pressed("jump")
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	if jumping:
+		$AnimatedSprite2D.animation = "jump"
+		$AnimatedSprite2D.play()
+		# doesn't actually move the player
+	elif velocity.length() > 0:
+		velocity = velocity.normalized() * current_speed
+		if sprinting:
+			$AnimatedSprite2D.animation = "run"
+		else:
+			$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.animation = "idle"
+		$AnimatedSprite2D.play()
 		
+	# Flip sprite based on direction
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$AnimatedSprite2D.flip_v = false
+
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
-	
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		# See the note below about the following boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	
-	
+
 	if Input.is_action_pressed("Interact"):
 		interact.emit()
-
 
 func _on_body_entered(_body):
 	hide() # Player disappears after being hit.

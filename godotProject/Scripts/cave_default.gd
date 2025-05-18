@@ -37,7 +37,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("shoot_arrow"):
+		_on_player_shoot_arrow()
 
 # change all of the attributes of the currentCave to our the cave the player
 # is changing to
@@ -96,6 +97,8 @@ func updateCave(newCave:Cave):
 # it makes the text invisible again
 func _on_area_exited(area: Area2D) -> void:
 	$EnterCave.visible = false
+	$ShootCave.visible = false
+	$ShootCaveResult.visible = false
 
 # if the player enters area2D of the cave on the left, show its number in the
 # enter cave text
@@ -104,6 +107,8 @@ func _on_area_exited(area: Area2D) -> void:
 func _on_0_area_entered(area: Area2D) -> void:
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber) + " "
 	$EnterCave.visible = true
+	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[0].currentCaveNumber) + " "
+	$ShootCave.visible = true
 
 
 # if the player enters area2D of the cave in the middle, show its number in the
@@ -113,6 +118,8 @@ func _on_0_area_entered(area: Area2D) -> void:
 func _on_1_area_entered(area: Area2D) -> void:
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber) + " "
 	$EnterCave.visible = true
+	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[1].currentCaveNumber) + " "
+	$ShootCave.visible = true
 
 # if the player enters area2D of the cave on the right, show its number in the
 # enter cave text
@@ -121,6 +128,8 @@ func _on_1_area_entered(area: Area2D) -> void:
 func _on_2_area_entered(area: Area2D) -> void:
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber) + " "
 	$EnterCave.visible = true
+	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[2].currentCaveNumber) + " "
+	$ShootCave.visible = true
 
 
 func _on_player_interact() -> void:
@@ -140,6 +149,47 @@ func _on_player_interact() -> void:
 				# update numbers in scene and attributes on the object
 				updateCave(cave)
 				new_cave_entered.emit()
+				
+
+func _on_player_shoot_arrow() -> void:
+	
+	# the cave the player is standing in front of
+	var selectedCave:Cave
+	
+	if $ShootCave.visible == true:	
+		
+		# check which cave the player is standing in front of
+		
+		# iterates through each connecting cave and checks if that number is
+		# in the ShootCave text because that is updated when a player enters
+		# the area2D
+		for cave in connectingCaves:
+			if $ShootCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
+				# update numbers in scene and attributes on the object
+				
+				selectedCave = cave
+				break
+				
+	
+	$ShootCave.visible = false
+	$EnterCave.visible = false
+	$ShootCaveResult.visible = true
+	
+	if player.arrowCount > 0:
+		player.arrowCount -= 1
+		print("Shot an arrow, current count = " + player.arrowCount)
+	else:
+		print("No arrows left")
+		$ShootCaveResult.text = "No arrows left to shoot!"
+		return
+		
+	if selectedCave.hasWumpus:
+		print("Wumpus hit! Starting minigame...")
+		get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+	else:
+		$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
+		print("No Wumpus in that cave. Arrow lost.")
+
 
 # called by game control once caveList is defined
 func loadCave():
