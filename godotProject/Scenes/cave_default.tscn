@@ -31,7 +31,7 @@ position = Vector2(580, 327)
 texture = ExtResource("2_y8311")
 
 [node name="0" type="Area2D" parent="."]
-position = Vector2(240, 459)
+position = Vector2(261, 459)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
@@ -67,7 +67,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="2" type="Area2D" parent="."]
-position = Vector2(915, 462)
+position = Vector2(892, 462)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]

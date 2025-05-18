@@ -31,7 +31,8 @@ func _process(delta: float) -> void:
 		CPS = clicks / timer
 		# changes the position of the player based on CPS
 		if CPS > 2:
-			$"../Player".position.y = 479 - (floor(CPS-2)) * 70
+			$"../Player".position.y = 534 - (floor(CPS-2)) * 90
+			$"../Player".position.x = 844 + (floor(CPS-2)) * 12.34
 	# rounds the CPS to nearest tenth and displays it
 	$"../Label".text = "CPS: " + str(round(CPS*10)/10)
 	
