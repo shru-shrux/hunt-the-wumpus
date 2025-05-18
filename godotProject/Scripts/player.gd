@@ -59,7 +59,7 @@ func start(pos):
 
 # when the player enters a new cave set position
 func _on_new_cave_entered() -> void:
-	position = Vector2(87, 434)
+	position = Vector2(87, 507)
 
 # this changes the amount of gold the player has
 func goldChange(addedGold:int):

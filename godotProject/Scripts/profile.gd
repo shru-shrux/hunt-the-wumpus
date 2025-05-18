@@ -3,6 +3,7 @@ extends Control
 
 
 func _ready():
+	MainMenuBgMusic.play_main_music()
 	pass
 
 
