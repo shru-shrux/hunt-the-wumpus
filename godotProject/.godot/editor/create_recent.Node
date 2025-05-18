@@ -1,3 +1,5 @@
+PanelContainer
+Panel
 HSlider
 AudioStreamPlayer
 TextureRect
@@ -10,5 +12,3 @@ Area2D
 Timer
 AudioStreamPlayer2D
 Button
-VBoxContainer
-CheckButton

@@ -46,15 +46,96 @@ layout_mode = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="Secrets" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_q43li")
 theme_override_font_sizes/font_size = 30
-text = "test"
+text = "Secrets"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 1
+text = "buy"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Arrows" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_q43li")
+theme_override_font_sizes/font_size = 30
+text = "Arrows"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 1
+text = "buy"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GoldToCoin" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_q43li")
+theme_override_font_sizes/font_size = 30
+text = "Gold to coin
+conversion"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 1
+text = "buy"
+
+[node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Anti-Bat" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_q43li")
+theme_override_font_sizes/font_size = 30
+text = "Anti-bat Effect"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 1
+text = "buy"
+
+[node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Potions" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_q43li")
+theme_override_font_sizes/font_size = 30
+text = "Potions"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer5"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -71,7 +152,7 @@ anchor_bottom = 0.5
 offset_left = -150.0
 offset_top = -200.0
 offset_right = 150.0
-offset_bottom = 200.0
+offset_bottom = -133.0
 grow_horizontal = 2
 grow_vertical = 2
 
