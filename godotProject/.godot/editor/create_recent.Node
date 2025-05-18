@@ -1,3 +1,5 @@
+HSlider
+AudioStreamPlayer
 TextureRect
 CanvasLayer
 CanvasGroup
@@ -10,5 +12,3 @@ AudioStreamPlayer2D
 Button
 VBoxContainer
 CheckButton
-HSlider
-RichTextLabel

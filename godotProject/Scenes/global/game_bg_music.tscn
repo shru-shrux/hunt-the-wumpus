@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://rl456lb6dymf"]
+
+[ext_resource type="Script" uid="uid://cpl2ar8r0ut8v" path="res://Scenes/global/game_bg_music.gd" id="1_mg4fr"]
+
+[node name="GameBgMusic" type="AudioStreamPlayer"]
+bus = &"Music"
+script = ExtResource("1_mg4fr")

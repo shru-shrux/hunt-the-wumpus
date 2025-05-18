@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 LoginManager="*res://Scripts/login_manager.gd"
 Global="*res://Scripts/Global.gd"
+MainMenuBgMusic="*res://Scenes/global/main_menu_bg_music.tscn"
+GameBgMusic="*res://Scenes/global/game_bg_music.tscn"
 
 [input]
 

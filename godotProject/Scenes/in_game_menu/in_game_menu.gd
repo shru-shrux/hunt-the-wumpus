@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	GameBgMusic.play_game_music()
+
 func resume():
 	get_tree().paused = false
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgfg26uaql0wr"]
+[gd_scene load_steps=6 format=3 uid="uid://cgfg26uaql0wr"]
 
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="1_cnkli"]
 [ext_resource type="Script" uid="uid://bm7pjb0vn73ki" path="res://Scenes/in_game_menu/options.gd" id="1_qsymk"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_qsymk"]
+[ext_resource type="PackedScene" uid="uid://dvlyt2qx4c8ik" path="res://Scenes/volume_slider.tscn" id="4_bwluj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bwluj"]
 shader = ExtResource("1_cnkli")
@@ -67,10 +68,9 @@ text = "Music Volume"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="MusicSlider" parent="PanelContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_bwluj")]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
+bus_name = "Music"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -80,10 +80,9 @@ text = "SFX Volume"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="SFXSlider" type="HSlider" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="SFXSlider" parent="PanelContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_bwluj")]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
+bus_name = "SFX"
 
 [node name="CheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -113,7 +112,5 @@ theme_override_font_sizes/font_size = 50
 text = "          "
 horizontal_alignment = 1
 
-[connection signal="drag_ended" from="PanelContainer/VBoxContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
-[connection signal="drag_ended" from="PanelContainer/VBoxContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
