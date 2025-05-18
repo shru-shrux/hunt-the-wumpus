@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwaoa1d7sc0lk"]
+[gd_scene load_steps=7 format=3 uid="uid://cwaoa1d7sc0lk"]
 
 [ext_resource type="Script" uid="uid://cwmb18hqabn80" path="res://Scenes/in_game_menu/shop.gd" id="1_akc7e"]
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="2_2ypm5"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_q43li"]
+[ext_resource type="PackedScene" uid="uid://dbcbavu14b6q3" path="res://Scenes/in_game_menu/shop_card.tscn" id="4_2ypm5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujupl"]
 shader = ExtResource("2_2ypm5")
@@ -41,107 +42,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Secrets" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 30
-text = "Secrets"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-text = "buy"
-
-[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Arrows" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 30
-text = "Arrows"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-text = "buy"
-
-[node name="MarginContainer3" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="GoldToCoin" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 30
-text = "Gold to coin
-conversion"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-text = "buy"
-
-[node name="MarginContainer4" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Anti-Bat" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer4"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 30
-text = "Anti-bat Effect"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer4"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-text = "buy"
-
-[node name="MarginContainer5" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Potions" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer5"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 30
-text = "Potions"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/MarginContainer5"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-text = "buy"
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -152,24 +52,14 @@ anchor_bottom = 0.5
 offset_left = -150.0
 offset_top = -200.0
 offset_right = 150.0
-offset_bottom = -133.0
+offset_bottom = 201.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_q43li")
-theme_override_font_sizes/font_size = 50
-text = "Shop"
-horizontal_alignment = 1
-
-[node name="Back" type="Button" parent="PanelContainer"]
+[node name="Back" type="Button" parent="PanelContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -177,4 +67,76 @@ theme_override_fonts/font = ExtResource("3_q43li")
 theme_override_font_sizes/font_size = 20
 text = "Back"
 
-[connection signal="pressed" from="PanelContainer/Back" to="." method="_on_back_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_q43li")
+theme_override_font_sizes/font_size = 50
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+itemName = "Secrets"
+itemPrice = "10"
+
+[node name="Panel2" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+itemName = "Arrows"
+itemPrice = "5"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+itemName = "Gold to Coin"
+itemPrice = "5"
+
+[node name="Panel2" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+itemName = "Anti-bat effect"
+itemPrice = "10"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_2ypm5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+itemName = "Potions"
+itemPrice = "7"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
