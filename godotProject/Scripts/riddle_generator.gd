@@ -67,19 +67,28 @@ func generate_riddle_for_number(number: int, callback: Callable) -> void:
 
 
 func _on_request_completed(result: HTTPRequest.Result, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	if response_code == 200: # successful
-		var json_text: String = body.get_string_from_utf8() # convert to string
-		var parsed = JSON.parse_string(json_text) # parse into dictionary
-		if parsed.error == OK and parsed.result.has("choices") and parsed.result["choices"].size() > 0: # if parsed successful
-			var riddle: String = parsed.result["choices"][0]["message"]["content"]
+	print("📡 Request completed.")
+	print("🔢 HTTP Result Enum:", result)
+	print("📶 HTTP Response Code:", response_code)
+
+	var body_text := body.get_string_from_utf8()
+	print("📄 Raw body:", body_text)
+
+	if response_code == 200:
+		var parsed = JSON.parse_string(body_text)
+
+		if parsed and parsed.has("choices") and parsed["choices"].size() > 0:
+			var riddle: String = parsed["choices"][0]["message"]["content"]
+			print("🧠 Riddle from ChatGPT:", riddle)
 			on_riddle_ready.call(riddle.strip_edges())
 			return
 		else:
-			push_error("ChatGPT API Error %d, using fallback." % response_code)
+			push_error("❌ ChatGPT response format unexpected.")
 	else:
-		push_error("ChatGPT API Error %d:\n%s" % [response_code, body.get_string_from_utf8()])
+		push_error("❌ HTTP error %d: %s" % [response_code, body_text])
 	
 	_use_fallback_riddle()
+
 
 func _use_fallback_riddle() -> void:
 	if fallback_riddles.has(chosen_number):

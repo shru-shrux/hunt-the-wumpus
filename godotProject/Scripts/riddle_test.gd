@@ -12,3 +12,5 @@ func _ready():
 		print("✅ Riddle received:")
 		print(riddle)
 	)
+	
+	print("done")
