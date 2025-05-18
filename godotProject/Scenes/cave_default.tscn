@@ -96,6 +96,36 @@ offset_bottom = 606.0
 text = "Press 'E' to enter cave 25"
 label_settings = SubResource("LabelSettings_rcyi4")
 
+[node name="ShootCave" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 287.0
+offset_top = 598.0
+offset_right = 891.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press 'Q' to shoot an arrow into cave 25"
+label_settings = SubResource("LabelSettings_rcyi4")
+
+[node name="ShootCaveResult" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 524.0
+offset_top = 598.0
+offset_right = 627.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESULT"
+label_settings = SubResource("LabelSettings_rcyi4")
+
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
 
