@@ -1,13 +1,14 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747590701
+::res://::1747592695
 default_bus_layout.tres::AudioBusLayout/AudioBusLayout::7451237478222333559::1747590342::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741237481::1744997147::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 volume_slider.gd::GDScript/GDScript::4982729468970818885::1747590342::0::1::::<>HSlider<><>0<>0<><>::
 ::res://Assets/::1747359032
-::res://Assets/Art/::1747590386
+::res://Assets/Art/::1747602527
 Bottomless Pit.png::CompressedTexture2D/CompressedTexture2D::7999797077293293390::1747590341::1747590386::1::::<><><>0<>0<>40658bb1c6d3c13cc00ddded711ef081<>res://.godot/imported/Bottomless Pit.png-558a5488319d665f5454f2f966a0e4ce.ctex::
 Bottomless Pit_RotatedLadder.png::CompressedTexture2D/CompressedTexture2D::8676775115938548766::1747590341::1747590386::1::::<><><>0<>0<>fb324c2ffbfe11e651641847d10a6814<>res://.godot/imported/Bottomless Pit_RotatedLadder.png-15c94914a39cba595d2bf3392c917db3.ctex::
 Cave Scene.png::CompressedTexture2D/CompressedTexture2D::3323525974787764183::1747590341::1747590386::1::::<><><>0<>0<>acf923df7d15250af416180a0f740c44<>res://.godot/imported/Cave Scene.png-c07766081b5f0927a324f76f8b7caf16.ctex::
+Shoot arrow minigame background.jpg::CompressedTexture2D::5983644303694589610::1747602527::1747602529::1::::<><><>0<>0<>7a6c48d570490049f09a2f806ef03bfa<>res://.godot/imported/Shoot arrow minigame background.jpg-088ba6614fbcad9f93356a189d02a9ac.ctex::
 wumpus pixel art.png::CompressedTexture2D/CompressedTexture2D::759430950196114274::1744996199::1744997148::1::::<><><>0<>0<>68461e117dede77857e3cef1e2c8bd54<>res://.godot/imported/wumpus pixel art.png-2e6cd24cf7bba2108e01dd3b9dcb6e63.ctex::
 ::res://Assets/Cave/::1747359208
 background1.png::CompressedTexture2D/CompressedTexture2D::3336482815955822567::1747359032::1747359208::1::::<><><>0<>0<>4b61d3c1409e910e5fff8c8ed2204efc<>res://.godot/imported/background1.png-118b3cd0331fdc249c1ead3006d8d8d7.ctex::
@@ -145,18 +146,18 @@ Walk (7).png::CompressedTexture2D/CompressedTexture2D::3722890286017487987::1745
 Walk (8).png::CompressedTexture2D/CompressedTexture2D::7531020615576367602::1745779546::1745779635::1::::<><><>0<>0<>b9cb014cc8d07a9d7593904d21c920e3<>res://.godot/imported/Walk (8).png-5047072177f0761d444abcd5d57ad3bf.ctex::
 Walk (9).png::CompressedTexture2D/CompressedTexture2D::6176897966740114917::1745779546::1745779635::1::::<><><>0<>0<>79d990b2f0b77aeecd0db6fdae1437d6<>res://.godot/imported/Walk (9).png-ea3d75c467ba7bf664da051b9b02f70f.ctex::
 Walk (10).png::CompressedTexture2D/CompressedTexture2D::2140461934010827787::1745779545::1745779635::1::::<><><>0<>0<>8d00b73e9eaa5e1c594fe66716f3286a<>res://.godot/imported/Walk (10).png-c00291f1a79f97c796bf8888aabd8f49.ctex::
-::res://Scenes/::1747590626
+::res://Scenes/::1747601693
 button.gd::GDScript/GDScript::2990643297464816558::1747590341::0::1::::<>Button<><>0<>0<><>::
-cave_default.tscn::PackedScene::1010497088471257601::1747590626::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://bnl68tifbjgnn::::res://Assets/Art/Cave Scene.png<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
-cps_minigame.tscn::PackedScene/PackedScene::4098568214394388437::1747590341::0::1::::<><><>0<>0<><>::uid://biuxptv7ef71s::::res://Scenes/button.gd<>uid://dl8fqvmyuejf7::::res://Assets/Art/Bottomless Pit.png<>uid://cyu1o16vdvn6x::::res://Assets/Fonts/Symtext.ttf<>uid://dvvdhosvbuy4u::::res://Assets/Art/Bottomless Pit_RotatedLadder.png<>uid://bjvdbkiuihrda::::res://Assets/Music/PopSound.mp3<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn
+cave_default.tscn::PackedScene::1010497088471257601::1747593054::0::1::::<><><>0<>0<><>::uid://d2l6ng1socfrq::::res://Scripts/cave_default.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://bnl68tifbjgnn::::res://Assets/Art/Cave Scene.png<>uid://c1vbenfvou76e::::res://Assets/Music/BatSound.mp3
+cps_minigame.tscn::PackedScene::4098568214394388437::1747593054::0::1::::<><><>0<>0<><>::uid://biuxptv7ef71s::::res://Scenes/button.gd<>uid://dl8fqvmyuejf7::::res://Assets/Art/Bottomless Pit.png<>uid://cyu1o16vdvn6x::::res://Assets/Fonts/Symtext.ttf<>uid://dvvdhosvbuy4u::::res://Assets/Art/Bottomless Pit_RotatedLadder.png<>uid://bjvdbkiuihrda::::res://Assets/Music/PopSound.mp3<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn
 in_game_menu.tscn::PackedScene/PackedScene::1399367507345118561::1746116408::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 login.tscn::PackedScene/PackedScene::2797865207597513826::1746210911::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
 login_old.tscn::PackedScene/PackedScene::1285524868438441202::1746210911::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png
-main.tscn::PackedScene::132530188378800052::1747590626::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
-main_menu.tscn::PackedScene/PackedScene::7378023195614977391::1746210911::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+main.tscn::PackedScene::132530188378800052::1747593054::0::1::::<><><>0<>0<><>::uid://dmeusmgbmtojg::::res://Scripts/game_control.gd<>uid://bia3tdhj6mfis::::res://Scenes/player.tscn<>uid://onq0e03n2eh2::::res://Scenes/cave_default.tscn
+main_menu.tscn::PackedScene::7378023195614977391::1747593054::0::1::::<><><>0<>0<><>::uid://bs5bhekw4nryb::::res://Scripts/main_menu.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 player.tscn::PackedScene/PackedScene::2949665607513518438::1747590341::0::1::::<><><>0<>0<><>::uid://bhv0g3n6ya8ws::::res://Scripts/player.gd<>uid://bk55y3lkr73in::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 1.png<>uid://bn8ewlcqkhqn5::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 2.png<>uid://c2ktk7h786si1::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/ATTACK 3.png<>uid://cr1l3ygj78m0i::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/DEATH.png<>uid://bkqjw8sx335l::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/DEFEND.png<>uid://crpi2gctfhlh2::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/HURT.png<>uid://d35nn1hy7wots::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/IDLE.png<>uid://djlhaop17dmjm::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/JUMP.png<>uid://b64llq186y1p8::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/RUN.png<>uid://dwqc6u63k1n0h::::res://Assets/Player/Knight 2D Pixel Art/Sprites/without_outline/WALK.png
 riddleTest.tscn::PackedScene/PackedScene::4292232873253351287::1747359238::0::1::::<><><>0<>0<><>::uid://dfr2mfjes6tli::::res://Scripts/riddle_test.gd
-shoot_arrow_game.tscn::PackedScene::8172584539233639168::1747590626::0::1::::<><><>0<>0<><>::uid://4shsqun1sudf::::res://Scripts/shoot_arrow_game.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
+shoot_arrow_game.tscn::PackedScene::8172584539233639168::1747601693::0::1::::<><><>0<>0<><>::uid://4shsqun1sudf::::res://Scripts/shoot_arrow_game.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 volume_slider.tscn::PackedScene/PackedScene::8657428504614439006::1747590342::0::1::::<><><>0<>0<><>::uid://cc8w3djtnlkrt::::res://volume_slider.gd
 ::res://Scenes/global/::1747590341
 game_bg_music.gd::GDScript/GDScript::5850022480738157907::1747590341::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
@@ -171,22 +172,22 @@ options.gd::GDScript/GDScript::3295673814632310780::1747590341::0::1::::<>Contro
 options.tscn::PackedScene/PackedScene::5204710495518512441::1747590341::0::1::::<><><>0<>0<><>::uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://bm7pjb0vn73ki::::res://Scenes/in_game_menu/options.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dvlyt2qx4c8ik::::res://Scenes/volume_slider.tscn
 shop.gd::GDScript/GDScript::6341877352917133559::1745951026::0::1::::<>Control<><>0<>0<><>::
 shop.tscn::PackedScene/PackedScene::6317847337041257556::1747590341::0::1::::<><><>0<>0<><>::uid://cwmb18hqabn80::::res://Scenes/in_game_menu/shop.gd<>uid://dqkdomfsvqjd4::::res://Scenes/in_game_menu/in_game_menu.gdshader<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-::res://Scenes/login_signup/::1746983712
+::res://Scenes/login_signup/::1747593054
 login.tscn::PackedScene/PackedScene::5609555464399907283::1746210910::0::1::::<><><>0<>0<><>::uid://bkwldifkd1g2s::::res://Scripts/login.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
-opening_scene.tscn::PackedScene/PackedScene::3937243045266902888::1746983712::0::1::::<><><>0<>0<><>::uid://d4joxdu37hrht::::res://Scripts/opening_scene.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png<>uid://cl6ktaejouga2::::res://Scenes/login_signup/login.tscn<>uid://2ofk88gf0pnm::::res://Scenes/login_signup/sign_up.tscn
+opening_scene.tscn::PackedScene::3937243045266902888::1747593054::0::1::::<><><>0<>0<><>::uid://d4joxdu37hrht::::res://Scripts/opening_scene.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://k24ymu6ush51::::res://Assets/Art/wumpus pixel art.png<>uid://cl6ktaejouga2::::res://Scenes/login_signup/login.tscn<>uid://2ofk88gf0pnm::::res://Scenes/login_signup/sign_up.tscn
 sign_up.tscn::PackedScene/PackedScene::1924323294215987610::1746116071::0::1::::<><><>0<>0<><>::uid://bf4melmow3qx7::::res://Scripts/sign_up.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 ::res://Scenes/profile/::1747590625
 profile.tscn::PackedScene/PackedScene::1861358359550161702::1746210911::0::1::::<><><>0<>0<><>::uid://dmu8eelddqexq::::res://Scripts/profile.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
-settings_tab_container.tscn::PackedScene::7548615369892046895::1747590625::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dvlyt2qx4c8ik::::res://Scenes/volume_slider.tscn
-::res://Scripts/::1747590625
-cave_default.gd::GDScript/GDScript::9078974782839006102::1747359033::0::1::::Cave<>Node2D<><>0<>0<><>::
+settings_tab_container.tscn::PackedScene/PackedScene::7548615369892046895::1747590625::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dvlyt2qx4c8ik::::res://Scenes/volume_slider.tscn
+::res://Scripts/::1747592647
+cave_default.gd::GDScript::9078974782839006102::1747592647::0::1::::Cave<>Node2D<><>0<>0<><>::
 game_control.gd::GDScript/GDScript::8011032809508811240::1747359033::0::1::::<>Node2D<><>0<>0<><>::
 Global.gd::GDScript/GDScript::6955066484218890644::1746170063::0::1::::<>Node<><>0<>0<><>::
 login.gd::GDScript/GDScript::3134399103335102016::1745951026::0::1::::<>Panel<><>0<>0<><>::
 login_manager.gd::GDScript/GDScript::5446578691556592263::1746458868::0::1::::loginManager<>Node<><>0<>0<><>::
 main_menu.gd::GDScript/GDScript::3711824645929887213::1747590342::0::1::::<>Control<><>0<>0<><>::
 opening_scene.gd::GDScript/GDScript::9214209217308711805::1746458868::0::1::::<>Control<><>0<>0<><>::
-player.gd::GDScript::2922624653754044578::1747590625::0::1::::<>Area2D<><>0<>0<><>::
+player.gd::GDScript/GDScript::2922624653754044578::1747590625::0::1::::<>Area2D<><>0<>0<><>::
 profile.gd::GDScript/GDScript::8044826760980998910::1747590342::0::1::::Profile<>Control<><>0<>0<><>::
 riddle_generator.gd::GDScript/GDScript::888622681239082365::1747359033::0::1::::RiddleGenerator<>Node<><>0<>0<><>::
 riddle_test.gd::GDScript/GDScript::7546961756147061538::1746458868::0::1::::<>Node<><>0<>0<><>::

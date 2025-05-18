@@ -1,5 +1,6 @@
-res://Scenes/cave_default.tscn
-res://Scripts/cave_default.gd
 res://Scenes/login_signup/opening_scene.tscn
 res://Scenes/main_menu.tscn
+res://Scenes/cave_default.tscn
 res://Scenes/main.tscn
+res://Scenes/cps_minigame.tscn
+res://Scenes/shoot_arrow_game.tscn
