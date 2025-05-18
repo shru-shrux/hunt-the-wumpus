@@ -35,6 +35,7 @@ position = Vector2(240, 459)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
+position = Vector2(3.59848, 0.787402)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="0"]
@@ -71,6 +72,7 @@ position = Vector2(915, 462)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
+position = Vector2(-4.92424, -0.787402)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="2"]

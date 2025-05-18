@@ -10,7 +10,8 @@ script = ExtResource("1_jjgbg")
 [node name="CaveDefault" parent="." instance=ExtResource("3_jjvhh")]
 
 [node name="Player" parent="." instance=ExtResource("2_8gbba")]
-position = Vector2(87, 507)
+position = Vector2(132, 509)
+scale = Vector2(2, 2)
 
 [connection signal="new_cave_entered" from="CaveDefault" to="Player" method="_on_new_cave_entered"]
 [connection signal="interact" from="Player" to="CaveDefault" method="_on_player_interact"]
