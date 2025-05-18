@@ -1,8 +1,5 @@
-res://Scenes/login_signup/opening_scene.tscn
-res://Scripts/player.gd
-res://Scripts/cave_default.gd
-res://Scenes/shoot_arrow_game.tscn
 res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/shoot_arrow_game.tscn
 res://Scenes/cave_default.tscn
 res://Scenes/main.tscn
 res://Scripts/shoot_arrow_game.gd
