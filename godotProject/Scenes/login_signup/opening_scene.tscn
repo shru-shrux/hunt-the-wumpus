@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwdh22js34u4w"]
+[gd_scene load_steps=8 format=3 uid="uid://bwdh22js34u4w"]
 
 [ext_resource type="Script" uid="uid://d4joxdu37hrht" path="res://Scripts/opening_scene.gd" id="1_es2kt"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_wd26m"]
 [ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="2_es2kt"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_vtknk"]
 [ext_resource type="PackedScene" uid="uid://cl6ktaejouga2" path="res://Scenes/login_signup/login.tscn" id="3_vtknk"]
 [ext_resource type="PackedScene" uid="uid://2ofk88gf0pnm" path="res://Scenes/login_signup/sign_up.tscn" id="4_y3pro"]
 
@@ -18,6 +19,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_es2kt")
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+position = Vector2(585, 327)
+texture = ExtResource("2_vtknk")
 
 [node name="Hunt the Wumpus" type="Label" parent="."]
 layout_mode = 1

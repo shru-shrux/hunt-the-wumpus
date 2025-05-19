@@ -8,3 +8,5 @@ res://Scenes/in_game_menu/shop.tscn
 res://Scenes/player.tscn
 res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scripts/cave_default.gd
+res://Scripts/game_control.gd
+res://Scenes/login_signup/login.tscn

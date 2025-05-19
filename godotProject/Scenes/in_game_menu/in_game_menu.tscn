@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bddkg4ij7obfd"]
+[gd_scene load_steps=6 format=3 uid="uid://bddkg4ij7obfd"]
 
 [ext_resource type="Script" uid="uid://bbcibjdsg3que" path="res://Scenes/in_game_menu/in_game_menu.gd" id="1_5crhr"]
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="1_c42cd"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_xtv56"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_n0mag"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5crhr"]
@@ -17,6 +18,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5crhr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575, 325)
+texture = ExtResource("2_xtv56")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_5crhr")

@@ -203,3 +203,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_options_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/in_game_menu/in_game_menu.tscn")

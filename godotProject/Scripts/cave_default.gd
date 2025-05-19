@@ -39,6 +39,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot_arrow"):
 		_on_player_shoot_arrow()
+		
+	if Input.is_action_just_pressed("Interact"):
+		_on_player_interact()
 
 # change all of the attributes of the currentCave to our the cave the player
 # is changing to
