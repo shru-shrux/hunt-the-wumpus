@@ -94,6 +94,9 @@ func updateCave(newCave:Cave):
 		$BatWarning.text = "A bat picked you up and dropped you, -5 gold"
 		$BatWarning.visible = true
 		player.goldChange(-5)
+		
+	if hasWumpus:
+		get_tree().change_scene_to_file("res://Scenes/wumpus_cave.tscn")
 	
 	# checking connecting caves for hazards to show -----------------------
 	
@@ -155,17 +158,19 @@ func _on_player_interact() -> void:
 		for cave in connectingCaves:
 			if $EnterCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
 				# update numbers in scene and attributes on the object
+				PlayerData.numberTurns = PlayerData.numberTurns + 1
+				$EnterCave.visible = false
+				$ShootCave.visible = false
+				$ShootCaveResult.visible = false
 				updateCave(cave)
 				new_cave_entered.emit()
 				
 
 func _on_player_shoot_arrow() -> void:
-	
 	# the cave the player is standing in front of
 	var selectedCave:Cave
 	
 	if $ShootCave.visible == true:	
-		
 		# check which cave the player is standing in front of
 		
 		# iterates through each connecting cave and checks if that number is
@@ -178,25 +183,24 @@ func _on_player_shoot_arrow() -> void:
 				selectedCave = cave
 				break
 				
-	
-	$ShootCave.visible = false
-	$EnterCave.visible = false
-	$ShootCaveResult.visible = true
-	
-	if player.arrowCount > 0:
-		player.arrowCount -= 1
-		print("Shot an arrow, current count = " + player.arrowCount)
-	else:
-		print("No arrows left")
-		$ShootCaveResult.text = "No arrows left to shoot!"
-		return
+		$ShootCave.visible = false
+		$EnterCave.visible = false
+		$ShootCaveResult.visible = true
 		
-	if selectedCave.hasWumpus:
-		print("Wumpus hit! Starting minigame...")
-		get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
-	else:
-		$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
-		print("No Wumpus in that cave. Arrow lost.")
+		if player.arrowCount > 0:
+			player.arrowCount -= 1
+			print("Shot an arrow, current count = " + player.arrowCount)
+		else:
+			print("No arrows left")
+			$ShootCaveResult.text = "No arrows left to shoot!"
+			return
+			
+		if selectedCave.hasWumpus:
+			print("Wumpus hit! Starting minigame...")
+			get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+		else:
+			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
+			print("No Wumpus in that cave. Arrow lost.")
 
 
 # called by game control once caveList is defined
@@ -223,7 +227,8 @@ func checkHazards():
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			# figure out what should happen here -------------
+			$PitWarning.text = "You smell a foul creature nearby"
+			$PitWarning.visible = true
 			return
 
 func wait(seconds:float):

@@ -29,9 +29,8 @@ func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
 		if active:
 			_stop_game()
-		#else:
-			# put code here to continue the game
-			#_reset_game()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 
 func _stop_game():

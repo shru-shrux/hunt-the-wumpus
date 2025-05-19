@@ -1,4 +1,6 @@
+Label
 Sprite2D
+Cave
 Button
 PanelContainer
 Panel
@@ -9,6 +11,4 @@ CanvasLayer
 CanvasGroup
 ParallaxBackground
 CanvasModulate
-Label
 Area2D
-Timer
