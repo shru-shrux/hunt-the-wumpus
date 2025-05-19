@@ -13,6 +13,3 @@ script = ExtResource("1_jjgbg")
 texture_filter = 1
 position = Vector2(581, 528)
 scale = Vector2(2, 2)
-
-[connection signal="new_cave_entered" from="CaveDefault" to="Player" method="_on_new_cave_entered"]
-[connection signal="interact" from="Player" to="CaveDefault" method="_on_player_interact"]
