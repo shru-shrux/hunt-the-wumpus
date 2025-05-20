@@ -77,10 +77,34 @@ func updateCave(newCave:Cave):
 		i += 1
 	
 	if hasPit:
-		$PitWarning.text = "You are Falling"
-		$PitWarning.visible = true
-		await wait(2.0)
+		
+		player.can_move = false
+		player.falling = true
+		
+		# to let it update
+		await wait(0.01)
+		
+		$"Falling-1".visible = true
+		$"Falling-2".visible = true
+		
+		player.position.y = -10
+		player.position.x = 576
+		
+		
+		await wait(1.0)
+		$"Falling-1".visible = false
+		
+		player.position.y = -50
+		player.position.x = 576
+		
+		await wait(1.0)
+		
+		# TODO this is set as the first cave in caveList for now
+		updateCave(caveList[0])
+		
 		get_tree().change_scene_to_file("res://Scenes/cps_minigame.tscn")
+		
+		$"Falling-2".visible = false
 	
 	if hasBat:
 		print("you are in a bat cave")
@@ -213,21 +237,21 @@ func checkHazards():
 	for cave in connectingCaves:
 		if cave.hasBat:
 			$BatSound.play()
-			$BatWarning.text = "You hear high pitched squeaks near you"
+			$BatWarning.text = "You hear bats near you"
 			$BatWarning.visible = true
 			return
 	
 	# if there is a pit cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasPit:
-			$PitWarning.text = "You hear a rock fall and hit the sides of some hole"
+			$PitWarning.text = "You feel a draft"
 			$PitWarning.visible = true
 			return
 	
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$PitWarning.text = "You smell a foul creature nearby"
+			$PitWarning.text = "I smell a Wumpus"
 			$PitWarning.visible = true
 			return
 

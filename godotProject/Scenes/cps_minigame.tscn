@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bynm24s2t8wkr"]
+[gd_scene load_steps=11 format=3 uid="uid://bynm24s2t8wkr"]
 
-[ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scenes/button.gd" id="1_f6c68"]
+[ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scripts/button.gd" id="1_f6c68"]
 [ext_resource type="Texture2D" uid="uid://bjeudwppis32d" path="res://Assets/Art/Bottomless Pit_darker.png" id="2_7doci"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_hvayr"]
 [ext_resource type="Texture2D" uid="uid://dvvdhosvbuy4u" path="res://Assets/Art/Bottomless Pit_RotatedLadder.png" id="2_x5jo4"]
@@ -15,6 +15,9 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_b2yhh"]
 font = ExtResource("4_0vnei")
 font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5jo4"]
+font = ExtResource("2_hvayr")
 
 [node name="CpsMinigame" type="Node2D"]
 
@@ -32,6 +35,8 @@ offset_left = 201.0
 offset_top = 271.0
 offset_right = 501.0
 offset_bottom = 471.0
+text = "
+"
 script = ExtResource("1_f6c68")
 
 [node name="Label" type="Label" parent="."]
@@ -59,6 +64,14 @@ texture_filter = 1
 position = Vector2(844, 534)
 rotation = 0.174533
 scale = Vector2(2, 2)
+
+[node name="ClickHere" type="Label" parent="."]
+offset_left = 296.0
+offset_top = 358.0
+offset_right = 407.0
+offset_bottom = 382.0
+text = "Click here!"
+label_settings = SubResource("LabelSettings_x5jo4")
 
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
 [connection signal="minigameOver" from="Button" to="Button" method="_on_minigame_over"]
