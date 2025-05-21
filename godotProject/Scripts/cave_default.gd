@@ -128,6 +128,7 @@ func updateCave(newCave:Cave):
 	# sends the player to the wumpus scene
 	if hasWumpus:
 		get_tree().change_scene_to_file("res://Scenes/wumpus_cave.tscn")
+		
 	
 	# checking connecting caves for hazards to show -----------------------
 	

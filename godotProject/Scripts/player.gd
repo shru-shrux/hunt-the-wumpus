@@ -74,8 +74,7 @@ func _process(delta):
 	elif falling:
 		velocity.y += 1000
 		position += velocity * delta
-		print(position)
-	
+		
 	else:
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.play()

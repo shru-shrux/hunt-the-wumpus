@@ -67,15 +67,15 @@ func assign_special_caves():
 	# set the 0 & 1 caves to bat, 2 & 3 caves to pit and 5 to wumpus
 	# also stores them in variables for easy access later
 	caveList[numbers[0]].hasBat = true
-	batList[0] = numbers[0]
+	batList.append(caveList[numbers[0]])
 	caveList[numbers[1]].hasBat = true
-	batList[1] = numbers[1]
+	batList.append(caveList[numbers[1]])
 	caveList[numbers[2]].hasPit = true
-	pitList[0] = numbers[2]
+	pitList.append(caveList[numbers[2]])
 	caveList[numbers[3]].hasPit = true
-	pitList[1] = numbers[3]
+	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
-	wumpusCave = numbers[5]
+	wumpusCave = caveList[numbers[5]]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
