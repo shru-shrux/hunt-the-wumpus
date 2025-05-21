@@ -1,12 +1,6 @@
-res://lose_end_scene.tscn
-res://win_end_scene.tscn
-res://Scripts/lose_end_scene.gd
-res://Scripts/win_end_scene.gd
-res://Scenes/login_signup/opening_scene.tscn
+res://Scenes/cave_default.tscn
+res://Scenes/player.tscn
+res://Scenes/main.tscn
 res://Scenes/cps_minigame.tscn
 res://Scenes/shoot_arrow_game.tscn
-res://Scenes/cave_default.tscn
-res://Scenes/wumpus_cave.tscn
-res://Scenes/main.tscn
-res://Scenes/riddleTest.tscn
-res://Scripts/Global.gd
+res://Scripts/game_control.gd
