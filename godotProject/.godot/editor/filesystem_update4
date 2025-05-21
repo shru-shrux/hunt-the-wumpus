@@ -1,12 +1,8 @@
-res://lose_end_scene.tscn
-res://win_end_scene.tscn
-res://Scripts/lose_end_scene.gd
-res://Scripts/win_end_scene.gd
-res://Scenes/login_signup/opening_scene.tscn
-res://Scenes/cps_minigame.tscn
-res://Scenes/shoot_arrow_game.tscn
 res://Scenes/cave_default.tscn
-res://Scenes/wumpus_cave.tscn
+res://Scripts/trivia_generator.gd
+res://Scenes/triviaTest.tscn
+res://Scenes/trivia_test.gd
 res://Scenes/main.tscn
 res://Scenes/riddleTest.tscn
-res://Scripts/Global.gd
+res://Scenes/trivia.tscn
+res://Scenes/trivia.gd
