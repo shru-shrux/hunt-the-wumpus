@@ -12,7 +12,7 @@ script = ExtResource("1_jjgbg")
 
 [node name="Player" parent="." instance=ExtResource("2_8gbba")]
 texture_filter = 1
-position = Vector2(581, 528)
+position = Vector2(140, 528)
 scale = Vector2(2, 2)
 
 [node name="OptionsButton" type="Button" parent="."]

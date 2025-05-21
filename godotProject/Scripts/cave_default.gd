@@ -1,6 +1,5 @@
 extends Node2D
 class_name Cave
-signal new_cave_entered
 
 #to do: make hazards for bottomless pit and wumpus. Figure out what will
 # happen when a player enters a hazard cave (all three). Coordinate with
@@ -10,6 +9,9 @@ var player : Node2D
 
 # empty variable that is set later from game control
 var caveList : Array[Cave] = []
+var wumpusCave: Cave
+var pitList: Array[Cave]
+var batList: Array[Cave]
 
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
@@ -66,7 +68,11 @@ func updateCave(newCave:Cave):
 	print("This room has " + str(roomGoldAmount) + " gold")
 	player.goldChange(roomGoldAmount)
 	
+	# once entered the room now has no more gold
 	newCave.roomGoldAmount = 0
+	
+	# set player position to spawn point
+	player.position.x = 140
 	
 	# loops through the connecting caves and updates the numbers above the
 	# cave entrances in the scene
@@ -118,7 +124,8 @@ func updateCave(newCave:Cave):
 		$BatWarning.text = "A bat picked you up and dropped you, -5 gold"
 		$BatWarning.visible = true
 		player.goldChange(-5)
-		
+	
+	# sends the player to the wumpus scene
 	if hasWumpus:
 		get_tree().change_scene_to_file("res://Scenes/wumpus_cave.tscn")
 	
@@ -187,8 +194,6 @@ func _on_player_interact() -> void:
 				$ShootCave.visible = false
 				$ShootCaveResult.visible = false
 				updateCave(cave)
-				new_cave_entered.emit()
-				
 
 func _on_player_shoot_arrow() -> void:
 	# the cave the player is standing in front of
@@ -213,7 +218,8 @@ func _on_player_shoot_arrow() -> void:
 		
 		if player.arrowCount > 0:
 			player.arrowCount -= 1
-			print("Shot an arrow, current count = " + player.arrowCount)
+			PlayerData.arrowCount = player.arrowCount
+			print("Shot an arrow, current count = " + str(player.arrowCount))
 		else:
 			print("No arrows left")
 			$ShootCaveResult.text = "No arrows left to shoot!"
@@ -222,14 +228,23 @@ func _on_player_shoot_arrow() -> void:
 		if selectedCave.hasWumpus:
 			print("Wumpus hit! Starting minigame...")
 			get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+			# the wumpus runs two caves away if damaged but not dead
+			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
+			wumpusCave = wumpusCave.connectingCaves[(randi() % 2) + 1]
+			
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
 			print("No Wumpus in that cave. Arrow lost.")
+			# the wumpus runs to a connecting cave
+			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
 
 
 # called by game control once caveList is defined
 func loadCave():
 	caveList = get_parent().caveList
+	wumpusCave = get_parent().wumpusCave
+	batList = get_parent().batList
+	pitList = get_parent().pitList
 
 # checks the surrounding caves for special caves and lets the user know
 func checkHazards():
@@ -255,5 +270,61 @@ func checkHazards():
 			$PitWarning.visible = true
 			return
 
+# start_index - the starting point of the search
+# goal_index - the ending point of the search
+# finds the shortest path to the end point from the start point and returns
+# the path
+func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
+	var visited = []        # stores the nodes we've already dequeued
+	var fringe = []         # queue: stores the nodes we still need to explore
+	var parent = {}         # for each discovered node, who we came from
+
+	# sanity check
+	if start_index < 1 or start_index > caveList.size():
+		print("Start not found")
+		return []
+
+	# BFS uses indices 0–29, but cave numbers are 1–30
+	var start = start_index
+	var goal = goal_index
+
+	# initialize the queue
+	fringe.append(start)
+
+	# BFS loop
+	while fringe.size() > 0:
+		var current = fringe.pop_front()
+		visited.append(current)
+
+		# goal test
+		if current == goal:
+			# reconstruct path by walking parents backwards
+			var path = []
+			var step = goal
+			while step != start:
+				path.insert(0, step + 1)  # convert index back to cave number
+				step = parent.get(step, -1)
+				if step == -1:
+					# something went wrong
+					return []
+			path.insert(0, start + 1)
+			return path
+
+		# enqueue all unvisited neighbors
+		for neighbor_node in caveList[current].connectingCaves:
+			var neighbor = caveList.find(neighbor_node)
+			if neighbor == -1:
+				continue
+			if neighbor in visited or neighbor in fringe:
+				continue
+
+			parent[neighbor] = current
+			fringe.append(neighbor)
+
+	# if we exhaust the queue without finding the goal
+	print("Doesn't Exist")
+	return []
+
+# helper function for animations
 func wait(seconds:float):
 	await get_tree().create_timer(seconds).timeout

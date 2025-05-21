@@ -22,6 +22,7 @@ Global="*res://Scripts/Global.gd"
 MainMenuBgMusic="*res://Scenes/global/main_menu_bg_music.tscn"
 GameBgMusic="*res://Scenes/global/game_bg_music.tscn"
 PlayerData="*res://Scripts/player_data.gd"
+WumpusData="*res://Scripts/wumpus_data.gd"
 
 [input]
 
