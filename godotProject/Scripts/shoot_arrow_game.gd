@@ -10,10 +10,12 @@ var min_x = 356
 var max_x = 809
 var active = true
 
+# starting game position when you enter the scene
 func _ready():
 	slider.position.x = min_x
 	label.text = "Shoot the Wumpus!\nPress SPACE when the slider is in the green."
 
+# moving the slider back and forth
 func _process(delta):
 	if active:
 		slider.position.x += direction * speed * delta
@@ -25,6 +27,7 @@ func _process(delta):
 			slider.position.x = max_x
 			direction *= -1
 
+# when the space key is hit, slider stops if minigame is active, otherwise moves back to the game
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
 		if active:
@@ -32,7 +35,7 @@ func _input(event):
 		else:
 			get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
-
+# calculating the result of the game when the minigame is stopped from position of the slider
 func _stop_game():
 	active = false
 	var slider_center = slider.global_position.x + slider.size.x / 2
@@ -43,18 +46,26 @@ func _stop_game():
 	elif slider_center >= 438 and slider_center < 501:
 		# orange - 10% damage
 		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
+		WumpusData.health = WumpusData.health - 10
 	elif slider_center >= 501 and slider_center < 566:
 		# yellow - 25 % damage
 		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
+		WumpusData.health = WumpusData.health - 25
 	elif slider_center >= 566 and slider_center < 613:
 		# green - 50% damage
 		label.text = "Bullseye! A lot of damage was done to the Wumpus.\nPress SPACE to continue."
+		WumpusData.health = WumpusData.health - 50
 	elif slider_center >= 613 and slider_center < 661:
 		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
+		WumpusData.health = WumpusData.health - 25
 	elif slider_center >= 661 and slider_center < 733:
 		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
+		WumpusData.health = WumpusData.health - 10
 	elif slider_center >= 733 and slider_center < 824:
 		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
+		
+	if WumpusData.health <= 0:
+		get_tree().change_scene_to_file("res://Scripts/win_end_scene.gd")
 	
 	
 	#var screen_center = (min_x + max_x) / 2

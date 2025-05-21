@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://chige1ofaejn4"]
 
-[ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/win_end_scene.gd" id="1_34773"]
-[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_03dnl"]
-[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_u827k"]
+[ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/win_end_scene.gd" id="1_duicv"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_yibsp"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_7xxyy"]
 
 [node name="WinEndScene" type="Node2D"]
-script = ExtResource("1_34773")
+script = ExtResource("1_duicv")
 
 [node name="BackgroundColor" type="Sprite2D" parent="."]
 position = Vector2(575, 323)
-texture = ExtResource("2_03dnl")
+texture = ExtResource("2_yibsp")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchors_preset = 5
@@ -20,7 +20,7 @@ offset_top = 50.0
 offset_right = 1174.0
 offset_bottom = 195.0
 grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_fonts/normal_font = ExtResource("3_7xxyy")
 theme_override_font_sizes/normal_font_size = 100
 text = "YOU WIN!"
 fit_content = true
@@ -32,7 +32,7 @@ offset_left = 157.0
 offset_top = 282.0
 offset_right = 286.0
 offset_bottom = 322.0
-theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_fonts/normal_font = ExtResource("3_7xxyy")
 theme_override_font_sizes/normal_font_size = 30
 text = "BLANK"
 
@@ -41,7 +41,7 @@ offset_left = 149.0
 offset_top = 199.0
 offset_right = 421.0
 offset_bottom = 246.0
-theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_fonts/normal_font = ExtResource("3_7xxyy")
 theme_override_font_sizes/normal_font_size = 50
 text = "Your Score"
 fit_content = true
@@ -52,7 +52,7 @@ offset_left = 737.0
 offset_top = 199.0
 offset_right = 1030.0
 offset_bottom = 246.0
-theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_fonts/normal_font = ExtResource("3_7xxyy")
 theme_override_font_sizes/normal_font_size = 50
 text = "Leaderboard"
 fit_content = true
