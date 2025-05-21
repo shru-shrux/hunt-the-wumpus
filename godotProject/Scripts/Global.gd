@@ -16,3 +16,4 @@ func initialize_high_scores():
 		print("High score file created.")
 	else:
 		print("High score file already exists.")
+		

@@ -1,6 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://chige1ofaejn4"]
+[gd_scene load_steps=4 format=3 uid="uid://chige1ofaejn4"]
 
 [ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/win_end_scene.gd" id="1_34773"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_03dnl"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_u827k"]
 
 [node name="WinEndScene" type="Node2D"]
 script = ExtResource("1_34773")
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+position = Vector2(575, 323)
+texture = ExtResource("2_03dnl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 1174.0
+offset_bottom = 195.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_font_sizes/normal_font_size = 100
+text = "YOU WIN!"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="YourScore" type="RichTextLabel" parent="."]
+offset_left = 157.0
+offset_top = 282.0
+offset_right = 286.0
+offset_bottom = 322.0
+theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_font_sizes/normal_font_size = 30
+text = "BLANK"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+offset_left = 149.0
+offset_top = 199.0
+offset_right = 421.0
+offset_bottom = 246.0
+theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_font_sizes/normal_font_size = 50
+text = "Your Score"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 737.0
+offset_top = 199.0
+offset_right = 1030.0
+offset_bottom = 246.0
+theme_override_fonts/normal_font = ExtResource("3_u827k")
+theme_override_font_sizes/normal_font_size = 50
+text = "Leaderboard"
+fit_content = true
+scroll_active = false
+
+[node name="Leaderboard" type="VBoxContainer" parent="."]
+offset_left = 741.0
+offset_top = 281.0
+offset_right = 1027.0
+offset_bottom = 602.0
+size_flags_vertical = 0

@@ -1,3 +1,6 @@
+VBoxContainer
+MarginContainer
+RichTextLabel
 Label
 Sprite2D
 Cave
@@ -10,5 +13,3 @@ TextureRect
 CanvasLayer
 CanvasGroup
 ParallaxBackground
-CanvasModulate
-Area2D
