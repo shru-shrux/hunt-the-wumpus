@@ -6,6 +6,10 @@ var connectingCavesMaster = []
 # array of all the caves going from 1-30
 var caveList: Array[Cave] = []
 
+var batList: Array[Cave] = []
+var pitList: Array[Cave] = []
+var wumpusCave: Cave
+
 var playerLocation: int
 
 
@@ -38,8 +42,7 @@ func _ready() -> void:
 		if cave.hasPit:
 			print(cave.currentCaveNumber)
 			
-	
-	
+
 # creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
 	for i in range(30):
@@ -47,23 +50,32 @@ func create_caves():
 		cave.currentCaveNumber = i+1
 		caveList.append(cave)
 
-# randomly picks 2 caves to be the bat caves and two to be pit caves
+# randomly picks 2 caves to be the bat caves and two to be pit caves and
+# one to be the wumpus cave
 func assign_special_caves():
 	
 	randomize()
 	
+	# fill array with 0-29
 	var numbers = []
 	for i in range(30):
 		numbers.append(i)
-		numbers.shuffle()
-
-	var result = numbers.slice(0, 5)
 	
-	caveList[result[0]].hasBat = true
-	caveList[result[1]].hasBat = true
-	caveList[result[2]].hasPit = true
-	caveList[result[3]].hasPit = true
-	caveList[result[4]].hasWumpus = true
+	# shuffle the list to get random first 5
+	numbers.shuffle()
+	
+	# set the 0 & 1 caves to bat, 2 & 3 caves to pit and 5 to wumpus
+	# also stores them in variables for easy access later
+	caveList[numbers[0]].hasBat = true
+	batList[0] = numbers[0]
+	caveList[numbers[1]].hasBat = true
+	batList[1] = numbers[1]
+	caveList[numbers[2]].hasPit = true
+	pitList[0] = numbers[2]
+	caveList[numbers[3]].hasPit = true
+	pitList[1] = numbers[3]
+	caveList[numbers[4]].hasWumpus = true
+	wumpusCave = numbers[5]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
@@ -148,58 +160,9 @@ func populate_connecting_caves():
 	for cave in caveList:
 		cave.connectingCaves = connectingCavesMaster[i]
 		i += 1
-		
+
 # BFS loop
-func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
-	var visited = []        # stores the nodes we've already dequeued
-	var fringe = []         # queue: stores the nodes we still need to explore
-	var parent = {}         # for each discovered node, who we came from
 
-	# sanity check
-	if start_index < 1 or start_index > caveList.size():
-		print("Start not found")
-		return []
-
-	# BFS uses indices 0–29, but cave numbers are 1–30
-	var start = start_index
-	var goal = goal_index
-
-	# initialize the queue
-	fringe.append(start)
-
-	# BFS loop
-	while fringe.size() > 0:
-		var current = fringe.pop_front()
-		visited.append(current)
-
-		# goal test
-		if current == goal:
-			# reconstruct path by walking parents backwards
-			var path = []
-			var step = goal
-			while step != start:
-				path.insert(0, step + 1)  # convert index back to cave number
-				step = parent.get(step, -1)
-				if step == -1:
-					# something went wrong
-					return []
-			path.insert(0, start + 1)
-			return path
-
-		# enqueue all unvisited neighbors
-		for neighbor_node in caveList[current].connectingCaves:
-			var neighbor = caveList.find(neighbor_node)
-			if neighbor == -1:
-				continue
-			if neighbor in visited or neighbor in fringe:
-				continue
-
-			parent[neighbor] = current
-			fringe.append(neighbor)
-
-	# if we exhaust the queue without finding the goal
-	print("Doesn't Exist")
-	return []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
