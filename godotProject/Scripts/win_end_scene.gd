@@ -4,7 +4,10 @@ var score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + PlayerData.wumpusKilled
+	var wumpusScore = 0
+	if PlayerData.wumpusKilled == true:
+		wumpusScore = 50
+	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
 	show_leaderboard()
