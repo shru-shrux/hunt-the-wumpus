@@ -1,2 +1,6 @@
+res://Scenes/cave_default.tscn
 res://Scenes/player.tscn
-res://Scripts/player.gd
+res://Scenes/main.tscn
+res://Scenes/cps_minigame.tscn
+res://Scenes/shoot_arrow_game.tscn
+res://Scripts/game_control.gd

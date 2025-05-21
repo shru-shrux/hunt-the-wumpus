@@ -20,10 +20,11 @@ func _ready() -> void:
 	distribute_gold(100)
 	# assigns the pit and bat caves
 	assign_special_caves()
-	# sets the first cave
-	$CaveDefault.updateCave(caveList[0])
 	# loads the caveList to caveDefault
 	$CaveDefault.loadCave()
+	# sets the first cave
+	$CaveDefault.updateCave(caveList[0])
+	
 	
 	playerLocation = randi() % 29 + 1
 	
