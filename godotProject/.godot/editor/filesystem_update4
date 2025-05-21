@@ -4,3 +4,4 @@ res://Scenes/main.tscn
 res://Scenes/cps_minigame.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scripts/game_control.gd
+res://Scripts/player_data.gd
