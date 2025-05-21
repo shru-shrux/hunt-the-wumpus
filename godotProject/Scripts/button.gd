@@ -27,6 +27,7 @@ func _ready() -> void:
 	gameActive = false
 	player = $"../Player"
 	player.can_move = false
+	#player.get_child(0).play("Idle")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -46,7 +47,7 @@ func _process(delta: float) -> void:
 			$"../Player".position.y = 84
 			$"../Player".position.x = 905.7
 		# the bare minimum to get off the first step of the ladder
-		if CPS > 2:
+		elif CPS > 2:
 			$"../Player".position.y = 534 - (floor(CPS-2)) * 90
 			$"../Player".position.x = 844 + (floor(CPS-2)) * 12.34
 		
@@ -88,6 +89,8 @@ func countdown():
 func _on_minigame_over() -> void:
 	if CPS <= 2:
 		goldLost = -30
+	elif CPS >= 7:
+		goldLost = 0
 	else:
 		goldLost = (floor(CPS) - 7) * 5
 	

@@ -12,6 +12,8 @@ var current_speed = speed
 
 var can_move = true
 
+var falling = false
+
 # in game attributes
 var goldCount : int
 var arrowCount : int
@@ -28,7 +30,9 @@ func _ready():
 func _process(delta):
 	
 	var velocity = Vector2.ZERO # The player's movement vector.
+
 	if can_move:
+		
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("move_left"):
@@ -39,11 +43,11 @@ func _process(delta):
 		if sprinting:
 			current_speed = speed * sprint_multiplier
 		
-		var jumping : bool = Input.is_action_pressed("jump")
+		#var jumping : bool = Input.is_action_pressed("jump")
 
-		if jumping:
-			$AnimatedSprite2D.animation = "jump"
-			$AnimatedSprite2D.play()
+		#if jumping:
+		#	$AnimatedSprite2D.animation = "jump"
+		#	$AnimatedSprite2D.play()
 			# doesn't actually move the player
 		elif velocity.length() > 0:
 			velocity = velocity.normalized() * current_speed
@@ -66,8 +70,15 @@ func _process(delta):
 
 		if Input.is_action_pressed("Interact"):
 			interact.emit()
+	
+	elif falling:
+		velocity.y += 1000
+		position += velocity * delta
+		print(position)
+	
 	else:
-		pass
+		$AnimatedSprite2D.animation = "idle"
+		$AnimatedSprite2D.play()
 
 func _on_body_entered(_body):
 	hide() # Player disappears after being hit.
