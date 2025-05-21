@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chige1ofaejn4"]
+
+[ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/win_end_scene.gd" id="1_34773"]
+
+[node name="WinEndScene" type="Node2D"]
+script = ExtResource("1_34773")

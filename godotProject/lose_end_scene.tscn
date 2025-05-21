@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co4w8dxpjxk4j"]
+
+[ext_resource type="Script" uid="uid://n2n12yyhly2r" path="res://Scripts/lose_end_scene.gd" id="1_hwsh5"]
+
+[node name="LoseEndScene" type="Node2D"]
+script = ExtResource("1_hwsh5")
