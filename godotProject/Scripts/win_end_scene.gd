@@ -1,6 +1,7 @@
 extends Node2D
 
 var score = 0
+var last_score_entry = {"username": "placeholder", "score": 0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +11,26 @@ func _ready() -> void:
 	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
+	
+	last_score_entry = {"username": "placeholder", "score": score} # need to make so username not placeholder
+	save_new_score(last_score_entry["username"], last_score_entry["score"])
+	
 	show_leaderboard()
+
+func save_new_score(username: String, score: int):
+	var file_path = "user://highscores.save"
+	var high_scores = []
+
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		high_scores = file.get_var()
+		file.close()
+
+	high_scores.append({"username": username, "score": score})
+
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	file.store_var(high_scores)
+	file.close()
 
 
 func show_leaderboard():
@@ -40,6 +60,13 @@ func show_leaderboard():
 		label.add_theme_font_override("font", font)
 		label.add_theme_font_size_override("font_size", 30)
 		label.add_theme_color_override("font_color", Color.GRAY)
+			
+		## Highlight if it's the last score just added
+		#if entry["username"] == last_score_entry["username"] and entry["score"] == last_score_entry["score"]:
+			#label.add_theme_color_override("font_color", Color.WHITE)  # Highlight color
+		#else:
+			#label.add_theme_color_override("font_color", Color.GRAY)
+			
 		leaderboard.add_child(label)
 
 func load_high_scores() -> Array:
@@ -51,8 +78,9 @@ func load_high_scores() -> Array:
 		high_scores = file.get_var()
 		file.close()
 	
-	# Sort descending
-	high_scores.sort_custom(self, "_sort_by_score")
+	if high_scores.size() > 0:
+		high_scores.sort_custom(Callable(self, "_sort_by_score"))
+	
 	return high_scores
 
 func _sort_by_score(a, b):
@@ -61,3 +89,7 @@ func _sort_by_score(a, b):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_home_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

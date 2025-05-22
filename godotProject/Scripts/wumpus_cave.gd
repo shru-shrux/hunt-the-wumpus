@@ -8,6 +8,10 @@ func _ready() -> void:
 	$Info.text = "You must fight to stay alive and avoid being eaten..."
 	await get_tree().create_timer(2.5).timeout
 	$Info.text = "Answer 3 out of 5 trivia questions correctly\nPress SPACE to continue..."
+	
+	# for testing
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file("res://Scenes/lose_end_scene.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
