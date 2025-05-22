@@ -2,6 +2,35 @@ extends Control
 
 @onready var tab_container = $TabContainer
 @onready var leaderboard_tab = $TabContainer/Leaderboard
+@onready var achievements_vbox = $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer
+
+# Achievement metadata: icon path and description format
+const ACHIEVEMENT_META = {
+	"score": {
+		"icon": "res://assets/ach_score.png",
+		"description": "Reach %d points"
+	},
+	"wins": {
+		"icon": "res://assets/ach_wins.png",
+		"description": "Win %d games"
+	},
+	"trivia": {
+		"icon": "res://assets/ach_trivia.png",
+		"description": "Answer %d questions correctly"
+	},
+	"caves": {
+		"icon": "res://assets/ach_caves.png",
+		"description": "Explore %d caves"
+	}
+}
+
+# Achievement thresholds by key
+const ACHIEVEMENT_THRESHOLDS = {
+	"score":  [50, 100, 250, 500],
+	"wins":   [1, 5, 10, 20],
+	"trivia": [10, 25, 50, 100],
+	"caves":  [1, 3, 5, 10]
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,6 +88,64 @@ func load_high_scores() -> Array:
 func _sort_by_score(a, b) -> bool:
 	return a["score"] > b["score"]
 
+
+func show_achievements():
+	var user_data = LoginManager.get_user_data()
+	var progress = user_data.get("achievements", {})
+
+	# Clear old entries
+	for child in achievements_vbox.get_children():
+		child.queue_free()
+
+	# Empty state
+	if progress.empty():
+		var lbl = Label.new()
+		lbl.text = "No achievements unlocked yet."
+		style_label(lbl)
+		achievements_vbox.add_child(lbl)
+		return
+
+	# Create one row per achievement
+	for key in ACHIEVEMENT_META.keys():
+		var meta = ACHIEVEMENT_META[key]
+		var thresholds = ACHIEVEMENT_THRESHOLDS[key]
+		var value = progress.get(key, 0)
+
+		# Determine current level
+		var level = 0
+		for i in thresholds.size():
+			if value >= thresholds[i]:
+				level = i + 1
+
+		# Determine next target (or last threshold if maxed)
+		var next_target: int
+		if level < thresholds.size():
+			next_target = thresholds[level]
+		else:
+			next_target = thresholds[thresholds.size() - 1]
+
+		# UI elements
+		var row = HBoxContainer.new()
+
+		var icon = TextureRect.new()
+		icon.texture = load(meta["icon"])
+		icon.custom_minimum_size = Vector2(64, 64)
+		row.add_child(icon)
+
+		var text_vbox = VBoxContainer.new()
+		var desc_label = Label.new()
+		desc_label.text = meta["description"] % next_target
+		var status_label = Label.new()
+		status_label.text = "Progress: %d / %d" % [value, next_target]
+		text_vbox.add_child(desc_label)
+		text_vbox.add_child(status_label)
+		row.add_child(text_vbox)
+
+		achievements_vbox.add_child(row)
+
+func style_label(lbl: Label):
+	lbl.add_theme_color_override("font_color", Color.GRAY)
+	lbl.add_theme_font_size_override("font_size", 20)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

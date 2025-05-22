@@ -4,3 +4,9 @@ res://Scenes/cave_default.tscn
 res://Scenes/riddleTest.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scenes/wumpus_cave.tscn
+res://Scenes/profile/profile.tscn
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/login_signup/login.tscn
+res://Scenes/login_signup/sign_up.tscn
+res://Scripts/settings_tab_container.gd
+res://Scripts/login_manager.gd
