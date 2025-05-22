@@ -65,7 +65,8 @@ func _stop_game():
 		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
 		
 	if WumpusData.health <= 0:
-		get_tree().change_scene_to_file("res://Scripts/win_end_scene.gd")
+		#get_tree().change_scene_to_file("res://Scripts/win_end_scene.gd")
+		self.visible = false
 	
 	
 	#var screen_center = (min_x + max_x) / 2

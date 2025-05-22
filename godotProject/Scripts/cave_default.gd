@@ -228,7 +228,8 @@ func _on_player_shoot_arrow() -> void:
 			
 		if selectedCave.hasWumpus:
 			print("Wumpus hit! Starting minigame...")
-			get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+			#get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+			$ShootArrowGame.visible = true
 			# the wumpus runs two caves away if damaged but not dead
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
 			wumpusCave = wumpusCave.connectingCaves[(randi() % 2) + 1]
