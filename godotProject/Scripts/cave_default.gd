@@ -37,6 +37,7 @@ var hasPit = false
 func _ready() -> void:
 	player = get_parent().get_node("Player")
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot_arrow"):
@@ -244,12 +245,24 @@ func _on_player_shoot_arrow() -> void:
 			#player.position.x = 135
 			
 			# change the wumpusCave to two random caves away from it 
+			var picked = false
 			wumpusCave.hasWumpus = false
-			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
+			
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
-			wumpusCave = wumpusCave.connectingCaves[(randi() % 2) + 1]
+			
+			# change the wumpus 2 caves away randomly away from what is was
+			# before. Makes sure that it doesn't go to a cave and then back.
+			while not picked:
+				var checkCave = wumpusCave.connectingCaves[randi() % 3]
+				checkCave = wumpusCave.connectingCaves[(randi() % 3)]
+				if wumpusCave != checkCave:
+					wumpusCave = checkCave
+					picked = true
+			
+			# set the new wumpus cave to have a wumpus
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+			$WumpusWarning.visible = false
 			# update to current cave to reload the cave
 			updateCave(caveList[currentCaveNumber-1])
 			

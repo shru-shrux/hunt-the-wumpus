@@ -22,15 +22,14 @@ func _ready() -> void:
 	populate_connecting_caves()
 	# gives each cave gold
 	distribute_gold(100)
+	# choose a random cave to spawn in
+	playerLocation = randi() % 30
 	# assigns the pit and bat caves
 	assign_special_caves()
 	# loads the caveList to caveDefault
 	$CaveDefault.loadCave()
 	# sets the first cave
-	$CaveDefault.updateCave(caveList[0])
-	
-	
-	playerLocation = randi() % 29 + 1
+	$CaveDefault.updateCave(caveList[playerLocation])
 	
 	print("bats------------------")
 	for cave in batList:
@@ -57,6 +56,8 @@ func assign_special_caves():
 	var numbers = []
 	for i in range(30):
 		numbers.append(i)
+	
+	numbers.erase(playerLocation)
 	
 	# shuffle the list to get random first 5
 	numbers.shuffle()
