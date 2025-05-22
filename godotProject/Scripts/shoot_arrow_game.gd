@@ -35,7 +35,8 @@ func _input(event):
 		else:
 			if WumpusData.health <= 0:
 				# maybe do a cut screen to wumpus dying
-				get_tree().change_scene_to_file("res://Scenes/win_end_scene.tscn")
+				PlayerData.wumpusKilled = true
+				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 			else:
 				self.visible = false
 

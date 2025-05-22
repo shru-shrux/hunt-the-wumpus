@@ -8,6 +8,9 @@ func _ready() -> void:
 	var wumpusScore = 0
 	if PlayerData.wumpusKilled == true:
 		wumpusScore = 50
+		$Result.text = "You Win!"
+	else:
+		$Result.text = "You Lose"
 	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
 	$YourScore.clear()
 	$YourScore.add_text(str(score))

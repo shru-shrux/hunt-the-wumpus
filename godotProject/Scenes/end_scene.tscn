@@ -1,38 +1,31 @@
 [gd_scene load_steps=4 format=3 uid="uid://chige1ofaejn4"]
 
-[ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/win_end_scene.gd" id="1_duicv"]
-[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_yibsp"]
-[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_7xxyy"]
+[ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/end_scene.gd" id="1_fgb5u"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_8jdvl"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_8p78e"]
 
-[node name="WinEndScene" type="Node2D"]
-script = ExtResource("1_duicv")
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_fgb5u")
 
 [node name="BackgroundColor" type="Sprite2D" parent="."]
 position = Vector2(575, 323)
-texture = ExtResource("2_yibsp")
+texture = ExtResource("2_8jdvl")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 50.0
-offset_right = 1174.0
-offset_bottom = 195.0
-grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("3_7xxyy")
-theme_override_font_sizes/normal_font_size = 100
-text = "YOU WIN!"
-fit_content = true
-scroll_active = false
+[node name="Result" type="Label" parent="."]
+offset_right = 1155.0
+offset_bottom = 191.0
+theme_override_fonts/font = ExtResource("3_8p78e")
+theme_override_font_sizes/font_size = 100
+text = "YOU LOSE/WIN"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="YourScore" type="RichTextLabel" parent="."]
 offset_left = 157.0
 offset_top = 265.0
 offset_right = 286.0
 offset_bottom = 305.0
-theme_override_fonts/normal_font = ExtResource("3_7xxyy")
+theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 30
 text = "BLANK"
 
@@ -41,7 +34,7 @@ offset_left = 149.0
 offset_top = 199.0
 offset_right = 421.0
 offset_bottom = 246.0
-theme_override_fonts/normal_font = ExtResource("3_7xxyy")
+theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 50
 text = "Your Score"
 fit_content = true
@@ -52,7 +45,7 @@ offset_left = 737.0
 offset_top = 199.0
 offset_right = 1030.0
 offset_bottom = 246.0
-theme_override_fonts/normal_font = ExtResource("3_7xxyy")
+theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 50
 text = "Leaderboard"
 fit_content = true
@@ -70,7 +63,7 @@ offset_left = 482.0
 offset_top = 547.0
 offset_right = 657.0
 offset_bottom = 583.0
-theme_override_fonts/font = ExtResource("3_7xxyy")
+theme_override_fonts/font = ExtResource("3_8p78e")
 theme_override_font_sizes/font_size = 30
 text = "Back to Home"
 
