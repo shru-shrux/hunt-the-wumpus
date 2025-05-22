@@ -120,36 +120,36 @@ func initialize_cave(pickedCave:Cave):
 func populate_connecting_caves():
 	
 	connectingCavesMaster = [
-		[caveList[1], caveList[5], caveList[6]],       # 1
-		[caveList[0], caveList[2], caveList[8]],       # 2
-		[caveList[1], caveList[3], caveList[27]],      # 3
-		[caveList[2], caveList[8], caveList[9]],       # 4
-		[caveList[5], caveList[10], caveList[28]],     # 5
-		[caveList[0], caveList[4], caveList[11]],      # 6
-		[caveList[0], caveList[7], caveList[12]],      # 7
-		[caveList[6], caveList[13], caveList[14]],     # 8
-		[caveList[1], caveList[3], caveList[14]],      # 9
-		[caveList[3], caveList[10], caveList[15]],     # 10
-		[caveList[4], caveList[9], caveList[16]],      # 11
-		[caveList[5], caveList[12], caveList[17]],     # 12
-		[caveList[6], caveList[11], caveList[18]],     # 13
-		[caveList[7], caveList[19], caveList[20]],     # 14
-		[caveList[7], caveList[8], caveList[20]],      # 15
-		[caveList[9], caveList[16], caveList[21]],     # 16
-		[caveList[10], caveList[15], caveList[17]],    # 17
-		[caveList[11], caveList[16], caveList[22]],    # 18
-		[caveList[12], caveList[23], caveList[24]],    # 19
-		[caveList[13], caveList[24], caveList[25]],    # 20
-		[caveList[13], caveList[14], caveList[26]],    # 21
-		[caveList[15], caveList[22], caveList[27]],    # 22
-		[caveList[17], caveList[21], caveList[28]],    # 23
-		[caveList[18], caveList[29], caveList[24]],    # 24
-		[caveList[18], caveList[19], caveList[25]],    # 25
-		[caveList[19], caveList[24], caveList[26]],    # 26
-		[caveList[20], caveList[25], caveList[27]],    # 27
-		[caveList[2], caveList[21], caveList[26]],     # 28
-		[caveList[4], caveList[22], caveList[29]],     # 29
-		[caveList[23], caveList[27], caveList[29]]     # 30
+		[caveList[1], caveList[2], caveList[3]],       # 1
+		[caveList[0], caveList[4], caveList[5]],       # 2
+		[caveList[0], caveList[6], caveList[7]],       # 3
+		[caveList[0], caveList[8], caveList[9]],       # 4
+		[caveList[1], caveList[10], caveList[11]],     # 5
+		[caveList[1], caveList[12], caveList[13]],     # 6
+		[caveList[2], caveList[14], caveList[15]],     # 7
+		[caveList[2], caveList[16], caveList[17]],     # 8
+		[caveList[3], caveList[18], caveList[19]],     # 9
+		[caveList[3], caveList[20], caveList[21]],     # 10
+		[caveList[4], caveList[22], caveList[23]],     # 11
+		[caveList[4], caveList[24], caveList[25]],     # 12
+		[caveList[5], caveList[26], caveList[27]],     # 13
+		[caveList[5], caveList[28], caveList[29]],     # 14
+		[caveList[6], caveList[22], caveList[24]],     # 15
+		[caveList[6], caveList[23], caveList[25]],     # 16
+		[caveList[7], caveList[26], caveList[28]],     # 17
+		[caveList[7], caveList[27], caveList[29]],     # 18
+		[caveList[8], caveList[22], caveList[26]],     # 19
+		[caveList[8], caveList[23], caveList[27]],     # 20
+		[caveList[9], caveList[24], caveList[28]],     # 21
+		[caveList[9], caveList[25], caveList[29]],     # 22
+		[caveList[10], caveList[14], caveList[18]],    # 23
+		[caveList[10], caveList[15], caveList[19]],    # 24
+		[caveList[11], caveList[14], caveList[20]],    # 25
+		[caveList[11], caveList[15], caveList[21]],    # 26
+		[caveList[12], caveList[16], caveList[18]],    # 27
+		[caveList[12], caveList[17], caveList[19]],    # 28
+		[caveList[13], caveList[16], caveList[20]],    # 29
+		[caveList[13], caveList[17], caveList[21]],    # 30
 	]
 	
 	var i = 0

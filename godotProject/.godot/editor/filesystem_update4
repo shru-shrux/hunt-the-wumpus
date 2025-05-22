@@ -1,11 +1,9 @@
+res://Scripts/button.gd
+res://Scenes/cps_minigame.tscn
+res://Scenes/main.tscn
+res://Scripts/cave_default.gd
 res://Scenes/cave_default.tscn
 res://Scenes/player.tscn
-res://Scenes/main.tscn
-res://Scenes/cps_minigame.tscn
 res://Scenes/shoot_arrow_game.tscn
-res://Scripts/game_control.gd
-res://Scripts/cave_default.gd
 res://Scripts/player.gd
-res://Scripts/player_data.gd
-res://Scripts/settings_tab_container.gd
-res://Scripts/shoot_arrow_game.gd
+res://Scripts/game_control.gd

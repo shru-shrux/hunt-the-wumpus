@@ -66,7 +66,7 @@ func _process(delta):
 			$AnimatedSprite2D.flip_v = false
 
 		position += velocity * delta
-		position.x = clamp(position.x, 131, 1059)
+		position.x = clamp(position.x, 119, 1059)
 
 		if Input.is_action_pressed("Interact"):
 			interact.emit()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=7 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://onq0e03n2eh2" path="res://Scenes/cave_default.tscn" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bynm24s2t8wkr" path="res://Scenes/cps_minigame.tscn" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://cfi832c812qoy" path="res://Assets/Art/Options_icon.png" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
 
@@ -14,9 +15,12 @@ script = ExtResource("1_jjgbg")
 [node name="ShootArrowGame" parent="CaveDefault" instance=ExtResource("5_kry3j")]
 visible = false
 
+[node name="CpsMinigame" parent="CaveDefault" instance=ExtResource("4_21xkr")]
+visible = false
+
 [node name="Player" parent="." instance=ExtResource("2_8gbba")]
 texture_filter = 1
-position = Vector2(135, 528)
+position = Vector2(119, 528)
 scale = Vector2(2, 2)
 
 [node name="OptionsButton" type="Button" parent="."]

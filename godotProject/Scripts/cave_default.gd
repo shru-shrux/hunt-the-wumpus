@@ -76,7 +76,7 @@ func updateCave(newCave:Cave):
 	newCave.roomGoldAmount = 0
 	
 	# set player position to spawn point
-	player.position.x = 140
+	player.position.x = 119
 	
 	# loops through the connecting caves and updates the numbers above the
 	# cave entrances in the scene
@@ -112,9 +112,9 @@ func updateCave(newCave:Cave):
 		# TODO this is set as the first cave in caveList for now
 		updateCave(caveList[0])
 		
-		get_tree().change_scene_to_file("res://Scenes/cps_minigame.tscn")
-		
 		$"Falling-2".visible = false
+		
+		$CpsMinigame.visible = true
 	
 	if hasBat:
 		print("you are in a bat cave")

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
+size = Vector2(22.3485, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y8311"]
 font = ExtResource("2_urmdh")
@@ -33,11 +34,12 @@ position = Vector2(576, 324)
 texture = ExtResource("2_y8311")
 
 [node name="0" type="Area2D" parent="."]
-position = Vector2(256, 459)
+position = Vector2(256, 498)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
-position = Vector2(0.568183, 0.196851)
+position = Vector2(0.378788, 0.196846)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="0"]
@@ -52,7 +54,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="1" type="Area2D" parent="."]
-position = Vector2(571, 461)
+position = Vector2(571, 498)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
@@ -70,7 +72,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="2" type="Area2D" parent="."]
-position = Vector2(892, 462)
+position = Vector2(887, 497)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]

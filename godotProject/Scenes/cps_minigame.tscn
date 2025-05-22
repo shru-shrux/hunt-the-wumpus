@@ -39,7 +39,7 @@ text = "
 "
 script = ExtResource("1_f6c68")
 
-[node name="Label" type="Label" parent="."]
+[node name="CPSCounter" type="Label" parent="."]
 offset_left = 267.0
 offset_top = 172.0
 offset_right = 355.0
@@ -60,6 +60,7 @@ text = "3"
 label_settings = SubResource("LabelSettings_b2yhh")
 
 [node name="Player" parent="." instance=ExtResource("5_b2yhh")]
+visible = false
 texture_filter = 1
 position = Vector2(844, 534)
 rotation = 0.174533
@@ -73,5 +74,6 @@ offset_bottom = 382.0
 text = "Click here!"
 label_settings = SubResource("LabelSettings_x5jo4")
 
+[connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
 [connection signal="minigameOver" from="Button" to="Button" method="_on_minigame_over"]
