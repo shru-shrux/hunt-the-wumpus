@@ -32,16 +32,13 @@ func _ready() -> void:
 	
 	playerLocation = randi() % 29 + 1
 	
-	print("bats-------------")
-	for cave in caveList:
-		if cave.hasBat:
-			print(cave.currentCaveNumber)
+	print("bats------------------")
+	for cave in batList:
+		print(cave.currentCaveNumber)
 	
 	print("pits------------------")
-	for cave in caveList:
-		if cave.hasPit:
-			print(cave.currentCaveNumber)
-			
+	for cave in pitList:
+		print(cave.currentCaveNumber)
 
 # creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
@@ -75,7 +72,7 @@ func assign_special_caves():
 	caveList[numbers[3]].hasPit = true
 	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
-	wumpusCave = caveList[numbers[5]]
+	wumpusCave = caveList[numbers[4]]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):

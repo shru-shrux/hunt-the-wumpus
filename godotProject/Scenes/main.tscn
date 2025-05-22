@@ -16,7 +16,7 @@ visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_8gbba")]
 texture_filter = 1
-position = Vector2(140, 528)
+position = Vector2(135, 528)
 scale = Vector2(2, 2)
 
 [node name="OptionsButton" type="Button" parent="."]
@@ -27,4 +27,5 @@ offset_bottom = 245.0
 scale = Vector2(0.25, 0.25)
 icon = ExtResource("4_jjvhh")
 
+[connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]

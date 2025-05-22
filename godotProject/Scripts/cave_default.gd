@@ -49,9 +49,13 @@ func _process(delta: float) -> void:
 # is changing to
 func updateCave(newCave:Cave):
 	
+	print("wumpus----------------")
+	print(wumpusCave.currentCaveNumber)
+	
 	# make warnings not visible in new cave
 	$PitWarning.visible = false
 	$BatWarning.visible = false
+	$WumpusWarning.visible = false
 	$BatSound.stop()
 	
 	# updating attributes
@@ -231,14 +235,31 @@ func _on_player_shoot_arrow() -> void:
 			#get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
 			$ShootArrowGame.visible = true
 			# the wumpus runs two caves away if damaged but not dead
+			
+			# stops the player and resets the position
+			player.can_move = false
+			player.visible = false
+			#player.position.x = 135
+			
+			# change the wumpusCave to two random caves away from it 
+			wumpusCave.hasWumpus = false
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
+			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			wumpusCave = wumpusCave.connectingCaves[(randi() % 2) + 1]
+			wumpusCave.hasWumpus = true
+			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+			# update to current cave to reload the cave
+			updateCave(caveList[currentCaveNumber-1])
 			
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
 			print("No Wumpus in that cave. Arrow lost.")
 			# the wumpus runs to a connecting cave
+			wumpusCave.hasWumpus = false
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
+			wumpusCave.hasWumpus = true
+			$WumpusWarning.visible = false
+			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 
 
 # called by game control once caveList is defined
@@ -268,8 +289,8 @@ func checkHazards():
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$PitWarning.text = "I smell a Wumpus"
-			$PitWarning.visible = true
+			$WumpusWarning.text = "I smell a Wumpus"
+			$WumpusWarning.visible = true
 			return
 
 # start_index - the starting point of the search
@@ -330,3 +351,9 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 # helper function for animations
 func wait(seconds:float):
 	await get_tree().create_timer(seconds).timeout
+
+
+func _on_shoot_arrow_game_arrow_game_done() -> void:
+	$ShootArrowGame.visible = false
+	player.can_move = true
+	player.visible = true

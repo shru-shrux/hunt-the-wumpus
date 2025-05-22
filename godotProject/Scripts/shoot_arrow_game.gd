@@ -1,4 +1,5 @@
 extends Node2D
+signal arrowGameDone
 
 @onready var slider = $Slider
 @onready var label = $Label
@@ -38,7 +39,7 @@ func _input(event):
 				PlayerData.wumpusKilled = true
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 			else:
-				self.visible = false
+				arrowGameDone.emit()
 
 # calculating the result of the game when the minigame is stopped from position of the slider
 func _stop_game():
