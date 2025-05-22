@@ -55,9 +55,10 @@ func load_high_scores() -> Array:
 	# Sort descending
 	high_scores.sort_custom(_sort_by_score)
 	return high_scores
+	
+func _sort_by_score(a, b) -> bool:
+	return a["score"] > b["score"]
 
-func _sort_by_score(a, b):
-	return b["score"] - a["score"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

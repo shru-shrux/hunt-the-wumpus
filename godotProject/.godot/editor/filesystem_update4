@@ -1,12 +1,8 @@
-res://Scenes/win_end_scene.tscn
-res://Scenes/lose_end_scene.tscn
-res://Scripts/win_end_scene.gd
-res://Scripts/wumpus_cave.gd
-res://Scripts/shoot_arrow_game.gd
-res://Scripts/player_data.gd
-res://Scenes/end_scene.tscn
 res://Scenes/cave_default.tscn
 res://Scenes/wumpus_cave.tscn
 res://Scenes/main.tscn
+res://Scenes/end_scene.tscn
 res://Scenes/shoot_arrow_game.tscn
-res://Scripts/cave_default.gd
+res://Scenes/main_menu.tscn
+res://Scripts/settings_tab_container.gd
+res://Scripts/end_scene.gd

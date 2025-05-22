@@ -55,14 +55,14 @@ scroll_active = false
 offset_left = 741.0
 offset_top = 265.0
 offset_right = 1027.0
-offset_bottom = 586.0
+offset_bottom = 554.0
 size_flags_vertical = 0
 
 [node name="HomeButton" type="Button" parent="."]
 offset_left = 482.0
-offset_top = 547.0
+offset_top = 581.0
 offset_right = 657.0
-offset_bottom = 583.0
+offset_bottom = 617.0
 theme_override_fonts/font = ExtResource("3_8p78e")
 theme_override_font_sizes/font_size = 30
 text = "Back to Home"
