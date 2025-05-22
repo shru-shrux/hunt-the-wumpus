@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b355yvg3cyhls"]
 
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_3tw5b"]
-[ext_resource type="Script" uid="uid://c1w50kocec7pc" path="res://Scenes/trivia.gd" id="1_8v36v"]
+[ext_resource type="Script" uid="uid://c1w50kocec7pc" path="res://Scripts/trivia.gd" id="1_8v36v"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_jbabp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jbabp"]
