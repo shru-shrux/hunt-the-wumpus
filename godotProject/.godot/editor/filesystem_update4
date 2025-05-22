@@ -7,3 +7,4 @@ res://Scenes/player.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scripts/player.gd
 res://Scripts/game_control.gd
+res://Scripts/login_manager.gd

@@ -24,6 +24,7 @@ func _ready():
 	#hide() # this is currently commented out so it shows up when you run since start function isn't used now
 	goldCount = PlayerData.goldCount
 	arrowCount = PlayerData.arrowCount
+	$CollisionShape2D.disabled = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,9 +92,9 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 
-# when the player enters a new cave set position
-func _on_new_cave_entered() -> void:
-	position = Vector2(87, 507)
+## when the player enters a new cave set position
+#func _on_new_cave_entered() -> void:
+	#position = Vector2(87, 507)
 
 # this changes the amount of gold the player has
 func goldChange(addedGold:int):

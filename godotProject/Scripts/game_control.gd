@@ -158,8 +158,6 @@ func populate_connecting_caves():
 		cave.connectingCaves = connectingCavesMaster[i]
 		i += 1
 
-# BFS loop
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

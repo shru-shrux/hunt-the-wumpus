@@ -72,6 +72,8 @@ func updateCave(newCave:Cave):
 	print("This room has " + str(roomGoldAmount) + " gold")
 	player.goldChange(roomGoldAmount)
 	
+	player.get_node("CollisionShape2D").disabled = false
+	
 	# once entered the room now has no more gold
 	newCave.roomGoldAmount = 0
 	
