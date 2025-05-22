@@ -42,7 +42,12 @@ func signup(username: String, password: String) -> bool:
 	account_data[username] = {
 		"password": password,
 		"gold": 0,
-		"achievements": [],
+		"achievements": {
+			"score": 0,
+			"wins": 0,
+			"trivia": 0,
+			"caves": 0
+		},
 		"inventory": [],
 		"settings": {},
 		"high-score": 0

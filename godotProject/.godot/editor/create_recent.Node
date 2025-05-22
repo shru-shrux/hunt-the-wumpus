@@ -1,8 +1,11 @@
+ScrollContainer
 Label
+VBoxContainer
+TextureRect
+HBoxContainer
 Button
 GridContainer
 Panel
-VBoxContainer
 MarginContainer
 RichTextLabel
 Sprite2D
@@ -10,5 +13,3 @@ Cave
 PanelContainer
 HSlider
 AudioStreamPlayer
-TextureRect
-CanvasLayer
