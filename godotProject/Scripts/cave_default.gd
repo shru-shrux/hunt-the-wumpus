@@ -143,9 +143,20 @@ func updateCave(newCave:Cave):
 	if hasWumpus:
 		get_tree().change_scene_to_file("res://Scenes/wumpus_cave.tscn")
 		
+		
+	# generator bfs and riddle
+	var start_idx = currentCaveNumber - 1
+	var goal_idx = wumpusCave.currentCaveNumber - 1
+	var path: Array = bfs_shortest_path(start_idx, goal_idx)
+	if path.size() >= 2:
+		bestOption = path[1]  # cave number (1-based) of the next step
+	else:
+		bestOption = currentCaveNumber
 	
+	$"../Riddle".visible = true # make riddle popup visible
+	$"../Riddle"._generate_riddle(bestOption) # generate riddle
+
 	# checking connecting caves for hazards to show -----------------------
-	
 	checkHazards()
 	
 	

@@ -18,6 +18,7 @@ var difficulty: String
 func _ready() -> void:
 	# set difficulty of game
 	difficulty = Global.difficulty
+	print(difficulty)
 	
 	# creates the cave objects
 	create_caves()

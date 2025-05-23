@@ -11,3 +11,9 @@ res://Scripts/trivia.gd
 res://Scenes/main_menu.tscn
 res://Scripts/Global.gd
 res://Scripts/main_menu.gd
+res://Scripts/riddle_generator.gd
+res://Scenes/riddleTest.tscn
+res://Scripts/riddle_test.gd
+res://Scenes/riddle.tscn
+res://Scripts/riddle.gd
+res://Scripts/cave_default.gd

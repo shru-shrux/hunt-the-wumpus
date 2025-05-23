@@ -1,14 +1,14 @@
+Button
+Control
 Label
 VBoxContainer
 TextureRect
 HBoxContainer
 Node2D
 ScrollContainer
-Button
 GridContainer
 Panel
 MarginContainer
 RichTextLabel
 Sprite2D
 Cave
-PanelContainer

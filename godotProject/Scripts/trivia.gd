@@ -2,11 +2,11 @@ extends Control
 
 @onready var trivia_generator = TriviaGenerator.new()
 
-var difficulty = get_parent().difficulty
+var difficulty : String
 
 func _ready():
+	difficulty = get_parent().difficulty
 	add_child(trivia_generator)  # Only works if TriviaGenerator extends Node
-	_generate_trivia()
 
 func _generate_trivia():
 	print("🧪 Starting trivia generation test...")

@@ -36,23 +36,33 @@ func load_api_key() -> String:
 		return ""
 		
 
-func generate_riddle_for_number(number: int, callback: Callable) -> void:
+func generate_riddle_for_number(number: int, callback: Callable, difficulty: String) -> void:
 	on_riddle_ready = callback # store callback function
-	
 	chosen_number = number
+	
 	var url := "https://api.openai.com/v1/chat/completions" # API endpoint to send request
 	var headers := [
 		"Content-Type: application/json", # JSON data
 		"Authorization: Bearer %s" % api_key, # use API key
 	]
+	
+	var prompt: String
 
-	var prompt := "Give me a short, clever riddle whose answer is the number %d. Keep it under 2 sentences." % number
+	match difficulty:
+		"easy":
+			prompt = "Give me a very simple, clever riddle whose answer is the number %d. Use a statement that only fits this number exactly; do not reference ranges or properties shared by other numbers. Keep it under 2 sentences." % number
+		"medium":
+			prompt = "Give me a clever riddle whose answer is the number %d. Ensure the clue is specific so no other number satisfies it; do not mention ranges. Keep it under 2 sentences." % number
+		"hard":
+			prompt = "Give me a tricky and challenging riddle whose answer is the number %d. Include a unique property that only applies to this number; avoid using ranges or ambiguous clues. Keep it under 2 sentences." % number
+		_:
+			prompt = "Give me a short, clever riddle whose answer is the number %d. Make sure no other number fits; do not use ranges. Keep it under 2 sentences." % number
 
 	var body := {
 		"model": "gpt-3.5-turbo",
 		"messages": [
-			{ "role": "system", "content": "You are a riddle generator for a logic-based adventure game." }, # from system
-			{ "role": "user", "content": prompt } # from user
+			{ "role": "system", "content": "You are a riddle generator for a logic-based adventure game." },
+			{ "role": "user", "content": prompt }
 		],
 		"temperature": 0.8 # randomness
 	}
