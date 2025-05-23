@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bynm24s2t8wkr"]
+[gd_scene load_steps=12 format=3 uid="uid://bynm24s2t8wkr"]
 
 [ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scripts/button.gd" id="1_f6c68"]
 [ext_resource type="Texture2D" uid="uid://bjeudwppis32d" path="res://Assets/Art/Bottomless Pit_darker.png" id="2_7doci"]
@@ -18,6 +18,10 @@ font_size = 150
 
 [sub_resource type="LabelSettings" id="LabelSettings_x5jo4"]
 font = ExtResource("2_hvayr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7doci"]
+font = ExtResource("2_hvayr")
+font_size = 100
 
 [node name="CpsMinigame" type="Node2D"]
 
@@ -73,6 +77,15 @@ offset_right = 407.0
 offset_bottom = 382.0
 text = "Click here!"
 label_settings = SubResource("LabelSettings_x5jo4")
+
+[node name="TimesUp" type="Label" parent="."]
+visible = false
+offset_left = 298.0
+offset_top = 276.0
+offset_right = 899.0
+offset_bottom = 424.0
+text = "Time's Up!"
+label_settings = SubResource("LabelSettings_7doci")
 
 [connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

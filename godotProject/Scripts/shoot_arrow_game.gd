@@ -80,8 +80,14 @@ func _stop_game():
 	#var score = max(0, 100 - int(distance))  # Score out of 100
 	#label.text = "Distance from center: %.1f px\nScore: %d/100\nPress SPACE to continue." % [distance, score]
 
-#func _reset_game():
-	#slider.position.x = min_x
-	#direction = 1
-	#active = true
-	#label.text = "Press SPACE when the slider is in the green."
+# resets the game to be playable again
+func _reset_game():
+	slider.position.x = min_x
+	direction = 1
+	active = true
+	label.text = "Press SPACE when the slider is in the green."
+
+func _on_visibility_changed() -> void:
+	
+	if visible:
+		_reset_game()

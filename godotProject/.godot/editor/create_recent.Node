@@ -1,5 +1,6 @@
-ScrollContainer
+Node2D
 Label
+ScrollContainer
 VBoxContainer
 TextureRect
 HBoxContainer
@@ -11,5 +12,3 @@ RichTextLabel
 Sprite2D
 Cave
 PanelContainer
-HSlider
-AudioStreamPlayer

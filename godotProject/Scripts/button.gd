@@ -89,6 +89,12 @@ func countdown():
 
 # when the minigame ends update gold and ready player for normal cave
 func _on_minigame_over() -> void:
+	
+	$"../TimesUp".visible = true
+	await wait(1.0)
+	$"../TimesUp".visible = false
+	await wait (1.0)
+	
 	# determine how much gold is lost
 	if CPS <= 2:
 		goldLost = -30
@@ -109,7 +115,7 @@ func _on_minigame_over() -> void:
 
 
 func _on_cps_minigame_visibility_changed() -> void:
-	# if the CpsMinigame Node is visible the game needs to be set up
+	# if the CpsMinigame Node is visible the game needs to be set up.
 	# everything resets and a refrence to the player is defined
 	if get_parent().visible:
 		CPS = 0.0

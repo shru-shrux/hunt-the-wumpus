@@ -46,20 +46,21 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Interact"):
 		_on_player_interact()
 
-# change all of the attributes of the currentCave to our the cave the player
-# is changing to
+# newCave - the cave the player is being sent to
+# Sets up the next cave that the player wants to go to.
+# - Checks if there is a hazard, and updates hazard warnings
 func updateCave(newCave:Cave):
 	
 	print("wumpus----------------")
 	print(wumpusCave.currentCaveNumber)
 	
 	# make warnings not visible in new cave
-	$PitWarning.visible = false
-	$BatWarning.visible = false
-	$WumpusWarning.visible = false
+	$Warnings/PitWarning.visible = false
+	$Warnings/BatWarning.visible = false
+	$Warnings/WumpusWarning.visible = false
 	$BatSound.stop()
 	
-	# updating attributes
+	# updating attributes for the new cave
 	roomGoldAmount = newCave.roomGoldAmount
 	connectingCaves = newCave.connectingCaves
 	bestOption = newCave.bestOption
@@ -73,6 +74,7 @@ func updateCave(newCave:Cave):
 	print("This room has " + str(roomGoldAmount) + " gold")
 	player.goldChange(roomGoldAmount)
 	
+	# player collision is enabled once game is ready
 	player.get_node("CollisionShape2D").disabled = false
 	
 	# once entered the room now has no more gold
@@ -89,14 +91,18 @@ func updateCave(newCave:Cave):
 		get_node(path).text = str(cave.currentCaveNumber)
 		i += 1
 	
+	# CHECK IF THIS IS A HAZARD CAVE -----------------------------------------
+	
+	# if the player enters a pit cave play a quick falling animation and
+	# activate minigame
 	if hasPit:
 		
 		player.can_move = false
 		player.falling = true
 		
-		# to let it update
+		# lets a couple frames pass so position can be set after can_move is
+		# set to false
 		await wait(0.01)
-		
 		$"Falling-1".visible = true
 		$"Falling-2".visible = true
 		
@@ -116,9 +122,10 @@ func updateCave(newCave:Cave):
 		updateCave(caveList[0])
 		
 		$"Falling-2".visible = false
-		
 		$CpsMinigame.visible = true
 	
+	# if the cave is a bat cave, pick up the player and drop at a random cave
+	# and the player loses 5 gold
 	if hasBat:
 		print("you are in a bat cave")
 		var cavePicked = false
@@ -128,8 +135,8 @@ func updateCave(newCave:Cave):
 			if randomCave.currentCaveNumber != currentCaveNumber:
 				cavePicked = true
 		updateCave(randomCave)
-		$BatWarning.text = "A bat picked you up and dropped you, -5 gold"
-		$BatWarning.visible = true
+		$Warnings/BatWarning.text = "A bat picked you up and dropped you, -5 gold"
+		$Warnings/BatWarning.visible = true
 		player.goldChange(-5)
 	
 	# sends the player to the wumpus scene
@@ -181,12 +188,15 @@ func _on_2_area_entered(area: Area2D) -> void:
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[2].currentCaveNumber) + " "
 	$ShootCave.visible = true
 
-
+# when the player presses 'E' for interact, moves player to cave they are
+# standing in front of. If the player is not standing in front of a cave
+# nothing happens
 func _on_player_interact() -> void:
 	
 	# the cave the player is standing in front of
 	var selectedCave:Cave
 	
+	# if the player is standing in front of a cave
 	if $EnterCave.visible == true:	
 		
 		# check which cave the player is standing in front of
@@ -203,6 +213,8 @@ func _on_player_interact() -> void:
 				$ShootCaveResult.visible = false
 				updateCave(cave)
 
+# when the player presses 'Q' for shoot arrow in front of a cave. If the player
+# shoots into a wumpus cave, activate the shoot the wumpus minigame.
 func _on_player_shoot_arrow() -> void:
 	# the cave the player is standing in front of
 	var selectedCave:Cave
@@ -262,7 +274,7 @@ func _on_player_shoot_arrow() -> void:
 			# set the new wumpus cave to have a wumpus
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
-			$WumpusWarning.visible = false
+			$Warnings/WumpusWarning.visible = false
 			# update to current cave to reload the cave
 			updateCave(caveList[currentCaveNumber-1])
 			
@@ -273,11 +285,18 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = false
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
 			wumpusCave.hasWumpus = true
-			$WumpusWarning.visible = false
+			$Warnings/WumpusWarning.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 
+# after the arrow game is done reset the cave and hide the minigame
+func _on_shoot_arrow_game_arrow_game_done() -> void:
+	$ShootArrowGame.visible = false
+	player.can_move = true
+	player.visible = true
+	updateCave(caveList[currentCaveNumber-1])
 
-# called by game control once caveList is defined
+# called by game control once caveList is defined, gets refrences for key
+# variables
 func loadCave():
 	caveList = get_parent().caveList
 	wumpusCave = get_parent().wumpusCave
@@ -290,23 +309,20 @@ func checkHazards():
 	for cave in connectingCaves:
 		if cave.hasBat:
 			$BatSound.play()
-			$BatWarning.text = "You hear bats near you"
-			$BatWarning.visible = true
-			return
+			$Warnings/BatWarning.text = "You hear bats near you"
+			$Warnings/BatWarning.visible = true
 	
 	# if there is a pit cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasPit:
-			$PitWarning.text = "You feel a draft"
-			$PitWarning.visible = true
-			return
+			$Warnings/PitWarning.text = "You feel a draft"
+			$Warnings/PitWarning.visible = true
 	
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$WumpusWarning.text = "I smell a Wumpus"
-			$WumpusWarning.visible = true
-			return
+			$Warnings/WumpusWarning.text = "I smell a Wumpus"
+			$Warnings/WumpusWarning.visible = true
 
 # start_index - the starting point of the search
 # goal_index - the ending point of the search
@@ -366,9 +382,3 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 # helper function for animations
 func wait(seconds:float):
 	await get_tree().create_timer(seconds).timeout
-
-
-func _on_shoot_arrow_game_arrow_game_done() -> void:
-	$ShootArrowGame.visible = false
-	player.can_move = true
-	player.visible = true

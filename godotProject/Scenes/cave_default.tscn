@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=13 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
 [ext_resource type="Texture2D" uid="uid://bwdqweseprb3j" path="res://Assets/Art/Falling-1.png" id="2_pklks"]
@@ -14,17 +14,21 @@ size = Vector2(22.3485, 20)
 font = ExtResource("2_urmdh")
 font_size = 18
 
-[sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
-font = ExtResource("2_urmdh")
-font_size = 35
-
 [sub_resource type="LabelSettings" id="LabelSettings_2tao4"]
 font = ExtResource("2_urmdh")
 font_size = 130
 
+[sub_resource type="LabelSettings" id="LabelSettings_0clby"]
+font = ExtResource("2_urmdh")
+font_size = 22
+
 [sub_resource type="LabelSettings" id="LabelSettings_pklks"]
 font = ExtResource("2_urmdh")
 font_size = 33
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
+font = ExtResource("2_urmdh")
+font_size = 35
 
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
@@ -89,6 +93,57 @@ label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CaveNumber" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 87.0
+offset_bottom = 136.0
+text = "1"
+label_settings = SubResource("LabelSettings_2tao4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentCave" type="Label" parent="CaveNumber"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 6.0
+offset_right = 123.0
+offset_bottom = 29.0
+text = "Current Cave:"
+label_settings = SubResource("LabelSettings_0clby")
+
+[node name="Warnings" type="Node2D" parent="."]
+
+[node name="PitWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 238.0
+offset_top = 56.0
+offset_right = 632.0
+offset_bottom = 87.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
+[node name="BatWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 237.0
+offset_top = 24.0
+offset_right = 631.0
+offset_bottom = 55.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
+[node name="WumpusWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 237.0
+offset_top = 86.0
+offset_right = 631.0
+offset_bottom = 117.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
 [node name="EnterCave" type="Label" parent="."]
 visible = false
 texture_filter = 1
@@ -131,46 +186,6 @@ label_settings = SubResource("LabelSettings_rcyi4")
 
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
-
-[node name="CaveNumber" type="Label" parent="."]
-offset_left = 33.0
-offset_top = 17.0
-offset_right = 98.0
-offset_bottom = 137.0
-text = "1"
-label_settings = SubResource("LabelSettings_2tao4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PitWarning" type="Label" parent="."]
-visible = false
-offset_left = 238.0
-offset_top = 56.0
-offset_right = 632.0
-offset_bottom = 87.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
-
-[node name="BatWarning" type="Label" parent="."]
-visible = false
-offset_left = 237.0
-offset_top = 24.0
-offset_right = 631.0
-offset_bottom = 55.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
-
-[node name="WumpusWarning" type="Label" parent="."]
-visible = false
-offset_left = 237.0
-offset_top = 86.0
-offset_right = 631.0
-offset_bottom = 117.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
 
 [node name="Falling-2" type="Sprite2D" parent="."]
 visible = false

@@ -57,6 +57,7 @@ func assign_special_caves():
 	for i in range(30):
 		numbers.append(i)
 	
+	# make sure the player doesn't spawn in a hazard cave
 	numbers.erase(playerLocation)
 	
 	# shuffle the list to get random first 5
