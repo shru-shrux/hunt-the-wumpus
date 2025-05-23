@@ -2,13 +2,15 @@ extends Control
 
 @onready var trivia_generator = TriviaGenerator.new()
 
+var difficulty = get_parent().difficulty
+
 func _ready():
 	add_child(trivia_generator)  # Only works if TriviaGenerator extends Node
 	_generate_trivia()
 
 func _generate_trivia():
 	print("🧪 Starting trivia generation test...")
-	trivia_generator.generate_trivia(_on_trivia_ready)
+	trivia_generator.generate_trivia(_on_trivia_ready, difficulty)
 
 func _on_trivia_ready(data: Dictionary) -> void:
 	print("✅ Trivia received:")

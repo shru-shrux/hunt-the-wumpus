@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=8 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bynm24s2t8wkr" path="res://Scenes/cps_minigame.tscn" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://cfi832c812qoy" path="res://Assets/Art/Options_icon.png" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://c0qg07lmbqovr" path="res://trivia.tscn" id="7_6bp64"]
 
 [node name="Game Control" type="Node2D"]
 script = ExtResource("1_jjgbg")
@@ -30,6 +31,9 @@ offset_right = 1318.0
 offset_bottom = 245.0
 scale = Vector2(0.25, 0.25)
 icon = ExtResource("4_jjvhh")
+
+[node name="Trivia" parent="." instance=ExtResource("7_6bp64")]
+script = null
 
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]

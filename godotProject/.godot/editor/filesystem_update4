@@ -5,3 +5,9 @@ res://Scripts/settings_tab_container.gd
 res://Scenes/main.tscn
 res://Scenes/trivia.tscn
 res://Scripts/wumpus_cave.gd
+res://Scripts/game_control.gd
+res://Scripts/trivia_generator.gd
+res://Scripts/trivia.gd
+res://Scenes/main_menu.tscn
+res://Scripts/Global.gd
+res://Scripts/main_menu.gd

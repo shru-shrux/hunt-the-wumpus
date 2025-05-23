@@ -39,7 +39,7 @@ func load_api_key() -> String:
 		push_error("API key file not found at %s" % PATH)
 		return ""
 
-func generate_trivia(callback: Callable) -> void:
+func generate_trivia(callback: Callable, difficulty: String) -> void:
 	on_trivia_ready = callback
 
 	var url := "https://api.openai.com/v1/chat/completions"
@@ -48,7 +48,7 @@ func generate_trivia(callback: Callable) -> void:
 		"Authorization: Bearer %s" % api_key,
 	]
 
-	var prompt := "Give me one multiple-choice trivia question with 1 correct answer and 3 incorrect answers. Format the response as JSON with keys: 'question', 'correct', and 'incorrect' (as an array of 3)."
+	var prompt := "Give me one %s difficulty multiple-choice trivia question with 1 correct answer and 3 incorrect answers. Format the response as JSON with keys: 'question', 'correct', and 'incorrect' (as an array of 3)." % difficulty
 
 	var body := {
 		"model": "gpt-3.5-turbo",

@@ -2,6 +2,8 @@ extends Node
 
 var profile_start_tab : String = "profile"
 
+var difficulty: String
+
 func _ready():
 	initialize_high_scores()
 

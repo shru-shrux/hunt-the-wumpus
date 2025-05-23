@@ -12,9 +12,12 @@ var wumpusCave: Cave
 
 var playerLocation: int
 
+var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# set difficulty of game
+	difficulty = Global.difficulty
 	
 	# creates the cave objects
 	create_caves()
