@@ -1,9 +1,9 @@
-Node2D
 Label
-ScrollContainer
 VBoxContainer
 TextureRect
 HBoxContainer
+Node2D
+ScrollContainer
 Button
 GridContainer
 Panel

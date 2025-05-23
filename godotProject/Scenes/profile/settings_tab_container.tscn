@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfsuuew2hwexr"]
+[gd_scene load_steps=4 format=3 uid="uid://dfsuuew2hwexr"]
 
 [ext_resource type="Script" uid="uid://wachdfwiqwjs" path="res://Scripts/settings_tab_container.gd" id="1_gmofw"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_06deq"]
 [ext_resource type="PackedScene" uid="uid://dvlyt2qx4c8ik" path="res://Scenes/volume_slider.tscn" id="3_a0ns7"]
-[ext_resource type="Texture2D" uid="uid://cus5ufnuu7qfy" path="res://Assets/Coins/gold/gold.png" id="3_lxwfh"]
-[ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="4_lt2mk"]
-[ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="5_lt2mk"]
-[ext_resource type="Texture2D" uid="uid://bu6xeeeo38mi3" path="res://icon.svg" id="6_68pe0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -80,105 +76,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 64
 alignment = 1
-
-[node name="Score" type="HBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Score"]
-layout_mode = 2
-texture = ExtResource("3_lxwfh")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Score"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Score/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-theme_override_font_sizes/font_size = 25
-text = "Get a Score of 50"
-
-[node name="Label2" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Score/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-text = "Complete the game and end with a score of at least 50."
-
-[node name="Wins" type="HBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Wins"]
-layout_mode = 2
-texture = ExtResource("5_lt2mk")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Wins"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Wins/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-theme_override_font_sizes/font_size = 25
-text = "Win 3 Games"
-
-[node name="Label2" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Wins/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-text = "Successfully defeat the wumpus 3 times."
-
-[node name="Trivia" type="HBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Trivia"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("6_68pe0")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Trivia"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Trivia/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-theme_override_font_sizes/font_size = 25
-text = "Correctly Answer 10 Trivia Questions"
-
-[node name="Label2" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Trivia/VBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-text = "Get 10 trivia questions correct spread accross multiple games. These can be answered in the wumpus cave and pits."
-autowrap_mode = 2
-
-[node name="Caves" type="HBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Caves"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("6_68pe0")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Caves"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Caves/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-theme_override_font_sizes/font_size = 25
-text = "Explore 20 Caves"
-
-[node name="Label2" type="Label" parent="TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer/Caves/VBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_lt2mk")
-text = "Enter 20 caves. Can happen accross multiple games"
-autowrap_mode = 2
 
 [node name="Avatar" type="TabBar" parent="TabContainer"]
 visible = false

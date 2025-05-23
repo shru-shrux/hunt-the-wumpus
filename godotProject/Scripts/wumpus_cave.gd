@@ -9,7 +9,6 @@ func _ready() -> void:
 	await get_tree().create_timer(2.5).timeout
 	$Info.text = "Answer 3 out of 5 trivia questions correctly\nPress SPACE to continue..."
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

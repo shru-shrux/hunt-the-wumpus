@@ -2,24 +2,23 @@ extends Control
 
 @onready var tab_container = $TabContainer
 @onready var leaderboard_tab = $TabContainer/Leaderboard
-@onready var achievements_vbox = $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer
 
 # Achievement metadata: icon path and description format
 const ACHIEVEMENT_META = {
 	"score": {
-		"icon": "res://assets/ach_score.png",
+		"icon": "res://Assets/Coins/gold/gold.png",
 		"description": "Reach %d points"
 	},
 	"wins": {
-		"icon": "res://assets/ach_wins.png",
+		"icon": "res://Assets/Art/wumpus pixel art.png",
 		"description": "Win %d games"
 	},
 	"trivia": {
-		"icon": "res://assets/ach_trivia.png",
+		"icon": "res://Assets/Coins/gold/gold.png",
 		"description": "Answer %d questions correctly"
 	},
 	"caves": {
-		"icon": "res://assets/ach_caves.png",
+		"icon": "res://Assets/Coins/gold/gold.png",
 		"description": "Explore %d caves"
 	}
 }
@@ -84,32 +83,29 @@ func load_high_scores() -> Array:
 	# Sort descending
 	high_scores.sort_custom(_sort_by_score)
 	return high_scores
-	
+
 func _sort_by_score(a, b) -> bool:
 	return a["score"] > b["score"]
-
 
 func show_achievements():
 	var user_data = LoginManager.get_user_data()
 	var progress = user_data.get("achievements", {})
 
 	# Clear old entries
-	for child in achievements_vbox.get_children():
+	for child in $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer.get_children():
 		child.queue_free()
 
 	# Empty state
-	if progress.empty():
-		var lbl = Label.new()
-		lbl.text = "No achievements unlocked yet."
-		style_label(lbl)
-		achievements_vbox.add_child(lbl)
-		return
+	#if progress.empty():
+		#var lbl = Label.new()
+		#lbl.text = "No achievements unlocked yet."
+		#achievements_vbox.add_child(lbl)
 
 	# Create one row per achievement
 	for key in ACHIEVEMENT_META.keys():
-		var meta = ACHIEVEMENT_META[key]
-		var thresholds = ACHIEVEMENT_THRESHOLDS[key]
-		var value = progress.get(key, 0)
+		var meta = ACHIEVEMENT_META[key] # icon and description
+		var thresholds = ACHIEVEMENT_THRESHOLDS[key] # array of values
+		var value = progress.get(key, 0) # user's progress, 0 if none
 
 		# Determine current level
 		var level = 0
@@ -126,33 +122,49 @@ func show_achievements():
 
 		# UI elements
 		var row = HBoxContainer.new()
+		$TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer.add_child(row)
 
+		# icon
 		var icon = TextureRect.new()
 		icon.texture = load(meta["icon"])
 		icon.custom_minimum_size = Vector2(64, 64)
+		icon.expand_mode = 2
 		row.add_child(icon)
-
+		
+		# text vbox
 		var text_vbox = VBoxContainer.new()
+		row.add_child(text_vbox)
+		
+		var ach_label = Label.new()
+		ach_label.text = key
+		ach_label.add_theme_font_size_override("font_size", 30)
+		format_labels(ach_label)
+		text_vbox.add_child(ach_label)
+
 		var desc_label = Label.new()
 		desc_label.text = meta["description"] % next_target
+		desc_label.add_theme_font_size_override("font_size", 20)
+		format_labels(desc_label)
+		text_vbox.add_child(desc_label)
+
 		var status_label = Label.new()
 		status_label.text = "Progress: %d / %d" % [value, next_target]
-		text_vbox.add_child(desc_label)
+		desc_label.add_theme_font_size_override("font_size", 15)
+		format_labels(status_label)
 		text_vbox.add_child(status_label)
-		row.add_child(text_vbox)
 
-		achievements_vbox.add_child(row)
-
-func style_label(lbl: Label):
-	lbl.add_theme_color_override("font_color", Color.GRAY)
-	lbl.add_theme_font_size_override("font_size", 20)
-
+func format_labels(lbl: Label):
+	lbl.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
+	lbl.custom_minimum_size.x = 400
+	lbl.add_theme_font_override("font", load("res://Assets/Fonts/Symtext.ttf"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
+# change tabs
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if tab == 0:
 		show_leaderboard()
+	if tab == 1:
+		show_achievements()
