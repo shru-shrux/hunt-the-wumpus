@@ -3,6 +3,9 @@ extends Node2D
 @onready var menu = $CanvasLayer/InGameMenu
 var paused = false
 
+@export var timer_label : Label
+var timer : MyTimer
+
 # 2D array of the connecting caves for each cave
 var connectingCavesMaster = []
 
@@ -21,6 +24,8 @@ var difficulty: String
 func _ready() -> void:
 	menu.hide()
 	$CanvasLayer/InGameMenu.connect("resume_pressed", Callable(self, "_on_resume_pressed"))
+	timer = get_tree().get_first_node_in_group("timer")
+	
 	# set difficulty of game
 	difficulty = Global.difficulty
 	print(difficulty)
@@ -175,7 +180,10 @@ func populate_connecting_caves():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_timer_label()
+	
+func update_timer_label():
+	timer_label.text = timer.time_to_string()
 
 func _on_options_button_pressed() -> void:
 	print(menu)
