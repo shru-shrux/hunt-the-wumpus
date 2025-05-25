@@ -14,6 +14,7 @@ var caveList : Array[Cave] = []
 var wumpusCave: Cave
 var pitList: Array[Cave]
 var batList: Array[Cave]
+var playerLocation: int
 
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
@@ -59,6 +60,10 @@ func _process(delta: float) -> void:
 # Sets up the next cave that the player wants to go to.
 # - Checks if there is a hazard, and updates hazard warnings
 func updateCave(newCave:Cave):
+	
+	$"../AnimationPlayer".play("cave_transition")
+	
+	await wait(0.5)
 	
 	print("wumpus----------------")
 	print(wumpusCave.currentCaveNumber)
@@ -128,7 +133,7 @@ func updateCave(newCave:Cave):
 		await wait(1.0)
 		
 		# TODO this is set as the first cave in caveList for now
-		updateCave(caveList[0])
+		updateCave(caveList[playerLocation])
 		
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
@@ -161,11 +166,9 @@ func updateCave(newCave:Cave):
 		$Info.text = "Press SPACE to start the trivia..."
 
 		# wait for SPACE (ui_accept) once
-		await Input.action_just_pressed("ui_accept")
-
-		# now launch the popup (5 questions, need 3 right)
-		trivia_popup.start_trivia(5, 3)
-		
+		if Input.is_action_pressed("ui_accept"):
+			# now launch the popup (5 questions, need 3 right)
+			trivia_popup.start_trivia(5, 3)
 		
 		
 	# generator bfs and riddle
@@ -187,9 +190,9 @@ func updateCave(newCave:Cave):
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
 	await get_tree().create_timer(1.5).timeout
-	wumpus.visible   = false
-	player.can_move  = true
-	player.visible   = true
+	wumpus.visible = false
+	player.can_move = true
+	player.visible = true
 
 # called when the player loses the trivia
 func _on_trivia_lost() -> void:
@@ -349,6 +352,7 @@ func loadCave():
 	wumpusCave = get_parent().wumpusCave
 	batList = get_parent().batList
 	pitList = get_parent().pitList
+	playerLocation = get_parent().playerLocation
 
 # checks the surrounding caves for special caves and lets the user know
 func checkHazards():

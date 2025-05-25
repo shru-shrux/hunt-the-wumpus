@@ -29,7 +29,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_fdnlq"]
-length = 0.1
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,17 +52,6 @@ _data = {
 [node name="Game Control" type="Node2D" node_paths=PackedStringArray("timer_label")]
 script = ExtResource("1_jjgbg")
 timer_label = NodePath("TimerLabel")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jkdf5")
-}
-
-[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
-modulate = Color(1, 1, 1, 0)
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -151,6 +140,18 @@ theme_override_font_sizes/font_size = 30
 text = "Gold: 5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jkdf5")
+}
+
+[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]

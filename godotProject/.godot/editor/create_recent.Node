@@ -1,3 +1,5 @@
+ColorRect
+AnimationPlayer
 TextureRect
 SubViewport
 Label
@@ -11,4 +13,3 @@ Node2D
 ScrollContainer
 GridContainer
 Panel
-MarginContainer
