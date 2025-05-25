@@ -1,14 +1,14 @@
+TextureRect
+SubViewport
 Label
 Node
 CanvasLayer
 Button
 Control
 VBoxContainer
-TextureRect
 HBoxContainer
 Node2D
 ScrollContainer
 GridContainer
 Panel
 MarginContainer
-RichTextLabel

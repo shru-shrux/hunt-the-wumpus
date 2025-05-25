@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://t64m4op7vywn"]
+[gd_scene load_steps=2 format=3 uid="uid://t64m4op7vywn"]
 
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_n0mag"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5crhr"]
-
 [node name="InGameMenu" type="Control"]
-process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,13 +11,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_5crhr")
+visible = false
+modulate = Color(1, 1, 1, 0.588235)
+self_modulate = Color(1, 1, 1, 0.729412)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 1, 1, 0.372549)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
