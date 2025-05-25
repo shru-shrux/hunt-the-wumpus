@@ -161,11 +161,9 @@ func updateCave(newCave:Cave):
 		$Info.text = "Press SPACE to start the trivia..."
 
 		# wait for SPACE (ui_accept) once
-		await Input.action_just_pressed("ui_accept")
-
-		# now launch the popup (5 questions, need 3 right)
-		trivia_popup.start_trivia(5, 3)
-		
+		if Input.is_action_pressed("ui_accept"):
+			# now launch the popup (5 questions, need 3 right)
+			trivia_popup.start_trivia(5, 3)
 		
 		
 	# generator bfs and riddle
@@ -187,9 +185,9 @@ func updateCave(newCave:Cave):
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
 	await get_tree().create_timer(1.5).timeout
-	wumpus.visible   = false
-	player.can_move  = true
-	player.visible   = true
+	wumpus.visible = false
+	player.can_move = true
+	player.visible = true
 
 # called when the player loses the trivia
 func _on_trivia_lost() -> void:
