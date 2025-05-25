@@ -14,3 +14,21 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_buy_button_pressed() -> void:
+	var shop = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
+	var player = shop.player
+	
+	if player.goldCount < itemPrice:
+		print("Not enough gold")
+		return
+	
+	#player.goldChange(-itemPrice)
+	match itemName:
+		"arrows":
+			player.arrowChange(1)
+		"anti_bat":
+			player.changeAntiBat(true)
+		"secret":
+			print("secret message")

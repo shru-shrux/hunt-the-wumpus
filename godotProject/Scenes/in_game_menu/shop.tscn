@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwaoa1d7sc0lk"]
+[gd_scene load_steps=11 format=3 uid="uid://cwaoa1d7sc0lk"]
 
 [ext_resource type="Script" uid="uid://cwmb18hqabn80" path="res://Scenes/in_game_menu/shop.gd" id="1_akc7e"]
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="2_2ypm5"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_q43li"]
 [ext_resource type="PackedScene" uid="uid://dbcbavu14b6q3" path="res://Scenes/in_game_menu/shop_card.tscn" id="4_2ypm5"]
+[ext_resource type="Texture2D" uid="uid://dq2ups0u1oyth" path="res://Assets/Art/secrets2.png" id="5_q43li"]
+[ext_resource type="Texture2D" uid="uid://j5pmt2bcytsl" path="res://Assets/Art/Bow-and-arrow.png" id="6_ujupl"]
+[ext_resource type="Texture2D" uid="uid://cus5ufnuu7qfy" path="res://Assets/Coins/gold/gold.png" id="7_j4flx"]
+[ext_resource type="Texture2D" uid="uid://btxud57lmmq3h" path="res://Assets/Art/antibat.png" id="8_2dtdx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujupl"]
 shader = ExtResource("2_2ypm5")
@@ -98,45 +102,39 @@ size_flags_vertical = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
+[node name="Secrets" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+itemImage = ExtResource("5_q43li")
 itemName = "Secrets"
 itemPrice = "10"
 
-[node name="Panel2" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
+[node name="Arrows" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+itemImage = ExtResource("6_ujupl")
 itemName = "Arrows"
 itemPrice = "5"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
+[node name="Gold2Coin" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+itemImage = ExtResource("7_j4flx")
 itemName = "Gold to Coin"
 itemPrice = "5"
 
-[node name="Panel2" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
+[node name="AntiBat" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_2ypm5")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+itemImage = ExtResource("8_2dtdx")
 itemName = "Anti-bat effect"
 itemPrice = "10"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Panel" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("4_2ypm5")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-itemName = "Potions"
-itemPrice = "7"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]

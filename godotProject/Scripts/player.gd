@@ -17,6 +17,7 @@ var falling = false
 # in game attributes
 var goldCount : int
 var arrowCount : int
+var hasAntiBatEffect : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -100,6 +101,16 @@ func start(pos):
 func goldChange(addedGold:int):
 	if goldCount < 0:
 		goldCount = 0
-	PlayerData.goldCount = goldCount
 	goldCount += addedGold
+	PlayerData.goldCount = goldCount
 	print("You now have " + str(goldCount) + " gold")
+
+func arrowChange(addedArrow:int):
+	arrowCount += addedArrow
+	PlayerData.arrowCount = arrowCount
+	print("You now have " + str(arrowCount) + " arrows")
+	
+func changeAntiBat(gotEffect:bool):
+	hasAntiBatEffect = true
+	PlayerData.hasAntiBatEffect = hasAntiBatEffect
+	print("You now have the anti-bat effect")
