@@ -20,6 +20,7 @@ var difficulty: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	menu.hide()
+	$CanvasLayer/InGameMenu.connect("resume_pressed", Callable(self, "_on_resume_pressed"))
 	# set difficulty of game
 	difficulty = Global.difficulty
 	print(difficulty)
@@ -46,6 +47,9 @@ func _ready() -> void:
 	print("pits------------------")
 	for cave in pitList:
 		print(cave.currentCaveNumber)
+		
+func _on_resume_pressed():
+	in_game_menu()
 
 # creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
@@ -181,9 +185,9 @@ func _on_options_button_pressed() -> void:
 func in_game_menu():
 	if paused:
 		menu.hide()
-		#Engine.time_scale = 1
+		Engine.time_scale = 1
 	else:
 		menu.show()
-		#Engine.time_scale = 0
+		Engine.time_scale = 0
 	
 	paused = !paused

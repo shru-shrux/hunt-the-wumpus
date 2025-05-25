@@ -2,4 +2,4 @@ extends Control
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/in_game_menu/in_game_menu.tscn")
+	get_parent().get_parent()._on_back_from_shop_pressed()

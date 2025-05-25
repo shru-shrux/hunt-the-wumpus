@@ -4,5 +4,9 @@ res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/shop_card.tscn
 res://Scenes/main.tscn
 res://Scenes/cave_default.tscn
+res://Scenes/main_menu.tscn
 res://Scenes/in_game_menu/in_game_menu.gd
 res://Scripts/game_control.gd
+res://Scenes/in_game_menu/options.gd
+res://Scenes/in_game_menu/shop.gd
+res://Scenes/in_game_menu/options.tscn
