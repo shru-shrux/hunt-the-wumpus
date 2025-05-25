@@ -1,8 +1,9 @@
+res://Scenes/cave_default.tscn
+res://Scenes/player.tscn
 res://Scenes/main.tscn
-res://Scenes/trivia.tscn
-res://Scenes/profile/profile.tscn
-res://Scenes/riddle.tscn
-res://Scenes/login_signup/login.tscn
-res://Scenes/login_signup/sign_up.tscn
-res://Scripts/sign_up.gd
-res://Scripts/login_manager.gd
+res://Scenes/cps_minigame.tscn
+res://Scenes/shoot_arrow_game.tscn
+res://Scenes/in_game_menu.tscn
+res://Scenes/blur.gdshader
+res://Scenes/in_game_menu/in_game_menu.gd
+res://Scenes/in_game_menu/in_game_menu.tscn
