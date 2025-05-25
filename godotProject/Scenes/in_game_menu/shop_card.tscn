@@ -16,8 +16,6 @@ offset_right = 149.0
 offset_bottom = 149.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwcwe")
 script = ExtResource("1_48bqd")
-itemName = null
-itemPrice = null
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
