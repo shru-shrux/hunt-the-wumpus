@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=10 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
@@ -8,9 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://b2fgpii0ms85h" path="res://Scenes/riddle.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://b355yvg3cyhls" path="res://Scenes/trivia.tscn" id="8_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://bddkg4ij7obfd" path="res://Scenes/in_game_menu/in_game_menu.tscn" id="9_ynf5e"]
 
 [node name="Game Control" type="Node2D"]
 script = ExtResource("1_jjgbg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("9_ynf5e")]
 
 [node name="CaveDefault" parent="." instance=ExtResource("3_jjvhh")]
 

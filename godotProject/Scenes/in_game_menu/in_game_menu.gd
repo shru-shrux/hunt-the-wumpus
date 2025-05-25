@@ -1,19 +1,12 @@
 extends Control
 
+@onready var main = $"../../"
+
 func _ready() -> void:
 	GameBgMusic.play_game_music()
 
-func resume():
-	get_tree().paused = false
-	
-func pause():
-	get_tree().paused = true
-	
-# need function for when button is pressed.
-	# call pause()
-
 func _on_resume_pressed() -> void:
-	resume()
+	main.in_game_menu()
 
 
 func _on_shop_pressed() -> void:

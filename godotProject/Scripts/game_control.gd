@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var menu = $CanvasLayer/InGameMenu
+var paused = false
+
 # 2D array of the connecting caves for each cave
 var connectingCavesMaster = []
 
@@ -16,6 +19,7 @@ var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	menu.hide()
 	# set difficulty of game
 	difficulty = Global.difficulty
 	print(difficulty)
@@ -169,6 +173,17 @@ func populate_connecting_caves():
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_options_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/in_game_menu/in_game_menu.tscn")
+	print(menu)
+	print(menu.visible)
+	in_game_menu()
+
+func in_game_menu():
+	if paused:
+		menu.hide()
+		#Engine.time_scale = 1
+	else:
+		menu.show()
+		#Engine.time_scale = 0
+	
+	paused = !paused
