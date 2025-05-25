@@ -9,5 +9,6 @@ res://Scenes/main.tscn
 res://Scenes/timer.tscn
 res://Scenes/player.tscn
 res://Scenes/in_game_menu/in_game_menu.gd
-res://Scenes/in_game_menu/shop.gd
 res://Scenes/in_game_menu/shop_card.gd
+res://Scripts/player.gd
+res://Scenes/in_game_menu/shop.gd

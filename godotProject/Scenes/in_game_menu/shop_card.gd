@@ -8,6 +8,7 @@ var player : Node2D
 
 func set_player(p : Node2D):
 	player = p
+	print("Player set in ShopCard: ", player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

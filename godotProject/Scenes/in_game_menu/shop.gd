@@ -4,9 +4,14 @@ var player : Node2D
 
 func set_player(p : Node2D):
 	player = p
-	for card in get_node("VBoxContainer").get_children():
-		if card.has_method("set_player"):
-			card.set_player(player)
+	var vbox = get_node("PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer")
+
+	for hbox in vbox.get_children():
+		if hbox is HBoxContainer:
+			for panel in hbox.get_children():
+				if panel.has_method("set_player"):
+					panel.set_player(player)
+					print(panel.name, " assigned player: ", player)
 
 func _ready():
 	if player == null:

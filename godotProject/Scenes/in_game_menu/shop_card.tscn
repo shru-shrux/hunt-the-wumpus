@@ -68,5 +68,5 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "price"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]

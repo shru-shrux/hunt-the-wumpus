@@ -18,6 +18,7 @@ func _on_resume_pressed() -> void:
 
 func _on_shop_pressed() -> void:
 	button_panel.hide()
+	shop_panel.show()
 	var player = get_tree().current_scene.get_node("Player")
 	if player == null:
 		print("ERROR: Player not found in current scene!")
@@ -33,10 +34,7 @@ func _on_shop_pressed() -> void:
 	#	var player = get_tree().current_scene.get_node("Player") # Find player in the current scene
 	#	shop_instance.set_player(player)
 		# Add the Shop instance to the scene tree
-	#	get_tree().current_scene.add_child(shop_instance)
-	
-	shop_panel.show()
-	
+	#	get_tree().current_scene.add_child(shop_instance)	
 
 
 func _on_options_pressed() -> void:
@@ -46,9 +44,6 @@ func _on_options_pressed() -> void:
 func _on_back_from_shop_pressed() -> void:
 	shop_panel.hide()
 	button_panel.show()
-	if shop_panel:
-		shop_panel.queue_free() # Free the shop instance
-		shop_panel = null # Clear reference
 
 func _on_back_from_options_pressed() -> void:
 	options_panel.hide()

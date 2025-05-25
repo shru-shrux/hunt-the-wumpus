@@ -4,6 +4,9 @@ signal interact
 
 # this is basic player movement from tutorial, will need to be adapted and changed
 
+@onready var gold_label = get_tree().current_scene.get_node("GoldCount")
+@onready var arrow_label = get_tree().current_scene.get_node("ArrowCount")
+
 @export var speed = 400 # How fast the player will move (pixels/sec).
 @export var sprint_multiplier = 1.5 # How much faster the player moves when sprinting
 
@@ -104,11 +107,18 @@ func goldChange(addedGold:int):
 	goldCount += addedGold
 	PlayerData.goldCount = goldCount
 	print("You now have " + str(goldCount) + " gold")
+	
+	if gold_label:
+		gold_label.text = "Gold: " + str(goldCount)
+
 
 func arrowChange(addedArrow:int):
 	arrowCount += addedArrow
 	PlayerData.arrowCount = arrowCount
 	print("You now have " + str(arrowCount) + " arrows")
+	
+	if arrow_label:
+		arrow_label.text = "Arrows: " + str(arrowCount)
 	
 func changeAntiBat(gotEffect:bool):
 	hasAntiBatEffect = true
