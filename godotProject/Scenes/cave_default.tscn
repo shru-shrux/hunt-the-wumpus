@@ -106,10 +106,10 @@ vertical_alignment = 1
 [node name="CurrentCave" type="Label" parent="CaveNumber"]
 layout_mode = 0
 offset_left = -9.0
-offset_top = 6.0
+offset_top = -1.0
 offset_right = 123.0
-offset_bottom = 29.0
-text = "Current Cave:"
+offset_bottom = 22.0
+text = "Current Cave"
 label_settings = SubResource("LabelSettings_0clby")
 
 [node name="Warnings" type="Node2D" parent="."]
