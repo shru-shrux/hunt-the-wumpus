@@ -1,8 +1,8 @@
 res://Scenes/main.tscn
-res://Scenes/trivia.tscn
-res://Scenes/profile/profile.tscn
-res://Scenes/riddle.tscn
-res://Scenes/login_signup/login.tscn
-res://Scenes/login_signup/sign_up.tscn
-res://Scripts/sign_up.gd
-res://Scripts/login_manager.gd
+res://Scenes/in_game_menu/in_game_menu.tscn
+res://Scenes/cave_default.tscn
+res://Scripts/cave_default.gd
+res://Scenes/wumpus_cave.tscn
+res://Scenes/in_game_menu/in_game_menu.gd
+res://openai_key.txt
+res://Scripts/trivia.gd

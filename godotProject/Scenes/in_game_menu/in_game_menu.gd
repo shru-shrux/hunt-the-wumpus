@@ -9,6 +9,7 @@ func _ready() -> void:
 	GameBgMusic.play_game_music()
 	shop_panel.hide()
 	options_panel.hide()
+	$"../../Wumpus".visible = false
 
 func _on_resume_pressed() -> void:
 	emit_signal("resume_pressed")

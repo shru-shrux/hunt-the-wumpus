@@ -6,6 +6,8 @@ class_name Cave
 # Emily for in game menu (riddles, etc). 
 
 var player : Node2D
+var wumpus : Sprite2D
+var trivia_popup : Control
 
 # empty variable that is set later from game control
 var caveList : Array[Cave] = []
@@ -36,6 +38,13 @@ var hasPit = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_parent().get_node("Player")
+	wumpus = get_parent().get_node("Wumpus")
+	trivia_popup = get_parent().get_node("Trivia") as TriviaPopup
+
+	trivia_popup.visible = false
+	# connect the two signals with the 2-arg overload
+	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
+	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -139,9 +148,24 @@ func updateCave(newCave:Cave):
 		$Warnings/BatWarning.visible = true
 		player.goldChange(-5)
 	
-	# sends the player to the wumpus scene
+	# make wumpus visible
 	if hasWumpus:
-		get_tree().change_scene_to_file("res://Scenes/wumpus_cave.tscn")
+		wumpus.visible   = true
+		player.can_move  = false
+		player.visible   = false
+
+		$Info.text = "The Wumpus has awoken..."
+		await get_tree().create_timer(1.5).timeout
+		$Info.text = "You must fight to stay alive..."
+		await get_tree().create_timer(2.5).timeout
+		$Info.text = "Press SPACE to start the trivia..."
+
+		# wait for SPACE (ui_accept) once
+		await Input.action_just_pressed("ui_accept")
+
+		# now launch the popup (5 questions, need 3 right)
+		trivia_popup.start_trivia(5, 3)
+		
 		
 		
 	# generator bfs and riddle
@@ -159,7 +183,18 @@ func updateCave(newCave:Cave):
 	# checking connecting caves for hazards to show -----------------------
 	checkHazards()
 	
-	
+# called when the player wins the trivia
+func _on_trivia_won() -> void:
+	$Info.text = "You outsmarted the Wumpus!"
+	await get_tree().create_timer(1.5).timeout
+	wumpus.visible   = false
+	player.can_move  = true
+	player.visible   = true
+
+# called when the player loses the trivia
+func _on_trivia_lost() -> void:
+	$Info.text = "The Wumpus feasts… Game Over."
+	# your lose logic here (reset, reduce life, etc.)
 
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
@@ -259,6 +294,7 @@ func _on_player_shoot_arrow() -> void:
 		if selectedCave.hasWumpus:
 			print("Wumpus hit! Starting minigame...")
 			#get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
+			
 			$ShootArrowGame.visible = true
 			# the wumpus runs two caves away if damaged but not dead
 			

@@ -102,10 +102,12 @@ text = "          "
 horizontal_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Shop" parent="CanvasLayer" instance=ExtResource("5_5tb02")]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Options" parent="CanvasLayer2" instance=ExtResource("6_gn025")]
 
