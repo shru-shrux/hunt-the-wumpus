@@ -55,8 +55,7 @@ text = "Username"
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_jhfpi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -73,8 +72,7 @@ text = "Password"
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_jhfpi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -95,7 +93,7 @@ offset_top = 339.0
 offset_right = 781.0
 offset_bottom = 370.0
 theme_override_fonts/font = ExtResource("2_jhfpi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Login"
 
 [node name="CancelButton" type="Button" parent="."]
@@ -105,25 +103,25 @@ offset_top = 340.0
 offset_right = 590.0
 offset_bottom = 371.0
 theme_override_fonts/font = ExtResource("2_jhfpi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Cancel"
 
 [node name="ToSignUpButton" type="Button" parent="."]
 custom_minimum_size = Vector2(250, 20)
 layout_mode = 0
 offset_left = 484.0
-offset_top = 402.0
+offset_top = 397.0
 offset_right = 734.0
-offset_bottom = 438.0
+offset_bottom = 433.0
 theme_override_fonts/font = ExtResource("2_jhfpi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Sign Up Instead"
 
 [node name="Error" type="Label" parent="."]
 layout_mode = 0
-offset_left = 542.0
+offset_left = 530.0
 offset_top = 493.0
-offset_right = 688.0
+offset_right = 676.0
 offset_bottom = 516.0
 
 [connection signal="button_down" from="LoginButton" to="." method="_on_login_button_button_down"]

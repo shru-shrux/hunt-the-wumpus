@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://2ofk88gf0pnm"]
+[gd_scene load_steps=6 format=3 uid="uid://2ofk88gf0pnm"]
 
 [ext_resource type="Script" uid="uid://bf4melmow3qx7" path="res://Scripts/sign_up.gd" id="1_u1ho7"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_vdcsv"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_xs2fa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2t14d"]
 
@@ -10,11 +11,14 @@ font = ExtResource("2_vdcsv")
 font_size = 66
 
 [node name="SignUpPanel" type="Panel"]
-visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2t14d")
 script = ExtResource("1_u1ho7")
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+position = Vector2(577, 322)
+texture = ExtResource("2_xs2fa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -44,6 +48,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_vdcsv")
+theme_override_font_sizes/normal_font_size = 30
 text = "Username"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/Username"]
@@ -58,6 +64,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_vdcsv")
+theme_override_font_sizes/normal_font_size = 30
 text = "Password"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/Password"]
@@ -72,6 +80,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_vdcsv")
+theme_override_font_sizes/normal_font_size = 25
 text = "Confirm Password"
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/ConfirmPassword"]
@@ -97,6 +107,8 @@ offset_top = 378.5
 offset_right = 746.0
 offset_bottom = 409.5
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_vdcsv")
+theme_override_font_sizes/font_size = 25
 text = "Sign Up"
 
 [node name="CancelButton2" type="Button" parent="."]
@@ -106,23 +118,27 @@ offset_top = 379.5
 offset_right = 555.0
 offset_bottom = 410.5
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_vdcsv")
+theme_override_font_sizes/font_size = 25
 text = "Cancel"
 
 [node name="ToLoginButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 504.0
-offset_top = 444.5
+offset_top = 439.5
 offset_right = 655.0
-offset_bottom = 475.5
+offset_bottom = 470.5
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_vdcsv")
+theme_override_font_sizes/font_size = 25
 text = "Login Instead"
 
 [node name="Error" type="Label" parent="."]
 layout_mode = 0
-offset_left = 542.0
-offset_top = 493.0
-offset_right = 688.0
-offset_bottom = 516.0
+offset_left = 507.0
+offset_top = 504.0
+offset_right = 653.0
+offset_bottom = 527.0
 
 [connection signal="button_down" from="SignInButton" to="." method="_on_sign_in_button_button_down"]
 [connection signal="button_down" from="CancelButton2" to="." method="_on_cancel_button_2_button_down"]
