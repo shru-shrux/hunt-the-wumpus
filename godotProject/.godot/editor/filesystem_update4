@@ -5,9 +5,4 @@ res://Scenes/cave_default.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/profile/settings_tab_container.tscn
 res://Scenes/profile/profile.tscn
-res://Scripts/end_scene.gd
-res://Scripts/login_manager.gd
-res://Scenes/in_game_menu/shop_card.gd
-res://Scripts/cave_default.gd
-res://Scripts/player_data.gd
-res://Scripts/shoot_arrow_game.gd
+res://Scripts/game_control.gd
