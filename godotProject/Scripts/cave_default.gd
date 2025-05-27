@@ -224,7 +224,7 @@ func _on_trivia_won() -> void:
 		$"../Riddle".visible = true
 	$"../Riddle"._generate_riddle(bestOption)
 	
-	WumpusData.health = WumpusData.health - 50
+	WumpusData.health = WumpusData.health - 5
 	
 	if WumpusData.health <= 0:
 		# maybe do a cut scene to wumpus dying
