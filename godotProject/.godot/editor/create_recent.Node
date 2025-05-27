@@ -1,12 +1,12 @@
+Label
+Button
+HBoxContainer
+MarginContainer
+PopupPanel
 ColorRect
 CheckButton
 TextureButton
-Button
-Label
-HBoxContainer
-PopupPanel
 Panel
-MarginContainer
 CanvasLayer
 AnimationPlayer
 TextureRect
