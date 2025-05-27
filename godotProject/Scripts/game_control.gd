@@ -12,10 +12,12 @@ var connectingCavesMaster = []
 # array of all the caves going from 1-30
 var caveList: Array[Cave] = []
 
+# variables to store which caves are hazards
 var batList: Array[Cave] = []
 var pitList: Array[Cave] = []
 var wumpusCave: Cave
 
+# where the player spawns
 var playerLocation: int
 
 var difficulty: String
@@ -46,6 +48,11 @@ func _ready() -> void:
 	$CaveDefault.loadCave()
 	# sets the first cave
 	$CaveDefault.updateCave(caveList[playerLocation])
+	
+	# lets the all values adjust before cave shown to player
+	$GameStartBlackScreen.visible = true
+	await wait(0.55)
+	$GameStartBlackScreen.visible = false
 	
 	print("bats------------------")
 	for cave in batList:
@@ -123,19 +130,7 @@ func distribute_gold(total_gold: int):
 			var gold = randi() % 10 + 1
 			cave.roomGoldAmount = gold
 			givenGold += gold
-		
 
-# for this first cave sets all the first amounts before the system takes control
-func initialize_cave(pickedCave:Cave):
-	# updating attributes
-	$CaveDefault.roomGoldAmount = pickedCave.roomGoldAmount
-	$CaveDefault.connectingCaves = pickedCave.connectingCaves
-	$CaveDefault.bestOption = pickedCave.bestOption
-	$CaveDefault.currentCaveNumber = pickedCave.currentCaveNumber
-	$CaveDefault.hasBat = pickedCave.hasBat
-	$CaveDefault.hasWumpus = pickedCave.hasWumpus
-	$CaveDefault.hasPit = pickedCave.hasPit
-	
 
 # gives each cave an array of its 3 connecting caves to make the map
 func populate_connecting_caves():
@@ -175,6 +170,7 @@ func populate_connecting_caves():
 	
 	var i = 0
 	
+	# give each cave in caveList its corresponding connectingCaves list
 	for cave in caveList:
 		cave.connectingCaves = connectingCavesMaster[i]
 		i += 1
@@ -202,9 +198,16 @@ func in_game_menu():
 	
 	paused = !paused
 
+# when timer button toggled set the timer visibility to the opposite of what it
+# was
 func _on_toggle_timer_visibility(visible: bool) -> void:
-	timer_label.visible = visible
+	timer_label.visible = !timer_label.visible
 
-
+# when riddle button toggled set the riddle visibility on updateCave to the 
+# opposite of what it was
 func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	$Riddle.shownOnUpdate = !$Riddle.shownOnUpdate
+
+# helper function for animations
+func wait(seconds:float):
+	await get_tree().create_timer(seconds).timeout

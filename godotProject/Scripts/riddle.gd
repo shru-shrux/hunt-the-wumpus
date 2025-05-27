@@ -3,6 +3,7 @@ extends Node
 @onready var riddle_gen : Node = preload("res://Scripts/riddle_generator.gd").new()
 
 var difficulty : String
+var shownOnUpdate = true
 
 func _ready():
 	difficulty = get_parent().difficulty

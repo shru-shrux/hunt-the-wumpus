@@ -61,9 +61,14 @@ func _process(delta: float) -> void:
 # - Checks if there is a hazard, and updates hazard warnings
 func updateCave(newCave:Cave):
 	
+	# play the animation and freeze the player, also make sure the pause button
+	# isn't available
+	$"../OptionsButton".disabled = true
+	player.can_move = false
 	$"../AnimationPlayer".play("cave_transition")
-	
 	await wait(0.5)
+	player.can_move = true
+	$"../OptionsButton".disabled = false
 	
 	print("wumpus----------------")
 	print(wumpusCave.currentCaveNumber)
@@ -180,7 +185,8 @@ func updateCave(newCave:Cave):
 	else:
 		bestOption = currentCaveNumber
 	
-	$"../Riddle".visible = true # make riddle popup visible
+	if $"../Riddle".shownOnUpdate:
+		$"../Riddle".visible = true # make riddle popup visible
 	$"../Riddle"._generate_riddle(bestOption) # generate riddle
 
 	# checking connecting caves for hazards to show -----------------------
