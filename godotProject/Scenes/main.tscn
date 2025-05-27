@@ -118,9 +118,9 @@ offset_right = 560.0
 offset_bottom = 320.0
 
 [node name="TimerLabel" type="Label" parent="."]
-offset_left = 1014.0
+offset_left = 985.0
 offset_top = 77.0
-offset_right = 1177.0
+offset_right = 1148.0
 offset_bottom = 117.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
@@ -150,5 +150,15 @@ text = "Gold: 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ShowRiddleButton" type="CheckButton" parent="."]
+offset_left = 950.0
+offset_top = 200.0
+offset_right = 1148.0
+offset_bottom = 236.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 30
+text = "Show Riddle"
+
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="toggled" from="ShowRiddleButton" to="." method="_on_show_riddle_button_toggled"]

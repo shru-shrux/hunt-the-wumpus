@@ -25,6 +25,8 @@ func _ready() -> void:
 	menu.hide()
 	$CanvasLayer/InGameMenu.connect("resume_pressed", Callable(self, "_on_resume_pressed"))
 	timer = get_tree().get_first_node_in_group("timer")
+	var options = $CanvasLayer/InGameMenu/CanvasLayer2/Options
+	options.connect("toggle_time_visibility", Callable(self, "_on_toggle_timer_visibility"))
 	
 	# set difficulty of game
 	difficulty = Global.difficulty
@@ -199,3 +201,10 @@ func in_game_menu():
 		Engine.time_scale = 0
 	
 	paused = !paused
+
+func _on_toggle_timer_visibility(visible: bool) -> void:
+	timer_label.visible = visible
+
+
+func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.
