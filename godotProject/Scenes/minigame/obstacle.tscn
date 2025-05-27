@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://xctb4dbrvu65"]
+
+[ext_resource type="Script" uid="uid://h6lcrik3ux87" path="res://Scenes/minigame/obstacle.gd" id="1_f41n6"]
+[ext_resource type="Texture2D" uid="uid://s0wup6n1ta2y" path="res://Assets/Art/tile_0010.png" id="2_r582m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvanu"]
+size = Vector2(54, 52)
+
+[node name="obstacle" type="Area2D"]
+script = ExtResource("1_f41n6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(147.75, 110.25)
+scale = Vector2(2.91667, 2.63889)
+texture = ExtResource("2_r582m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(148, 110)
+shape = SubResource("RectangleShape2D_rvanu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

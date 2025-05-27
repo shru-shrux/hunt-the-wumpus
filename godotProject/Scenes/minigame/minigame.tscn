@@ -1,0 +1,189 @@
+[gd_scene load_steps=21 format=3 uid="uid://xlsqjkn06yxb"]
+
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_ckcec"]
+[ext_resource type="Script" uid="uid://h8npt4ksrq44" path="res://Scenes/minigame/player.gd" id="1_n63t7"]
+[ext_resource type="Script" uid="uid://y68lsa3w5lvw" path="res://Scenes/minigame/game.gd" id="1_st4mu"]
+[ext_resource type="Texture2D" uid="uid://xaqh4ib07fae" path="res://Assets/Art/DinoSprites - doux.png" id="2_st4mu"]
+[ext_resource type="PackedScene" uid="uid://xctb4dbrvu65" path="res://Scenes/minigame/obstacle.tscn" id="2_u8kfg"]
+[ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="6_juleb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8kfg"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckcec"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juleb"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_778g3"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5lc7"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(408, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vif7d"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(432, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwv2g"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(456, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y70f7"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(480, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fq4b"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(504, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c32w"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(528, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40yn7"]
+atlas = ExtResource("2_st4mu")
+region = Rect2(552, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_leslm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8kfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckcec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juleb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_778g3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5lc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vif7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwv2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y70f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fq4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c32w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40yn7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yffx"]
+radius = 32.0
+height = 84.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgfa"]
+size = Vector2(892, 64)
+
+[node name="Control" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 891.0
+offset_bottom = 321.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 16.0
+offset_right = 872.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("1_ckcec")
+theme_override_font_sizes/font_size = 35
+text = "Time remaining: 0:20"
+
+[node name="game" type="Node2D" parent="Panel"]
+script = ExtResource("1_st4mu")
+mob_scene = ExtResource("2_u8kfg")
+
+[node name="player" type="CharacterBody2D" parent="Panel/game"]
+position = Vector2(96, 213)
+script = ExtResource("1_n63t7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/game/player"]
+position = Vector2(1.00001, 3)
+scale = Vector2(3.75, 3.69792)
+sprite_frames = SubResource("SpriteFrames_leslm")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/game/player"]
+shape = SubResource("CapsuleShape2D_2yffx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Panel/game"]
+position = Vector2(8, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/game/StaticBody2D"]
+position = Vector2(438, 280)
+shape = SubResource("RectangleShape2D_tbgfa")
+
+[node name="enemy spawn" type="Timer" parent="Panel/game"]
+wait_time = 2.0
+
+[node name="survival timer" type="Timer" parent="Panel"]
+
+[node name="start" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 105.0
+offset_right = 608.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("1_ckcec")
+theme_override_font_sizes/font_size = 35
+text = "Press Space to Start"
+
+[node name="game over" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 295.0
+offset_top = 98.0
+offset_right = 593.0
+offset_bottom = 143.0
+theme_override_fonts/font = ExtResource("6_juleb")
+theme_override_font_sizes/font_size = 30
+text = "G a m e   o v e r"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="victory" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 297.0
+offset_top = 99.0
+offset_right = 595.0
+offset_bottom = 144.0
+theme_override_fonts/font = ExtResource("6_juleb")
+theme_override_font_sizes/font_size = 30
+text = "V i c t o r y"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Panel/game/enemy spawn" to="Panel/game" method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="Panel/survival timer" to="Panel/game" method="_on_survival_timer_timeout"]
