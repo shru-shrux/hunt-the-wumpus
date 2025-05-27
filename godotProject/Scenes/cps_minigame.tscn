@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bynm24s2t8wkr"]
 
-[ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scripts/button.gd" id="1_f6c68"]
+[ext_resource type="Script" path="res://Scenes/button.gd" id="1_f6c68"]
 [ext_resource type="Texture2D" uid="uid://bjeudwppis32d" path="res://Assets/Art/Bottomless Pit_darker.png" id="2_7doci"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_hvayr"]
 [ext_resource type="Texture2D" uid="uid://dvvdhosvbuy4u" path="res://Assets/Art/Bottomless Pit_RotatedLadder.png" id="2_x5jo4"]
@@ -89,4 +89,3 @@ label_settings = SubResource("LabelSettings_7doci")
 
 [connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
-[connection signal="minigameOver" from="Button" to="Button" method="_on_minigame_over"]

@@ -1,8 +1,8 @@
+MarginContainer
+PopupPanel
 Label
 Button
 HBoxContainer
-MarginContainer
-PopupPanel
 ColorRect
 CheckButton
 TextureButton

@@ -29,6 +29,7 @@ func _ready():
 	goldCount = PlayerData.goldCount
 	arrowCount = PlayerData.arrowCount
 	$CollisionShape2D.disabled = true
+	hasAntiBatEffect = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

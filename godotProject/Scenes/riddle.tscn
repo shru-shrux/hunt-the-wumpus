@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2fgpii0ms85h"]
 
-[ext_resource type="Script" uid="uid://dfr2mfjes6tli" path="res://Scripts/riddle.gd" id="1_rixgl"]
+[ext_resource type="Script" path="res://Scripts/riddle.gd" id="1_rixgl"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_cmysd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5nybo"]
