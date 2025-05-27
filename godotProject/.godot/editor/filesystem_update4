@@ -1,6 +1,10 @@
+res://Scenes/main.tscn
+res://Scenes/in_game_menu/shop_card.tscn
 res://Scenes/in_game_menu/shop.tscn
 res://Scenes/cave_default.tscn
-res://Scenes/in_game_menu/shop_card.gd
-res://Scripts/player_data.gd
-res://Scripts/cave_default.gd
-res://Scripts/game_control.gd
+res://Scenes/main_menu.tscn
+res://Scripts/main_menu.gd
+res://Scripts/Global.gd
+res://Scripts/settings_tab_container.gd
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/profile/profile.tscn
