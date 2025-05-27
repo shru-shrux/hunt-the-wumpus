@@ -7,6 +7,7 @@ signal trivia_lost
 var trivia_generator = TriviaGenerator.new()
 @onready var question_label    = $Panel/Question
 @onready var answers_container = $Panel/GridContainer
+@onready var player = get_parent().get_node("Player")
 
 var difficulty : String
 
@@ -49,6 +50,8 @@ func _on_single_ready(data: Dictionary) -> void:
 		_show_question(0)
 
 func _show_question(idx: int) -> void:
+	player.goldCount +- 1
+	
 	current_index = idx
 	var q = questions[idx]
 	question_label.text = q.question
