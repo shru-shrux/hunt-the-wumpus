@@ -213,5 +213,5 @@ text = "price"
 [connection signal="pressed" from="PopupPanel/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PopupPanel2/MarginContainer/HBoxContainer/BoughtCloseButton" to="." method="_on_bought_close_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_button_pressed"]
