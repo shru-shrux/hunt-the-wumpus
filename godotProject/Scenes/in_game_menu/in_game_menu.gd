@@ -40,6 +40,7 @@ func _on_shop_pressed() -> void:
 func _on_options_pressed() -> void:
 	button_panel.hide()
 	options_panel.show()
+	print("options showed")
 	
 func _on_back_from_shop_pressed() -> void:
 	shop_panel.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbcbavu14b6q3"]
+[gd_scene load_steps=22 format=3 uid="uid://dbcbavu14b6q3"]
 
 [ext_resource type="Script" uid="uid://dwj3yagdnfxnj" path="res://Scenes/in_game_menu/shop_card.gd" id="1_48bqd"]
 [ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="1_bwcwe"]
@@ -26,6 +26,21 @@ bg_color = Color(0.192157, 0.211765, 0.286275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywg50"]
 bg_color = Color(0.191531, 0.213048, 0.285221, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11va4"]
+bg_color = Color(0.396078, 0.431373, 0.545098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7onhk"]
+bg_color = Color(0.192157, 0.211765, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psveb"]
+bg_color = Color(0.0941176, 0.105882, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vekfw"]
+bg_color = Color(0.192157, 0.211765, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yxwn"]
+bg_color = Color(0.192157, 0.211765, 0.286275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mtkq"]
 bg_color = Color(0.0941176, 0.105882, 0.14902, 1)
@@ -56,6 +71,8 @@ script = ExtResource("1_48bqd")
 position = Vector2i(5, 45)
 size = Vector2i(140, 55)
 visible = true
+min_size = Vector2i(140, 55)
+max_size = Vector2i(170, 32768)
 theme_override_styles/panel = SubResource("StyleBoxFlat_djbdi")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
@@ -82,11 +99,54 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ywg50")
 text = " x "
 
 [node name="Label" type="Label" parent="PopupPanel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(123, 55)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_fonts/font = ExtResource("2_djbdi")
 theme_override_font_sizes/font_size = 15
-text = " message"
+text = "message"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PopupPanel2" type="PopupPanel" parent="."]
+size = Vector2i(140, 55)
+visible = true
+min_size = Vector2i(140, 55)
+max_size = Vector2i(170, 32768)
+theme_override_styles/panel = SubResource("StyleBoxFlat_11va4")
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupPanel2"]
+custom_minimum_size = Vector2(140, 55)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 140.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel2/MarginContainer"]
+layout_mode = 2
+
+[node name="BoughtCloseButton" type="Button" parent="PopupPanel2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7onhk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_psveb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vekfw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yxwn")
+text = " x "
+
+[node name="BoughtMessage" type="Label" parent="PopupPanel2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(123, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_djbdi")
+theme_override_font_sizes/font_size = 15
+text = " Bought"
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -153,6 +213,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_syh2d")
 text = "price"
 
 [connection signal="pressed" from="PopupPanel/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PopupPanel2/MarginContainer/HBoxContainer/BoughtCloseButton" to="." method="_on_bought_close_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]

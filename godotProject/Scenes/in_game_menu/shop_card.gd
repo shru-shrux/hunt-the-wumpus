@@ -4,6 +4,7 @@ extends Panel
 @export var itemName: String
 @export var itemPrice: String
 @export var infomationPopup: String
+@export var boughtPopup: String
 
 var player : Node2D
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 	$MarginContainer/VBoxContainer/HBoxContainer/Label.text = itemName
 	$MarginContainer/VBoxContainer/PanelContainer/BuyButton.text = itemPrice
 	$PopupPanel/MarginContainer/HBoxContainer/Label.text = infomationPopup
+	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,6 +37,9 @@ func _on_buy_button_pressed() -> void:
 	
 	if player.goldCount < price:
 		print("Not enough gold")
+		var notEnoughGold = "Not enough gold"
+		$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = notEnoughGold
+		$PopupPanel2.popup_centered()
 		return
 	
 	player.goldChange(-(price))
@@ -45,6 +50,9 @@ func _on_buy_button_pressed() -> void:
 			player.changeAntiBat(true)
 		"secret":
 			print("secret message")
+	
+	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
+	$PopupPanel2.popup_centered()
 
 
 func _on_info_button_pressed() -> void:
@@ -53,3 +61,7 @@ func _on_info_button_pressed() -> void:
 
 func _on_close_button_pressed() -> void:
 	$PopupPanel.hide()
+
+
+func _on_bought_close_button_pressed() -> void:
+	$PopupPanel2.hide()
