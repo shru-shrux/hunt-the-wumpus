@@ -24,8 +24,12 @@ var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# hide menu when game starts
 	menu.hide()
+	# signal for resuming from in game menu
 	$CanvasLayer/InGameMenu.connect("resume_pressed", Callable(self, "_on_resume_pressed"))
+	
+	# timer show/hide
 	timer = get_tree().get_first_node_in_group("timer")
 	var options = $CanvasLayer/InGameMenu/CanvasLayer2/Options
 	options.connect("toggle_time_visibility", Callable(self, "_on_toggle_timer_visibility"))

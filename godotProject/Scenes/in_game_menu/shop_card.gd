@@ -1,5 +1,6 @@
 extends Panel
 
+# export variables for different items
 @export var itemImage: Texture
 @export var itemName: String
 @export var itemPrice: String
@@ -8,12 +9,14 @@ extends Panel
 
 var player : Node2D
 
+# set player for each card
 func set_player(p : Node2D):
 	player = p
 	print("Player set in ShopCard: ", player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# update the labels
 	$MarginContainer/VBoxContainer/HBoxContainer2/TextureRect.texture = itemImage
 	$MarginContainer/VBoxContainer/HBoxContainer/Label.text = itemName
 	$MarginContainer/VBoxContainer/PanelContainer/BuyButton.text = itemPrice
@@ -27,14 +30,13 @@ func _process(delta: float) -> void:
 
 
 func _on_buy_button_pressed() -> void:
-	#var shop = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
-	#var player = shop.player
 	if player == null:
 		print("ERROR: No player assigned to ShopCard")
 		return
 		
 	var price = int(itemPrice)
 	
+	# print not enough gold message is gold count less than price of item
 	if player.goldCount < price:
 		print("Not enough gold")
 		var notEnoughGold = "Not enough gold"
@@ -42,7 +44,9 @@ func _on_buy_button_pressed() -> void:
 		$PopupPanel2.popup_centered()
 		return
 	
+	# call gold change for player after buying item
 	player.goldChange(-(price))
+	# match items and call specific item actions
 	match itemName:
 		"arrows":
 			player.arrowChange(1)
@@ -69,18 +73,18 @@ func _on_buy_button_pressed() -> void:
 			elif random_secret_num == 4:
 				boughtPopup = "You are currently in room " + PlayerData.currentRoomNumber
 			
-	
+	# show bought item message
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 	$PopupPanel2.popup_centered()
 
-
+# show pop up of information on item
 func _on_info_button_pressed() -> void:
 	$PopupPanel.popup_centered()
 
-
+# close pop up of information on item
 func _on_close_button_pressed() -> void:
 	$PopupPanel.hide()
 
-
+# close pop up of bought item message
 func _on_bought_close_button_pressed() -> void:
 	$PopupPanel2.hide()
