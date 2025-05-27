@@ -42,6 +42,7 @@ func _ready() -> void:
 	distribute_gold(100)
 	# choose a random cave to spawn in
 	playerLocation = randi() % 30
+	PlayerData.currentRoomNumber = playerLocation
 	# assigns the pit and bat caves
 	assign_special_caves()
 	# loads the caveList to caveDefault

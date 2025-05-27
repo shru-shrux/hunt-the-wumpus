@@ -112,7 +112,7 @@ size_flags_vertical = 4
 itemImage = ExtResource("5_q43li")
 itemName = "Secrets"
 itemPrice = "10"
-infomationPopup = "Buy a secret"
+infomationPopup = "Buy a secret - this can give you information about the caves that can be useful or not useful."
 boughtPopup = "Secrets message"
 
 [node name="Arrows" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_2ypm5")]
@@ -122,7 +122,7 @@ size_flags_vertical = 4
 itemImage = ExtResource("6_ujupl")
 itemName = "Arrows"
 itemPrice = "5"
-infomationPopup = "Buy one arrow to shoot Wumpus"
+infomationPopup = "Buy one arrow to shoot the Wumpus"
 boughtPopup = "Bought 1 arrow"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/HBoxContainer2/ScrollContainer/VBoxContainer"]
@@ -133,9 +133,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 itemImage = ExtResource("8_2dtdx")
-itemName = "Anti-bat effect"
+itemName = "Anti-bat Potion"
 itemPrice = "10"
-infomationPopup = "Buy to get anti-bat effect."
+infomationPopup = "Buy to get anti-bat effect. Next time you enter a cave with a bat, the bats will have no effect."
 boughtPopup = "Anti-bat effect enabled"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]

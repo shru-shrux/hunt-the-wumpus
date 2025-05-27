@@ -87,6 +87,7 @@ func updateCave(newCave:Cave):
 	hasBat = newCave.hasBat
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
+	PlayerData.currentRoomNumber = currentCaveNumber
 	$CaveNumber.text = str(currentCaveNumber)
 	
 	print("\nNew Room entered \n --------------------------------")
@@ -146,17 +147,23 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
-		print("you are in a bat cave")
-		var cavePicked = false
-		var randomCave : Cave
-		while not cavePicked:
-			randomCave = caveList[randi_range(0, 29)]
-			if randomCave.currentCaveNumber != currentCaveNumber:
-				cavePicked = true
-		updateCave(randomCave)
-		$Warnings/BatWarning.text = "A bat picked you up and dropped you, -5 gold"
-		$Warnings/BatWarning.visible = true
-		player.goldChange(-5)
+		if PlayerData.hasAntiBatEffect:
+			$Warnings/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
+			PlayerData.hasAntiBatEffect = false
+		else: 
+			print("you are in a bat cave")
+			var cavePicked = false
+			var randomCave : Cave
+			while not cavePicked:
+				randomCave = caveList[randi_range(0, 29)]
+				if randomCave.currentCaveNumber != currentCaveNumber:
+					cavePicked = true
+			updateCave(randomCave)
+			$Warnings/BatWarning.text = "A bat picked you up and dropped you, -5 gold"
+			$Warnings/BatWarning.visible = true
+			player.goldChange(-5)
+		
+		# TODO make sure bats run away to new cave
 	
 	# make wumpus visible
 	if hasWumpus:

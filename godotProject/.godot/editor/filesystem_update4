@@ -1,11 +1,6 @@
-res://Scenes/cave_default.tscn
-res://Scenes/wumpus_cave.tscn
-res://Scenes/main.tscn
-res://Scenes/end_scene.tscn
-res://Scenes/shoot_arrow_game.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/trivia.tscn
-res://Scripts/game_control.gd
-res://Scenes/in_game_menu/shop_card.tscn
-res://openai_key.txt
 res://Scenes/in_game_menu/shop.tscn
+res://Scenes/cave_default.tscn
+res://Scenes/in_game_menu/shop_card.gd
+res://Scripts/player_data.gd
+res://Scripts/cave_default.gd
+res://Scripts/game_control.gd

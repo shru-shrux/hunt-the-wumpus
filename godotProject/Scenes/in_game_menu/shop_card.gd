@@ -50,6 +50,25 @@ func _on_buy_button_pressed() -> void:
 			player.changeAntiBat(true)
 		"secret":
 			print("secret message")
+			# options for the secret: room number where a bat lives, where a pit is, if wumpus is 
+			# within two rooms of you, where the wumpus is, or the room number you currently are in
+			# or answer to a trivia you have already asked	
+			
+			# use random number generator to choose a number that corresponds to a secret
+			var rng = RandomNumberGenerator.new()
+			var random_secret_num = rng.randi_range(0, 4)
+			if random_secret_num == 0:
+				boughtPopup = "Bats live in room " # set this to bat room number
+			elif random_secret_num == 1:
+				boughtPopup = "A pit is located in room " # set this to pit room number
+			elif random_secret_num == 2:
+				# TODO make this determine if wumpus is within two rooms of you
+				var wumpusWithinTwo = false
+			elif random_secret_num == 3:
+				boughtPopup = "The Wumpus is currently in room " + WumpusData.currentRoomNumber
+			elif random_secret_num == 4:
+				boughtPopup = "You are currently in room " + PlayerData.currentRoomNumber
+			
 	
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 	$PopupPanel2.popup_centered()
