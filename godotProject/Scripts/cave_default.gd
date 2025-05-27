@@ -224,12 +224,23 @@ func _on_trivia_won() -> void:
 		$"../Riddle".visible = true
 	$"../Riddle"._generate_riddle(bestOption)
 	
-	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+	WumpusData.health = WumpusData.health - 50
+	
+	if WumpusData.health <= 0:
+		# maybe do a cut scene to wumpus dying
+		PlayerData.wumpusKilled = true
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+	else:
+		# wumpus needs to move caves
+		# new riddle?
+		wumpus.visible = false
 
 
 # called when the player loses the trivia
 func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
+	await get_tree().create_timer(1.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	# your lose logic here (reset, reduce life, etc.)
 
 # if the player exists any of the 3 Area2D this runs
@@ -289,7 +300,6 @@ func _on_player_interact() -> void:
 		for cave in connectingCaves:
 			if $EnterCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
 				# update numbers in scene and attributes on the object
-				PlayerData.numberTurns = PlayerData.numberTurns + 1
 				$EnterCave.visible = false
 				$ShootCave.visible = false
 				$ShootCaveResult.visible = false

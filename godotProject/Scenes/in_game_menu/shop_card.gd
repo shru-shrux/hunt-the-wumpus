@@ -51,6 +51,7 @@ func _on_buy_button_pressed() -> void:
 		"arrows":
 			player.arrowChange(1)
 		"anti_bat":
+			# TODO add minigame here
 			player.changeAntiBat(true)
 		"secret":
 			print("secret message")
@@ -67,6 +68,7 @@ func _on_buy_button_pressed() -> void:
 				boughtPopup = "A pit is located in room " # set this to pit room number
 			elif random_secret_num == 2:
 				# TODO make this determine if wumpus is within two rooms of you
+				# use bfs to see if it is within two
 				var wumpusWithinTwo = false
 			elif random_secret_num == 3:
 				boughtPopup = "The Wumpus is currently in room " + WumpusData.currentRoomNumber
