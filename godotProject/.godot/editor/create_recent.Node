@@ -1,3 +1,5 @@
+Sprite2D
+Area2D
 Label
 Button
 HBoxContainer
@@ -11,4 +13,3 @@ CanvasLayer
 AnimationPlayer
 TextureRect
 SubViewport
-Node
