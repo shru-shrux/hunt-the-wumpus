@@ -24,3 +24,4 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 	if body.name == "player": 
 		body.get_parent().get_parent().get_child(4).show()
 		get_tree().paused = true
+		

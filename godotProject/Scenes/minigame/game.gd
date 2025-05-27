@@ -5,11 +5,14 @@ extends Node2D
 var score
 var time_remaining = 20
 
+var player: Node2D
 
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../game over".hide()
 	$"../victory".hide()
+	player = get_tree().current_scene.get_node("Player")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,3 +42,5 @@ func _on_survival_timer_timeout() -> void:
 	if time_remaining ==0:
 		$"../victory".show()
 		get_tree().paused = true
+		player.changeAntiBat(true)
+		

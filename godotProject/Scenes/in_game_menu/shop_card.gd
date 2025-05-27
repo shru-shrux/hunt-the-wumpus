@@ -47,7 +47,9 @@ func _on_buy_button_pressed() -> void:
 		"arrows":
 			player.arrowChange(1)
 		"anti_bat":
-			player.changeAntiBat(true)
+			get_tree().change_scene_to_file("res://Scenes/minigame/minigame.tscn")
+			
+			#updates player antibat effect in minigame scene
 		"secret":
 			print("secret message")
 			# options for the secret: room number where a bat lives, where a pit is, if wumpus is 
