@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=19 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bddkg4ij7obfd" path="res://Scenes/in_game_menu/in_game_menu.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://icbywfxrbd6r" path="res://Scenes/timer.tscn" id="10_d1ilt"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="11_6iyac"]
+[ext_resource type="Texture2D" uid="uid://c67048hiqdbdk" path="res://Assets/Art/IconFrame.png" id="13_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://no1sd80puswn" path="res://Assets/Art/ArrowPixelArt.png" id="14_wsu2k"]
+[ext_resource type="Texture2D" uid="uid://cgyqluxn8v1s5" path="res://Assets/Art/CoinPixelArt.png" id="15_wsu2k"]
 
 [sub_resource type="Animation" id="Animation_fdnlq"]
 length = 0.1
@@ -65,6 +68,7 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("9_ynf5e")]
 
@@ -118,10 +122,10 @@ offset_right = 560.0
 offset_bottom = 320.0
 
 [node name="TimerLabel" type="Label" parent="."]
-offset_left = 985.0
-offset_top = 77.0
-offset_right = 1148.0
-offset_bottom = 117.0
+offset_left = 995.0
+offset_top = 92.0
+offset_right = 1158.0
+offset_bottom = 132.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
 text = "00:00:000"
@@ -129,36 +133,57 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ArrowCount" type="Label" parent="."]
-offset_left = 1000.0
-offset_top = 120.0
-offset_right = 1146.0
-offset_bottom = 161.0
+offset_left = 81.0
+offset_top = 143.0
+offset_right = 140.0
+offset_bottom = 184.0
 theme_override_fonts/font = ExtResource("11_6iyac")
-theme_override_font_sizes/font_size = 30
-text = "Arrows: 3"
+theme_override_font_sizes/font_size = 40
+text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GoldCount" type="Label" parent="."]
-offset_left = 1038.0
-offset_top = 161.0
-offset_right = 1141.0
-offset_bottom = 202.0
+offset_left = 90.0
+offset_top = 222.0
+offset_right = 129.0
+offset_bottom = 263.0
 theme_override_fonts/font = ExtResource("11_6iyac")
-theme_override_font_sizes/font_size = 30
-text = "Gold: 5"
+theme_override_font_sizes/font_size = 40
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShowRiddleButton" type="CheckButton" parent="."]
-offset_left = 950.0
-offset_top = 200.0
-offset_right = 1148.0
-offset_bottom = 236.0
+offset_left = 955.0
+offset_top = 127.0
+offset_right = 1153.0
+offset_bottom = 163.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
 button_pressed = true
 text = "Show Riddle"
+
+[node name="CoinIcon" type="Sprite2D" parent="."]
+position = Vector2(51, 243)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("13_jkdf5")
+
+[node name="CoinPixelArt" type="Sprite2D" parent="CoinIcon"]
+position = Vector2(-14.2857, 14.2859)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("15_wsu2k")
+
+[node name="ArrowIcon" type="Sprite2D" parent="."]
+position = Vector2(51, 164)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("13_jkdf5")
+
+[node name="ArrowPixelArt" type="Sprite2D" parent="ArrowIcon"]
+position = Vector2(14.2857, 28.5715)
+rotation = -1.5708
+scale = Vector2(3.57143, 3.57143)
+texture = ExtResource("14_wsu2k")
 
 [node name="GameStartBlackScreen" type="ColorRect" parent="."]
 visible = false

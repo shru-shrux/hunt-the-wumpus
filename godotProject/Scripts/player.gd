@@ -109,7 +109,7 @@ func goldChange(addedGold:int):
 	print("You now have " + str(goldCount) + " gold")
 	
 	if gold_label:
-		gold_label.text = "Gold: " + str(goldCount)
+		gold_label.text = str(goldCount)
 
 
 func arrowChange(addedArrow:int):
@@ -118,7 +118,7 @@ func arrowChange(addedArrow:int):
 	print("You now have " + str(arrowCount) + " arrows")
 	
 	if arrow_label:
-		arrow_label.text = "Arrows: " + str(arrowCount)
+		arrow_label.text = str(arrowCount)
 	
 func changeAntiBat(gotEffect:bool):
 	hasAntiBatEffect = true

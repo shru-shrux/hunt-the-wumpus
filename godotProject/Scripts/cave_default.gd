@@ -292,8 +292,7 @@ func _on_player_shoot_arrow() -> void:
 		$ShootCaveResult.visible = true
 		
 		if player.arrowCount > 0:
-			player.arrowCount -= 1
-			PlayerData.arrowCount = player.arrowCount
+			player.arrowChange(-1)
 			print("Shot an arrow, current count = " + str(player.arrowCount))
 		else:
 			print("No arrows left")
