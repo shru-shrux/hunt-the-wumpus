@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://1rwkhcnn8ciw"]
+[gd_scene load_steps=5 format=3 uid="uid://1rwkhcnn8ciw"]
 
 [ext_resource type="Script" uid="uid://dmu8eelddqexq" path="res://Scripts/profile.gd" id="1_ff4px"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_3iqus"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_swusl"]
 [ext_resource type="PackedScene" uid="uid://dfsuuew2hwexr" path="res://Scenes/profile/settings_tab_container.tscn" id="3_3iqus"]
 
@@ -12,6 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ff4px")
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+position = Vector2(575, 325)
+texture = ExtResource("2_3iqus")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

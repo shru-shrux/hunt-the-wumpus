@@ -1,27 +1,54 @@
 extends Control
 
+signal resume_pressed
+@onready var shop_panel = $CanvasLayer/Shop
+@onready var options_panel = $CanvasLayer2/Options
+@onready var button_panel = $PanelContainer
+#var shop_instance: Node = null
+
 func _ready() -> void:
 	GameBgMusic.play_game_music()
-
-func resume():
-	get_tree().paused = false
-	
-func pause():
-	get_tree().paused = true
-	
-# need function for when button is pressed.
-	# call pause()
+	shop_panel.hide()
+	options_panel.hide()
+	$"../../Wumpus".visible = false
 
 func _on_resume_pressed() -> void:
-	resume()
+	emit_signal("resume_pressed")
 
 
 func _on_shop_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/in_game_menu/shop.tscn")
+	button_panel.hide()
+	shop_panel.show()
+	var player = get_tree().current_scene.get_node("Player")
+	if player == null:
+		print("ERROR: Player not found in current scene!")
+	else:
+		print("Player found: ", player)
+		shop_panel.set_player(player)
+	#if shop_instance == null:
+		# Instance the Shop scene
+	#	var shop_scene = preload("res://Scenes/in_game_menu/shop.tscn") # Path to your Shop scene
+	#	shop_instance = shop_scene.instantiate()
+		
+		# Pass the player to the shop
+	#	var player = get_tree().current_scene.get_node("Player") # Find player in the current scene
+	#	shop_instance.set_player(player)
+		# Add the Shop instance to the scene tree
+	#	get_tree().current_scene.add_child(shop_instance)	
 
 
 func _on_options_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/in_game_menu/options.tscn")
+	button_panel.hide()
+	options_panel.show()
+	print("options showed")
+	
+func _on_back_from_shop_pressed() -> void:
+	shop_panel.hide()
+	button_panel.show()
+
+func _on_back_from_options_pressed() -> void:
+	options_panel.hide()
+	button_panel.show()
 
 
 func _on_leave_game_pressed() -> void:

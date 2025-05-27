@@ -27,7 +27,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_06deq")
 theme_override_font_sizes/font_size = 40
 tab_alignment = 1
-current_tab = 3
+current_tab = 1
 
 [node name="Leaderboard" type="TabBar" parent="TabContainer"]
 visible = false
@@ -50,7 +50,6 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 
 [node name="Achievements" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -59,6 +58,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 27.0
+offset_right = -27.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 24
@@ -66,14 +67,15 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Achievements/MarginContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Achievements/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 64
 alignment = 1
-
-[node name="Label" type="Label" parent="TabContainer/Achievements/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "acheivement 1"
 
 [node name="Avatar" type="TabBar" parent="TabContainer"]
 visible = false
@@ -102,6 +104,7 @@ layout_mode = 2
 text = "test"
 
 [node name="Settings" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

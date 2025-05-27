@@ -2,7 +2,7 @@ extends Panel
 
 @onready var username_field = $VBoxContainer/Username/TextEdit
 @onready var password_field = $VBoxContainer/Password/TextEdit
-@onready var password_check_field = $VBoxContainer/Password/TextEdit
+@onready var password_check_field = $VBoxContainer/ConfirmPassword/TextEdit
 @onready var error_label = $Error
 var login_manager = LoginManager
 
@@ -15,7 +15,7 @@ func _ready():
 func _on_sign_in_button_button_down():
 	var user = username_field.text.strip_edges()
 	var password = password_field.text
-	var password2 = password_check_field	.text
+	var password2 = password_check_field.text
 	
 	if user.is_empty():
 		error_label.text = "No username entered."

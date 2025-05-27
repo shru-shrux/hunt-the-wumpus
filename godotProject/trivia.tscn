@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qg07lmbqovr"]
+
+[ext_resource type="Script" uid="uid://cyoc0phgbu4s1" path="res://Scripts/trivia_test.gd" id="1_3tw5b"]
+
+[node name="Trivia" type="Node2D"]
+script = ExtResource("1_3tw5b")

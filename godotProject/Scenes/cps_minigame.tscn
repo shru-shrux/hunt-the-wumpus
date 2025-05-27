@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bynm24s2t8wkr"]
+[gd_scene load_steps=12 format=3 uid="uid://bynm24s2t8wkr"]
 
-[ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scenes/button.gd" id="1_f6c68"]
+[ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scripts/button.gd" id="1_f6c68"]
+[ext_resource type="Texture2D" uid="uid://bjeudwppis32d" path="res://Assets/Art/Bottomless Pit_darker.png" id="2_7doci"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_hvayr"]
+[ext_resource type="Texture2D" uid="uid://dvvdhosvbuy4u" path="res://Assets/Art/Bottomless Pit_RotatedLadder.png" id="2_x5jo4"]
 [ext_resource type="AudioStream" uid="uid://bjvdbkiuihrda" path="res://Assets/Music/PopSound.mp3" id="3_hvayr"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="4_0vnei"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="5_b2yhh"]
@@ -14,16 +16,34 @@ font_size = 30
 font = ExtResource("4_0vnei")
 font_size = 150
 
+[sub_resource type="LabelSettings" id="LabelSettings_x5jo4"]
+font = ExtResource("2_hvayr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7doci"]
+font = ExtResource("2_hvayr")
+font_size = 100
+
 [node name="CpsMinigame" type="Node2D"]
+
+[node name="BottomlessPitLighter" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_x5jo4")
+
+[node name="BottomlessPitDarker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 324)
+texture = ExtResource("2_7doci")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 201.0
 offset_top = 271.0
 offset_right = 501.0
 offset_bottom = 471.0
+text = "
+"
 script = ExtResource("1_f6c68")
 
-[node name="Label" type="Label" parent="."]
+[node name="CPSCounter" type="Label" parent="."]
 offset_left = 267.0
 offset_top = 172.0
 offset_right = 355.0
@@ -44,6 +64,29 @@ text = "3"
 label_settings = SubResource("LabelSettings_b2yhh")
 
 [node name="Player" parent="." instance=ExtResource("5_b2yhh")]
-position = Vector2(880, 479)
+visible = false
+texture_filter = 1
+position = Vector2(844, 534)
+rotation = 0.174533
+scale = Vector2(2, 2)
 
+[node name="ClickHere" type="Label" parent="."]
+offset_left = 296.0
+offset_top = 358.0
+offset_right = 407.0
+offset_bottom = 382.0
+text = "Click here!"
+label_settings = SubResource("LabelSettings_x5jo4")
+
+[node name="TimesUp" type="Label" parent="."]
+visible = false
+offset_left = 298.0
+offset_top = 276.0
+offset_right = 899.0
+offset_bottom = 424.0
+text = "Time's Up!"
+label_settings = SubResource("LabelSettings_7doci")
+
+[connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="minigameOver" from="Button" to="Button" method="_on_minigame_over"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5g0uju115w7"]
+
+[ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://onq0e03n2eh2" path="res://Scenes/cave_default.tscn" id="3_jjvhh"]
+
+[node name="Game Control" type="Node2D"]
+script = ExtResource("1_jjgbg")
+
+[node name="CaveDefault" parent="." instance=ExtResource("3_jjvhh")]
+
+[node name="Player" parent="." instance=ExtResource("2_8gbba")]
+position = Vector2(581, 528)
+scale = Vector2(2, 2)
+
+[connection signal="new_cave_entered" from="CaveDefault" to="Player" method="_on_new_cave_entered"]
+[connection signal="interact" from="Player" to="CaveDefault" method="_on_player_interact"]

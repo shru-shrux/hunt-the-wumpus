@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgfg26uaql0wr"]
+[gd_scene load_steps=7 format=3 uid="uid://cgfg26uaql0wr"]
 
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="1_cnkli"]
 [ext_resource type="Script" uid="uid://bm7pjb0vn73ki" path="res://Scenes/in_game_menu/options.gd" id="1_qsymk"]
@@ -8,6 +8,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bwluj"]
 shader = ExtResource("1_cnkli")
 shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwluj"]
+bg_color = Color(0.172549, 0.164706, 0.317647, 1)
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -40,6 +43,7 @@ offset_right = 150.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwluj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -88,6 +92,7 @@ bus_name = "SFX"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_qsymk")
 theme_override_font_sizes/font_size = 20
+button_pressed = true
 text = "Timer"
 
 [node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]

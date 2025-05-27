@@ -1,16 +1,195 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=19 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://onq0e03n2eh2" path="res://Scenes/cave_default.tscn" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://bynm24s2t8wkr" path="res://Scenes/cps_minigame.tscn" id="4_21xkr"]
+[ext_resource type="Texture2D" uid="uid://cfi832c812qoy" path="res://Assets/Art/Options_icon.png" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
+[ext_resource type="Texture2D" uid="uid://lb6mm3gog6op" path="res://Assets/Art/wumpus in game.png" id="6_6iyac"]
+[ext_resource type="PackedScene" uid="uid://b2fgpii0ms85h" path="res://Scenes/riddle.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://b355yvg3cyhls" path="res://Scenes/trivia.tscn" id="8_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://bddkg4ij7obfd" path="res://Scenes/in_game_menu/in_game_menu.tscn" id="9_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://icbywfxrbd6r" path="res://Scenes/timer.tscn" id="10_d1ilt"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="11_6iyac"]
+[ext_resource type="Texture2D" uid="uid://c67048hiqdbdk" path="res://Assets/Art/IconFrame.png" id="13_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://no1sd80puswn" path="res://Assets/Art/ArrowPixelArt.png" id="14_wsu2k"]
+[ext_resource type="Texture2D" uid="uid://cgyqluxn8v1s5" path="res://Assets/Art/CoinPixelArt.png" id="15_wsu2k"]
 
-[node name="Game Control" type="Node2D"]
+[sub_resource type="Animation" id="Animation_fdnlq"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6iyac"]
+resource_name = "cave_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkdf5"]
+_data = {
+&"RESET": SubResource("Animation_fdnlq"),
+&"cave_transition": SubResource("Animation_6iyac")
+}
+
+[node name="Game Control" type="Node2D" node_paths=PackedStringArray("timer_label")]
 script = ExtResource("1_jjgbg")
+timer_label = NodePath("TimerLabel")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jkdf5")
+}
+
+[node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("9_ynf5e")]
 
 [node name="CaveDefault" parent="." instance=ExtResource("3_jjvhh")]
 
-[node name="Player" parent="." instance=ExtResource("2_8gbba")]
-position = Vector2(87, 507)
+[node name="ShootArrowGame" parent="CaveDefault" instance=ExtResource("5_kry3j")]
+visible = false
 
-[connection signal="new_cave_entered" from="CaveDefault" to="Player" method="_on_new_cave_entered"]
-[connection signal="interact" from="Player" to="CaveDefault" method="_on_player_interact"]
+[node name="CpsMinigame" parent="CaveDefault" instance=ExtResource("4_21xkr")]
+visible = false
+
+[node name="Wumpus" type="Sprite2D" parent="."]
+position = Vector2(733, 498)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_6iyac")
+
+[node name="Player" parent="." instance=ExtResource("2_8gbba")]
+texture_filter = 1
+position = Vector2(119, 528)
+scale = Vector2(2, 2)
+
+[node name="OptionsButton" type="Button" parent="."]
+offset_left = 1085.0
+offset_top = 12.0
+offset_right = 1318.0
+offset_bottom = 245.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("4_jjvhh")
+
+[node name="Timer" parent="." instance=ExtResource("10_d1ilt")]
+
+[node name="Riddle" parent="." instance=ExtResource("8_344ge")]
+visible = false
+offset_left = 560.0
+offset_top = 320.0
+offset_right = 560.0
+offset_bottom = 320.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Trivia" parent="." instance=ExtResource("8_ynf5e")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 560.0
+offset_top = 320.0
+offset_right = 560.0
+offset_bottom = 320.0
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 995.0
+offset_top = 92.0
+offset_right = 1158.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 30
+text = "00:00:000"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ArrowCount" type="Label" parent="."]
+offset_left = 81.0
+offset_top = 143.0
+offset_right = 140.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 40
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldCount" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 222.0
+offset_right = 129.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 40
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShowRiddleButton" type="CheckButton" parent="."]
+offset_left = 955.0
+offset_top = 127.0
+offset_right = 1153.0
+offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("11_6iyac")
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "Show Riddle"
+
+[node name="CoinIcon" type="Sprite2D" parent="."]
+position = Vector2(51, 243)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("13_jkdf5")
+
+[node name="CoinPixelArt" type="Sprite2D" parent="CoinIcon"]
+position = Vector2(-14.2857, 14.2859)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("15_wsu2k")
+
+[node name="ArrowIcon" type="Sprite2D" parent="."]
+position = Vector2(51, 164)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("13_jkdf5")
+
+[node name="ArrowPixelArt" type="Sprite2D" parent="ArrowIcon"]
+position = Vector2(14.2857, 28.5715)
+rotation = -1.5708
+scale = Vector2(3.57143, 3.57143)
+texture = ExtResource("14_wsu2k")
+
+[node name="GameStartBlackScreen" type="ColorRect" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="toggled" from="ShowRiddleButton" to="." method="_on_show_riddle_button_toggled"]

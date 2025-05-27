@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bddkg4ij7obfd"]
+[gd_scene load_steps=7 format=3 uid="uid://bddkg4ij7obfd"]
 
 [ext_resource type="Script" uid="uid://bbcibjdsg3que" path="res://Scenes/in_game_menu/in_game_menu.gd" id="1_5crhr"]
-[ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="1_c42cd"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_xtv56"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_n0mag"]
+[ext_resource type="PackedScene" uid="uid://cwaoa1d7sc0lk" path="res://Scenes/in_game_menu/shop.tscn" id="5_5tb02"]
+[ext_resource type="PackedScene" uid="uid://cgfg26uaql0wr" path="res://Scenes/in_game_menu/options.tscn" id="6_gn025"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5crhr"]
-shader = ExtResource("1_c42cd")
-shader_parameter/lod = 0.506
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyk8o"]
+bg_color = Color(0.170734, 0.165545, 0.318081, 1)
 
 [node name="InGameMenu" type="Control"]
 process_mode = 3
@@ -18,14 +19,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5crhr")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575, 325)
+texture = ExtResource("2_xtv56")
+
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_5crhr")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.34902, 0.396078, 0.803922, 0.576471)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -40,6 +46,7 @@ offset_right = 150.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pyk8o")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -93,6 +100,14 @@ theme_override_fonts/font = ExtResource("3_n0mag")
 theme_override_font_sizes/font_size = 50
 text = "          "
 horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Shop" parent="CanvasLayer" instance=ExtResource("5_5tb02")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Options" parent="CanvasLayer2" instance=ExtResource("6_gn025")]
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/VBoxContainer/Shop" to="." method="_on_shop_pressed"]

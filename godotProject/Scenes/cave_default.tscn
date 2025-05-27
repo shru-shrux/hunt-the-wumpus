@@ -1,40 +1,48 @@
-[gd_scene load_steps=10 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=13 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
+[ext_resource type="Texture2D" uid="uid://bwdqweseprb3j" path="res://Assets/Art/Falling-1.png" id="2_pklks"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="2_urmdh"]
 [ext_resource type="Texture2D" uid="uid://bnl68tifbjgnn" path="res://Assets/Art/Cave Scene.png" id="2_y8311"]
+[ext_resource type="Texture2D" uid="uid://77g20unf22t4" path="res://Assets/Art/Falling-2.png" id="3_0clby"]
 [ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
+size = Vector2(22.3485, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y8311"]
 font = ExtResource("2_urmdh")
 font_size = 18
 
-[sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
-font = ExtResource("2_urmdh")
-font_size = 35
-
 [sub_resource type="LabelSettings" id="LabelSettings_2tao4"]
 font = ExtResource("2_urmdh")
 font_size = 130
+
+[sub_resource type="LabelSettings" id="LabelSettings_0clby"]
+font = ExtResource("2_urmdh")
+font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_pklks"]
 font = ExtResource("2_urmdh")
 font_size = 33
 
+[sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
+font = ExtResource("2_urmdh")
+font_size = 35
+
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
 
-[node name="CaveScene" type="Sprite2D" parent="."]
-position = Vector2(580, 327)
+[node name="CaveBackdrop" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
 texture = ExtResource("2_y8311")
 
 [node name="0" type="Area2D" parent="."]
-position = Vector2(240, 459)
+position = Vector2(256, 498)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0"]
+position = Vector2(0.378788, 0.196846)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="0"]
@@ -49,7 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="1" type="Area2D" parent="."]
-position = Vector2(576, 461)
+position = Vector2(571, 498)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
@@ -67,10 +75,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="2" type="Area2D" parent="."]
-position = Vector2(915, 462)
+position = Vector2(887, 497)
 scale = Vector2(5.28, 5.08)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
+position = Vector2(-0.56818, -0.590552)
 shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="2"]
@@ -84,6 +93,57 @@ label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CaveNumber" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 87.0
+offset_bottom = 136.0
+text = "1"
+label_settings = SubResource("LabelSettings_2tao4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentCave" type="Label" parent="CaveNumber"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -1.0
+offset_right = 123.0
+offset_bottom = 22.0
+text = "Current Cave"
+label_settings = SubResource("LabelSettings_0clby")
+
+[node name="Warnings" type="Node2D" parent="."]
+
+[node name="PitWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 238.0
+offset_top = 56.0
+offset_right = 632.0
+offset_bottom = 87.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
+[node name="BatWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 237.0
+offset_top = 24.0
+offset_right = 631.0
+offset_bottom = 55.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
+[node name="WumpusWarning" type="Label" parent="Warnings"]
+visible = false
+offset_left = 237.0
+offset_top = 86.0
+offset_right = 631.0
+offset_bottom = 117.0
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+
 [node name="EnterCave" type="Label" parent="."]
 visible = false
 texture_filter = 1
@@ -94,37 +154,56 @@ offset_bottom = 606.0
 text = "Press 'E' to enter cave 25"
 label_settings = SubResource("LabelSettings_rcyi4")
 
+[node name="ShootCave" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 287.0
+offset_top = 598.0
+offset_right = 891.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press 'Q' to shoot an arrow into cave 25"
+label_settings = SubResource("LabelSettings_rcyi4")
+
+[node name="ShootCaveResult" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 524.0
+offset_top = 598.0
+offset_right = 627.0
+offset_bottom = 631.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESULT"
+label_settings = SubResource("LabelSettings_rcyi4")
+
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
 
-[node name="CaveNumber" type="Label" parent="."]
-offset_left = 39.0
-offset_top = 8.0
-offset_right = 104.0
-offset_bottom = 128.0
-text = "1"
-label_settings = SubResource("LabelSettings_2tao4")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PitWarning" type="Label" parent="."]
+[node name="Falling-2" type="Sprite2D" parent="."]
 visible = false
-offset_left = 238.0
-offset_top = 56.0
-offset_right = 632.0
-offset_bottom = 87.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
+position = Vector2(576, 324)
+texture = ExtResource("3_0clby")
 
-[node name="BatWarning" type="Label" parent="."]
+[node name="Falling-1" type="Sprite2D" parent="."]
 visible = false
-offset_left = 238.0
-offset_top = 95.0
-offset_right = 632.0
-offset_bottom = 126.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
+position = Vector2(576, 324)
+texture = ExtResource("2_pklks")
+
+[node name="Info" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 66.0
+offset_right = 804.0
+offset_bottom = 89.0
+theme_override_fonts/font = ExtResource("2_urmdh")
+theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 
 [connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]

@@ -2,6 +2,8 @@ extends Node
 
 var profile_start_tab : String = "profile"
 
+var difficulty: String
+
 func _ready():
 	initialize_high_scores()
 
@@ -16,3 +18,4 @@ func initialize_high_scores():
 		print("High score file created.")
 	else:
 		print("High score file already exists.")
+		

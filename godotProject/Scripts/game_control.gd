@@ -1,16 +1,38 @@
 extends Node2D
 
+@onready var menu = $CanvasLayer/InGameMenu
+var paused = false
+
+@export var timer_label : Label
+var timer : MyTimer
+
 # 2D array of the connecting caves for each cave
 var connectingCavesMaster = []
 
 # array of all the caves going from 1-30
 var caveList: Array[Cave] = []
 
+# variables to store which caves are hazards
+var batList: Array[Cave] = []
+var pitList: Array[Cave] = []
+var wumpusCave: Cave
+
+# where the player spawns
 var playerLocation: int
 
+var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	menu.hide()
+	$CanvasLayer/InGameMenu.connect("resume_pressed", Callable(self, "_on_resume_pressed"))
+	timer = get_tree().get_first_node_in_group("timer")
+	var options = $CanvasLayer/InGameMenu/CanvasLayer2/Options
+	options.connect("toggle_time_visibility", Callable(self, "_on_toggle_timer_visibility"))
+	
+	# set difficulty of game
+	difficulty = Global.difficulty
+	print(difficulty)
 	
 	# creates the cave objects
 	create_caves()
@@ -18,27 +40,32 @@ func _ready() -> void:
 	populate_connecting_caves()
 	# gives each cave gold
 	distribute_gold(100)
+	# choose a random cave to spawn in
+	playerLocation = randi() % 30
+	PlayerData.currentRoomNumber = playerLocation
 	# assigns the pit and bat caves
 	assign_special_caves()
-	# sets the first cave
-	$CaveDefault.updateCave(caveList[0])
 	# loads the caveList to caveDefault
 	$CaveDefault.loadCave()
+	# sets the first cave
+	$CaveDefault.updateCave(caveList[playerLocation])
 	
-	playerLocation = randi() % 29 + 1
+	# lets the all values adjust before cave shown to player
+	$GameStartBlackScreen.visible = true
+	await wait(0.55)
+	$GameStartBlackScreen.visible = false
 	
-	print("bats-------------")
-	for cave in caveList:
-		if cave.hasBat:
-			print(cave.currentCaveNumber)
+	print("bats------------------")
+	for cave in batList:
+		print(cave.currentCaveNumber)
 	
 	print("pits------------------")
-	for cave in caveList:
-		if cave.hasPit:
-			print(cave.currentCaveNumber)
-			
-	
-	
+	for cave in pitList:
+		print(cave.currentCaveNumber)
+		
+func _on_resume_pressed():
+	in_game_menu()
+
 # creates 30 cave objects and gives them numbers 1-30, ordered ascending
 func create_caves():
 	for i in range(30):
@@ -46,23 +73,35 @@ func create_caves():
 		cave.currentCaveNumber = i+1
 		caveList.append(cave)
 
-# randomly picks 2 caves to be the bat caves and two to be pit caves
+# randomly picks 2 caves to be the bat caves and two to be pit caves and
+# one to be the wumpus cave
 func assign_special_caves():
 	
 	randomize()
 	
+	# fill array with 0-29
 	var numbers = []
 	for i in range(30):
 		numbers.append(i)
-		numbers.shuffle()
-
-	var result = numbers.slice(0, 5)
 	
-	caveList[result[0]].hasBat = true
-	caveList[result[1]].hasBat = true
-	caveList[result[2]].hasPit = true
-	caveList[result[3]].hasPit = true
-	caveList[result[4]].hasWumpus = true
+	# make sure the player doesn't spawn in a hazard cave
+	numbers.erase(playerLocation)
+	
+	# shuffle the list to get random first 5
+	numbers.shuffle()
+	
+	# set the 0 & 1 caves to bat, 2 & 3 caves to pit and 5 to wumpus
+	# also stores them in variables for easy access later
+	caveList[numbers[0]].hasBat = true
+	batList.append(caveList[numbers[0]])
+	caveList[numbers[1]].hasBat = true
+	batList.append(caveList[numbers[1]])
+	caveList[numbers[2]].hasPit = true
+	pitList.append(caveList[numbers[2]])
+	caveList[numbers[3]].hasPit = true
+	pitList.append(caveList[numbers[3]])
+	caveList[numbers[4]].hasWumpus = true
+	wumpusCave = caveList[numbers[4]]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
@@ -92,114 +131,84 @@ func distribute_gold(total_gold: int):
 			var gold = randi() % 10 + 1
 			cave.roomGoldAmount = gold
 			givenGold += gold
-		
 
-# for this first cave sets all the first amounts before the system takes control
-func initialize_cave(pickedCave:Cave):
-	# updating attributes
-	$CaveDefault.roomGoldAmount = pickedCave.roomGoldAmount
-	$CaveDefault.connectingCaves = pickedCave.connectingCaves
-	$CaveDefault.bestOption = pickedCave.bestOption
-	$CaveDefault.currentCaveNumber = pickedCave.currentCaveNumber
-	$CaveDefault.hasBat = pickedCave.hasBat
-	$CaveDefault.hasWumpus = pickedCave.hasWumpus
-	$CaveDefault.hasPit = pickedCave.hasPit
-	
 
 # gives each cave an array of its 3 connecting caves to make the map
 func populate_connecting_caves():
 	
 	connectingCavesMaster = [
-		[caveList[1], caveList[5], caveList[6]],       # 1
-		[caveList[0], caveList[2], caveList[8]],       # 2
-		[caveList[1], caveList[3], caveList[27]],      # 3
-		[caveList[2], caveList[8], caveList[9]],       # 4
-		[caveList[5], caveList[10], caveList[28]],     # 5
-		[caveList[0], caveList[4], caveList[11]],      # 6
-		[caveList[0], caveList[7], caveList[12]],      # 7
-		[caveList[6], caveList[13], caveList[14]],     # 8
-		[caveList[1], caveList[3], caveList[14]],      # 9
-		[caveList[3], caveList[10], caveList[15]],     # 10
-		[caveList[4], caveList[9], caveList[16]],      # 11
-		[caveList[5], caveList[12], caveList[17]],     # 12
-		[caveList[6], caveList[11], caveList[18]],     # 13
-		[caveList[7], caveList[19], caveList[20]],     # 14
-		[caveList[7], caveList[8], caveList[20]],      # 15
-		[caveList[9], caveList[16], caveList[21]],     # 16
-		[caveList[10], caveList[15], caveList[17]],    # 17
-		[caveList[11], caveList[16], caveList[22]],    # 18
-		[caveList[12], caveList[23], caveList[24]],    # 19
-		[caveList[13], caveList[24], caveList[25]],    # 20
-		[caveList[13], caveList[14], caveList[26]],    # 21
-		[caveList[15], caveList[22], caveList[27]],    # 22
-		[caveList[17], caveList[21], caveList[28]],    # 23
-		[caveList[18], caveList[29], caveList[24]],    # 24
-		[caveList[18], caveList[19], caveList[25]],    # 25
-		[caveList[19], caveList[24], caveList[26]],    # 26
-		[caveList[20], caveList[25], caveList[27]],    # 27
-		[caveList[2], caveList[21], caveList[26]],     # 28
-		[caveList[4], caveList[22], caveList[29]],     # 29
-		[caveList[23], caveList[27], caveList[29]]     # 30
+		[caveList[1], caveList[2], caveList[3]],       # 1
+		[caveList[0], caveList[4], caveList[5]],       # 2
+		[caveList[0], caveList[6], caveList[7]],       # 3
+		[caveList[0], caveList[8], caveList[9]],       # 4
+		[caveList[1], caveList[10], caveList[11]],     # 5
+		[caveList[1], caveList[12], caveList[13]],     # 6
+		[caveList[2], caveList[14], caveList[15]],     # 7
+		[caveList[2], caveList[16], caveList[17]],     # 8
+		[caveList[3], caveList[18], caveList[19]],     # 9
+		[caveList[3], caveList[20], caveList[21]],     # 10
+		[caveList[4], caveList[22], caveList[23]],     # 11
+		[caveList[4], caveList[24], caveList[25]],     # 12
+		[caveList[5], caveList[26], caveList[27]],     # 13
+		[caveList[5], caveList[28], caveList[29]],     # 14
+		[caveList[6], caveList[22], caveList[24]],     # 15
+		[caveList[6], caveList[23], caveList[25]],     # 16
+		[caveList[7], caveList[26], caveList[28]],     # 17
+		[caveList[7], caveList[27], caveList[29]],     # 18
+		[caveList[8], caveList[22], caveList[26]],     # 19
+		[caveList[8], caveList[23], caveList[27]],     # 20
+		[caveList[9], caveList[24], caveList[28]],     # 21
+		[caveList[9], caveList[25], caveList[29]],     # 22
+		[caveList[10], caveList[14], caveList[18]],    # 23
+		[caveList[10], caveList[15], caveList[19]],    # 24
+		[caveList[11], caveList[14], caveList[20]],    # 25
+		[caveList[11], caveList[15], caveList[21]],    # 26
+		[caveList[12], caveList[16], caveList[18]],    # 27
+		[caveList[12], caveList[17], caveList[19]],    # 28
+		[caveList[13], caveList[16], caveList[20]],    # 29
+		[caveList[13], caveList[17], caveList[21]],    # 30
 	]
 	
 	var i = 0
 	
+	# give each cave in caveList its corresponding connectingCaves list
 	for cave in caveList:
 		cave.connectingCaves = connectingCavesMaster[i]
 		i += 1
-		
-# BFS loop
-func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
-	var visited = []        # stores the nodes we've already dequeued
-	var fringe = []         # queue: stores the nodes we still need to explore
-	var parent = {}         # for each discovered node, who we came from
 
-	# sanity check
-	if start_index < 1 or start_index > caveList.size():
-		print("Start not found")
-		return []
-
-	# BFS uses indices 0–29, but cave numbers are 1–30
-	var start = start_index
-	var goal = goal_index
-
-	# initialize the queue
-	fringe.append(start)
-
-	# BFS loop
-	while fringe.size() > 0:
-		var current = fringe.pop_front()
-		visited.append(current)
-
-		# goal test
-		if current == goal:
-			# reconstruct path by walking parents backwards
-			var path = []
-			var step = goal
-			while step != start:
-				path.insert(0, step + 1)  # convert index back to cave number
-				step = parent.get(step, -1)
-				if step == -1:
-					# something went wrong
-					return []
-			path.insert(0, start + 1)
-			return path
-
-		# enqueue all unvisited neighbors
-		for neighbor_node in caveList[current].connectingCaves:
-			var neighbor = caveList.find(neighbor_node)
-			if neighbor == -1:
-				continue
-			if neighbor in visited or neighbor in fringe:
-				continue
-
-			parent[neighbor] = current
-			fringe.append(neighbor)
-
-	# if we exhaust the queue without finding the goal
-	print("Doesn't Exist")
-	return []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_timer_label()
+	
+func update_timer_label():
+	timer_label.text = timer.time_to_string()
+
+func _on_options_button_pressed() -> void:
+	print(menu)
+	print(menu.visible)
+	in_game_menu()
+
+func in_game_menu():
+	if paused:
+		menu.hide()
+		Engine.time_scale = 1
+	else:
+		menu.show()
+		Engine.time_scale = 0
+	
+	paused = !paused
+
+# when timer button toggled set the timer visibility to the opposite of what it
+# was
+func _on_toggle_timer_visibility(visible: bool) -> void:
+	timer_label.visible = !timer_label.visible
+
+# when riddle button toggled set the riddle visibility on updateCave to the 
+# opposite of what it was
+func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
+	$Riddle.shownOnUpdate = !$Riddle.shownOnUpdate
+
+# helper function for animations
+func wait(seconds:float):
+	await get_tree().create_timer(seconds).timeout
