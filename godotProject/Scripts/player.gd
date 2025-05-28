@@ -103,8 +103,19 @@ func start(pos):
 
 # this changes the amount of gold the player has
 func goldChange(addedGold:int):
-	if goldCount <= 0:
+	if goldCount <= -1:
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+		return
+	if addedGold > 0:
+		gold_label.get_child(0).text = "+" + str(addedGold)
+		gold_label.get_child(0).visible = true
+		await wait(1.0)
+		gold_label.get_child(0).visible = false
+	elif addedGold < 0:
+		gold_label.get_child(1).text = str(addedGold)
+		gold_label.get_child(1).visible = true
+		await wait(1.0)
+		gold_label.get_child(1).visible = false
 	goldCount += addedGold
 	PlayerData.goldCount = goldCount
 	print("You now have " + str(goldCount) + " gold")
@@ -115,6 +126,18 @@ func goldChange(addedGold:int):
 
 # this changes the amount of arrows the player has
 func arrowChange(addedArrow:int):
+	
+	if addedArrow > 0:
+		arrow_label.get_child(0).text = "+" + str(addedArrow)
+		arrow_label.get_child(0).visible = true
+		await wait(1.0)
+		arrow_label.get_child(0).visible = false
+	elif addedArrow < 0:
+		arrow_label.get_child(1).text = str(addedArrow)
+		arrow_label.get_child(1).visible = true
+		await wait(1.0)
+		arrow_label.get_child(1).visible = false
+	
 	arrowCount += addedArrow
 	PlayerData.arrowCount = arrowCount
 	print("You now have " + str(arrowCount) + " arrows")
@@ -128,3 +151,7 @@ func changeAntiBat(gotEffect:bool):
 	hasAntiBatEffect = true
 	PlayerData.hasAntiBatEffect = hasAntiBatEffect
 	print("You now have the anti-bat effect")
+
+# helper function for animations
+func wait(seconds:float):
+	await get_tree().create_timer(seconds).timeout
