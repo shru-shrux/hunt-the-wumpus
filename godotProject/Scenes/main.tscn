@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://onq0e03n2eh2" path="res://Scenes/cave_default.tscn" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bynm24s2t8wkr" path="res://Scenes/cps_minigame.tscn" id="4_21xkr"]
-[ext_resource type="Texture2D" uid="uid://cfi832c812qoy" path="res://Assets/Art/Options_icon.png" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://lb6mm3gog6op" path="res://Assets/Art/wumpus in game.png" id="6_6iyac"]
 [ext_resource type="PackedScene" uid="uid://b2fgpii0ms85h" path="res://Scenes/riddle.tscn" id="8_344ge"]
+[ext_resource type="Texture2D" uid="uid://ddvocf06deto2" path="res://Assets/Art/options_icon_white.png" id="8_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://b355yvg3cyhls" path="res://Scenes/trivia.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bddkg4ij7obfd" path="res://Scenes/in_game_menu/in_game_menu.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://icbywfxrbd6r" path="res://Scenes/timer.tscn" id="10_d1ilt"]
@@ -89,18 +89,17 @@ texture_filter = 1
 position = Vector2(119, 528)
 scale = Vector2(2, 2)
 
-[node name="OptionsButton" type="Button" parent="."]
+[node name="OptionsButton" type="TextureButton" parent="."]
 offset_left = 1085.0
-offset_top = 12.0
-offset_right = 1318.0
-offset_bottom = 245.0
+offset_top = 15.0
+offset_right = 1289.0
+offset_bottom = 207.0
 scale = Vector2(0.25, 0.25)
-icon = ExtResource("4_jjvhh")
+texture_normal = ExtResource("8_wsu2k")
 
 [node name="Timer" parent="." instance=ExtResource("10_d1ilt")]
 
 [node name="Riddle" parent="." instance=ExtResource("8_344ge")]
-visible = false
 offset_left = 560.0
 offset_top = 320.0
 offset_right = 560.0
@@ -191,5 +190,6 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
+[connection signal="cpsMinigameOver" from="CaveDefault/CpsMinigame" to="CaveDefault" method="_on_cps_minigame_cps_minigame_over"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="toggled" from="ShowRiddleButton" to="." method="_on_show_riddle_button_toggled"]

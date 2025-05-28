@@ -21,3 +21,17 @@ res://Scenes/shoot_arrow_game.tscn
 res://Scenes/volume_slider.tscn
 res://Scenes/in_game_menu/shop_card.tscn
 res://openai_key.txt
+res://Scenes/in_game_menu/in_game_menu.gd
+res://Scenes/in_game_menu/options.gd
+res://Scenes/in_game_menu/shop.gd
+res://Scripts/cave_default.gd
+res://Scripts/game_control.gd
+res://Scripts/Global.gd
+res://Scripts/login_manager.gd
+res://Scripts/main_menu.gd
+res://Scripts/player_data.gd
+res://Scripts/settings_tab_container.gd
+res://Scripts/shoot_arrow_game.gd
+res://Scripts/trivia.gd
+res://Scripts/trivia_generator.gd
+res://Scripts/sign_up.gd

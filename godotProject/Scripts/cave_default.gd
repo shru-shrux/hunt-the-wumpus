@@ -47,7 +47,6 @@ func _ready() -> void:
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot_arrow"):
@@ -76,9 +75,9 @@ func updateCave(newCave:Cave):
 	print(wumpusCave.currentCaveNumber)
 	
 	# make warnings not visible in new cave
-	$Warnings/PitWarning.visible = false
-	$Warnings/BatWarning.visible = false
-	$Warnings/WumpusWarning.visible = false
+	$Warnings/PitBackground.visible = false
+	$Warnings/BatBackground.visible = false
+	$Warnings/WumpusBackground.visible = false
 	$BatSound.stop()
 	
 	# updating attributes for the new cave
@@ -140,8 +139,8 @@ func updateCave(newCave:Cave):
 		
 		await wait(1.0)
 		
-		# TODO this is set as the first cave in caveList for now
-		updateCave(caveList[playerLocation])
+
+		#updateCave(caveList[playerLocation])
 		
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
@@ -149,8 +148,10 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
+		$Bat.show()
+		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
-			$Warnings/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
+			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			PlayerData.hasAntiBatEffect = false
 		else: 
 			print("you are in a bat cave")
@@ -161,10 +162,11 @@ func updateCave(newCave:Cave):
 				if randomCave.currentCaveNumber != currentCaveNumber:
 					cavePicked = true
 			updateCave(randomCave)
-			$Warnings/BatWarning.text = "A bat picked you up and dropped you, -5 gold"
-			$Warnings/BatWarning.visible = true
+			$Bat.hide()
+			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
-		
+			
+		$Warnings/BatBackground.visible = true
 		# TODO make sure bats run away to new cave
 	
 	# make wumpus visible
@@ -246,6 +248,11 @@ func _on_trivia_lost() -> void:
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
 func _on_area_exited(area: Area2D) -> void:
+	
+	$"0/HighlightedCave".visible = false
+	$"1/HighlightedCave".visible = false
+	$"2/HighlightedCave".visible = false
+	
 	$EnterCave.visible = false
 	$ShootCave.visible = false
 	$ShootCaveResult.visible = false
@@ -255,6 +262,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_0_area_entered(area: Area2D) -> void:
+	$"0/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[0].currentCaveNumber) + " "
@@ -266,6 +274,7 @@ func _on_0_area_entered(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_1_area_entered(area: Area2D) -> void:
+	$"1/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[1].currentCaveNumber) + " "
@@ -276,6 +285,7 @@ func _on_1_area_entered(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_2_area_entered(area: Area2D) -> void:
+	$"2/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[2].currentCaveNumber) + " "
@@ -366,7 +376,7 @@ func _on_player_shoot_arrow() -> void:
 			# set the new wumpus cave to have a wumpus
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
-			$Warnings/WumpusWarning.visible = false
+			$Warnings/WumpusBackground.visible = false
 			# update to current cave to reload the cave
 			updateCave(caveList[currentCaveNumber-1])
 			
@@ -377,7 +387,7 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = false
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
 			wumpusCave.hasWumpus = true
-			$Warnings/WumpusWarning.visible = false
+			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 
 # after the arrow game is done reset the cave and hide the minigame
@@ -402,20 +412,20 @@ func checkHazards():
 	for cave in connectingCaves:
 		if cave.hasBat:
 			$BatSound.play()
-			$Warnings/BatWarning.text = "You hear bats near you"
-			$Warnings/BatWarning.visible = true
+			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
+			$Warnings/BatBackground.visible = true
 	
 	# if there is a pit cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasPit:
-			$Warnings/PitWarning.text = "You feel a draft"
-			$Warnings/PitWarning.visible = true
+			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
+			$Warnings/PitBackground.visible = true
 	
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$Warnings/WumpusWarning.text = "I smell a Wumpus"
-			$Warnings/WumpusWarning.visible = true
+			$Warnings/WumpusBackground/WumpusWarning.text = "I smell a Wumpus"
+			$Warnings/WumpusBackground.visible = true
 
 # start_index - the starting point of the search
 # goal_index - the ending point of the search
@@ -471,6 +481,10 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	# if we exhaust the queue without finding the goal
 	print("Doesn't Exist")
 	return []
+
+func _on_cps_minigame_cps_minigame_over() -> void:
+	await wait(2.0)
+	updateCave(caveList[playerLocation])
 
 # helper function for animations
 func wait(seconds:float):

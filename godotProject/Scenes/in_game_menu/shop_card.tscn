@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkq1342ol4u5i"]
+[gd_scene load_steps=20 format=3 uid="uid://dbcbavu14b6q3"]
 
 [ext_resource type="Script" uid="uid://dwj3yagdnfxnj" path="res://Scenes/in_game_menu/shop_card.gd" id="1_48bqd"]
 [ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="1_bwcwe"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_djbdi"]
+[ext_resource type="Script" uid="uid://b0mnj2y8aade7" path="res://Scenes/in_game_menu/popup_panel.gd" id="2_ywg50"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_ywg50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwcwe"]
@@ -14,18 +15,6 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djbdi"]
 bg_color = Color(0.396311, 0.431075, 0.545978, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqhcc"]
-bg_color = Color(0.192157, 0.211765, 0.286275, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vu48"]
-bg_color = Color(0.0933061, 0.105259, 0.150801, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6sdb"]
-bg_color = Color(0.192157, 0.211765, 0.286275, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywg50"]
-bg_color = Color(0.191531, 0.213048, 0.285221, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11va4"]
 bg_color = Color(0.396078, 0.431373, 0.545098, 1)
@@ -40,6 +29,9 @@ bg_color = Color(0.0941176, 0.105882, 0.14902, 1)
 bg_color = Color(0.192157, 0.211765, 0.286275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yxwn"]
+bg_color = Color(0.192157, 0.211765, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmfj4"]
 bg_color = Color(0.192157, 0.211765, 0.286275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mtkq"]
@@ -68,11 +60,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bwcwe")
 script = ExtResource("1_48bqd")
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
-position = Vector2i(5, 45)
 size = Vector2i(140, 55)
 min_size = Vector2i(140, 55)
-max_size = Vector2i(170, 32768)
+max_size = Vector2i(290, 138)
 theme_override_styles/panel = SubResource("StyleBoxFlat_djbdi")
+script = ExtResource("2_ywg50")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 anchors_preset = 15
@@ -82,28 +74,18 @@ offset_right = 140.0
 offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/MarginContainer"]
-layout_mode = 2
-
-[node name="CloseButton" type="Button" parent="PopupPanel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sqhcc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1vu48")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_g6sdb")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ywg50")
-text = " x "
-
-[node name="Label" type="Label" parent="PopupPanel/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="PopupPanel/MarginContainer"]
 custom_minimum_size = Vector2(123, 55)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_djbdi")
 theme_override_font_sizes/font_size = 15
 text = "message"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -169,7 +151,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ywg50")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "Name of Item"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -178,7 +160,9 @@ autowrap_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+tooltip_text = "test"
 theme_override_font_sizes/font_size = 13
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qmfj4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5mtkq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hgvvv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ub1o4")
@@ -210,8 +194,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_325g8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_syh2d")
 text = "price"
 
-[connection signal="pressed" from="PopupPanel/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="PopupPanel2/MarginContainer/HBoxContainer/BoughtCloseButton" to="." method="_on_bought_close_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BuyButton" to="." method="_on_button_pressed"]
