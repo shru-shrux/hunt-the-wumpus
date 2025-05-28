@@ -62,7 +62,9 @@ func signup(username: String, password: String) -> bool:
 	
 func get_user_data() -> Dictionary:
 	if current_user in account_data:
+		print("user found")
 		return account_data[current_user]
+	print("user not found")
 	return {}
 	
 func update_user_data(new_data: Dictionary):
