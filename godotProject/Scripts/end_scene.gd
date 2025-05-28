@@ -11,11 +11,18 @@ func _ready() -> void:
 		$Result.text = "You Win!"
 	else:
 		$Result.text = "You Lose"
-	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
 	
-	last_score_entry = {"username": "placeholder", "score": score} # need to make so username not placeholder
+	var username = "placeholder"
+	if LoginManager.get_user_data() == null:
+		username = "placeholder"
+	else:
+		var user_data = LoginManager.get_user_data()
+		username = user_data.get("username")
+	
+	last_score_entry = {"username": username, "score": score}
 	save_new_score(last_score_entry["username"], last_score_entry["score"])
 	
 	show_leaderboard()

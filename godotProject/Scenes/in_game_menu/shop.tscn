@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_q43li"]
 [ext_resource type="PackedScene" uid="uid://bkq1342ol4u5i" path="res://Scenes/in_game_menu/shop_card.tscn" id="4_2ypm5"]
 [ext_resource type="Texture2D" uid="uid://dq2ups0u1oyth" path="res://Assets/Art/secrets2.png" id="5_q43li"]
-[ext_resource type="Texture2D" uid="uid://j5pmt2bcytsl" path="res://Assets/Art/Bow-and-arrow.png" id="6_ujupl"]
+[ext_resource type="Texture2D" uid="uid://bi3ke7wmsxdmu" path="res://Assets/Art/RotatedArrowIcon.png" id="6_j4flx"]
 [ext_resource type="Texture2D" uid="uid://btxud57lmmq3h" path="res://Assets/Art/antibat.png" id="8_2dtdx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ujupl"]
@@ -119,7 +119,7 @@ boughtPopup = "Secrets message"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-itemImage = ExtResource("6_ujupl")
+itemImage = ExtResource("6_j4flx")
 itemName = "Arrows"
 itemPrice = "5"
 infomationPopup = "Buy one arrow to shoot the Wumpus"

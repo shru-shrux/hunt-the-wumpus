@@ -1,6 +1,6 @@
 extends Node
 
-var profile_start_tab : String = "profile"
+var profile_start_tab : String = "achievements"
 
 var difficulty: String
 

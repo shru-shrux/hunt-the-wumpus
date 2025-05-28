@@ -70,6 +70,8 @@ func updateCave(newCave:Cave):
 	player.can_move = true
 	$"../OptionsButton".disabled = false
 	
+	PlayerData.cavesVisited += 1
+	
 	print("wumpus----------------")
 	print(wumpusCave.currentCaveNumber)
 	
@@ -168,6 +170,7 @@ func updateCave(newCave:Cave):
 	# make wumpus visible
 	if hasWumpus:
 		wumpus.visible   = true
+		$"../Riddle".visible = false
 		player.can_move  = false
 		player.visible   = false
 
@@ -178,12 +181,13 @@ func updateCave(newCave:Cave):
 		$Info.text = "Press SPACE to start the trivia..."
 
 		# wait for SPACE (ui_accept) once
-		if Input.is_action_pressed("ui_accept"):
-			# now launch the popup (5 questions, need 3 right)
-			trivia_popup.start_trivia(5, 3)
+		await wait_for_space()
+		trivia_popup.start_trivia(5, 3)
+
+
 		
 		
-	# generator bfs and riddle
+	# generate bfs and riddle
 	var start_idx = currentCaveNumber - 1
 	var goal_idx = wumpusCave.currentCaveNumber - 1
 	var path: Array = bfs_shortest_path(start_idx, goal_idx)
@@ -191,14 +195,22 @@ func updateCave(newCave:Cave):
 		bestOption = path[1]  # cave number (1-based) of the next step
 	else:
 		bestOption = currentCaveNumber
-	
-	if $"../Riddle".shownOnUpdate:
-		$"../Riddle".visible = true # make riddle popup visible
-	$"../Riddle"._generate_riddle(bestOption) # generate riddle
+
+	# Only show riddle if NOT a Wumpus cave
+	if not hasWumpus:
+		if $"../Riddle".shownOnUpdate:
+			$"../Riddle".visible = true
+		$"../Riddle"._generate_riddle(bestOption)
+
 
 	# checking connecting caves for hazards to show -----------------------
 	checkHazards()
-	
+
+# helper function for wumpus cave
+func wait_for_space():
+	while not Input.is_action_just_pressed("ui_accept"):
+		await get_tree().process_frame
+
 # called when the player wins the trivia
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
@@ -207,9 +219,28 @@ func _on_trivia_won() -> void:
 	player.can_move = true
 	player.visible = true
 
+	# Now allow the riddle to show
+	if $"../Riddle".shownOnUpdate:
+		$"../Riddle".visible = true
+	$"../Riddle"._generate_riddle(bestOption)
+	
+	WumpusData.health = WumpusData.health - 5
+	
+	if WumpusData.health <= 0:
+		# maybe do a cut scene to wumpus dying
+		PlayerData.wumpusKilled = true
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+	else:
+		# wumpus needs to move caves
+		# new riddle?
+		wumpus.visible = false
+
+
 # called when the player loses the trivia
 func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
+	await get_tree().create_timer(1.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	# your lose logic here (reset, reduce life, etc.)
 
 # if the player exists any of the 3 Area2D this runs
@@ -269,7 +300,6 @@ func _on_player_interact() -> void:
 		for cave in connectingCaves:
 			if $EnterCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
 				# update numbers in scene and attributes on the object
-				PlayerData.numberTurns = PlayerData.numberTurns + 1
 				$EnterCave.visible = false
 				$ShootCave.visible = false
 				$ShootCaveResult.visible = false

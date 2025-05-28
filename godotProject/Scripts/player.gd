@@ -109,18 +109,21 @@ func goldChange(addedGold:int):
 	PlayerData.goldCount = goldCount
 	print("You now have " + str(goldCount) + " gold")
 	
+	# updates the gold count label
 	if gold_label:
 		gold_label.text = str(goldCount)
 
-
+# this changes the amount of arrows the player has
 func arrowChange(addedArrow:int):
 	arrowCount += addedArrow
 	PlayerData.arrowCount = arrowCount
 	print("You now have " + str(arrowCount) + " arrows")
 	
+	# updates the arrow count label
 	if arrow_label:
 		arrow_label.text = str(arrowCount)
 	
+# this changes if player has anti-bat effect or not
 func changeAntiBat(gotEffect:bool):
 	hasAntiBatEffect = true
 	PlayerData.hasAntiBatEffect = hasAntiBatEffect
