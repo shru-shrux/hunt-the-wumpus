@@ -51,7 +51,7 @@ func _on_buy_button_pressed() -> void:
 	player.goldChange(-(price))
 	# match items and call specific item actions
 	match itemName:
-		"arrows":
+		"Arrows":
 			player.arrowChange(1)
 		"anti_bat":
 			# TODO add minigame here

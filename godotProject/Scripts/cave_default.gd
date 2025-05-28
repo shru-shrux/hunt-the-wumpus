@@ -139,8 +139,8 @@ func updateCave(newCave:Cave):
 		
 		await wait(1.0)
 		
-		# TODO this is set as the first cave in caveList for now
-		updateCave(caveList[playerLocation])
+
+		#updateCave(caveList[playerLocation])
 		
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
@@ -248,6 +248,11 @@ func _on_trivia_lost() -> void:
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
 func _on_area_exited(area: Area2D) -> void:
+	
+	$"0/HighlightedCave".visible = false
+	$"1/HighlightedCave".visible = false
+	$"2/HighlightedCave".visible = false
+	
 	$EnterCave.visible = false
 	$ShootCave.visible = false
 	$ShootCaveResult.visible = false
@@ -257,6 +262,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_0_area_entered(area: Area2D) -> void:
+	$"0/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[0].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[0].currentCaveNumber) + " "
@@ -268,6 +274,7 @@ func _on_0_area_entered(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_1_area_entered(area: Area2D) -> void:
+	$"1/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[1].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[1].currentCaveNumber) + " "
@@ -278,6 +285,7 @@ func _on_1_area_entered(area: Area2D) -> void:
 
 # side note: have to have that space at the end to resolve 27 containing 2 and 27
 func _on_2_area_entered(area: Area2D) -> void:
+	$"2/HighlightedCave".visible = true
 	$EnterCave.text = "Press 'E' to enter cave " + str(connectingCaves[2].currentCaveNumber) + " "
 	$EnterCave.visible = true
 	$ShootCave.text = "Press 'Q' to shoot an arrow into cave " + str(connectingCaves[2].currentCaveNumber) + " "
@@ -368,7 +376,7 @@ func _on_player_shoot_arrow() -> void:
 			# set the new wumpus cave to have a wumpus
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
-			$Warnings/WumpusWarning.visible = false
+			$Warnings/WumpusBackground.visible = false
 			# update to current cave to reload the cave
 			updateCave(caveList[currentCaveNumber-1])
 			
@@ -379,7 +387,7 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = false
 			wumpusCave = wumpusCave.connectingCaves[randi() % 3]
 			wumpusCave.hasWumpus = true
-			$Warnings/WumpusWarning.visible = false
+			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 
 # after the arrow game is done reset the cave and hide the minigame
@@ -473,6 +481,10 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	# if we exhaust the queue without finding the goal
 	print("Doesn't Exist")
 	return []
+
+func _on_cps_minigame_cps_minigame_over() -> void:
+	await wait(2.0)
+	updateCave(caveList[playerLocation])
 
 # helper function for animations
 func wait(seconds:float):
