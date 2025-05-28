@@ -67,6 +67,10 @@ func _ready() -> void:
 	for cave in pitList:
 		print(cave.currentCaveNumber)
 		
+	GameData.caveList = caveList
+	GameData.pitList = pitList
+	GameData.batList = batList
+
 func _on_resume_pressed():
 	in_game_menu()
 
@@ -106,6 +110,7 @@ func assign_special_caves():
 	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
 	wumpusCave = caveList[numbers[4]]
+	WumpusData.currentRoomNumber = numbers[4]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):

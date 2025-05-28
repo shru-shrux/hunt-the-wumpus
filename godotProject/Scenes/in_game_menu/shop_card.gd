@@ -29,8 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
+	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 
 func _on_buy_button_pressed() -> void:
 	if player == null:
@@ -53,10 +52,12 @@ func _on_buy_button_pressed() -> void:
 	match itemName:
 		"Arrows":
 			player.arrowChange(1)
-		"anti_bat":
+			print("arrow added")
+		"Anti-bat Potion":
 			# TODO add minigame here
 			player.changeAntiBat(true)
-		"secret":
+			print("anti bat added")
+		"Secrets":
 			print("secret message")
 			# options for the secret: room number where a bat lives, where a pit is, if wumpus is 
 			# within two rooms of you, where the wumpus is, or the room number you currently are in
@@ -64,22 +65,35 @@ func _on_buy_button_pressed() -> void:
 			
 			# use random number generator to choose a number that corresponds to a secret
 			var rng = RandomNumberGenerator.new()
-			var random_secret_num = rng.randi_range(0, 4)
+			#var random_secret_num = rng.randi_range(0, 4)
+			var random_secret_num = 3
+			
 			if random_secret_num == 0:
-				boughtPopup = "Bats live in room " # set this to bat room number
+				var batList = GameData.batList
+				var random_index = randi() % batList.size()
+				boughtPopup = "Your secret:\nBats live in room " + str(batList[random_index].currentCaveNumber)
 			elif random_secret_num == 1:
-				boughtPopup = "A pit is located in room " # set this to pit room number
+				var pitList = GameData.pitList
+				var random_index = randi() % pitList.size()
+				boughtPopup = "Your secret:\nA pit is located in room " + str(pitList[random_index].currentCaveNumber)
 			elif random_secret_num == 2:
-				# TODO make this determine if wumpus is within two rooms of you
-				# use bfs to see if it is within two
-				var wumpusWithinTwo = false
+				var start_idx = PlayerData.currentRoomNumber
+				var goal_idx = WumpusData.currentRoomNumber
+				var path = GameData.bfs_shortest_path(start_idx, goal_idx, GameData.caveList)
+
+				if path.size() > 2:
+					boughtPopup = "Your secret:\nYou are more than 2 caves away from the Wumpus"
+				else:
+					boughtPopup = "Your secret:\nYou are within 2 caves of the Wumpus"
 			elif random_secret_num == 3:
-				boughtPopup = "The Wumpus is currently in room " + WumpusData.currentRoomNumber
+				boughtPopup = "Your secret:\nThe Wumpus is currently in room " + str(WumpusData.currentRoomNumber)
 			elif random_secret_num == 4:
-				boughtPopup = "You are currently in room " + PlayerData.currentRoomNumber
+				boughtPopup = "Your secret:\nYou are currently in room " + str(PlayerData.currentRoomNumber)
+			print("secret added")
 			
 	# show bought item message
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
+	print("pop up changed")
 	$PopupPanel2.popup_centered()
 
 # close pop up of bought item message
