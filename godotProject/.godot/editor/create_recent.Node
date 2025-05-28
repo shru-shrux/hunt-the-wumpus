@@ -1,5 +1,4 @@
-Sprite2D
-Area2D
+TextureButton
 Label
 Button
 HBoxContainer
@@ -7,9 +6,9 @@ MarginContainer
 PopupPanel
 ColorRect
 CheckButton
-TextureButton
 Panel
 CanvasLayer
 AnimationPlayer
 TextureRect
 SubViewport
+Node
