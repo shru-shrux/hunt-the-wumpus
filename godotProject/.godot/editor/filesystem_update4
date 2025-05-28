@@ -1,4 +1,5 @@
-res://Scenes/end_scene.tscn
 res://Scenes/main.tscn
-res://Scripts/cave_default.gd
-res://Scripts/game_control.gd
+res://Scenes/riddle.tscn
+res://Scenes/cave_default.tscn
+res://Scenes/end_scene.tscn
+res://Scenes/profile/settings_tab_container.tscn
