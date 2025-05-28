@@ -9,8 +9,20 @@ var login_manager = LoginManager
 func _ready():
 	LoginManager.load_accounts()
 	$SignInButton.pressed.connect(_on_sign_in_button_button_down)
+	
 	connect("visibility_changed", Callable(self, "_on_visibility_changed"))
 	visible = false
+
+# if enter is pressed it submits
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER:
+			get_viewport().set_input_as_handled()  # Prevents Enter from going into TextEdits
+			_on_sign_in_button_button_down()
+
 
 func _on_sign_in_button_button_down():
 	var user = username_field.text.strip_edges()

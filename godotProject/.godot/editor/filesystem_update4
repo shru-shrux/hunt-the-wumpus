@@ -1,2 +1,14 @@
 res://Scenes/player.tscn
 res://Scripts/player.gd
+res://Scenes/in_game_menu/shop.tscn
+res://Scripts/cave_default.gd
+res://Scenes/login_signup/sign_up.tscn
+res://Scripts/sign_up.gd
+res://Scripts/login.gd
+res://Scenes/main.tscn
+res://Scenes/cave_default.tscn
+res://Scenes/end_scene.tscn
+res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/riddle.tscn
+res://Scenes/login_signup/login.tscn
+res://Scenes/login_signup/opening_scene.tscn
