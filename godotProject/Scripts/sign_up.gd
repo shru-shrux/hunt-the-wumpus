@@ -16,18 +16,24 @@ func _on_sign_in_button_button_down():
 	var user = username_field.text.strip_edges()
 	var password = password_field.text
 	var password2 = password_check_field.text
-	
+
 	if user.is_empty():
 		error_label.text = "No username entered."
 		return
 	if password.is_empty():
 		error_label.text = "No password entered."
 		return
+	if password.length() < 6:
+		error_label.text = "Password must be at least 6 characters long."
+		return
 	if password2.is_empty():
 		error_label.text = "Please confirm your password."
 		return
 	if password != password2:
 		error_label.text = "Passwords do not match."
+		return
+	if " " in password:
+		error_label.text = "Password cannot contain spaces."
 		return
 	if login_manager.signup(user, password):
 		error_label.text = "Account created! You are logged in."

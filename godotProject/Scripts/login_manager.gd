@@ -40,6 +40,7 @@ func signup(username: String, password: String) -> bool:
 		return false
 		
 	account_data[username] = {
+		"username": username,
 		"password": password,
 		"gold": 0,
 		"achievements": {

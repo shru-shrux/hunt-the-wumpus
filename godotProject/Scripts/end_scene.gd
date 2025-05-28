@@ -5,20 +5,37 @@ var last_score_entry = {"username": "placeholder", "score": 0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var user_data = LoginManager.get_user_data()
+	
+	# Make sure user is logged in
+	if user_data.is_empty():
+		print("No user logged in.")
+		return
+	
 	var wumpusScore = 0
 	if PlayerData.wumpusKilled == true:
 		wumpusScore = 50
 		$Result.text = "You Win!"
 	else:
 		$Result.text = "You Lose"
-	score = 100 - PlayerData.numberTurns + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
 	
-	last_score_entry = {"username": "placeholder", "score": score} # need to make so username not placeholder
+	var username = "placeholder"
+	if LoginManager.get_user_data() != null:
+		username = user_data.get("username")
+	
+	last_score_entry = {"username": username, "score": score}
 	save_new_score(last_score_entry["username"], last_score_entry["score"])
 	
 	show_leaderboard()
+	
+	# Update achievements
+	user_data["achievements"]["score"] += score
+	user_data["achievements"]["wins"] += 1
+	user_data["achievements"]["triviaCorrect"] += PlayerData.triviaCorrect
+	user_data["achievements"]["cavesVisited"] += PlayerData.cavesVisited
 
 func save_new_score(username: String, score: int):
 	var file_path = "user://highscores.save"
