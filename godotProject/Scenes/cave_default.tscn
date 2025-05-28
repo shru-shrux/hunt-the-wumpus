@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=15 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
 [ext_resource type="Texture2D" uid="uid://bwdqweseprb3j" path="res://Assets/Art/Falling-1.png" id="2_pklks"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bnl68tifbjgnn" path="res://Assets/Art/Cave Scene.png" id="2_y8311"]
 [ext_resource type="Texture2D" uid="uid://77g20unf22t4" path="res://Assets/Art/Falling-2.png" id="3_0clby"]
 [ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
+[ext_resource type="Texture2D" uid="uid://bqx74aqqjqsiw" path="res://Assets/Art/WarningBackground.png" id="7_gduwp"]
+[ext_resource type="Texture2D" uid="uid://cplxe8h5qqt1u" path="res://Assets/Art/HazardIcon.png" id="8_kxcv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
 size = Vector2(22.3485, 20)
@@ -22,13 +24,13 @@ font_size = 130
 font = ExtResource("2_urmdh")
 font_size = 22
 
-[sub_resource type="LabelSettings" id="LabelSettings_pklks"]
-font = ExtResource("2_urmdh")
-font_size = 33
-
 [sub_resource type="LabelSettings" id="LabelSettings_rcyi4"]
 font = ExtResource("2_urmdh")
 font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_pklks"]
+font = ExtResource("2_urmdh")
+font_size = 75
 
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
@@ -47,10 +49,10 @@ shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="0"]
 texture_filter = 1
-offset_left = -12.6894
-offset_top = -70.8661
-offset_right = 11.3106
-offset_bottom = -47.8661
+offset_left = -10.606
+offset_top = -65.0
+offset_right = 13.394
+offset_bottom = -42.0
 text = "2"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
@@ -65,10 +67,10 @@ shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="1"]
 texture_filter = 1
-offset_left = -11.235
-offset_top = -70.866
-offset_right = 12.765
-offset_bottom = -47.866
+offset_left = -12.121
+offset_top = -65.0
+offset_right = 11.879
+offset_bottom = -42.0
 text = "6"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
@@ -84,10 +86,10 @@ shape = SubResource("RectangleShape2D_twc2g")
 
 [node name="CaveNumber" type="Label" parent="2"]
 texture_filter = 1
-offset_left = -12.3106
-offset_top = -71.063
-offset_right = 11.6894
-offset_bottom = -48.063
+offset_left = -13.258
+offset_top = -65.0
+offset_right = 10.742
+offset_bottom = -42.0
 text = "7"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
@@ -111,38 +113,6 @@ offset_right = 123.0
 offset_bottom = 22.0
 text = "Current Cave"
 label_settings = SubResource("LabelSettings_0clby")
-
-[node name="Warnings" type="Node2D" parent="."]
-
-[node name="PitWarning" type="Label" parent="Warnings"]
-visible = false
-offset_left = 238.0
-offset_top = 56.0
-offset_right = 632.0
-offset_bottom = 87.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
-
-[node name="BatWarning" type="Label" parent="Warnings"]
-visible = false
-offset_left = 237.0
-offset_top = 24.0
-offset_right = 631.0
-offset_bottom = 55.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
-
-[node name="WumpusWarning" type="Label" parent="Warnings"]
-visible = false
-offset_left = 237.0
-offset_top = 86.0
-offset_right = 631.0
-offset_bottom = 117.0
-text = "Warning:"
-label_settings = SubResource("LabelSettings_pklks")
-horizontal_alignment = 1
 
 [node name="EnterCave" type="Label" parent="."]
 visible = false
@@ -205,6 +175,77 @@ offset_bottom = 89.0
 theme_override_fonts/font = ExtResource("2_urmdh")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
+
+[node name="Warnings" type="Node2D" parent="."]
+
+[node name="PitBackground" type="Sprite2D" parent="Warnings"]
+position = Vector2(279, 120)
+scale = Vector2(0.304, 0.218)
+texture = ExtResource("7_gduwp")
+
+[node name="PitWarning" type="Label" parent="Warnings/PitBackground"]
+offset_left = -155.0
+offset_top = -100.0
+offset_right = 355.0
+offset_bottom = 71.0
+scale = Vector2(1, 1.2)
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HazardIcon" type="Sprite2D" parent="Warnings/PitBackground"]
+texture_filter = 1
+position = Vector2(-273.026, -4.58716)
+scale = Vector2(0.559211, 0.779817)
+texture = ExtResource("8_kxcv4")
+
+[node name="WumpusBackground" type="Sprite2D" parent="Warnings"]
+position = Vector2(570, 120)
+scale = Vector2(0.304, 0.218)
+texture = ExtResource("7_gduwp")
+
+[node name="WumpusWarning" type="Label" parent="Warnings/WumpusBackground"]
+offset_left = -171.0
+offset_top = -100.0
+offset_right = 359.0
+offset_bottom = 67.0
+scale = Vector2(1, 1.2)
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HazardIcon" type="Sprite2D" parent="Warnings/WumpusBackground"]
+texture_filter = 1
+position = Vector2(-273.026, -4.58716)
+scale = Vector2(0.559211, 0.779817)
+texture = ExtResource("8_kxcv4")
+
+[node name="BatBackground" type="Sprite2D" parent="Warnings"]
+position = Vector2(858, 120)
+scale = Vector2(0.304, 0.218)
+texture = ExtResource("7_gduwp")
+
+[node name="BatWarning" type="Label" parent="Warnings/BatBackground"]
+offset_left = -171.0
+offset_top = -100.0
+offset_right = 352.0
+offset_bottom = 64.0
+scale = Vector2(1, 1.2)
+text = "Warning:"
+label_settings = SubResource("LabelSettings_pklks")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HazardIcon" type="Sprite2D" parent="Warnings/BatBackground"]
+texture_filter = 1
+position = Vector2(-273.026, -4.58716)
+scale = Vector2(0.559211, 0.779817)
+texture = ExtResource("8_kxcv4")
 
 [connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]

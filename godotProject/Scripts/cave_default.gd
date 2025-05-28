@@ -76,9 +76,9 @@ func updateCave(newCave:Cave):
 	print(wumpusCave.currentCaveNumber)
 	
 	# make warnings not visible in new cave
-	$Warnings/PitWarning.visible = false
-	$Warnings/BatWarning.visible = false
-	$Warnings/WumpusWarning.visible = false
+	$Warnings/PitBackground.visible = false
+	$Warnings/BatBackground.visible = false
+	$Warnings/WumpusBackground.visible = false
 	$BatSound.stop()
 	
 	# updating attributes for the new cave
@@ -150,7 +150,7 @@ func updateCave(newCave:Cave):
 	# and the player loses 5 gold
 	if hasBat:
 		if PlayerData.hasAntiBatEffect:
-			$Warnings/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
+			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			PlayerData.hasAntiBatEffect = false
 		else: 
 			print("you are in a bat cave")
@@ -161,10 +161,10 @@ func updateCave(newCave:Cave):
 				if randomCave.currentCaveNumber != currentCaveNumber:
 					cavePicked = true
 			updateCave(randomCave)
-			$Warnings/BatWarning.text = "A bat picked you up and dropped you, -5 gold"
-			$Warnings/BatWarning.visible = true
+			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
-		
+			
+		$Warnings/BatBackground.visible = true
 		# TODO make sure bats run away to new cave
 	
 	# make wumpus visible
@@ -402,20 +402,20 @@ func checkHazards():
 	for cave in connectingCaves:
 		if cave.hasBat:
 			$BatSound.play()
-			$Warnings/BatWarning.text = "You hear bats near you"
-			$Warnings/BatWarning.visible = true
+			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
+			$Warnings/BatBackground.visible = true
 	
 	# if there is a pit cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasPit:
-			$Warnings/PitWarning.text = "You feel a draft"
-			$Warnings/PitWarning.visible = true
+			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
+			$Warnings/PitBackground.visible = true
 	
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$Warnings/WumpusWarning.text = "I smell a Wumpus"
-			$Warnings/WumpusWarning.visible = true
+			$Warnings/WumpusBackground/WumpusWarning.text = "I smell a Wumpus"
+			$Warnings/WumpusBackground.visible = true
 
 # start_index - the starting point of the search
 # goal_index - the ending point of the search
