@@ -7,7 +7,7 @@ extends Panel
 @export var infomationPopup: String
 @export var boughtPopup: String
 
-const MinigameScene = preload("res://Scenes/minigame/minigame.tscn")
+
 var player : Node2D
 
 # set player for each card
@@ -53,7 +53,8 @@ func _on_buy_button_pressed() -> void:
 	match itemName:
 		"Arrows":
 			player.arrowChange(1)
-		"Anti-bat Potion":
+		"anti_bat":
+			# TODO add minigame here
 			player.changeAntiBat(true)
 		"secret":
 			print("secret message")

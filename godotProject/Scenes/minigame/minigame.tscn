@@ -104,20 +104,11 @@ height = 84.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgfa"]
 size = Vector2(892, 64)
 
-[node name="Control2" type="CanvasLayer"]
+[node name="Control" type="CanvasLayer"]
 
 [node name="Panel" type="Panel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -451.0
-offset_top = -199.0
-offset_right = 440.0
-offset_bottom = 122.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 891.0
+offset_bottom = 321.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -193,14 +184,6 @@ theme_override_font_sizes/font_size = 30
 text = "V i c t o r y"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
 
 [connection signal="timeout" from="Panel/game/enemy spawn" to="Panel/game" method="_on_enemy_spawn_timeout"]
 [connection signal="timeout" from="Panel/survival timer" to="Panel/game" method="_on_survival_timer_timeout"]

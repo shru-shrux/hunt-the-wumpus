@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://6kp3u04fm41g" path="res://Assets/Art/HighlightedCave.png" id="4_330b6"]
 [ext_resource type="Texture2D" uid="uid://bqx74aqqjqsiw" path="res://Assets/Art/WarningBackground.png" id="7_gduwp"]
 [ext_resource type="Texture2D" uid="uid://cplxe8h5qqt1u" path="res://Assets/Art/HazardIcon.png" id="8_kxcv4"]
-[ext_resource type="PackedScene" uid="uid://cwwokvd20fun1" path="res://Scenes/bat.tscn" id="9_kxcv4"]
+[ext_resource type="PackedScene" uid="uid://dvgkmf2d4sfdv" path="res://Scenes/bat.tscn" id="9_kxcv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
 size = Vector2(22.3485, 20)

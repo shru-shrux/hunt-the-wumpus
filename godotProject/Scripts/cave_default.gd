@@ -35,7 +35,7 @@ var hasWumpus = false
 # will have a bottomless pit
 var hasPit = false
 
-var pickup: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_parent().get_node("Player")
@@ -147,32 +147,26 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
-		pickup = true
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
-			var minigame = get_parent().get_node("Minigame")
-			minigame.show()
 			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			PlayerData.hasAntiBatEffect = false
-		if pickup:
+		else: 
 			print("you are in a bat cave")
 			var cavePicked = false
 			var randomCave : Cave
 			while not cavePicked:
 				randomCave = caveList[randi_range(0, 29)]
-				# makes sure that the bat doesn't go to a cave with a hazard
-				# or the current cave
 				if randomCave.currentCaveNumber != currentCaveNumber:
-					if randomCave.currentCaveNumber != pitList[0] or randomCave.currentCaveNumber != pitList[1]:
-						if randomCave.currentCaveNumber != batList[0] or randomCave.currentCaveNumber != batList[1]:
-							cavePicked = true
+					cavePicked = true
 			updateCave(randomCave)
 			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
 			
 		$Warnings/BatBackground.visible = true
+		# TODO make sure bats run away to new cave
 	
 	# make wumpus visible
 	if hasWumpus:
@@ -460,7 +454,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	var parent = {}         # for each discovered node, who we came from
 
 	# sanity check
-	if start_index < 0 or start_index > caveList.size():
+	if start_index < 1 or start_index > caveList.size():
 		print("Start not found")
 		return []
 
