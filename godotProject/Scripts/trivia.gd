@@ -50,7 +50,7 @@ func _on_single_ready(data: Dictionary) -> void:
 		_show_question(0)
 
 func _show_question(idx: int) -> void:
-	player.goldCount +- 1
+	player.goldChange(-1)
 	
 	current_index = idx
 	var q = questions[idx]

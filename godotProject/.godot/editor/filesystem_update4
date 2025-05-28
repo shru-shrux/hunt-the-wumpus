@@ -1,5 +1,2 @@
-res://Scenes/main.tscn
-res://Scenes/riddle.tscn
-res://Scenes/cave_default.tscn
-res://Scenes/end_scene.tscn
-res://Scenes/profile/settings_tab_container.tscn
+res://Scenes/player.tscn
+res://Scripts/player.gd

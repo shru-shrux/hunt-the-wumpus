@@ -103,8 +103,8 @@ func start(pos):
 
 # this changes the amount of gold the player has
 func goldChange(addedGold:int):
-	if goldCount < 0:
-		goldCount = 0
+	if goldCount <= 0:
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	goldCount += addedGold
 	PlayerData.goldCount = goldCount
 	print("You now have " + str(goldCount) + " gold")
