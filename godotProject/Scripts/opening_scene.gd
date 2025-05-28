@@ -17,6 +17,9 @@ func _on_sign_up_panel_button_button_down():
 	signup_panel.visible = true
 	login_panel.visible = false
 
+func _on_quit_button_button_up():
+	get_tree().quit()
+
 # Called by panels to switch
 func show_login():
 	login_panel.visible = true

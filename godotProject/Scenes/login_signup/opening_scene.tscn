@@ -104,3 +104,4 @@ layout_mode = 0
 
 [connection signal="button_down" from="SignUpPanelButton" to="." method="_on_sign_up_panel_button_button_down"]
 [connection signal="button_down" from="LoginPanelButton" to="." method="_on_login_panel_button_button_down"]
+[connection signal="button_up" from="QuitButton" to="." method="_on_quit_button_button_up"]

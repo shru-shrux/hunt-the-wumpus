@@ -12,3 +12,4 @@ res://Scenes/profile/settings_tab_container.tscn
 res://Scenes/riddle.tscn
 res://Scenes/login_signup/login.tscn
 res://Scenes/login_signup/opening_scene.tscn
+res://Scripts/opening_scene.gd
