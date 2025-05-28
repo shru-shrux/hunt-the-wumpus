@@ -139,11 +139,10 @@ func updateCave(newCave:Cave):
 		
 		await wait(1.0)
 		
-
-		#updateCave(caveList[playerLocation])
 		
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
+		$"../Riddle".shownOnUpdate = false
 	
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
@@ -501,6 +500,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	return []
 
 func _on_cps_minigame_cps_minigame_over() -> void:
+	$"../Riddle".shownOnUpdate = true
 	await wait(2.0)
 	updateCave(caveList[playerLocation])
 
