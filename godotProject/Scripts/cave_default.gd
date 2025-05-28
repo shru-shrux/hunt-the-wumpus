@@ -35,7 +35,7 @@ var hasWumpus = false
 # will have a bottomless pit
 var hasPit = false
 
-
+var pickup: bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_parent().get_node("Player")
@@ -148,12 +148,15 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
+		pickup = true
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
+			var minigame = get_parent().get_node("Minigame")
+			minigame.show()
 			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			PlayerData.hasAntiBatEffect = false
-		else: 
+		if pickup:
 			print("you are in a bat cave")
 			var cavePicked = false
 			var randomCave : Cave

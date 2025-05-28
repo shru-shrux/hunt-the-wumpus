@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbcbavu14b6q3"]
+[gd_scene load_steps=20 format=3 uid="uid://ckp4ntp3atm31"]
 
 [ext_resource type="Script" uid="uid://dwj3yagdnfxnj" path="res://Scenes/in_game_menu/shop_card.gd" id="1_48bqd"]
 [ext_resource type="Texture2D" uid="uid://k24ymu6ush51" path="res://Assets/Art/wumpus pixel art.png" id="1_bwcwe"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="2_djbdi"]
-[ext_resource type="Script" uid="uid://b0mnj2y8aade7" path="res://Scenes/in_game_menu/popup_panel.gd" id="2_ywg50"]
+[ext_resource type="Script" path="res://Scenes/in_game_menu/popup_panel.gd" id="2_ywg50"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_ywg50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwcwe"]

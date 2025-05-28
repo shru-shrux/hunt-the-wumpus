@@ -1,3 +1,6 @@
+CanvasLayer
+Node2D
+ColorRect
 Polygon2D
 Sprite2D
 CollisionShape2D
@@ -8,7 +11,4 @@ Button
 HBoxContainer
 MarginContainer
 PopupPanel
-ColorRect
 CheckButton
-TextureButton
-Panel
