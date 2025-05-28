@@ -1,14 +1,16 @@
 CanvasLayer
 Node2D
 ColorRect
+RichTextLabel
+Label
 Polygon2D
 Sprite2D
 CollisionShape2D
 AnimatedSprite2D
 Area2D
-Label
 Button
 HBoxContainer
 MarginContainer
 PopupPanel
 CheckButton
+TextureButton

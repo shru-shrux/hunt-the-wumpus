@@ -111,6 +111,7 @@ func _on_minigame_over() -> void:
 	get_parent().visible = false
 	player.falling = false
 	player.can_move = true
+	self.disabled = false
 	player.position = Vector2(119,528)
 	
 

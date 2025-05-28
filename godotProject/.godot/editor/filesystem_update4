@@ -21,3 +21,13 @@ res://Scenes/riddle.tscn
 res://Scenes/main.tscn
 res://Scenes/bat.tscn
 res://Scenes/end_scene.tscn
+res://Scripts/button.gd
+res://Scripts/cave_default.gd
+res://Scripts/end_scene.gd
+res://Scripts/game_control.gd
+res://Scripts/login.gd
+res://Scripts/login_manager.gd
+res://Scripts/opening_scene.gd
+res://Scripts/player.gd
+res://Scripts/sign_up.gd
+res://Scripts/trivia.gd

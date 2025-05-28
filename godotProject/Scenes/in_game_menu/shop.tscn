@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://dqkdomfsvqjd4" path="res://Scenes/in_game_menu/in_game_menu.gdshader" id="2_2ypm5"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_q43li"]
 [ext_resource type="PackedScene" uid="uid://ckp4ntp3atm31" path="res://Scenes/in_game_menu/shop_card.tscn" id="4_2ypm5"]
+[ext_resource type="PackedScene2" uid="uid://dbcbavu14b6q3" path="res://Scenes/in_game_menu/shop_card.tscn" id="4_2ypm5"]
 [ext_resource type="Texture2D" uid="uid://dq2ups0u1oyth" path="res://Assets/Art/secrets2.png" id="5_q43li"]
 [ext_resource type="Texture2D" uid="uid://bi3ke7wmsxdmu" path="res://Assets/Art/RotatedArrowIcon.png" id="6_j4flx"]
 [ext_resource type="Texture2D" uid="uid://btxud57lmmq3h" path="res://Assets/Art/antibat.png" id="8_2dtdx"]

@@ -185,6 +185,11 @@ func populate_connecting_caves():
 func _process(delta: float) -> void:
 	update_timer_label()
 	
+	if WumpusData.health <= 0:
+		# maybe do a cut scene to wumpus dying
+		PlayerData.wumpusKilled = true
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+	
 func update_timer_label():
 	timer_label.text = timer.time_to_string()
 

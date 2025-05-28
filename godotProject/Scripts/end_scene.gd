@@ -19,6 +19,12 @@ func _ready() -> void:
 	else:
 		$Result.text = "You Lose"
 	score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	if Global.difficulty == "easy":
+		score = score
+	elif Global.difficulty == "medium":
+		score = score * 1.1
+	elif Global.difficulty == "hard":
+		score = score * 1.2
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
 	
@@ -26,16 +32,26 @@ func _ready() -> void:
 	if LoginManager.get_user_data() != null:
 		username = user_data.get("username")
 	
-	last_score_entry = {"username": username, "score": score}
+	last_score_entry = {"username": str(username), "score": int(score)}
 	save_new_score(last_score_entry["username"], last_score_entry["score"])
 	
 	show_leaderboard()
 	
 	# Update achievements
+	if typeof(user_data["achievements"]) != TYPE_DICTIONARY:
+		print("Corrupted or missing achievements. Resetting...")
+		user_data["achievements"] = {
+			"score": 0,
+			"wins": 0,
+			"triviaCorrect": 0,
+			"cavesVisited": 0
+		}
+	
 	user_data["achievements"]["score"] += score
 	user_data["achievements"]["wins"] += 1
 	user_data["achievements"]["triviaCorrect"] += PlayerData.triviaCorrect
 	user_data["achievements"]["cavesVisited"] += PlayerData.cavesVisited
+	LoginManager.update_user_data(user_data)
 
 func save_new_score(username: String, score: int):
 	var file_path = "user://highscores.save"
