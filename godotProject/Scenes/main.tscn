@@ -69,7 +69,6 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("9_ynf5e")]
 

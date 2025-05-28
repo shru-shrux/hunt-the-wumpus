@@ -24,6 +24,10 @@ GameBgMusic="*res://Scenes/global/game_bg_music.tscn"
 PlayerData="*res://Scripts/player_data.gd"
 WumpusData="*res://Scripts/wumpus_data.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 move_right={
