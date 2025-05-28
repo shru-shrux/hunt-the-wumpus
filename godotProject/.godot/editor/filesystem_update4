@@ -5,3 +5,5 @@ res://Scenes/cps_minigame.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/options.tscn
+res://Scenes/end_scene.tscn
+res://Scripts/cave_default.gd

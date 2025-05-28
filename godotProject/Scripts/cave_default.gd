@@ -158,15 +158,18 @@ func updateCave(newCave:Cave):
 			var randomCave : Cave
 			while not cavePicked:
 				randomCave = caveList[randi_range(0, 29)]
+				# makes sure that the bat doesn't go to a cave with a hazard
+				# or the current cave
 				if randomCave.currentCaveNumber != currentCaveNumber:
-					cavePicked = true
+					if randomCave.currentCaveNumber != pitList[0] or randomCave.currentCaveNumber != pitList[1]:
+						if randomCave.currentCaveNumber != batList[0] or randomCave.currentCaveNumber != batList[1]:
+							cavePicked = true
 			updateCave(randomCave)
 			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
 			
 		$Warnings/BatBackground.visible = true
-		# TODO make sure bats run away to new cave
 	
 	# make wumpus visible
 	if hasWumpus:
@@ -454,7 +457,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	var parent = {}         # for each discovered node, who we came from
 
 	# sanity check
-	if start_index < 1 or start_index > caveList.size():
+	if start_index < 0 or start_index > caveList.size():
 		print("Start not found")
 		return []
 
