@@ -17,7 +17,7 @@ func _ready() -> void:
 	$CollisionShape2D.disabled = false
 	$AnimatedSprite2D.animation = "fly"
 	$AnimatedSprite2D.play()
-	$AnimatedSprite2D.flip_h = (direction == 1)
+	$AnimatedSprite2D.flip_h = (direction != 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,13 +28,11 @@ func _process(delta: float) -> void:
 	var y_offset = sin(time_passed * frequency * TAU) * amplitude
 	
 	# Move left and apply vertical offset
-	position.x -= speed * delta
-	position.y = position.y + y_offset * delta
+	position.y = base_y + y_offset
+	position.x += direction * speed * delta
 	
+	var cave_width = screen_size.x
 	# Flip direction at edges
-	if position.x < 0:
-		direction = 1
-		$AnimatedSprite2D.flip_h = true
-	elif position.x > screen_size.x:
-		direction = -1
-		$AnimatedSprite2D.flip_h = false
+	if position.x < 0 or position.x > cave_width:
+		direction *= -1
+		$AnimatedSprite2D.flip_h = (direction != 1)

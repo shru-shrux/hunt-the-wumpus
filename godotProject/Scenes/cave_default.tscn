@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=16 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
 [ext_resource type="Texture2D" uid="uid://bwdqweseprb3j" path="res://Assets/Art/Falling-1.png" id="2_pklks"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c1vbenfvou76e" path="res://Assets/Music/BatSound.mp3" id="3_rcyi4"]
 [ext_resource type="Texture2D" uid="uid://bqx74aqqjqsiw" path="res://Assets/Art/WarningBackground.png" id="7_gduwp"]
 [ext_resource type="Texture2D" uid="uid://cplxe8h5qqt1u" path="res://Assets/Art/HazardIcon.png" id="8_kxcv4"]
+[ext_resource type="PackedScene" uid="uid://dvgkmf2d4sfdv" path="res://Scenes/bat.tscn" id="9_kxcv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_twc2g"]
 size = Vector2(22.3485, 20)
@@ -246,6 +247,10 @@ texture_filter = 1
 position = Vector2(-273.026, -4.58716)
 scale = Vector2(0.559211, 0.779817)
 texture = ExtResource("8_kxcv4")
+
+[node name="Bat" parent="." instance=ExtResource("9_kxcv4")]
+visible = false
+position = Vector2(553, 292)
 
 [connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]

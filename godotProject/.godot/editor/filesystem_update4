@@ -1,6 +1,6 @@
 res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/in_game_menu.gdshader
-res://openai_key.txt
+res://Scripts/cave_default.gd
 res://Scenes/in_game_menu/shop.tscn
 res://Scenes/in_game_menu/shop_card.tscn
 res://Scenes/cave_default.tscn
@@ -11,5 +11,3 @@ res://Scenes/timer.tscn
 res://Scenes/player.tscn
 res://Scenes/bat.tscn
 res://Scripts/bat.gd
-res://Scripts/cave_default.gd
-res://Scripts/game_control.gd

@@ -47,7 +47,6 @@ func _ready() -> void:
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot_arrow"):
@@ -149,6 +148,8 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
+		$Bat.show()
+		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
 			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			PlayerData.hasAntiBatEffect = false
@@ -161,6 +162,7 @@ func updateCave(newCave:Cave):
 				if randomCave.currentCaveNumber != currentCaveNumber:
 					cavePicked = true
 			updateCave(randomCave)
+			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
 			
