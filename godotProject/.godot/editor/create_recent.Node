@@ -1,3 +1,6 @@
+CanvasLayer
+Node2D
+ColorRect
 RichTextLabel
 Label
 Polygon2D
@@ -9,6 +12,5 @@ Button
 HBoxContainer
 MarginContainer
 PopupPanel
-ColorRect
 CheckButton
 TextureButton

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=20 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c67048hiqdbdk" path="res://Assets/Art/IconFrame.png" id="13_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://no1sd80puswn" path="res://Assets/Art/ArrowPixelArt.png" id="14_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://cgyqluxn8v1s5" path="res://Assets/Art/CoinPixelArt.png" id="15_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://xlsqjkn06yxb" path="res://Scenes/minigame/minigame.tscn" id="16_k12tt"]
 
 [sub_resource type="Animation" id="Animation_fdnlq"]
 length = 0.1
@@ -232,6 +233,9 @@ visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="Minigame" parent="." instance=ExtResource("16_k12tt")]
+visible = false
 
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="cpsMinigameOver" from="CaveDefault/CpsMinigame" to="CaveDefault" method="_on_cps_minigame_cps_minigame_over"]
