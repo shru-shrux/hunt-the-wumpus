@@ -7,6 +7,7 @@ extends Panel
 @export var infomationPopup: String
 @export var boughtPopup: String
 
+
 var player : Node2D
 
 # set player for each card
@@ -20,8 +21,10 @@ func _ready() -> void:
 	$MarginContainer/VBoxContainer/HBoxContainer2/TextureRect.texture = itemImage
 	$MarginContainer/VBoxContainer/HBoxContainer/Label.text = itemName
 	$MarginContainer/VBoxContainer/PanelContainer/BuyButton.text = itemPrice
-	$PopupPanel/MarginContainer/HBoxContainer/Label.text = infomationPopup
+	$PopupPanel/MarginContainer/Label.text = infomationPopup
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
+	$MarginContainer/VBoxContainer/HBoxContainer/InfoButton.disabled = true
+	$PopupPanel.resize_to_text()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,14 +82,14 @@ func _on_buy_button_pressed() -> void:
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 	$PopupPanel2.popup_centered()
 
-# show pop up of information on item
-func _on_info_button_pressed() -> void:
-	$PopupPanel.popup_centered()
-
-# close pop up of information on item
-func _on_close_button_pressed() -> void:
-	$PopupPanel.hide()
-
 # close pop up of bought item message
 func _on_bought_close_button_pressed() -> void:
 	$PopupPanel2.hide()
+
+
+func _on_info_button_mouse_entered() -> void:
+	$PopupPanel.popup_centered()
+
+
+func _on_info_button_mouse_exited() -> void:
+	$PopupPanel.hide()

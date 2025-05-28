@@ -24,15 +24,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time_passed += delta
 	
-	# Calculate vertical offset using sine wave
+	# calculate vertical offset using sine wave
 	var y_offset = sin(time_passed * frequency * TAU) * amplitude
 	
-	# Move left and apply vertical offset
+	# change in positions
 	position.y = base_y + y_offset
 	position.x += direction * speed * delta
 	
 	var cave_width = screen_size.x
-	# Flip direction at edges
+	# flip direction at edges and animation
 	if position.x < 0 or position.x > cave_width:
 		direction *= -1
 		$AnimatedSprite2D.flip_h = (direction != 1)
