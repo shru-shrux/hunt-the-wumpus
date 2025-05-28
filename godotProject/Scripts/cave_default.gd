@@ -227,15 +227,31 @@ func _on_trivia_won() -> void:
 	$"../Riddle"._generate_riddle(bestOption)
 	
 	WumpusData.health = WumpusData.health - 5
+	# game_control checks in process if wumpus dead
 	
-	if WumpusData.health <= 0:
-		# maybe do a cut scene to wumpus dying
-		PlayerData.wumpusKilled = true
-		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-	else:
-		# wumpus needs to move caves
-		# new riddle?
-		wumpus.visible = false
+	wumpus.visible = false
+	
+	# change the wumpusCave to two random caves away from it 
+	var picked = false
+	wumpusCave.hasWumpus = false
+	
+	print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+	
+	# change the wumpus 2 caves away randomly away from what is was
+	# before. Makes sure that it doesn't go to a cave and then back.
+	while not picked:
+		var checkCave = wumpusCave.connectingCaves[randi() % 3]
+		checkCave = wumpusCave.connectingCaves[(randi() % 3)]
+		if wumpusCave != checkCave:
+			wumpusCave = checkCave
+			picked = true
+	
+	# set the new wumpus cave to have a wumpus
+	wumpusCave.hasWumpus = true
+	print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+	
+	# update to current cave to reload the cave
+	updateCave(caveList[currentCaveNumber-1])
 
 
 # called when the player loses the trivia
@@ -320,6 +336,7 @@ func _on_player_interact() -> void:
 func _on_player_shoot_arrow() -> void:
 	# the cave the player is standing in front of
 	var selectedCave:Cave
+	$"../Riddle".visible = false
 	
 	if $ShootCave.visible == true:	
 		# check which cave the player is standing in front of
@@ -389,6 +406,7 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = true
 			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+			$"../Riddle".visible = true
 
 # after the arrow game is done reset the cave and hide the minigame
 func _on_shoot_arrow_game_arrow_game_done() -> void:
