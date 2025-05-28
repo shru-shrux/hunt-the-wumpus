@@ -1,3 +1,7 @@
+CollisionShape2D
+AnimatedSprite2D
+Area2D
+Sprite2D
 Label
 Button
 HBoxContainer
@@ -8,7 +12,3 @@ CheckButton
 TextureButton
 Panel
 CanvasLayer
-AnimationPlayer
-TextureRect
-SubViewport
-Node
