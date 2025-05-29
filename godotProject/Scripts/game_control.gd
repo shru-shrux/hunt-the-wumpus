@@ -106,7 +106,7 @@ func assign_special_caves():
 	batList.append(caveList[numbers[1]])
 	caveList[numbers[2]].hasPit = true
 	pitList.append(caveList[numbers[2]])
-	caveList[numbers[4]].hasPit = true
+	caveList[numbers[3]].hasPit = true
 	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
 	wumpusCave = caveList[numbers[4]]
