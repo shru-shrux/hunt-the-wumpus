@@ -85,6 +85,16 @@ offset_bottom = 96.0
 text = "After the Countodwn, Click as FAST as you can for 5 seconds!"
 label_settings = SubResource("LabelSettings_6iopv")
 
+[node name="Goal" type="Label" parent="."]
+visible = false
+offset_left = 181.0
+offset_top = 84.0
+offset_right = 985.0
+offset_bottom = 133.0
+text = "Reach the TOP STEP to escape with ALL your gold"
+label_settings = SubResource("LabelSettings_6iopv")
+horizontal_alignment = 1
+
 [connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
 [connection signal="minigameOver" from="Button" to="." method="_on_button_minigame_over"]

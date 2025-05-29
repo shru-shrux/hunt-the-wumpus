@@ -1,10 +1,6 @@
 extends Node2D
 class_name Cave
 
-#to do: make hazards for bottomless pit and wumpus. Figure out what will
-# happen when a player enters a hazard cave (all three). Coordinate with
-# Emily for in game menu (riddles, etc). 
-
 var player : Node2D
 var wumpus : Sprite2D
 var trivia_popup : Control
@@ -14,7 +10,7 @@ var caveList : Array[Cave] = []
 var wumpusCave: Cave
 var pitList: Array[Cave]
 var batList: Array[Cave]
-var playerLocation: int
+var playerSpawn: int
 
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
@@ -146,11 +142,21 @@ func updateCave(newCave:Cave):
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
 		$"../Riddle".shownOnUpdate = false
+		
+		# if this is also a wumpus cave show it while playing the CPS minigame
+		if hasWumpus:
+			wumpus.position = Vector2(429,584)
+			wumpus.visible = true
 	
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
 		player.can_move = false
+
+		# if it is also a wumpus cave show the wumpus but don't do trivia
+		if hasWumpus:
+			wumpus.visible = true
+		
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
@@ -167,6 +173,7 @@ func updateCave(newCave:Cave):
 						if randomCave.currentCaveNumber != pitList[0].currentCaveNumber or randomCave.currentCaveNumber != pitList[1].currentCaveNumber:
 							if randomCave.currentCaveNumber != batList[0].currentCaveNumber or randomCave.currentCaveNumber != batList[1].currentCaveNumber:
 								cavePicked = true
+			wumpus.visible = false
 			updateCave(randomCave)
 			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
@@ -177,6 +184,14 @@ func updateCave(newCave:Cave):
 	
 	# make wumpus visible
 	if hasWumpus:
+		
+		# if the cave is another hazard don't activate the trivia for the 
+		# wumpus cave
+		if hasPit:
+			return
+		if hasBat:
+			return
+		
 		wumpus.visible   = true
 		$"../Riddle".visible = false
 		player.can_move  = false
@@ -429,7 +444,7 @@ func loadCave():
 	wumpusCave = get_parent().wumpusCave
 	batList = get_parent().batList
 	pitList = get_parent().pitList
-	playerLocation = get_parent().playerLocation
+	playerSpawn = get_parent().playerSpawn
 
 # checks the surrounding caves for special caves and lets the user know
 func checkHazards():
@@ -507,10 +522,15 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	print("Doesn't Exist")
 	return []
 
+# when the minigame is done, reset the game
 func _on_cps_minigame_cps_minigame_over() -> void:
 	$"../Riddle".shownOnUpdate = true
+	# if the pit was in the same room as the wumpus reset the wumpus as well
+	if hasWumpus:
+		wumpus.visible = false
+		wumpus.position = Vector2(733,498)
 	await wait(2.0)
-	updateCave(caveList[playerLocation])
+	updateCave(caveList[playerSpawn])
 
 # helper function for animations
 func wait(seconds:float):

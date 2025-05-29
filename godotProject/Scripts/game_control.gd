@@ -18,7 +18,7 @@ var pitList: Array[Cave] = []
 var wumpusCave: Cave
 
 # where the player spawns
-var playerLocation: int
+var playerSpawn: int
 
 var difficulty: String
 
@@ -45,14 +45,14 @@ func _ready() -> void:
 	# gives each cave gold
 	distribute_gold(100)
 	# choose a random cave to spawn in
-	playerLocation = randi() % 30
-	PlayerData.currentRoomNumber = playerLocation
+	playerSpawn = randi() % 30
+	PlayerData.currentRoomNumber = playerSpawn
 	# assigns the pit and bat caves
 	assign_special_caves()
 	# loads the caveList to caveDefault
 	$CaveDefault.loadCave()
 	# sets the first cave
-	$CaveDefault.updateCave(caveList[playerLocation])
+	$CaveDefault.updateCave(caveList[playerSpawn])
 	
 	# lets the all values adjust before cave shown to player
 	$GameStartBlackScreen.visible = true
@@ -93,7 +93,7 @@ func assign_special_caves():
 		numbers.append(i)
 	
 	# make sure the player doesn't spawn in a hazard cave
-	numbers.erase(playerLocation)
+	numbers.erase(playerSpawn)
 	
 	# shuffle the list to get random first 5
 	numbers.shuffle()
@@ -106,7 +106,7 @@ func assign_special_caves():
 	batList.append(caveList[numbers[1]])
 	caveList[numbers[2]].hasPit = true
 	pitList.append(caveList[numbers[2]])
-	caveList[numbers[3]].hasPit = true
+	caveList[numbers[4]].hasPit = true
 	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
 	wumpusCave = caveList[numbers[4]]

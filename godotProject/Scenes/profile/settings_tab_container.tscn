@@ -134,6 +134,7 @@ bus_name = "SFX"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_06deq")
 theme_override_font_sizes/font_size = 35
+button_pressed = true
 text = "Timer"
 
 [node name="Label" type="Label" parent="TabContainer/Settings/MarginContainer/VBoxContainer/VBoxContainer"]

@@ -125,6 +125,7 @@ func _on_cps_minigame_visibility_changed() -> void:
 	# everything resets and a refrence to the player is defined
 	if get_parent().visible:
 		$"../Instructions".visible = true
+		$"../Goal".visible = true
 		CPS = 0.0
 		clicks = 0
 		timer = 0.0
