@@ -120,6 +120,7 @@ func updateCave(newCave:Cave):
 		
 		player.can_move = false
 		player.falling = true
+		$"../Riddle".visible = false
 		
 		# lets a couple frames pass so position can be set after can_move is
 		# set to false
@@ -160,8 +161,8 @@ func updateCave(newCave:Cave):
 				randomCave = caveList[randi_range(0, 29)]
 				if randomCave.currentCaveNumber != currentCaveNumber:
 					if randomCave.currentCaveNumber != currentCaveNumber:
-						if randomCave.currentCaveNumber != pitList[0] or randomCave.currentCaveNumber != pitList[1]:
-							if randomCave.currentCaveNumber != batList[0] or randomCave.currentCaveNumber != batList[1]:
+						if randomCave.currentCaveNumber != pitList[0].currentCaveNumber or randomCave.currentCaveNumber != pitList[1].currentCaveNumber:
+							if randomCave.currentCaveNumber != batList[0].currentCaveNumber or randomCave.currentCaveNumber != batList[1].currentCaveNumber:
 								cavePicked = true
 			updateCave(randomCave)
 			$Bat.hide()
@@ -348,31 +349,33 @@ func _on_player_shoot_arrow() -> void:
 		# the area2D
 		for cave in connectingCaves:
 			if $ShootCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
-				# update numbers in scene and attributes on the object
 				
 				selectedCave = cave
 				break
-				
+		
 		$ShootCave.visible = false
 		$EnterCave.visible = false
 		$ShootCaveResult.visible = true
 		
+		# check the player's arrow count either subtract or reject action
 		if player.arrowCount > 0:
 			player.arrowChange(-1)
 			print("Shot an arrow, current count = " + str(player.arrowCount))
 		else:
 			print("No arrows left")
 			$ShootCaveResult.text = "No arrows left to shoot!"
+			await wait(1.0)
+			$EnterCave.visible = true
+			$ShootCave.visible = true
 			return
 			
 		if selectedCave.hasWumpus:
 			print("Wumpus hit! Starting minigame...")
-			#get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
 			
 			$ShootArrowGame.visible = true
 			# the wumpus runs two caves away if damaged but not dead
 			
-			# stops the player and resets the position
+			# stops the player and hides the player
 			player.can_move = false
 			player.visible = false
 			#player.position.x = 135

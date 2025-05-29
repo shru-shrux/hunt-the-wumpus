@@ -121,9 +121,9 @@ offset_bottom = 320.0
 
 [node name="TimerLabel" type="Label" parent="."]
 offset_left = 995.0
-offset_top = 92.0
+offset_top = 142.0
 offset_right = 1158.0
-offset_bottom = 132.0
+offset_bottom = 182.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
 text = "00:00:000"
@@ -198,9 +198,9 @@ text = "+5"
 
 [node name="ShowRiddleButton" type="Button" parent="."]
 offset_left = 955.0
-offset_top = 127.0
+offset_top = 180.0
 offset_right = 1149.0
-offset_bottom = 163.0
+offset_bottom = 216.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
 text = "Show Riddle"

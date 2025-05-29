@@ -16,12 +16,13 @@ font_size = 30
 font = ExtResource("4_0vnei")
 font_size = 150
 
-[sub_resource type="LabelSettings" id="LabelSettings_x5jo4"]
-font = ExtResource("2_hvayr")
-
 [sub_resource type="LabelSettings" id="LabelSettings_7doci"]
 font = ExtResource("2_hvayr")
 font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_6iopv"]
+font = ExtResource("2_hvayr")
+font_size = 20
 
 [node name="CpsMinigame" type="Node2D"]
 script = ExtResource("1_x5jo4")
@@ -40,7 +41,9 @@ offset_left = 201.0
 offset_top = 271.0
 offset_right = 501.0
 offset_bottom = 471.0
-text = "
+theme_override_fonts/font = ExtResource("2_hvayr")
+theme_override_font_sizes/font_size = 21
+text = "CLICK HERE!
 "
 script = ExtResource("1_f6c68")
 
@@ -64,14 +67,6 @@ offset_bottom = 379.0
 text = "3"
 label_settings = SubResource("LabelSettings_b2yhh")
 
-[node name="ClickHere" type="Label" parent="."]
-offset_left = 296.0
-offset_top = 358.0
-offset_right = 407.0
-offset_bottom = 382.0
-text = "Click here!"
-label_settings = SubResource("LabelSettings_x5jo4")
-
 [node name="TimesUp" type="Label" parent="."]
 visible = false
 offset_left = 298.0
@@ -80,6 +75,14 @@ offset_right = 899.0
 offset_bottom = 424.0
 text = "Time's Up!"
 label_settings = SubResource("LabelSettings_7doci")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 181.0
+offset_top = 47.0
+offset_right = 985.0
+offset_bottom = 96.0
+text = "After the Countodwn, Click as FAST as you can for 5 seconds!"
+label_settings = SubResource("LabelSettings_6iopv")
 
 [connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

@@ -73,6 +73,8 @@ func countdown():
 	# disables the button so a new countdown doesn't start
 	disabled = true
 	
+	$".".text = "Get Ready!"
+	
 	# counts down from 3 to 0
 	$"../Countdown".visible = true
 	$"../Countdown".text = "3"
@@ -82,6 +84,9 @@ func countdown():
 	$"../Countdown".text = "1"
 	await wait(1.0)
 	$"../Countdown".visible = false
+	$"../Instructions".visible = false
+	
+	$".".text = "CLICK!"
 	
 	# enables the button and starts the game
 	disabled = false
