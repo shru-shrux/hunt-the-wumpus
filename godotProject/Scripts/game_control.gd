@@ -220,8 +220,11 @@ func _on_toggle_timer_visibility(visible: bool) -> void:
 
 # when riddle button toggled set the riddle visibility on updateCave to the 
 # opposite of what it was
-func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
-	$Riddle.shownOnUpdate = !$Riddle.shownOnUpdate
+#func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
+	#$Riddle.shownOnUpdate = !$Riddle.shownOnUpdate
+
+func _on_show_riddle_button_pressed() -> void:
+	$Riddle.visible = !$Riddle.visible
 
 # helper function for animations
 func wait(seconds:float):

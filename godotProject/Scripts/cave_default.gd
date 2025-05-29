@@ -159,7 +159,10 @@ func updateCave(newCave:Cave):
 			while not cavePicked:
 				randomCave = caveList[randi_range(0, 29)]
 				if randomCave.currentCaveNumber != currentCaveNumber:
-					cavePicked = true
+					if randomCave.currentCaveNumber != currentCaveNumber:
+						if randomCave.currentCaveNumber != pitList[0] or randomCave.currentCaveNumber != pitList[1]:
+							if randomCave.currentCaveNumber != batList[0] or randomCave.currentCaveNumber != batList[1]:
+								cavePicked = true
 			updateCave(randomCave)
 			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"

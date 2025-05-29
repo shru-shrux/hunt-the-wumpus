@@ -196,14 +196,13 @@ theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 50
 text = "+5"
 
-[node name="ShowRiddleButton" type="CheckButton" parent="."]
+[node name="ShowRiddleButton" type="Button" parent="."]
 offset_left = 955.0
 offset_top = 127.0
-offset_right = 1153.0
+offset_right = 1149.0
 offset_bottom = 163.0
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 30
-button_pressed = true
 text = "Show Riddle"
 
 [node name="CoinIcon" type="Sprite2D" parent="."]
@@ -236,4 +235,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="cpsMinigameOver" from="CaveDefault/CpsMinigame" to="CaveDefault" method="_on_cps_minigame_cps_minigame_over"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="toggled" from="ShowRiddleButton" to="." method="_on_show_riddle_button_toggled"]
+[connection signal="pressed" from="ShowRiddleButton" to="." method="_on_show_riddle_button_pressed"]

@@ -25,6 +25,10 @@ PlayerData="*res://Scripts/player_data.gd"
 WumpusData="*res://Scripts/wumpus_data.gd"
 GameData="*res://Scripts/game_data.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 move_right={
