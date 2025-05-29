@@ -148,6 +148,7 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
+		player.can_move = false
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
@@ -390,7 +391,7 @@ func _on_player_shoot_arrow() -> void:
 			# before. Makes sure that it doesn't go to a cave and then back.
 			while not picked:
 				var checkCave = wumpusCave.connectingCaves[randi() % 3]
-				checkCave = wumpusCave.connectingCaves[(randi() % 3)]
+				checkCave = checkCave.connectingCaves[(randi() % 3)]
 				if wumpusCave != checkCave:
 					wumpusCave = checkCave
 					picked = true
@@ -419,6 +420,7 @@ func _on_shoot_arrow_game_arrow_game_done() -> void:
 	player.can_move = true
 	player.visible = true
 	updateCave(caveList[currentCaveNumber-1])
+
 
 # called by game control once caveList is defined, gets refrences for key
 # variables
@@ -460,7 +462,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	var parent = {}         # for each discovered node, who we came from
 
 	# sanity check
-	if start_index < 1 or start_index > caveList.size():
+	if start_index < 0 or start_index > caveList.size():
 		print("Start not found")
 		return []
 

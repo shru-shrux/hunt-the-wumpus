@@ -48,13 +48,7 @@ func _process(delta):
 		var sprinting = Input.is_action_pressed("sprint") # Make sure you set this input action in Project Settings > Input Map
 		if sprinting:
 			current_speed = speed * sprint_multiplier
-		
-		#var jumping : bool = Input.is_action_pressed("jump")
 
-		#if jumping:
-		#	$AnimatedSprite2D.animation = "jump"
-		#	$AnimatedSprite2D.play()
-			# doesn't actually move the player
 		elif velocity.length() > 0:
 			velocity = velocity.normalized() * current_speed
 			if sprinting:

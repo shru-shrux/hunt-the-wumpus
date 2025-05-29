@@ -124,6 +124,7 @@ func _on_cps_minigame_visibility_changed() -> void:
 	# if the CpsMinigame Node is visible the game needs to be set up.
 	# everything resets and a refrence to the player is defined
 	if get_parent().visible:
+		$"../Instructions".visible = true
 		CPS = 0.0
 		clicks = 0
 		timer = 0.0
