@@ -89,7 +89,9 @@ func updateCave(newCave:Cave):
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
 	PlayerData.currentRoomNumber = currentCaveNumber
+	WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 	$CaveNumber.text = str(currentCaveNumber)
+	
 	
 	print("\nNew Room entered \n --------------------------------")
 	print("This room has " + str(roomGoldAmount) + " gold")
@@ -189,8 +191,6 @@ func updateCave(newCave:Cave):
 		# wait for SPACE (ui_accept) once
 		await wait_for_space()
 		trivia_popup.start_trivia(5, 3)
-
-
 		
 		
 	# generate bfs and riddle
@@ -204,9 +204,10 @@ func updateCave(newCave:Cave):
 
 	# Only show riddle if NOT a Wumpus cave
 	if not hasWumpus:
+		$"../Riddle"._generate_riddle(bestOption)
 		if $"../Riddle".shownOnUpdate:
 			$"../Riddle".visible = true
-		$"../Riddle"._generate_riddle(bestOption)
+		
 
 
 	# checking connecting caves for hazards to show -----------------------
@@ -226,9 +227,10 @@ func _on_trivia_won() -> void:
 	player.visible = true
 
 	# Now allow the riddle to show
+	$"../Riddle"._generate_riddle(bestOption)
 	if $"../Riddle".shownOnUpdate:
 		$"../Riddle".visible = true
-	$"../Riddle"._generate_riddle(bestOption)
+	
 	
 	WumpusData.health = WumpusData.health - 5
 	# game_control checks in process if wumpus dead
@@ -400,8 +402,6 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$Warnings/WumpusBackground.visible = false
-			# update to current cave to reload the cave
-			updateCave(caveList[currentCaveNumber-1])
 			
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."

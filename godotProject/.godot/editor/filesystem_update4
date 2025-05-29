@@ -1,13 +1,13 @@
-res://Scenes/main.tscn
+res://Scenes/in_game_menu/shop.tscn
 res://Scenes/in_game_menu/in_game_menu.gdshader
+res://Scripts/wumpus_data.gd
 res://Scripts/cave_default.gd
 res://Scenes/cave_default.tscn
 res://Scenes/player.tscn
+res://Scenes/main.tscn
 res://Scenes/cps_minigame.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/options.tscn
 res://Scenes/end_scene.tscn
-res://Scenes/in_game_menu/shop.tscn
-res://Scripts/button.gd
-res://Scripts/player.gd
+res://Scripts/game_control.gd

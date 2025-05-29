@@ -110,7 +110,7 @@ func assign_special_caves():
 	pitList.append(caveList[numbers[3]])
 	caveList[numbers[4]].hasWumpus = true
 	wumpusCave = caveList[numbers[4]]
-	WumpusData.currentRoomNumber = numbers[4]
+	WumpusData.currentRoomNumber = caveList[numbers[4]]
 
 # give each cave anywhere between 0 and 10 gold up to 100 gold
 func distribute_gold(total_gold: int):
