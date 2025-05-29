@@ -15,3 +15,4 @@ res://Scenes/minigame/game.gd
 res://Scripts/game_control.gd
 res://Scripts/button.gd
 res://Scenes/in_game_menu/in_game_menu.gdshader
+res://Scripts/player.gd
