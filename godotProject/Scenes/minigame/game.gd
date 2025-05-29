@@ -6,7 +6,7 @@ var score
 var time_remaining = 20
 
 var player: Node2D
-
+signal game_finished
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,8 +19,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-#press jump to start
-#change scenes once hit obstacle or survival timer up
 
 func _on_enemy_spawn_timeout() -> void:
 	# Create a new instance of the Mob scene.
@@ -33,7 +31,7 @@ func _on_enemy_spawn_timeout() -> void:
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 	
-	$"enemy spawn".wait_time=randf_range(0.5, 1.5)
+	$"enemy spawn".wait_time=randf_range(0.6, 1.5)
 
 
 func _on_survival_timer_timeout() -> void:
@@ -42,5 +40,9 @@ func _on_survival_timer_timeout() -> void:
 	if time_remaining ==0:
 		$"../victory".show()
 		get_tree().paused = true
-		player.changeAntiBat(true)
-		
+		get_parent().get_parent().get_parent().get_node("CaveDefault").pickup = false
+		end_game()
+
+
+func end_game():
+	emit_signal("game_finished")

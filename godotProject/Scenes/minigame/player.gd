@@ -12,14 +12,14 @@ func _physics_process(delta: float) -> void:
 		
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		if first:
-			$AnimatedSprite2D.play("run")
-			$"../../start".hide()
-			$"../enemy spawn".start()
-			$"../../survival timer".start()
-			first = false
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+		#if first:
+			#$AnimatedSprite2D.play("run")
+			#$"../../start".hide()
+			#$"../enemy spawn".start()
+			#$"../../survival timer".start()
+			#first = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -32,3 +32,14 @@ func _physics_process(delta: float) -> void:
 		#$AnimatedSprite2D.play("idle")
 
 	move_and_slide()
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		if first:
+			$AnimatedSprite2D.play("run")
+			$"../../start".hide()
+			$"../enemy spawn".start()
+			$"../../survival timer".start()
+			first = false
+		get_viewport().set_input_as_handled()

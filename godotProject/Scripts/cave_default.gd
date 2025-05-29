@@ -35,6 +35,7 @@ var hasWumpus = false
 # will have a bottomless pit
 var hasPit = false
 
+var pickup: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -147,12 +148,16 @@ func updateCave(newCave:Cave):
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
+		pickup = true
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
+			$"../Minigame".visible = true
 			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
+			await $"../Minigame".get_node("Panel/game").game_finished
+			$"../Minigame".visible = false
 			PlayerData.hasAntiBatEffect = false
-		else: 
+		if pickup: 
 			print("you are in a bat cave")
 			var cavePicked = false
 			var randomCave : Cave
@@ -160,16 +165,16 @@ func updateCave(newCave:Cave):
 				randomCave = caveList[randi_range(0, 29)]
 				if randomCave.currentCaveNumber != currentCaveNumber:
 					if randomCave.currentCaveNumber != currentCaveNumber:
-						if randomCave.currentCaveNumber != pitList[0] or randomCave.currentCaveNumber != pitList[1]:
-							if randomCave.currentCaveNumber != batList[0] or randomCave.currentCaveNumber != batList[1]:
+						if randomCave.currentCaveNumber != pitList[0].currentCaveNumber or randomCave.currentCaveNumber != pitList[1].currentCaveNumber:
+							if randomCave.currentCaveNumber != batList[0].currentCaveNumber or randomCave.currentCaveNumber != batList[1].currentCaveNumber:
 								cavePicked = true
 			updateCave(randomCave)
-			$Bat.hide()
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
 			
 		$Warnings/BatBackground.visible = true
 		# TODO make sure bats run away to new cave
+		$Bat.hide()
 	
 	# make wumpus visible
 	if hasWumpus:
