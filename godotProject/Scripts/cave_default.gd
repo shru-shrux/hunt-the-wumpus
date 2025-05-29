@@ -1,10 +1,6 @@
 extends Node2D
 class_name Cave
 
-#to do: make hazards for bottomless pit and wumpus. Figure out what will
-# happen when a player enters a hazard cave (all three). Coordinate with
-# Emily for in game menu (riddles, etc). 
-
 var player : Node2D
 var wumpus : Sprite2D
 var trivia_popup : Control
@@ -14,7 +10,7 @@ var caveList : Array[Cave] = []
 var wumpusCave: Cave
 var pitList: Array[Cave]
 var batList: Array[Cave]
-var playerLocation: int
+var playerSpawn: int
 
 # the amount of gold the player gets for entering the cave
 var roomGoldAmount = 0
@@ -90,7 +86,9 @@ func updateCave(newCave:Cave):
 	hasWumpus = newCave.hasWumpus
 	hasPit = newCave.hasPit
 	PlayerData.currentRoomNumber = currentCaveNumber
+	WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 	$CaveNumber.text = str(currentCaveNumber)
+	
 	
 	print("\nNew Room entered \n --------------------------------")
 	print("This room has " + str(roomGoldAmount) + " gold")
@@ -121,6 +119,7 @@ func updateCave(newCave:Cave):
 		
 		player.can_move = false
 		player.falling = true
+		$"../Riddle".visible = false
 		
 		# lets a couple frames pass so position can be set after can_move is
 		# set to false
@@ -144,11 +143,22 @@ func updateCave(newCave:Cave):
 		$"Falling-2".visible = false
 		$CpsMinigame.visible = true
 		$"../Riddle".shownOnUpdate = false
+		
+		# if this is also a wumpus cave show it while playing the CPS minigame
+		if hasWumpus:
+			wumpus.position = Vector2(429,584)
+			wumpus.visible = true
 	
 	# if the cave is a bat cave, pick up the player and drop at a random cave
 	# and the player loses 5 gold
 	if hasBat:
 		pickup = true
+		player.can_move = false
+
+		# if it is also a wumpus cave show the wumpus but don't do trivia
+		if hasWumpus:
+			wumpus.visible = true
+		
 		$Bat.show()
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
@@ -168,6 +178,7 @@ func updateCave(newCave:Cave):
 						if randomCave.currentCaveNumber != pitList[0].currentCaveNumber or randomCave.currentCaveNumber != pitList[1].currentCaveNumber:
 							if randomCave.currentCaveNumber != batList[0].currentCaveNumber or randomCave.currentCaveNumber != batList[1].currentCaveNumber:
 								cavePicked = true
+			wumpus.visible = false
 			updateCave(randomCave)
 			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
 			player.goldChange(-5)
@@ -178,6 +189,14 @@ func updateCave(newCave:Cave):
 	
 	# make wumpus visible
 	if hasWumpus:
+		
+		# if the cave is another hazard don't activate the trivia for the 
+		# wumpus cave
+		if hasPit:
+			return
+		if hasBat:
+			return
+		
 		wumpus.visible   = true
 		$"../Riddle".visible = false
 		player.can_move  = false
@@ -192,8 +211,6 @@ func updateCave(newCave:Cave):
 		# wait for SPACE (ui_accept) once
 		await wait_for_space()
 		trivia_popup.start_trivia(5, 3)
-
-
 		
 		
 	# generate bfs and riddle
@@ -207,9 +224,10 @@ func updateCave(newCave:Cave):
 
 	# Only show riddle if NOT a Wumpus cave
 	if not hasWumpus:
+		$"../Riddle"._generate_riddle(bestOption)
 		if $"../Riddle".shownOnUpdate:
 			$"../Riddle".visible = true
-		$"../Riddle"._generate_riddle(bestOption)
+		
 
 
 	# checking connecting caves for hazards to show -----------------------
@@ -229,9 +247,10 @@ func _on_trivia_won() -> void:
 	player.visible = true
 
 	# Now allow the riddle to show
+	$"../Riddle"._generate_riddle(bestOption)
 	if $"../Riddle".shownOnUpdate:
 		$"../Riddle".visible = true
-	$"../Riddle"._generate_riddle(bestOption)
+	
 	
 	WumpusData.health = WumpusData.health - 5
 	# game_control checks in process if wumpus dead
@@ -353,31 +372,33 @@ func _on_player_shoot_arrow() -> void:
 		# the area2D
 		for cave in connectingCaves:
 			if $ShootCave.text.contains(" " + str(cave.currentCaveNumber) + " "):
-				# update numbers in scene and attributes on the object
 				
 				selectedCave = cave
 				break
-				
+		
 		$ShootCave.visible = false
 		$EnterCave.visible = false
 		$ShootCaveResult.visible = true
 		
+		# check the player's arrow count either subtract or reject action
 		if player.arrowCount > 0:
 			player.arrowChange(-1)
 			print("Shot an arrow, current count = " + str(player.arrowCount))
 		else:
 			print("No arrows left")
 			$ShootCaveResult.text = "No arrows left to shoot!"
+			await wait(1.0)
+			$EnterCave.visible = true
+			$ShootCave.visible = true
 			return
 			
 		if selectedCave.hasWumpus:
 			print("Wumpus hit! Starting minigame...")
-			#get_tree().change_scene_to_file("res://Scenes/shoot_arrow_game.tscn")
 			
 			$ShootArrowGame.visible = true
 			# the wumpus runs two caves away if damaged but not dead
 			
-			# stops the player and resets the position
+			# stops the player and hides the player
 			player.can_move = false
 			player.visible = false
 			#player.position.x = 135
@@ -392,7 +413,7 @@ func _on_player_shoot_arrow() -> void:
 			# before. Makes sure that it doesn't go to a cave and then back.
 			while not picked:
 				var checkCave = wumpusCave.connectingCaves[randi() % 3]
-				checkCave = wumpusCave.connectingCaves[(randi() % 3)]
+				checkCave = checkCave.connectingCaves[(randi() % 3)]
 				if wumpusCave != checkCave:
 					wumpusCave = checkCave
 					picked = true
@@ -401,8 +422,6 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$Warnings/WumpusBackground.visible = false
-			# update to current cave to reload the cave
-			updateCave(caveList[currentCaveNumber-1])
 			
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
@@ -422,6 +441,7 @@ func _on_shoot_arrow_game_arrow_game_done() -> void:
 	player.visible = true
 	updateCave(caveList[currentCaveNumber-1])
 
+
 # called by game control once caveList is defined, gets refrences for key
 # variables
 func loadCave():
@@ -429,7 +449,7 @@ func loadCave():
 	wumpusCave = get_parent().wumpusCave
 	batList = get_parent().batList
 	pitList = get_parent().pitList
-	playerLocation = get_parent().playerLocation
+	playerSpawn = get_parent().playerSpawn
 
 # checks the surrounding caves for special caves and lets the user know
 func checkHazards():
@@ -462,7 +482,7 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	var parent = {}         # for each discovered node, who we came from
 
 	# sanity check
-	if start_index < 1 or start_index > caveList.size():
+	if start_index < 0 or start_index > caveList.size():
 		print("Start not found")
 		return []
 
@@ -507,10 +527,15 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	print("Doesn't Exist")
 	return []
 
+# when the minigame is done, reset the game
 func _on_cps_minigame_cps_minigame_over() -> void:
 	$"../Riddle".shownOnUpdate = true
+	# if the pit was in the same room as the wumpus reset the wumpus as well
+	if hasWumpus:
+		wumpus.visible = false
+		wumpus.position = Vector2(733,498)
 	await wait(2.0)
-	updateCave(caveList[playerLocation])
+	updateCave(caveList[playerSpawn])
 
 # helper function for animations
 func wait(seconds:float):

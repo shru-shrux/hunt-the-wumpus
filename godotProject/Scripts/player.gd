@@ -48,13 +48,7 @@ func _process(delta):
 		var sprinting = Input.is_action_pressed("sprint") # Make sure you set this input action in Project Settings > Input Map
 		if sprinting:
 			current_speed = speed * sprint_multiplier
-		
-		#var jumping : bool = Input.is_action_pressed("jump")
 
-		#if jumping:
-		#	$AnimatedSprite2D.animation = "jump"
-		#	$AnimatedSprite2D.play()
-			# doesn't actually move the player
 		elif velocity.length() > 0:
 			velocity = velocity.normalized() * current_speed
 			if sprinting:
@@ -103,22 +97,25 @@ func start(pos):
 
 # this changes the amount of gold the player has
 func goldChange(addedGold:int):
+	
+	goldCount += addedGold
+	PlayerData.goldCount = goldCount
+	print("You now have " + str(goldCount) + " gold")
+	
 	if goldCount <= -1:
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		return
 	if addedGold > 0:
 		gold_label.get_child(0).text = "+" + str(addedGold)
 		gold_label.get_child(0).visible = true
-		await wait(1.0)
+		await wait(0.5)
 		gold_label.get_child(0).visible = false
 	elif addedGold < 0:
 		gold_label.get_child(1).text = str(addedGold)
 		gold_label.get_child(1).visible = true
-		await wait(1.0)
+		await wait(0.5)
 		gold_label.get_child(1).visible = false
-	goldCount += addedGold
-	PlayerData.goldCount = goldCount
-	print("You now have " + str(goldCount) + " gold")
+
 	
 	# updates the gold count label
 	if gold_label:

@@ -73,6 +73,8 @@ func countdown():
 	# disables the button so a new countdown doesn't start
 	disabled = true
 	
+	$".".text = "Get Ready!"
+	
 	# counts down from 3 to 0
 	$"../Countdown".visible = true
 	$"../Countdown".text = "3"
@@ -82,6 +84,9 @@ func countdown():
 	$"../Countdown".text = "1"
 	await wait(1.0)
 	$"../Countdown".visible = false
+	$"../Instructions".visible = false
+	
+	$".".text = "CLICK!"
 	
 	# enables the button and starts the game
 	disabled = false
@@ -119,6 +124,8 @@ func _on_cps_minigame_visibility_changed() -> void:
 	# if the CpsMinigame Node is visible the game needs to be set up.
 	# everything resets and a refrence to the player is defined
 	if get_parent().visible:
+		$"../Instructions".visible = true
+		$"../Goal".visible = true
 		CPS = 0.0
 		clicks = 0
 		timer = 0.0

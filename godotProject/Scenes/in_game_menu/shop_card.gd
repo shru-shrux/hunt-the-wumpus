@@ -20,7 +20,7 @@ func _ready() -> void:
 	# update the labels
 	$MarginContainer/VBoxContainer/HBoxContainer2/TextureRect.texture = itemImage
 	$MarginContainer/VBoxContainer/HBoxContainer/Label.text = itemName
-	$MarginContainer/VBoxContainer/PanelContainer/BuyButton.text = itemPrice
+	$MarginContainer/VBoxContainer/PanelContainer/BuyButton/HBoxContainer/Label.text = itemPrice
 	$PopupPanel/MarginContainer/Label.text = infomationPopup
 	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
 	$MarginContainer/VBoxContainer/HBoxContainer/InfoButton.disabled = true
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$PopupPanel2/MarginContainer/HBoxContainer/BoughtMessage.text = boughtPopup
+	pass
 
 func _on_buy_button_pressed() -> void:
 	if player == null:
