@@ -11,3 +11,4 @@ res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/options.tscn
 res://Scenes/end_scene.tscn
 res://Scripts/game_control.gd
+res://Scenes/in_game_menu/shop_card.tscn
