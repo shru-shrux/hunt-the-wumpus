@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://doo4jj8a5wtoi" path="res://Scenes/shoot_arrow_game.tscn" id="5_kry3j"]
 [ext_resource type="Texture2D" uid="uid://lb6mm3gog6op" path="res://Assets/Art/wumpus in game.png" id="6_6iyac"]
 [ext_resource type="PackedScene" uid="uid://b2fgpii0ms85h" path="res://Scenes/riddle.tscn" id="8_344ge"]
-[ext_resource type="Texture2D" uid="uid://ddvocf06deto2" path="res://Assets/Art/options_icon_white.png" id="8_wsu2k"]
+[ext_resource type="Texture2D" uid="uid://rdqmcccbsey4" path="res://Assets/Art/pause.png" id="8_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://b355yvg3cyhls" path="res://Scenes/trivia.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://bddkg4ij7obfd" path="res://Scenes/in_game_menu/in_game_menu.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://icbywfxrbd6r" path="res://Scenes/timer.tscn" id="10_d1ilt"]
@@ -92,9 +92,9 @@ scale = Vector2(2, 2)
 [node name="OptionsButton" type="TextureButton" parent="."]
 offset_left = 1085.0
 offset_top = 15.0
-offset_right = 1289.0
-offset_bottom = 207.0
-scale = Vector2(0.25, 0.25)
+offset_right = 1585.0
+offset_bottom = 515.0
+scale = Vector2(0.11, 0.11)
 texture_normal = ExtResource("8_wsu2k")
 
 [node name="Timer" parent="." instance=ExtResource("10_d1ilt")]
