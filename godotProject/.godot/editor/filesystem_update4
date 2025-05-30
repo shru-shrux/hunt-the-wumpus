@@ -1,13 +1,9 @@
 res://Scenes/main.tscn
+res://Scripts/game_control.gd
 res://Scenes/minigame/minigame.tscn
 res://Scenes/minigame/obstacle.tscn
 res://Scenes/profile/profile.tscn
 res://Scenes/main_menu.tscn
 res://Scenes/in_game_menu/options.tscn
-res://Scripts/game_control.gd
 res://Scenes/shoot_arrow_game.tscn
-res://Scripts/shoot_arrow_game.gd
 res://Scenes/profile/settings_tab_container.tscn
-res://Scripts/end_scene.gd
-res://Scripts/settings_tab_container.gd
-res://Scripts/Global.gd
