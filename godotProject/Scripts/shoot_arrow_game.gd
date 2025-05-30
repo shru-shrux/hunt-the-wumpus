@@ -5,16 +5,24 @@ signal arrowGameDone
 @onready var label = $Label
 @onready var center_marker = $CenterMarker
 
-var speed = 600.0  # pixels per second
+var speed = 500.0  # pixels per second
 var direction = 1  # 1 = right, -1 = left
 var min_x = 356
 var max_x = 809
-var active = true
+var active = false
 
 # starting game position when you enter the scene
 func _ready():
 	slider.position.x = min_x
 	label.text = "Shoot the Wumpus!\nPress SPACE when the slider is in the green."
+	
+	# set speed based on difficulty of the game
+	if Global.difficulty == "easy":
+		speed = 500.0
+	elif Global.difficulty == "medium":
+		speed = 600.0
+	elif Global.difficulty == "hard":
+		speed = 700.0
 
 # moving the slider back and forth
 func _process(delta):

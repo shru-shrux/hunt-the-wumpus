@@ -62,7 +62,7 @@ func show_leaderboard():
 	for i in range(min(high_scores.size(), 10)):
 		var entry = high_scores[i]
 		var label = Label.new()
-		label.text = str(i + 1) + ". " + entry["username"] + " - " + str(entry["score"])
+		label.text = str(i + 1) + ". " + entry["username"] + " - " + str(entry["score"] + str(entry["difficulty"]))
 		var font = load("res://Assets/Fonts/ThaleahFat.ttf")
 		label.add_theme_font_override("font", font)
 		label.add_theme_font_size_override("font_size", 30)
