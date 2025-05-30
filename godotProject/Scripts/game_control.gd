@@ -24,6 +24,7 @@ var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	# hide menu when game starts
 	menu.hide()
 	# signal for resuming from in game menu
@@ -37,6 +38,14 @@ func _ready() -> void:
 	# set difficulty of game
 	difficulty = Global.difficulty
 	print(difficulty)
+	
+	# set health of wumpus based on difficulty 
+	if difficulty == "easy":
+		WumpusData.health = 100
+	elif difficulty == "medium":
+		WumpusData.health = 150
+	elif difficulty == "hard":
+		WumpusData.health = 200
 	
 	# creates the cave objects
 	create_caves()

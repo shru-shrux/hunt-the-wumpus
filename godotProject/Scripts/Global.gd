@@ -7,6 +7,7 @@ var difficulty: String
 func _ready():
 	initialize_high_scores()
 
+# create a high scores file unless it already exists (should only be made first time running this game)
 func initialize_high_scores():
 	var highscore_path = "user://highscores.save"
 	
@@ -19,3 +20,11 @@ func initialize_high_scores():
 	else:
 		print("High score file already exists.")
 		
+
+# clear the high score list
+func clear_high_scores():
+	var highscore_path = "user://highscores.save"
+	var file = FileAccess.open(highscore_path, FileAccess.WRITE)
+	file.store_var([])  # Store an empty array to clear the scores
+	file.close()
+	print("High scores cleared.")
