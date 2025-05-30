@@ -7,3 +7,6 @@ res://Scenes/main_menu.tscn
 res://Scenes/in_game_menu/options.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scenes/profile/settings_tab_container.tscn
+res://Scripts/cave_default.gd
+res://Scripts/shoot_arrow_game.gd
+res://Scripts/end_scene.gd
