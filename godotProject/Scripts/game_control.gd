@@ -204,7 +204,34 @@ func _process(delta: float) -> void:
 		PlayerData.wumpusKilled = true
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
-	$WumpusHealth.text = "Wumpus Health: " + str(WumpusData.health)
+	if Global.difficulty == "easy":
+		if WumpusData.health <= 100 and WumpusData.health > 60:
+			$WumpusHealth.add_theme_color_override("font_color", Color(0, 1, 0))
+		elif WumpusData.health <= 60 and WumpusData.health > 30:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0.5, 0))
+		elif WumpusData.health <= 30 and WumpusData.health >= 0:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0, 0))
+	elif Global.difficulty == "medium":
+		if WumpusData.health <= 150 and WumpusData.health > 150*0.6:
+			$WumpusHealth.add_theme_color_override("font_color", Color(0, 1, 0))
+		elif WumpusData.health <= 150*0.6 and WumpusData.health > 150*0.3:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0.5, 0))
+		elif WumpusData.health <= 150*0.3 and WumpusData.health >= 0:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0, 0))
+	elif Global.difficulty == "hard":
+		if WumpusData.health <= 200 and WumpusData.health > 200*0.6:
+			$WumpusHealth.add_theme_color_override("font_color", Color(0, 1, 0))
+		elif WumpusData.health <= 200*0.6 and WumpusData.health > 200*0.3:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0.5, 0))
+		elif WumpusData.health <= 200*0.3 and WumpusData.health >= 0:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0, 0))
+	else:
+		if WumpusData.health <= 100 and WumpusData.health > 60:
+			$WumpusHealth.add_theme_color_override("font_color", Color(0, 1, 0))
+		elif WumpusData.health <= 60 and WumpusData.health > 30:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0.5, 0))
+		elif WumpusData.health <= 30 and WumpusData.health >= 0:
+			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0, 0))
 	
 func update_timer_label():
 	timer_label.text = timer.time_to_string()

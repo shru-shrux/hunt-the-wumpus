@@ -437,6 +437,7 @@ func _on_player_shoot_arrow() -> void:
 			print("Wumpus hit! Starting minigame...")
 			
 			$ShootArrowGame.visible = true
+			$"../Riddle".visible = false
 			# the wumpus runs two caves away if damaged but not dead
 			
 			# stops the player and hides the player
@@ -463,6 +464,7 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$Warnings/WumpusBackground.visible = false
+			$ShootCaveResult.text = "You damaged the Wumpus!"
 			
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
@@ -474,13 +476,21 @@ func _on_player_shoot_arrow() -> void:
 			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$"../Riddle".visible = true
+			
+		await wait(2.5)
+		$ShootCaveResult.visible = false
+		$EnterCave.visible = true
+		$ShootCave.visible = true
+		checkHazards()
+		$"../Riddle".visible = true
 
 # after the arrow game is done reset the cave and hide the minigame
 func _on_shoot_arrow_game_arrow_game_done() -> void:
 	$ShootArrowGame.visible = false
 	player.can_move = true
 	player.visible = true
-	updateCave(caveList[currentCaveNumber-1])
+	$Warnings/WumpusBackground.visible = false
+	#updateCave(caveList[currentCaveNumber-1])
 
 
 # called by game control once caveList is defined, gets refrences for key
@@ -510,7 +520,7 @@ func checkHazards():
 	# if there is a wumpus cave nearby, let the user know
 	for cave in connectingCaves:
 		if cave.hasWumpus:
-			$Warnings/WumpusBackground/WumpusWarning.text = "I smell a Wumpus"
+			$Warnings/WumpusBackground/WumpusWarning.text = "You smell a Wumpus"
 			$Warnings/WumpusBackground.visible = true
 
 # start_index - the starting point of the search

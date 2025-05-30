@@ -6,6 +6,7 @@ var difficulty: String
 
 func _ready():
 	initialize_high_scores()
+	#clear_high_scores()
 
 # create a high scores file unless it already exists (should only be made first time running this game)
 func initialize_high_scores():

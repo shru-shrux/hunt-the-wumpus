@@ -8,9 +8,61 @@ var chosen_number: int
 
 # if chatgpt fails, get riddle from this dictionary
 var fallback_riddles = {
-	1: ["", ""],
-	2: ["", ""],
-	3: ["", ""],
+	1: ["Not zero, but the start of all, I rise alone, both short and tall.", 
+	"When you’re all by yourself, how many people are there?"],
+	2: ["When one has company, I arrive— A perfect count when friends survive.", 
+	"If you see a pair of eyes, how many are looking at you?"],
+	3: ["I’m how many strikes it takes to get out in baseball.", 
+	"How many sides does a triangle have?"],
+	4: ["Most animals with hooves leave this many tracks.", 
+	"I'm lucky to find, with leaves not three but more. Count them all — what number’s in store?"],
+	5: ["If you give someone a high five, how many fingers touch?", 
+	"This is how many senses you’d use to explore a new place."],
+	6: ["How many eggs are in half a dozen?", "I’m what you get when you add two threes."],
+	7: ["Snow White had this many dwarfs.", "This is how many days it takes for the same day to return."],
+	8: ["How many legs does a spider have?", "An octopus can grab with how many arms?"],
+	9: ["Multiply three by three and you’ll land on me.", "I come just before double digits begin."],
+	10: ["Count your fingers—how many are there in total?", 
+	"This is how many pins are set up in a bowling game."],
+	11: ["You knock on every door down one side of the street. There are five houses on your left 
+	and five on your right, but one house is at the very end, all by itself. How many doors did you knock on?", 
+	"One soccer team walks onto the field, including the goalie. How many players are ready to play?"],
+	12: ["There are this many months in a year.", 
+	"If every egg in a carton is a different color, how many eggs are there?"],
+	13: ["Some people avoid me on Fridays.", "I follow twelve but don’t quite feel lucky."],
+	14: ["You open a calendar to February and see a tiny heart drawn on a day that’s famous for 
+	cards, candy, and secret admirers. What day is it?", 
+	"Between unlucky and halfway through the month, I wait with chocolates and notes. What number am I?"],
+	15: ["How many minutes are in a quarter of an hour?", 
+	"If you invite five friends and they each bring two more, how many people show up?"],
+	16: ["How many socks are in your drawer if you have four neat pairs?", 
+	"A spider weaves two webs, each with eight lines—how many strands?"],
+	17: ["I’m a tricky prime between sweet sixteen and legal voting age.", "She opened the final page of her diary. 
+	The entry started: “One year ago today, I turned sweet sixteen…” What birthday is she writing about now?"],
+	18: ["This is how old you have to be to vote in many places.", "The last page of the teen magazine says: 
+		“Next issue: Adulthood begins!” What’s the age on that cover?"],
+	19: ["This is how many candles are on the cake just one year before twenty.", 
+	"A poem has 20 lines. You read all but the last. How many did you read?"],
+	20: ["You open an old time capsule labeled “Class of 2000.” Inside is a note that says: “See you in two decades.” 
+	What year is it?", "You’re at a masquerade. The host wears a pin that says “Vision is perfect tonight.” 
+	What number is the joke referring to?"],
+	21: ["This number wins in blackjack.", "You're old enough now to legally drink."],
+	22: ["You’re watching a spy movie. The agent’s codename is “Double Two.” What number is stamped on his ID badge?", 
+	"The game show host spins the wheel. It lands between 21 and 23, right on the lucky spot. What number did it hit?"],
+	23: ["A delivery arrives with a label reading “Apartment: second building, third door from the right.” 
+	You trace the path exactly. What number is on the apartment?", "What is the sum of 16 and 17?"],
+	24: ["If you watch eight 3-hour movies in a row, how many hours pass?", 
+	"A full day has this many hours to dream, play, and rest."],
+	25: ["I’m one quarter of a hundred.", 
+	"You find a box labeled “quarter-century memories.” How many years are inside?"],
+	26: ["This is how many letters are in the alphabet.", "The unlucky number doubled makes me."],
+	27: ["I’m what you get when you cube three.", "I am a cube of a number between 1 and 5. What number am I?"],
+	28: ["A non-leap year February has this many days.", 
+	"You bake four trays of cookies with seven on each. How many cookies cool on the counter?"],
+	29: ["Just one more and this month would have reached thirty. What day is it now?", 
+	"The calendar shows February, and this year, it’s acting odd. There’s one extra day—sneaky and rare. What day is it?"],
+	30: ["The candles are lit, the cake is tall, and someone says, “Welcome to your thirties.” What birthday are they celebrating?", 
+	"What is half of an hour?"],
 }
 
 func _ready():
@@ -50,11 +102,18 @@ func generate_riddle_for_number(number: int, callback: Callable, difficulty: Str
 
 	match difficulty:
 		"easy":
-			prompt = "Give me a very simple, clever riddle whose answer is the number %d. Use a statement that only fits this number exactly; do not reference ranges or properties shared by other numbers. Keep it under 2 sentences." % number
+			prompt = "Give me a very simple, clever riddle whose answer is the number %d. 
+			Don't use prime numbers in the riddle. It doesn't need to use math in the riddle. Use a 
+			statement that only fits this number exactly; do not reference ranges or properties 
+			shared by other numbers. Keep it 1 sentence." % number
 		"medium":
-			prompt = "Give me a clever riddle whose answer is the number %d. Ensure the clue is specific so no other number satisfies it; do not mention ranges. Keep it under 2 sentences." % number
+			prompt = "Give me a clever riddle whose answer is the number %d. Don't use prime numbers 
+			in the riddle. It doesn't need to use math in the riddle. Ensure the clue is specific 
+			so no other number satisfies it; do not mention ranges. Keep it under 2 sentences." % number
 		"hard":
-			prompt = "Give me a tricky and challenging riddle whose answer is the number %d. Include a unique property that only applies to this number; avoid using ranges or ambiguous clues. Keep it under 2 sentences." % number
+			prompt = "Give me a tricky and challenging riddle whose answer is the number %d. Don't use prime numbers 
+			in the riddle. It doesn't need to use math in the riddle. Include a unique property that 
+			only applies to this number; avoid using ranges or ambiguous clues. Keep it under 2 sentences." % number
 		_:
 			prompt = "Give me a short, clever riddle whose answer is the number %d. Make sure no other number fits; do not use ranges. Keep it under 2 sentences." % number
 
