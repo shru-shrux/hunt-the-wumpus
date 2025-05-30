@@ -43,9 +43,6 @@ func _ready() -> void:
 	# connect the two signals with the 2-arg overload
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
-	
-	$"../Minigame".set_process(false)
-	$"../Minigame".set_process_unhandled_input(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -164,35 +161,72 @@ func updateCave(newCave:Cave):
 		
 		$Bat.show()
 		await wait(2.0)
+		# if the player has the anti bat activate the minigame
 		if PlayerData.hasAntiBatEffect:
 			$"../Minigame".visible = true
-			$"../Minigame".set_process(true)
-			$"../Minigame".set_process_unhandled_input(true)
-			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			await $"../Minigame".get_node("Panel/game").game_finished
 			$"../Minigame".visible = false
-			$"../Minigame".set_process(false)
-			$"../Minigame".set_process_unhandled_input(false)
-			PlayerData.hasAntiBatEffect = false
-		if pickup: 
-			print("you are in a bat cave")
-			var cavePicked = false
-			var randomCave : Cave
-			while not cavePicked:
-				randomCave = caveList[randi_range(0, 29)]
-				if randomCave.currentCaveNumber != currentCaveNumber:
-					if randomCave.currentCaveNumber != currentCaveNumber:
-						if randomCave.currentCaveNumber != pitList[0].currentCaveNumber or randomCave.currentCaveNumber != pitList[1].currentCaveNumber:
-							if randomCave.currentCaveNumber != batList[0].currentCaveNumber or randomCave.currentCaveNumber != batList[1].currentCaveNumber:
-								cavePicked = true
-			wumpus.visible = false
-			updateCave(randomCave)
-			$Warnings/BatBackground/BatWarning.text = "A bat picked you up and dropped you"
-			player.goldChange(-5)
+			# if you are not being picked up anymore you won the bat game and
+			# will not get moved
+			if !pickup:
+				$OtherWarnings.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
+				$OtherWarnings.visible = true
+				await wait(3.0)
+				$OtherWarnings.visible = false
 			
+			# if you are being picked up, your anti-bat potion was used but
+			# you are still goin to be picked up
+			if pickup:
+				$OtherWarnings.text = "Your Anti-Bat potion activated but was ineffective."
+				$OtherWarnings.visible = true
+				await wait(3.0)
+				$OtherWarnings.visible = false
+			PlayerData.hasAntiBatEffect = false
+		
+		var caveBatPicked = false
+		var cavePlayerPicked
+		var randomBatCave : Cave
+		var randomPlayerCave : Cave
+		hasBat = false
+		# choose the cave the bat will go to
+		while not caveBatPicked:
+			randomBatCave = caveList[randi_range(0, 29)]
+			if randomBatCave.currentCaveNumber != currentCaveNumber:
+				if randomBatCave.currentCaveNumber != currentCaveNumber:
+					if randomBatCave.currentCaveNumber != pitList[0].currentCaveNumber or randomBatCave.currentCaveNumber != pitList[1].currentCaveNumber:
+						if randomBatCave.currentCaveNumber != batList[0].currentCaveNumber or randomBatCave.currentCaveNumber != batList[1].currentCaveNumber:
+							caveBatPicked = true
+		
+		# update that cave to be a bat cave and update batList
+		var batIdx = batList.find(newCave)
+		batList[batIdx] = randomBatCave
+		randomBatCave.hasBat = true
+		
+		# picking the place where the player will go
+		while not cavePlayerPicked:
+			randomPlayerCave = caveList[randi_range(0, 29)]
+			if randomPlayerCave.currentCaveNumber != currentCaveNumber:
+				if randomPlayerCave.currentCaveNumber != currentCaveNumber:
+					if randomPlayerCave.currentCaveNumber != pitList[0].currentCaveNumber or randomPlayerCave.currentCaveNumber != pitList[1].currentCaveNumber:
+						if randomPlayerCave.currentCaveNumber != batList[0].currentCaveNumber or randomPlayerCave.currentCaveNumber != batList[1].currentCaveNumber:
+							cavePlayerPicked = true
+		
+		# make the wumpus invisible if it was a wumpus and bat cave
+		wumpus.visible = false
+		$Bat.hide()
+		
+		if pickup:
+			updateCave(randomPlayerCave)
+			$Bat.hide()
+			$OtherWarnings.text = "A bat picked you up, dropped you and robbed you."
+			$OtherWarnings.visible = true
+			await wait(3.0)
+			$OtherWarnings.visible = false
+			player.goldChange(-5)
+		player.can_move = true
 		$Warnings/BatBackground.visible = true
 		# TODO make sure bats run away to new cave
-		$Bat.hide()
+		
 	
 	# make wumpus visible
 	if hasWumpus:

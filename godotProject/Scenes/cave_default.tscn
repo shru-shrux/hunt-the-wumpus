@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://onq0e03n2eh2"]
+[gd_scene load_steps=18 format=3 uid="uid://onq0e03n2eh2"]
 
 [ext_resource type="Script" uid="uid://d2l6ng1socfrq" path="res://Scripts/cave_default.gd" id="1_rcyi4"]
 [ext_resource type="Texture2D" uid="uid://bwdqweseprb3j" path="res://Assets/Art/Falling-1.png" id="2_pklks"]
@@ -33,6 +33,10 @@ font_size = 35
 [sub_resource type="LabelSettings" id="LabelSettings_pklks"]
 font = ExtResource("2_urmdh")
 font_size = 75
+
+[sub_resource type="LabelSettings" id="LabelSettings_330b6"]
+font = ExtResource("2_urmdh")
+font_size = 40
 
 [node name="CaveDefault" type="Node2D"]
 script = ExtResource("1_rcyi4")
@@ -267,6 +271,18 @@ texture = ExtResource("8_kxcv4")
 [node name="Bat" parent="." instance=ExtResource("9_kxcv4")]
 visible = false
 position = Vector2(553, 292)
+
+[node name="OtherWarnings" type="Label" parent="."]
+visible = false
+offset_left = 315.0
+offset_top = 275.0
+offset_right = 822.0
+offset_bottom = 339.0
+text = "Warning"
+label_settings = SubResource("LabelSettings_330b6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="area_entered" from="0" to="." method="_on_0_area_entered"]
 [connection signal="area_exited" from="0" to="." method="_on_area_exited"]
