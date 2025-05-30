@@ -9,7 +9,7 @@ var speed = 600.0  # pixels per second
 var direction = 1  # 1 = right, -1 = left
 var min_x = 356
 var max_x = 809
-var active = true
+var active = false
 
 # starting game position when you enter the scene
 func _ready():

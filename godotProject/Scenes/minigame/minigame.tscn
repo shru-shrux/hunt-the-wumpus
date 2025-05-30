@@ -198,5 +198,8 @@ text = "V i c t o r y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="visibility_changed" from="Panel/game" to="Panel/game" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Panel/game" to="Panel/game/player" method="_on_game_visibility_changed"]
+[connection signal="visibility_changed" from="Panel/game/player" to="Panel/game/player" method="_on_visibility_changed"]
 [connection signal="timeout" from="Panel/game/enemy spawn" to="Panel/game" method="_on_enemy_spawn_timeout"]
 [connection signal="timeout" from="Panel/survival timer" to="Panel/game" method="_on_survival_timer_timeout"]
