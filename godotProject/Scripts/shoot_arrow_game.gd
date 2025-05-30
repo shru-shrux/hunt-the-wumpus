@@ -40,6 +40,8 @@ func _input(event):
 				PlayerData.wumpusKilled = true
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		if not active and $".".visible:
+			if WumpusData.health <= 0:
+				return
 			arrowGameDone.emit()
 
 # calculating the result of the game when the minigame is stopped from position of the slider
@@ -74,7 +76,7 @@ func _stop_game():
 	
 	print(curHealth)
 	print(WumpusData.health)
-		
+	
 	
 	#var screen_center = (min_x + max_x) / 2
 	#var distance = abs(slider_center - screen_center)

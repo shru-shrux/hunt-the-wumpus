@@ -1,7 +1,10 @@
 res://Scenes/main.tscn
+res://Scenes/in_game_menu/in_game_menu.gdshader
+res://Scripts/login_manager.gd
+res://Scenes/cave_default.tscn
+res://Scenes/player.tscn
+res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/minigame/minigame.tscn
-res://Scenes/minigame/obstacle.tscn
-res://Scenes/profile/profile.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/in_game_menu/options.tscn
-res://Scripts/game_control.gd
+res://Scenes/cps_minigame.tscn
+res://Scripts/shoot_arrow_game.gd
+res://Scripts/cave_default.gd
