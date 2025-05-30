@@ -1,7 +1,7 @@
+Label
 Node2D
 Node
 TextureRect
-Label
 HBoxContainer
 Button
 RichTextLabel
@@ -12,4 +12,3 @@ AnimatedSprite2D
 Area2D
 MarginContainer
 PopupPanel
-ColorRect
