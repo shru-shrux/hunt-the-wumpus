@@ -142,24 +142,13 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PositiveChange" type="Label" parent="ArrowCount"]
+[node name="Change" type="Label" parent="ArrowCount"]
 visible = false
 layout_mode = 0
 offset_left = 44.0
 offset_right = 84.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0.462239, 0, 1)
-theme_override_fonts/font = ExtResource("11_6iyac")
-theme_override_font_sizes/font_size = 50
-text = "+5"
-
-[node name="NegativeChange" type="Label" parent="ArrowCount"]
-visible = false
-layout_mode = 0
-offset_left = 44.0
-offset_right = 84.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0.749501, 2.02149e-06, 2.88785e-07, 1)
 theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 50
 text = "+5"
@@ -175,7 +164,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PositiveChange" type="Label" parent="GoldCount"]
+[node name="Change" type="Label" parent="GoldCount"]
 visible = false
 layout_mode = 0
 offset_left = 35.0
@@ -186,24 +175,13 @@ theme_override_fonts/font = ExtResource("11_6iyac")
 theme_override_font_sizes/font_size = 50
 text = "+5"
 
-[node name="NegativeChange" type="Label" parent="GoldCount"]
-visible = false
-layout_mode = 0
-offset_left = 35.0
-offset_right = 79.0
-offset_bottom = 47.0
-theme_override_colors/font_color = Color(0.749501, 2.02149e-06, 2.88785e-07, 1)
-theme_override_fonts/font = ExtResource("11_6iyac")
-theme_override_font_sizes/font_size = 50
-text = "+5"
-
 [node name="WumpusHealth" type="Label" parent="."]
-offset_left = 869.0
-offset_top = 23.0
-offset_right = 1141.0
-offset_bottom = 58.0
+offset_left = 886.0
+offset_top = 27.0
+offset_right = 1147.0
+offset_bottom = 62.0
 theme_override_fonts/font = ExtResource("11_6iyac")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 28
 text = "Wumpus Health Level"
 horizontal_alignment = 2
 

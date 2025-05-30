@@ -56,13 +56,14 @@ func _process(delta: float) -> void:
 # Sets up the next cave that the player wants to go to.
 # - Checks if there is a hazard, and updates hazard warnings
 func updateCave(newCave:Cave):
-	
+		
 	# play the animation and freeze the player, also make sure the pause button
 	# isn't available
 	$"../OptionsButton".disabled = true
 	player.can_move = false
 	$"../AnimationPlayer".play("cave_transition")
 	await wait(0.5)
+	$"../Riddle".get_child(0).get_child(0).text = "Listening to the Caves..."
 	player.can_move = true
 	$"../OptionsButton".disabled = false
 	

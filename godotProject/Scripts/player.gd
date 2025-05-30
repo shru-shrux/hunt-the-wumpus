@@ -107,14 +107,16 @@ func goldChange(addedGold:int):
 		return
 	if addedGold > 0:
 		gold_label.get_child(0).text = "+" + str(addedGold)
+		gold_label.get_child(0).add_theme_color_override("font_color", Color(0.337, 0.851, 0.231))
 		gold_label.get_child(0).visible = true
 		await wait(0.5)
 		gold_label.get_child(0).visible = false
 	elif addedGold < 0:
-		gold_label.get_child(1).text = str(addedGold)
-		gold_label.get_child(1).visible = true
+		gold_label.get_child(0).text = str(addedGold)
+		gold_label.get_child(0).add_theme_color_override("font_color", Color(0.851, 0.337, 0.231))
+		gold_label.get_child(0).visible = true
 		await wait(0.5)
-		gold_label.get_child(1).visible = false
+		gold_label.get_child(0).visible = false
 
 	
 	# updates the gold count label
@@ -126,14 +128,16 @@ func arrowChange(addedArrow:int):
 	
 	if addedArrow > 0:
 		arrow_label.get_child(0).text = "+" + str(addedArrow)
+		arrow_label.get_child(0).add_theme_color_override("font_color", Color(0.337, 0.851, 0.231))
 		arrow_label.get_child(0).visible = true
 		await wait(1.0)
 		arrow_label.get_child(0).visible = false
 	elif addedArrow < 0:
-		arrow_label.get_child(1).text = str(addedArrow)
-		arrow_label.get_child(1).visible = true
+		arrow_label.get_child(0).text = str(addedArrow)
+		arrow_label.get_child(0).add_theme_color_override("font_color", Color(0.851, 0.337, 0.231))
+		arrow_label.get_child(0).visible = true
 		await wait(1.0)
-		arrow_label.get_child(1).visible = false
+		arrow_label.get_child(0).visible = false
 	
 	arrowCount += addedArrow
 	PlayerData.arrowCount = arrowCount
