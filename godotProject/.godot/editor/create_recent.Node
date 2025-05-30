@@ -1,3 +1,5 @@
+Node2D
+Node
 TextureRect
 Label
 HBoxContainer
@@ -11,4 +13,3 @@ Area2D
 MarginContainer
 PopupPanel
 ColorRect
-CheckButton

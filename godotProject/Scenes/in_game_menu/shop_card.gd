@@ -54,7 +54,6 @@ func _on_buy_button_pressed() -> void:
 			player.arrowChange(1)
 			print("arrow added")
 		"Anti-bat Potion":
-			# TODO add minigame here
 			player.changeAntiBat(true)
 			print("anti bat added")
 		"Secrets":
