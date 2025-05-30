@@ -1,5 +1,7 @@
-TextureRect
 Label
+Node2D
+Node
+TextureRect
 HBoxContainer
 Button
 RichTextLabel
@@ -10,5 +12,3 @@ AnimatedSprite2D
 Area2D
 MarginContainer
 PopupPanel
-ColorRect
-CheckButton

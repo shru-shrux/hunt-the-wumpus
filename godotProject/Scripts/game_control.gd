@@ -195,6 +195,8 @@ func _process(delta: float) -> void:
 		PlayerData.wumpusKilled = true
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
+	$WumpusHealth.text = "Wumpus Health: " + str(WumpusData.health)
+	
 func update_timer_label():
 	timer_label.text = timer.time_to_string()
 
