@@ -437,6 +437,7 @@ func _on_player_shoot_arrow() -> void:
 			print("Wumpus hit! Starting minigame...")
 			
 			$ShootArrowGame.visible = true
+			$"../Riddle".visible = false
 			# the wumpus runs two caves away if damaged but not dead
 			
 			# stops the player and hides the player
@@ -481,6 +482,7 @@ func _on_player_shoot_arrow() -> void:
 		$EnterCave.visible = true
 		$ShootCave.visible = true
 		checkHazards()
+		$"../Riddle".visible = true
 
 # after the arrow game is done reset the cave and hide the minigame
 func _on_shoot_arrow_game_arrow_game_done() -> void:
