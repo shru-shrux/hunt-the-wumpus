@@ -44,9 +44,11 @@ func _input(event):
 			
 			# if the wumpus is at or below 0 health the game is over
 			if WumpusData.health <= 0:
-				# maybe do a cut scene to wumpus dying
+				# TODO maybe do a cut scene to wumpus dying
 				PlayerData.wumpusKilled = true
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+		
+		# wumpus is still alive so game is done and goes back to main game
 		if not active and $".".visible:
 			if WumpusData.health <= 0:
 				return
@@ -85,7 +87,6 @@ func _stop_game():
 	print(curHealth)
 	print(WumpusData.health)
 	
-	
 	#var screen_center = (min_x + max_x) / 2
 	#var distance = abs(slider_center - screen_center)
 	#var score = max(0, 100 - int(distance))  # Score out of 100
@@ -98,7 +99,7 @@ func _reset_game():
 	active = true
 	label.text = "Press SPACE when the slider is in the green."
 
+# when the game changes visibility, the game is reset
 func _on_visibility_changed() -> void:
-	
 	if visible:
 		_reset_game()

@@ -40,7 +40,8 @@ func _ready() -> void:
 	elif Global.profile_start_tab == "achievements":
 		tab_container.current_tab = 1
 
-
+# shows the leaderboard
+# loads the top 10 scores from the high scores file and displays them
 func show_leaderboard():
 	var high_scores = load_high_scores()
 	var leaderboard = $TabContainer/Leaderboard/MarginContainer/LeaderboardVBox
@@ -69,6 +70,7 @@ func show_leaderboard():
 		label.add_theme_color_override("font_color", Color.GRAY)
 		leaderboard.add_child(label)
 
+# loads the high scores file
 func load_high_scores() -> Array:
 	var high_scores = []
 	var file_path = "user://highscores.save"
@@ -82,9 +84,11 @@ func load_high_scores() -> Array:
 	high_scores.sort_custom(_sort_by_score)
 	return high_scores
 
+# sorts scores descending
 func _sort_by_score(a, b) -> bool:
 	return a["score"] > b["score"]
 
+# shows and displays achievements from the achievement metadata
 func show_achievements():
 	var user_data = LoginManager.get_user_data()
 	var progress = user_data.get("achievements", {})

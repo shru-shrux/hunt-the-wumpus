@@ -1,5 +1,6 @@
 extends Node
 
+# key data for the player to be referenced throughout the game
 var username = ""
 var arrowCount = 3
 var goldCount = 0

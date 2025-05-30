@@ -75,7 +75,8 @@ func _ready() -> void:
 	print("pits------------------")
 	for cave in pitList:
 		print(cave.currentCaveNumber)
-		
+	
+	# set game data variables so they can be accessed throughout the game
 	GameData.caveList = caveList
 	GameData.pitList = pitList
 	GameData.batList = batList
@@ -204,6 +205,10 @@ func _process(delta: float) -> void:
 		PlayerData.wumpusKilled = true
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
+	# display for the wumpus health indicator
+	# font color is red when health is between 0 to 30 percent
+	# font color is orange when health is between 30 to 60 percent
+	# font color is green when health is between 60 to 100 percent
 	if Global.difficulty == "easy":
 		if WumpusData.health <= 100 and WumpusData.health > 60:
 			$WumpusHealth.add_theme_color_override("font_color", Color(0, 1, 0))
@@ -232,10 +237,11 @@ func _process(delta: float) -> void:
 			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0.5, 0))
 		elif WumpusData.health <= 30 and WumpusData.health >= 0:
 			$WumpusHealth.add_theme_color_override("font_color", Color(1, 0, 0))
-	
+
 func update_timer_label():
 	timer_label.text = timer.time_to_string()
 
+# when options button pressed, menu gets shown
 func _on_options_button_pressed() -> void:
 	print(menu)
 	print(menu.visible)
@@ -261,6 +267,7 @@ func _on_toggle_timer_visibility(visible: bool) -> void:
 #func _on_show_riddle_button_toggled(toggled_on: bool) -> void:
 	#$Riddle.shownOnUpdate = !$Riddle.shownOnUpdate
 
+# toggles whether the riddle is shown or not
 func _on_show_riddle_button_pressed() -> void:
 	$Riddle.visible = !$Riddle.visible
 

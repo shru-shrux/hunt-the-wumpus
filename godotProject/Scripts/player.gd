@@ -2,7 +2,7 @@ extends Area2D
 signal hit
 signal interact
 
-# this is basic player movement from tutorial, will need to be adapted and changed
+# this code controls the movement of the player
 
 @onready var gold_label = get_tree().current_scene.get_node("GoldCount")
 @onready var arrow_label = get_tree().current_scene.get_node("ArrowCount")

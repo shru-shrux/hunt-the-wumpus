@@ -6,4 +6,15 @@ res://Scenes/main_menu.tscn
 res://Scenes/in_game_menu/options.tscn
 res://Scenes/shoot_arrow_game.tscn
 res://Scenes/profile/settings_tab_container.tscn
-res://Scripts/riddle_generator.gd
+res://Scripts/wumpus_data.gd
+res://Scripts/shoot_arrow_game.gd
+res://Scripts/settings_tab_container.gd
+res://Scripts/profile.gd
+res://Scripts/player_data.gd
+res://Scripts/player.gd
+res://Scripts/main_menu.gd
+res://Scripts/Global.gd
+res://Scripts/login_manager.gd
+res://Scripts/game_data.gd
+res://Scripts/game_control.gd
+res://Scripts/end_scene.gd

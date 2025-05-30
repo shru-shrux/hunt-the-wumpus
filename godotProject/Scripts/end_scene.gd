@@ -12,13 +12,18 @@ func _ready() -> void:
 		print("No user logged in.")
 		return
 	
+	# displays whether you won or lsot
 	var wumpusScore = 0
 	if PlayerData.wumpusKilled == true:
 		wumpusScore = 50
 		$Result.text = "You Win!"
 	else:
 		$Result.text = "You Lose"
+		
+	# calculates the score
 	score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	
+	# score gets multiplied by a multiplier based on difficulty of the game
 	if Global.difficulty == "easy":
 		score = score
 	elif Global.difficulty == "medium":
@@ -28,6 +33,7 @@ func _ready() -> void:
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
 	
+	# gets the username of the player
 	var username = "placeholder"
 	if LoginManager.get_user_data() != null:
 		username = user_data.get("username")
@@ -57,6 +63,8 @@ func _ready() -> void:
 	
 	reset_game()
 
+# saves the new soore to the high score file
+# saves the username, score, and difficulty
 func save_new_score(username: String, score: int, difficulty: String):
 	var file_path = "user://highscores.save"
 	var high_scores = []
@@ -72,7 +80,7 @@ func save_new_score(username: String, score: int, difficulty: String):
 	file.store_var(high_scores)
 	file.close()
 
-
+# shows the top 10 current high scores from the high scores file 
 func show_leaderboard():
 	var high_scores = load_high_scores()
 	var leaderboard = $Leaderboard
@@ -109,6 +117,7 @@ func show_leaderboard():
 			
 		leaderboard.add_child(label)
 
+# loads the high scores from the high scores file and sorts descending
 func load_high_scores() -> Array:
 	var high_scores = []
 	var file_path = "user://highscores.save"
@@ -123,6 +132,7 @@ func load_high_scores() -> Array:
 	
 	return high_scores
 
+# sorts descending scores
 func _sort_by_score(a, b) -> bool:
 	return a["score"] > b["score"]
 
@@ -130,10 +140,11 @@ func _sort_by_score(a, b) -> bool:
 func _process(delta: float) -> void:
 	pass
 
-
+# brings you to the main menu
 func _on_home_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
+# resets the game so it can be replayed
 func reset_game() -> void:
 	WumpusData.health = 100
 	PlayerData.arrowCount = 3

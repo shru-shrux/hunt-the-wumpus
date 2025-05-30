@@ -1,5 +1,6 @@
 extends Node
 
+# key data for the game to be referenced throughout the game
 var caveList: Array[Cave] = []
 var batList: Array[Cave] = []
 var pitList: Array[Cave] = []

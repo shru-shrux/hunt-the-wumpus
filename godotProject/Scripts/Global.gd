@@ -1,7 +1,7 @@
 extends Node
 
+# global variables for parts of the game
 var profile_start_tab : String = "achievements"
-
 var difficulty: String
 
 func _ready():
@@ -22,7 +22,7 @@ func initialize_high_scores():
 		print("High score file already exists.")
 		
 
-# clear the high score list
+# clear the high score list, can be called as needed
 func clear_high_scores():
 	var highscore_path = "user://highscores.save"
 	var file = FileAccess.open(highscore_path, FileAccess.WRITE)
