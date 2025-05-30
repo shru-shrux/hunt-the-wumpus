@@ -31,9 +31,11 @@ func _ready() -> void:
 	var username = "placeholder"
 	if LoginManager.get_user_data() != null:
 		username = user_data.get("username")
+		
+	var difficulty = Global.difficulty
 	
-	last_score_entry = {"username": str(username), "score": int(score)}
-	save_new_score(last_score_entry["username"], last_score_entry["score"])
+	last_score_entry = {"username": str(username), "score": int(score), "difficulty": str(difficulty)}
+	save_new_score(last_score_entry["username"], last_score_entry["score"], last_score_entry["difficulty"])
 	
 	show_leaderboard()
 	
@@ -52,8 +54,10 @@ func _ready() -> void:
 	user_data["achievements"]["triviaCorrect"] += PlayerData.triviaCorrect
 	user_data["achievements"]["cavesVisited"] += PlayerData.cavesVisited
 	LoginManager.update_user_data(user_data)
+	
+	reset_game()
 
-func save_new_score(username: String, score: int):
+func save_new_score(username: String, score: int, difficulty: String):
 	var file_path = "user://highscores.save"
 	var high_scores = []
 
@@ -62,7 +66,7 @@ func save_new_score(username: String, score: int):
 		high_scores = file.get_var()
 		file.close()
 
-	high_scores.append({"username": username, "score": score})
+	high_scores.append({"username": username, "score": score, "difficulty": difficulty})
 
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_var(high_scores)
@@ -129,3 +133,12 @@ func _process(delta: float) -> void:
 
 func _on_home_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func reset_game() -> void:
+	WumpusData.health = 100
+	PlayerData.arrowCount = 3
+	PlayerData.goldCount = 0
+	PlayerData.wumpusKilled = false
+	PlayerData.hasAntiBatEffect = false
+	PlayerData.cavesVisited = 0
+	PlayerData.triviaCorrect = 0

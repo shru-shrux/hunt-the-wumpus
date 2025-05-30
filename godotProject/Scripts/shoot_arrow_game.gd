@@ -5,7 +5,7 @@ signal arrowGameDone
 @onready var label = $Label
 @onready var center_marker = $CenterMarker
 
-var speed = 600.0  # pixels per second
+var speed = 500.0  # pixels per second
 var direction = 1  # 1 = right, -1 = left
 var min_x = 356
 var max_x = 809
@@ -15,6 +15,14 @@ var active = false
 func _ready():
 	slider.position.x = min_x
 	label.text = "Shoot the Wumpus!\nPress SPACE when the slider is in the green."
+	
+	# set speed based on difficulty of the game
+	if Global.difficulty == "easy":
+		speed = 500.0
+	elif Global.difficulty == "medium":
+		speed = 600.0
+	elif Global.difficulty == "hard":
+		speed = 700.0
 
 # moving the slider back and forth
 func _process(delta):
@@ -40,6 +48,8 @@ func _input(event):
 				PlayerData.wumpusKilled = true
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		if not active and $".".visible:
+			if WumpusData.health <= 0:
+				return
 			arrowGameDone.emit()
 
 # calculating the result of the game when the minigame is stopped from position of the slider
@@ -74,7 +84,7 @@ func _stop_game():
 	
 	print(curHealth)
 	print(WumpusData.health)
-		
+	
 	
 	#var screen_center = (min_x + max_x) / 2
 	#var distance = abs(slider_center - screen_center)
