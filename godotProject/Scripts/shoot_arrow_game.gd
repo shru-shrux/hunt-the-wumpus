@@ -33,13 +33,14 @@ func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
 		if active:
 			_stop_game()
-		else:
+			
+			# if the wumpus is at or below 0 health the game is over
 			if WumpusData.health <= 0:
 				# maybe do a cut scene to wumpus dying
 				PlayerData.wumpusKilled = true
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-			else:
-				arrowGameDone.emit()
+		if not active and $".".visible:
+			arrowGameDone.emit()
 
 # calculating the result of the game when the minigame is stopped from position of the slider
 func _stop_game():
