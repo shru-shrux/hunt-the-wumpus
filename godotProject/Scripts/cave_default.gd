@@ -43,6 +43,9 @@ func _ready() -> void:
 	# connect the two signals with the 2-arg overload
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
+	
+	$"../Minigame".set_process(false)
+	$"../Minigame".set_process_unhandled_input(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -163,9 +166,13 @@ func updateCave(newCave:Cave):
 		await wait(2.0)
 		if PlayerData.hasAntiBatEffect:
 			$"../Minigame".visible = true
+			$"../Minigame".set_process(true)
+			$"../Minigame".set_process_unhandled_input(true)
 			$Warnings/BatBackground/BatWarning.text = "Your Anti-Bat potion has worked! The bats have run away to a new cave."
 			await $"../Minigame".get_node("Panel/game").game_finished
 			$"../Minigame".visible = false
+			$"../Minigame".set_process(false)
+			$"../Minigame".set_process_unhandled_input(false)
 			PlayerData.hasAntiBatEffect = false
 		if pickup: 
 			print("you are in a bat cave")

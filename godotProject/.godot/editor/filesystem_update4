@@ -1,10 +1,5 @@
-res://Scenes/minigame/minigame.tscn
 res://Scenes/main.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/login_signup/opening_scene.tscn
-res://Scenes/login_signup/login.tscn
-res://Scenes/login_signup/sign_up.tscn
-res://Scenes/in_game_menu/shop.tscn
-res://Scenes/in_game_menu/shop_card.tscn
 res://Scenes/minigame/gameover.tscn
-res://Scenes/shoot_arrow_game.tscn
+res://Scenes/minigame/minigame.tscn
+res://Scenes/minigame/obstacle.tscn
+res://Scripts/cave_default.gd
