@@ -49,10 +49,10 @@ func generate_trivia(callback: Callable, difficulty: String) -> void:
 		_use_fallback_trivia()
 		return
 
-	var url     = "https://api.openai.com/v1/chat/completions"
+	var url = "https://api.openai.com/v1/chat/completions"
 	var headers = ["Content-Type: application/json", "Authorization: Bearer %s" % api_key]
-	var prompt  = "Give me one %s difficulty multiple-choice trivia question with 1 correct answer and 3 incorrect answers. Format as JSON with keys 'question','correct','incorrect'." % difficulty
-	var body    = { "model":"gpt-3.5-turbo", 
+	var prompt = "Give me one %s difficulty multiple-choice trivia question with 1 correct answer and 3 incorrect answers. Format as JSON with keys 'question','correct','incorrect'." % difficulty
+	var body = { "model":"gpt-3.5-turbo", 
 					"messages":[{"role":"system","content":"You are a trivia generator."},{"role":"user","content":prompt}],
 					"temperature":0.7 }
 	var err = http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
