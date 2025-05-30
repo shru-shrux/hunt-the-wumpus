@@ -44,9 +44,9 @@ text = "Hunt The Wumpus"
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 358.0
-offset_right = 229.0
-offset_bottom = 550.0
+offset_top = 333.0
+offset_right = 326.0
+offset_bottom = 601.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -68,6 +68,12 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_font_sizes/font_size = 40
 text = "Achievements"
+
+[node name="Tutorial" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1ehe0")
+theme_override_font_sizes/font_size = 40
+text = "Tutorial"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -129,6 +135,7 @@ text = "Hard"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="ready" from="game_start_difficulty" to="." method="_on_game_start_difficulty_ready"]
 [connection signal="pressed" from="game_start_difficulty/VBoxContainer/Easy" to="." method="_on_easy_pressed"]

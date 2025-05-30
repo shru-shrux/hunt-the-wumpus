@@ -58,6 +58,7 @@ text = "2"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HighlightedCave" type="Sprite2D" parent="0"]
 visible = false
@@ -82,6 +83,7 @@ text = "6"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HighlightedCave" type="Sprite2D" parent="1"]
 visible = false
@@ -107,6 +109,7 @@ text = "7"
 label_settings = SubResource("LabelSettings_y8311")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="HighlightedCave" type="Sprite2D" parent="2"]
 visible = false

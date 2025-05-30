@@ -21,7 +21,8 @@ grow_vertical = 2
 script = ExtResource("1_es2kt")
 
 [node name="BackgroundColor" type="Sprite2D" parent="."]
-position = Vector2(585, 327)
+position = Vector2(578.5, 321.5)
+scale = Vector2(1.03906, 1.05401)
 texture = ExtResource("2_vtknk")
 
 [node name="Hunt the Wumpus" type="Label" parent="."]

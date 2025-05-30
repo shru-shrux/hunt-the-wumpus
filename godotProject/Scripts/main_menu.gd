@@ -40,3 +40,6 @@ func _on_medium_pressed() -> void:
 func _on_hard_pressed() -> void:
 	Global.difficulty = "hard"
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+func _on_tutorial_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
