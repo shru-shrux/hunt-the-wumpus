@@ -118,7 +118,7 @@ func generate_riddle_for_number(number: int, callback: Callable, difficulty: Str
 			prompt = "Give me a short, clever riddle whose answer is the number %d. Make sure no other number fits; do not use ranges. Keep it under 2 sentences." % number
 
 	var body := {
-		"model": "gpt-3.5-turbo",
+		"model": "gpt-4.1-2025-04-14",
 		"messages": [
 			{ "role": "system", "content": "You are a riddle generator for a logic-based adventure game." },
 			{ "role": "user", "content": prompt }
