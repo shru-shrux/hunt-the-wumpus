@@ -27,5 +27,4 @@ texture = ExtResource("1_ka2pi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuDifficulty"]
 position = Vector2(-11.2689, -29.311)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_feyax")

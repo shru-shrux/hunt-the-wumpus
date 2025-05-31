@@ -5,7 +5,7 @@ signal trivia_won
 signal trivia_lost
 
 var trivia_generator = TriviaGenerator.new()
-@onready var question_label    = $Panel/Question
+@onready var question_label = $Panel/Question
 @onready var answers_container = $Panel/GridContainer
 @onready var player = get_parent().get_node("Player")
 
@@ -17,6 +17,10 @@ var questions: Array = []
 var current_index: int
 var correct_count: int
 var current_correct: String
+var pending_to_generate = 0
+
+# Track whether we're waiting for the next question to arrive
+var waiting_for_next = false
 
 func _ready():
 	# 1) instantiate & add to scene so its _ready() fires
@@ -32,22 +36,44 @@ func _ready():
 	# pull difficulty off parent
 	difficulty = get_parent().difficulty
 
-func start_trivia(total: int = 5, required: int = 3, difficulty_param: String = "medium") -> void:
-	visible = true
-	total_questions  = total
+func start_trivia(total: int = 5, required: int = 3) -> void:
+	#visible = true
+	total_questions = total
 	required_correct = required
 	questions.clear()
 	current_index = 0
 	correct_count = 0
+	pending_to_generate = total_questions
+	waiting_for_next = false
 
-	# generate them all
-	for i in range(total_questions):
-		trivia_generator.generate_trivia(_on_single_ready, difficulty_param)
+	## generate them all - breaks because can't have multiple at once
+	#for i in range(total_questions):
+		#trivia_generator.generate_trivia(_on_single_ready, difficulty)
+		
+	# Start the first one
+	_generate_next_trivia()
 
+func _generate_next_trivia():
+	if pending_to_generate > 0:
+		trivia_generator.generate_trivia(_on_single_ready, difficulty)
+		
 func _on_single_ready(data: Dictionary) -> void:
 	questions.append(data)
-	if questions.size() == total_questions:
+	pending_to_generate -= 1 
+
+	if questions.size() == 1:
 		_show_question(0)
+		visible = true
+	else:
+		# If we were waiting for "next" (waiting_for_next = true),
+		# and now there is one more question in `questions`, show it.
+		if waiting_for_next and questions.size() > current_index:
+			_show_question(current_index)
+			waiting_for_next = false
+			# No need to adjust visible (already visible)
+
+		print("Queued trivia question ready.")
+
 
 func _show_question(idx: int) -> void:
 	player.goldChange(-1)
@@ -65,16 +91,38 @@ func _show_question(idx: int) -> void:
 		var btn = answers_container.get_child(i)
 		btn.text = answers[i]
 		btn.set_meta("answer", answers[i])
+		btn.disabled = false  # enable buttons
 
 func _on_answer_button_pressed(btn: Button) -> void:
+	for child in answers_container.get_children():
+		child.disabled = true
+
 	if btn.get_meta("answer") == current_correct:
 		correct_count += 1
 		print("correct")
 		PlayerData.triviaCorrect += 1
+	else:
+		print("wrong")
 
-	var next = current_index + 1
-	if next < total_questions:
-		_show_question(next)
+	current_index += 1  # move this down
+
+	if current_index < total_questions:
+		if current_index < questions.size():
+			_show_question(current_index)
+			
+			# Kick off generating the next one in background if needed:
+			if pending_to_generate > 0:
+				_generate_next_trivia()
+		else:
+			# Next question is not yet ready → enter “waiting” mode:
+			print("Waiting for next trivia question to load...")
+			waiting_for_next = true  # remember that we want to show index =current_index
+			# Kick off generating next if we haven’t already:
+			
+			if pending_to_generate > 0:
+				_generate_next_trivia()
+			# We will re-enable buttons when _on_single_ready() actually shows it.
+			
 	else:
 		visible = false
 		print(correct_count)
