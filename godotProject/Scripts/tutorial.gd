@@ -1,5 +1,6 @@
 extends Control
 
+# images for the tutorial
 var tutorial_images = [
 	"res://Assets/Tutorial Screenshots/01Main Menu.png",
 	"res://Assets/Tutorial Screenshots/02Main Menu Difficulty.png",
@@ -22,12 +23,14 @@ var tutorial_images = [
 	"res://Assets/Tutorial Screenshots/18Wumpus trivia.png",
 	"res://Assets/Tutorial Screenshots/19end_scene.png",
 ]
+
+# all the instructions for the game
 var instructions = [
 	"Welcome to the tutorial! Here, we can click new game to start",
 	"Now, you can choose the difficulty of the riddles in the game",
 	"This is how the game looks like when you start. You can see the player, the pause button, the timer, toggle riddle button,
 	the current cave you are in, how many arrows and gold you have, and the Wumpus health indicator. If it is green, the Wumpus is healthy.
-	If it is orange, the Wumpus is damanged. If it is red, the Wumpus is close to dying.",
+	If it is orange, the Wumpus is damaged. If it is red, the Wumpus is close to dying.",
 	"By clicking toggle riddle, you can choose to see the riddle or have it hidden",
 	"To pause the game, you can click the pause button. From the menu, you can access the shop",
 	"Here, you are able to buy items for the game",
@@ -63,6 +66,7 @@ var current_index = 0
 func _ready() -> void:
 	update_image()
 
+# updates the image to the next image
 func update_image():
 	var image = load(tutorial_images[current_index])
 	image_display.texture = image
@@ -77,7 +81,7 @@ func update_image():
 func _process(delta: float) -> void:
 	pass
 
-
+# goes to the next image
 func _on_next_button_pressed() -> void:
 	if current_index < tutorial_images.size() -1:
 		current_index += 1
@@ -85,11 +89,11 @@ func _on_next_button_pressed() -> void:
 	else:
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-
+# skips the tutorial
 func _on_skip_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-
+# goes back an image
 func _on_back_button_pressed() -> void:
 	if current_index > 0:
 		current_index -= 1

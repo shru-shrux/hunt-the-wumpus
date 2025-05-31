@@ -1,2 +1,3 @@
-res://Scenes/backstory.tscn
-res://Scripts/cave_default.gd
+res://Scenes/tutorial.tscn
+res://Scripts/backstory.gd
+res://Scripts/tutorial.gd
