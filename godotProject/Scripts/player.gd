@@ -94,7 +94,14 @@ func _process(delta):
 			if Input.is_action_pressed("press_w"):
 				
 				goToWumpus.emit()
-	
+
+		# CTRL-E shortcut to end game and tally score
+		if Input.is_action_pressed("CTRL"):
+			
+			if Input.is_action_pressed("press_e"):
+				
+				goldChange(-101)
+
 	elif falling:
 		velocity.y += 1000
 		position += velocity * delta
