@@ -11,7 +11,7 @@ var min_x = 356
 var max_x = 809
 var active = false
 
-var shot_result
+var shot_result = "hit"
 
 # starting game position when you enter the scene
 func _ready():
@@ -46,14 +46,23 @@ func _input(event):
 			
 			# if the wumpus is at or below 0 health the game is over
 			if WumpusData.health <= 0:
-				# TODO cut scene to wumpus dying
 				PlayerData.wumpusKilled = true
 				PlayerData.howEnded = 0
+				$WumpusDead.visible = true
+				$WumpusDead.play()
+				await $WumpusDead.finished
+				$WumpusDead.visible = false
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-			#elif shot_result == "miss":
-				## cut scene to hitting wall
-			#elif shot_result == "hit":
-				## cut scene to hitting wumpus
+			elif shot_result == "miss":
+				$WallHit.visible = true
+				$WallHit.play()
+				await $WallHit.finsihed
+				$WallHit.visible = false
+			elif shot_result == "hit":
+				$WumpusHit.visible = true
+				$WumpusHit.play()
+				await $WumpusHit.finished
+				$WumpusHit.visible = false
 		
 		# wumpus is still alive so game is done and goes back to main game
 		if not active and $".".visible:
