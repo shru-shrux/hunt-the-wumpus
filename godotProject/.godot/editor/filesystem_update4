@@ -1,8 +1,7 @@
-res://Scenes/login.tscn
-res://Scripts/settings_tab_container.gd
-res://Scenes/login_signup/opening_scene.tscn
-res://Scenes/tutorial.tscn
-res://Scenes/profile/settings_tab_container.tscn
-res://Scenes/trivia.tscn
-res://Scripts/trivia.gd
-res://Scripts/trivia_generator.gd
+res://Scenes/backstory.tscn
+res://Scripts/backstory.gd
+res://Scenes/main.tscn
+res://Scenes/riddle.tscn
+res://Scenes/shoot_arrow_game.tscn
+res://Scenes/end_scene.tscn
+res://Scenes/cave_default.tscn

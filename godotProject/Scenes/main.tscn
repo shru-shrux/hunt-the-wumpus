@@ -245,6 +245,7 @@ visible = false
 offset_right = 1161.0
 offset_bottom = 649.0
 stream = ExtResource("20_gt3je")
+
 [node name="Minigame" parent="." instance=ExtResource("16_k12tt")]
 visible = false
 

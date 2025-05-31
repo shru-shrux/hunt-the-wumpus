@@ -50,7 +50,7 @@ func _on_sign_in_button_button_down():
 	if login_manager.signup(user, password):
 		error_label.text = "Account created! You are logged in."
 		
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/backstory.tscn")
 	else:
 		error_label.text = "Username already taken."
 

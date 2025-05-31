@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcmsvmp46f6xr"]
+
+[ext_resource type="Script" uid="uid://b2gkvcr61wkyb" path="res://Scripts/backstory.gd" id="1_ooecn"]
+[ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_ajky3"]
+[ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_1n2c4"]
+
+[sub_resource type="Animation" id="Animation_1n2c4"]
+resource_name = "grow_title"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_4k0gl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleLabel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcwgn"]
+_data = {
+&"RESET": SubResource("Animation_4k0gl"),
+&"grow_title": SubResource("Animation_1n2c4")
+}
+
+[node name="Backstory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 646.0
+script = ExtResource("1_ooecn")
+
+[node name="BackgroundColor" type="Sprite2D" parent="."]
+position = Vector2(577, 325)
+texture = ExtResource("2_ajky3")
+
+[node name="SkipToMainMenu" type="Button" parent="."]
+offset_left = 1035.0
+offset_top = 598.0
+offset_right = 1130.0
+offset_bottom = 634.0
+theme_override_fonts/font = ExtResource("3_1n2c4")
+theme_override_font_sizes/font_size = 30
+text = "  Skip  "
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.5
+offset_top = -12.5
+offset_right = 119.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(119.5, 12.5)
+theme_override_fonts/font = ExtResource("3_1n2c4")
+text = "Welcome to the Caverns of Wumpus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 668.0
+offset_right = 863.0
+offset_bottom = 698.0
+theme_override_fonts/font = ExtResource("3_1n2c4")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TypingLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -218.0
+offset_right = 316.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_1n2c4")
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vcwgn")
+}
+
+[node name="ContinueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 740.0
+offset_top = 531.0
+offset_right = 922.0
+offset_bottom = 554.0
+theme_override_fonts/font = ExtResource("3_1n2c4")
+theme_override_font_sizes/font_size = 20
+text = "Hit Enter to continue"
+
+[connection signal="pressed" from="SkipToMainMenu" to="." method="_on_skip_to_main_menu_pressed"]

@@ -30,7 +30,7 @@ func _on_login_button_button_down():
 	if login_manager.login(user, password):
 		error_label.text = "Login successful!"
 		# proceed to main menu
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/backstory.tscn")
 	else:
 		error_label.text = "Incorrect password."
 
