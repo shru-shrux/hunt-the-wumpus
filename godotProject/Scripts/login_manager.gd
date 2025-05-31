@@ -1,3 +1,4 @@
+# singleton/autoload file to manage accounts, logins, and signups
 extends Node
 class_name loginManager
 
