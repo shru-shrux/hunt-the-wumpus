@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b5g0uju115w7"]
+[gd_scene load_steps=25 format=3 uid="uid://b5g0uju115w7"]
 
 [ext_resource type="Script" uid="uid://dmeusmgbmtojg" path="res://Scripts/game_control.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bia3tdhj6mfis" path="res://Scenes/player.tscn" id="2_8gbba"]
@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://no1sd80puswn" path="res://Assets/Art/ArrowPixelArt.png" id="14_wsu2k"]
 [ext_resource type="Texture2D" uid="uid://cgyqluxn8v1s5" path="res://Assets/Art/CoinPixelArt.png" id="15_wsu2k"]
 [ext_resource type="PackedScene" uid="uid://xlsqjkn06yxb" path="res://Scenes/minigame/minigame.tscn" id="16_k12tt"]
+[ext_resource type="VideoStream" uid="uid://ol1ci6jtdcg0" path="res://Assets/Videos/monster_dead.ogv" id="18_pdsj5"]
+[ext_resource type="VideoStream" uid="uid://do56nx72ia32r" path="res://Assets/Videos/monster_sad.ogv" id="19_ee4r6"]
+[ext_resource type="VideoStream" uid="uid://41jsficmiy80" path="res://Assets/Videos/wall_hit.ogv" id="20_gt3je"]
 
 [sub_resource type="Animation" id="Animation_fdnlq"]
 length = 0.1
@@ -225,16 +228,36 @@ rotation = -1.5708
 scale = Vector2(3.57143, 3.57143)
 texture = ExtResource("14_wsu2k")
 
+[node name="WumpusDead" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("18_pdsj5")
+
+[node name="WumpusHit" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("19_ee4r6")
+
+[node name="WallHit" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 1161.0
+offset_bottom = 649.0
+stream = ExtResource("20_gt3je")
+[node name="Minigame" parent="." instance=ExtResource("16_k12tt")]
+visible = false
+
 [node name="GameStartBlackScreen" type="ColorRect" parent="."]
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
-[node name="Minigame" parent="." instance=ExtResource("16_k12tt")]
-visible = false
-
 [connection signal="arrowGameDone" from="CaveDefault/ShootArrowGame" to="CaveDefault" method="_on_shoot_arrow_game_arrow_game_done"]
 [connection signal="cpsMinigameOver" from="CaveDefault/CpsMinigame" to="CaveDefault" method="_on_cps_minigame_cps_minigame_over"]
+[connection signal="goToBat" from="Player" to="CaveDefault" method="_on_player_go_to_bat"]
+[connection signal="goToPit" from="Player" to="CaveDefault" method="_on_player_go_to_pit"]
+[connection signal="goToWumpus" from="Player" to="CaveDefault" method="_on_player_go_to_wumpus"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="ShowRiddleButton" to="." method="_on_show_riddle_button_pressed"]
