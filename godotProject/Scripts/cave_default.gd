@@ -217,12 +217,21 @@ func updateCave(newCave:Cave):
 				$OtherWarnings.visible = false
 			PlayerData.hasAntiBatEffect = false
 		
+		# if the bat cave has been picked
 		var caveBatPicked = false
-		var cavePlayerPicked
+		# if the player cave has been picked
+		var cavePlayerPicked = false
+		# the cave the bat will go to
 		var randomBatCave : Cave
+		# the cave the player will go to
 		var randomPlayerCave : Cave
+		
+		# the bat cave will be different than this one so make this a normal
+		# cave again
 		hasBat = false
-		# choose the cave the bat will go to
+		newCave.hasBat = false
+		# choose the cave the bat will go to, can't be another hazard and can't
+		# be the current cave
 		while not caveBatPicked:
 			randomBatCave = caveList[randi_range(0, 29)]
 			if randomBatCave.currentCaveNumber != currentCaveNumber:
@@ -236,7 +245,8 @@ func updateCave(newCave:Cave):
 		batList[batIdx] = randomBatCave
 		randomBatCave.hasBat = true
 		
-		# picking the place where the player will go
+		# picking the place where the player will go, can't be current and can't
+		# be another hazard 
 		while not cavePlayerPicked:
 			randomPlayerCave = caveList[randi_range(0, 29)]
 			if randomPlayerCave.currentCaveNumber != currentCaveNumber:
@@ -249,6 +259,8 @@ func updateCave(newCave:Cave):
 		wumpus.visible = false
 		$Bat.hide()
 		
+		# if the player was picked up by the bat, can avoid through anti-bat
+		# and then winning the minigame
 		if pickup:
 			updateCave(randomPlayerCave)
 			$Bat.hide()
@@ -314,7 +326,9 @@ func wait_for_space():
 # called when the player wins the trivia
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
+	$Info.text = true
 	await get_tree().create_timer(1.5).timeout
+	$Info.text.visible = false
 	
 	# becomes normal room/gameplay again
 	wumpus.visible = false
