@@ -25,7 +25,9 @@ var tutorial_images = [
 var instructions = [
 	"Welcome to the tutorial! Here, we can click new game to start",
 	"Now, you can choose the difficulty of the riddles in the game",
-	"This is how the game looks like when you start",
+	"This is how the game looks like when you start. You can see the player, the pause button, the timer, toggle riddle button,
+	the current cave you are in, how many arrows and gold you have, and the Wumpus health indicator. If it is green, the Wumpus is healthy.
+	If it is orange, the Wumpus is damanged. If it is red, the Wumpus is close to dying.",
 	"By clicking toggle riddle, you can choose to see the riddle or have it hidden",
 	"To pause the game, you can click the pause button. From the menu, you can access the shop",
 	"Here, you are able to buy items for the game",
