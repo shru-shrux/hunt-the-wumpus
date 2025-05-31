@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb2yadqrunvbn"]
+[gd_scene load_steps=4 format=3 uid="uid://bb2yadqrunvbn"]
 
 [ext_resource type="Script" uid="uid://cw2ltion56byg" path="res://Scripts/tutorial.gd" id="1_feyax"]
-[ext_resource type="Texture2D" path="res://Assets/Tutorial Screenshots/Main Menu.png" id="1_ka2pi"]
 [ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="3_omtrn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omtrn"]
@@ -17,10 +16,12 @@ grow_vertical = 2
 script = ExtResource("1_feyax")
 
 [node name="Image" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_ka2pi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -29,10 +30,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -152.0
-offset_right = 151.0
-offset_bottom = -98.0
+offset_left = -200.0
+offset_top = -72.0
+offset_right = 200.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_omtrn")
@@ -49,21 +50,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 435.0
+offset_right = 1135.0
+offset_bottom = 478.0
+theme_override_fonts/font = ExtResource("3_omtrn")
+text = "Back"
+
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1014.0
+offset_left = 991.0
 offset_top = 490.0
 offset_right = 1135.0
 offset_bottom = 533.0
+theme_override_fonts/font = ExtResource("3_omtrn")
 text = "Next"
 
 [node name="SkipButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1014.0
+offset_left = 991.0
 offset_top = 544.0
 offset_right = 1135.0
 offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("3_omtrn")
 text = "Skip"
 
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

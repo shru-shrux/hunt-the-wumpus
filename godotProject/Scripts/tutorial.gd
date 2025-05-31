@@ -39,9 +39,12 @@ var instructions = [
 	"If a Wumpus is nearby, you can use the riddle to figure out which cave it is in and click the Q key to shoot an arrow",
 	"If the Wumpus is in the cave, you are directed to a game to see how much damage the Wumpus gets based on
 	how accurate you shoot",
-	"However, if you choose incorrectly, a message pops up at the bottom telling you and you lose the arrow",
-	"Additionally, there are the hazard caves such as the bat cave",
-	"and the pit cave.",
+	"However, if you choose incorrectly, a message pops up at the bottom telling you and you lose the arrow. Also, the Wumpus
+	changes caves everytime you shoot an arrow",
+	"Additionally, there are the hazard caves such as the bat cave. The bat cave will take you to a random room and you lose gold
+	unless you have the anti-bat effect which you can buy in shop",
+	"and the pit cave. When you fall in, you must play a CPS game to determine how much gold you lose. You want to reach the top
+	of the ladder to minimize losings.",
 	"Lastly, if you enter the Wumpus cave, you must fight to stay alive",
 	"There are 5 trivia questions you must answer. If you get 3/5 correct, you stay alive. If not, you lose",
 	"Now, you are ready to play the game! Good luck!"
@@ -64,7 +67,7 @@ func update_image():
 	instructions_display.text = instructions[current_index]
 	$Panel.custom_minimum_size.y = instructions_display.get_minimum_size().y + 20
 	if current_index == tutorial_images.size() - 1:
-		next_button.text = "Start Game"
+		next_button.text = "Back to Menu"
 	else:
 		next_button.text = "Next"
 
@@ -83,3 +86,9 @@ func _on_next_button_pressed() -> void:
 
 func _on_skip_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
+func _on_back_button_pressed() -> void:
+	if current_index > 0:
+		current_index -= 1
+		update_image()
