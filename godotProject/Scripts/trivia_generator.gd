@@ -6,6 +6,7 @@ var api_key: String
 var on_trivia_ready: Callable = func(_data: Dictionary) -> void: pass
 
 var is_requesting = false
+var request_queue: Array = []
 
 # Simple fallback trivia list
 var fallback_trivia: Array = [
@@ -94,29 +95,45 @@ func load_api_key() -> String:
 	return ""
 
 func generate_trivia(callback: Callable, difficulty: String) -> void:
+	# If already requesting, queue this one
 	if is_requesting:
-		push_error("Trivia request already in progress!")
+		request_queue.append({ "callback": callback, "difficulty": difficulty })
 		return
-	
+		
 	is_requesting = true
 	on_trivia_ready = callback
+	_make_request(difficulty)
 
+func _make_request(difficulty: String):
 	if http_request == null:
-		push_error("HTTPRequest not initialized!")
+		push_error("HTTPRequest node is missing!")
 		_use_fallback_trivia()
+		_process_next_in_queue()
 		return
 
 	var url = "https://api.openai.com/v1/chat/completions"
 	var headers = ["Content-Type: application/json", "Authorization: Bearer %s" % api_key]
-	var prompt = "Give me one %s difficulty multiple-choice trivia question with 1 correct answer and 3 incorrect answers on a randomly chosen topic (e.g. history, geography, literature, sports, pop culture, science, art). Format as JSON with keys 'question','correct','incorrect'." % difficulty
+	
+	var prompt = "Give me one %s difficulty multiple-choice trivia question with 1 correct answer and 3 incorrect answers on a randomly chosen topic. Keep the question under 100 characters. Format the output as JSON with exactly three keys: 'question', 'correct', and 'incorrect'." % difficulty
+	
+	var exclude_topics = get_parent().seen_topics
+	if exclude_topics.size() > 0:
+		# e.g. exclude_topics == ["geography", "art"]
+		var clause = " Do not ask about "
+		for topic in exclude_topics.size():
+			clause += exclude_topics[topic]
+		prompt += clause
+	
 	var body = { "model":"gpt-4.1", 
 					"messages":[{"role":"system","content":"You are a trivia generator."},{"role":"user","content":prompt}],
 					"temperature":0.7}
 	var err = http_request.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body))
 	if err != OK:
-		push_error("Failed to send request: %s" % err)
+		push_error("Failed to send HTTPRequest: %s" % err)
+		# Immediately fallback if the HTTPRequest call itself fails
 		is_requesting = false
 		_use_fallback_trivia()
+		_process_next_in_queue()
 
 func _on_request_completed(result, code, headers, body):
 	#print("Request completed with code: ", code)
@@ -145,11 +162,20 @@ func _on_request_completed(result, code, headers, body):
 			else:
 				push_error("Parsed trivia was not a valid dictionary or missing keys:\n%s" % content)
 				_use_fallback_trivia()
-				return
+		else:
+			push_error("OpenAI response format was unexpected:\n%s" % txt)
+			_use_fallback_trivia()
 	else:
 		push_error("HTTP error %d: %s" % [code, txt])
 		_use_fallback_trivia()
-
+	
+	_process_next_in_queue()
+	
+func _process_next_in_queue():
+	if request_queue.size() > 0:
+		var next = request_queue.pop_front()
+		generate_trivia(next.callback, next.difficulty)
+		
 func _use_fallback_trivia():
 	if fallback_trivia.size() > 0:
 		on_trivia_ready.call(fallback_trivia[randi()%fallback_trivia.size()])
