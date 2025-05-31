@@ -35,11 +35,14 @@ var pickup: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# define scenes
 	player = get_parent().get_node("Player")
 	wumpus = get_parent().get_node("Wumpus")
 	trivia_popup = get_parent().get_node("Trivia") as TriviaPopup
-
+	
+	# hide trivia popup to start
 	trivia_popup.visible = false
+	
 	# connect the two signals with the 2-arg overload
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
@@ -51,6 +54,36 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Interact"):
 		_on_player_interact()
+		
+# called by game control once caveList is defined, gets refrences for key
+# variables
+func loadCave():
+	caveList = get_parent().caveList
+	wumpusCave = get_parent().wumpusCave
+	batList = get_parent().batList
+	pitList = get_parent().pitList
+	playerSpawn = get_parent().playerSpawn
+
+# checks the surrounding caves for special caves and lets the user know
+func checkHazards():
+	# if there is a bat nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasBat:
+			$BatSound.play()
+			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
+			$Warnings/BatBackground.visible = true
+	
+	# if there is a pit cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasPit:
+			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
+			$Warnings/PitBackground.visible = true
+	
+	# if there is a wumpus cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasWumpus:
+			$Warnings/WumpusBackground/WumpusWarning.text = "You smell a Wumpus"
+			$Warnings/WumpusBackground.visible = true
 
 # newCave - the cave the player is being sent to
 # Sets up the next cave that the player wants to go to.
@@ -270,8 +303,6 @@ func updateCave(newCave:Cave):
 		if $"../Riddle".shownOnUpdate:
 			$"../Riddle".visible = true
 		
-
-
 	# checking connecting caves for hazards to show -----------------------
 	checkHazards()
 
@@ -284,6 +315,8 @@ func wait_for_space():
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
 	await get_tree().create_timer(1.5).timeout
+	
+	# becomes normal room/gameplay again
 	wumpus.visible = false
 	player.can_move = true
 	player.visible = true
@@ -293,16 +326,15 @@ func _on_trivia_won() -> void:
 	if $"../Riddle".shownOnUpdate:
 		$"../Riddle".visible = true
 	
-	
+	# change wumpus health
 	WumpusData.health = WumpusData.health - 5
 	# game_control checks in process if wumpus dead
-	
-	wumpus.visible = false
 	
 	# change the wumpusCave to two random caves away from it 
 	var picked = false
 	wumpusCave.hasWumpus = false
 	
+	# print new wumpus cave to keep track
 	print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 	
 	# change the wumpus 2 caves away randomly away from what is was
@@ -321,14 +353,12 @@ func _on_trivia_won() -> void:
 	# update to current cave to reload the cave
 	updateCave(caveList[currentCaveNumber-1])
 
-
-# called when the player loses the trivia
+# called when the player loses the trivia -> game ends
 func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
 	await get_tree().create_timer(1.5).timeout
 	PlayerData.howEnded = 1
 	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-	# your lose logic here (reset, reduce life, etc.)
 
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
@@ -494,37 +524,6 @@ func _on_shoot_arrow_game_arrow_game_done() -> void:
 	$Warnings/WumpusBackground.visible = false
 	#updateCave(caveList[currentCaveNumber-1])
 
-
-# called by game control once caveList is defined, gets refrences for key
-# variables
-func loadCave():
-	caveList = get_parent().caveList
-	wumpusCave = get_parent().wumpusCave
-	batList = get_parent().batList
-	pitList = get_parent().pitList
-	playerSpawn = get_parent().playerSpawn
-
-# checks the surrounding caves for special caves and lets the user know
-func checkHazards():
-	# if there is a bat nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasBat:
-			$BatSound.play()
-			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
-			$Warnings/BatBackground.visible = true
-	
-	# if there is a pit cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasPit:
-			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
-			$Warnings/PitBackground.visible = true
-	
-	# if there is a wumpus cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasWumpus:
-			$Warnings/WumpusBackground/WumpusWarning.text = "You smell a Wumpus"
-			$Warnings/WumpusBackground.visible = true
-
 # start_index - the starting point of the search
 # goal_index - the ending point of the search
 # finds the shortest path to the end point from the start point and returns
@@ -547,8 +546,9 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	fringe.append(start)
 
 	# BFS loop
+	# while still rooms able to be checked
 	while fringe.size() > 0:
-		var current = fringe.pop_front()
+		var current = fringe.pop_front() # get room at front of list
 		visited.append(current)
 
 		# goal test

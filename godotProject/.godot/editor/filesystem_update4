@@ -1,2 +1,5 @@
 res://Scenes/global/game_bg_music.gd
 res://Scripts/cave_default.gd
+res://Scenes/profile/settings_tab_container.tscn
+res://Scripts/game_control.gd
+res://Scripts/login.gd
