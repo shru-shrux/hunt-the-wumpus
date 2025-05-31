@@ -1,6 +1,9 @@
 extends Area2D
 signal hit
 signal interact
+signal goToPit
+signal goToBat
+signal goToWumpus
 
 # this code controls the movement of the player
 
@@ -70,6 +73,27 @@ func _process(delta):
 
 		if Input.is_action_pressed("Interact"):
 			interact.emit()
+		
+		# CTRL-P shortcut to experience pit
+		if Input.is_action_pressed("CTRL"):
+			
+			if Input.is_action_pressed("press_p"):
+				
+				goToPit.emit()
+		
+		# CTRL-B shortcut to experience bat
+		if Input.is_action_pressed("CTRL"):
+			
+			if Input.is_action_pressed("press_b"):
+				
+				goToBat.emit()
+		
+		# CTRL-W shortut to experience wumpus
+		if Input.is_action_pressed("CTRL"):
+			
+			if Input.is_action_pressed("press_w"):
+				
+				goToWumpus.emit()
 	
 	elif falling:
 		velocity.y += 1000
@@ -79,11 +103,11 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.play()
 
-func _on_body_entered(_body):
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
+#func _on_body_entered(_body):
+	#hide() # Player disappears after being hit.
+	#hit.emit()
+	## Must be deferred as we can't change physics properties on a physics callback.
+	#$CollisionShape2D.set_deferred("disabled", true)
 	
 	
 func start(pos):
