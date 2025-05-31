@@ -1,3 +1,4 @@
+VideoStreamPlayer
 AudioStreamPlayer2D
 AudioListener2D
 Area2D
@@ -11,4 +12,3 @@ HBoxContainer
 RichTextLabel
 Polygon2D
 CollisionShape2D
-AnimatedSprite2D
