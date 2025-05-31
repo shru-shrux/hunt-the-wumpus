@@ -92,6 +92,7 @@ func _sort_by_score(a, b) -> bool:
 func show_achievements():
 	var user_data = LoginManager.get_user_data()
 	var progress = user_data.get("achievements", {})
+	print(progress)
 
 	# Clear old entries
 	for child in $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer.get_children():

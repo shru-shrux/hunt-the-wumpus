@@ -82,8 +82,8 @@ func _ready() -> void:
 	user_data["achievements"]["score"] += score
 	if PlayerData.wumpusKilled:
 		user_data["achievements"]["wins"] += 1
-	user_data["achievements"]["triviaCorrect"] += PlayerData.triviaCorrect
-	user_data["achievements"]["cavesVisited"] += PlayerData.cavesVisited
+	user_data["achievements"]["trivia"] += PlayerData.triviaCorrect
+	user_data["achievements"]["caves"] += PlayerData.cavesVisited
 	LoginManager.update_user_data(user_data)
 	
 	reset_game()
