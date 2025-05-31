@@ -246,6 +246,7 @@ func updateCave(newCave:Cave):
 		var batIdx = batList.find(newCave)
 		batList[batIdx] = randomBatCave
 		randomBatCave.hasBat = true
+		GameData.batList = batList
 		
 		# picking the place where the player will go, can't be current and can't
 		# be another hazard 
@@ -364,6 +365,9 @@ func _on_trivia_won() -> void:
 	# set the new wumpus cave to have a wumpus
 	wumpusCave.hasWumpus = true
 	print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+	
+	GameData.wumpusCave = wumpusCave
+	WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 	
 	# update to current cave to reload the cave
 	updateCave(caveList[currentCaveNumber-1])
@@ -512,7 +516,8 @@ func _on_player_shoot_arrow() -> void:
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$Warnings/WumpusBackground.visible = false
 			$ShootCaveResult.text = "You damaged the Wumpus!"
-			
+			GameData.wumpusCave = wumpusCave
+			WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
 			print("No Wumpus in that cave. Arrow lost.")
@@ -523,6 +528,8 @@ func _on_player_shoot_arrow() -> void:
 			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 			$"../Riddle".visible = true
+			GameData.wumpusCave = wumpusCave
+			WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 			
 		await wait(2.5)
 		$ShootCaveResult.visible = false
