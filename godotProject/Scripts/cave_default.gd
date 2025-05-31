@@ -137,7 +137,7 @@ func updateCave(newCave:Cave):
 		
 		player.position.y = -50
 		player.position.x = 576
-		
+		$CpsMinigame/FallSound.play()
 		await wait(1.0)
 		
 		

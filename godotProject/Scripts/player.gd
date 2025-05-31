@@ -109,12 +109,14 @@ func goldChange(addedGold:int):
 		gold_label.get_child(0).text = "+" + str(addedGold)
 		gold_label.get_child(0).add_theme_color_override("font_color", Color(0.337, 0.851, 0.231))
 		gold_label.get_child(0).visible = true
+		gold_label.get_child(1).play()
 		await wait(0.5)
 		gold_label.get_child(0).visible = false
 	elif addedGold < 0:
 		gold_label.get_child(0).text = str(addedGold)
 		gold_label.get_child(0).add_theme_color_override("font_color", Color(0.851, 0.337, 0.231))
 		gold_label.get_child(0).visible = true
+		gold_label.get_child(2).play()
 		await wait(0.5)
 		gold_label.get_child(0).visible = false
 

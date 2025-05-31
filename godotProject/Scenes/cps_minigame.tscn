@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bynm24s2t8wkr"]
+[gd_scene load_steps=13 format=3 uid="uid://bynm24s2t8wkr"]
 
 [ext_resource type="Script" uid="uid://biuxptv7ef71s" path="res://Scripts/button.gd" id="1_f6c68"]
 [ext_resource type="Script" uid="uid://bahqeij538j6" path="res://Scenes/cps_minigame.gd" id="1_x5jo4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvvdhosvbuy4u" path="res://Assets/Art/Bottomless Pit_RotatedLadder.png" id="2_x5jo4"]
 [ext_resource type="AudioStream" uid="uid://bjvdbkiuihrda" path="res://Assets/Music/PopSound.mp3" id="3_hvayr"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="4_0vnei"]
+[ext_resource type="AudioStream" uid="uid://dhwcusulxkfnm" path="res://Assets/Music/body-fall-195147.mp3" id="8_7doci"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0vnei"]
 font = ExtResource("2_hvayr")
@@ -57,6 +58,7 @@ label_settings = SubResource("LabelSettings_0vnei")
 
 [node name="PopSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_hvayr")
+bus = &"SFX"
 
 [node name="Countdown" type="Label" parent="."]
 visible = false
@@ -94,6 +96,10 @@ offset_bottom = 133.0
 text = "Reach the TOP STEP to escape with ALL your gold"
 label_settings = SubResource("LabelSettings_6iopv")
 horizontal_alignment = 1
+
+[node name="FallSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_7doci")
+bus = &"SFX"
 
 [connection signal="visibility_changed" from="." to="Button" method="_on_cps_minigame_visibility_changed"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

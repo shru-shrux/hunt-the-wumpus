@@ -180,6 +180,8 @@ label_settings = SubResource("LabelSettings_rcyi4")
 
 [node name="BatSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_rcyi4")
+volume_db = 3.0
+bus = &"SFX"
 
 [node name="Falling-2" type="Sprite2D" parent="."]
 visible = false
