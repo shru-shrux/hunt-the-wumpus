@@ -273,7 +273,6 @@ func updateCave(newCave:Cave):
 			player.goldChange(-5)
 		player.can_move = true
 		$Warnings/BatBackground.visible = true
-		# TODO make sure bats run away to new cave
 		
 	
 	# make wumpus visible
@@ -328,9 +327,9 @@ func wait_for_space():
 # called when the player wins the trivia
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
-	$Info.text = true
+	$Info.visible = true
 	await get_tree().create_timer(1.5).timeout
-	$Info.text.visible = false
+	$Info.visible = false
 	
 	# becomes normal room/gameplay again
 	wumpus.visible = false
