@@ -3,7 +3,7 @@ extends Control
 @onready var tab_container = $TabContainer
 @onready var leaderboard_tab = $TabContainer/Leaderboard
 
-# Achievement metadata: icon path and description format
+# achievement metadata: icon path and description format
 const ACHIEVEMENT_META = {
 	"score": {
 		"icon": "res://Assets/Coins/gold/gold.png",
@@ -23,7 +23,7 @@ const ACHIEVEMENT_META = {
 	}
 }
 
-# Achievement thresholds by key
+# achievement thresholds by key/different amounts needed for levels
 const ACHIEVEMENT_THRESHOLDS = {
 	"score":  [100, 500, 1000, 2000, 5000, 10000],
 	"wins":   [1, 5, 10, 20, 50, 100, 200],
@@ -31,7 +31,7 @@ const ACHIEVEMENT_THRESHOLDS = {
 	"caves":  [1, 25, 50, 100, 150, 200, 250, 300]
 }
 
-# Called when the node enters the scene tree for the first time.
+# figure out what tab to start with
 func _ready() -> void:
 	if Global.profile_start_tab == "options":
 		tab_container.current_tab = 2
@@ -56,10 +56,12 @@ func show_leaderboard():
 		empty_label.add_theme_color_override("font_color", Color.GRAY)
 		leaderboard.add_child(empty_label)
 		return
-
+	
+	# remove all children to start
 	for child in leaderboard.get_children():
 		child.queue_free()
 	
+	# fill up leaderboard
 	for i in range(min(high_scores.size(), 10)):
 		var entry = high_scores[i]
 		var label = Label.new()
@@ -90,11 +92,12 @@ func _sort_by_score(a, b) -> bool:
 
 # shows and displays achievements from the achievement metadata
 func show_achievements():
+	# load user data and pull achievements dictionary
 	var user_data = LoginManager.get_user_data()
 	var progress = user_data.get("achievements", {})
 	#print(progress)
 
-	# Clear old entries
+	# clear old entries
 	for child in $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer.get_children():
 		child.queue_free()
 
@@ -116,8 +119,7 @@ func show_achievements():
 		for i in thresholds.size():
 			if value >= thresholds[i]:
 				level = i + 1
-
-		print(level)
+		
 		# Determine next target (or last threshold if maxed)
 		var next_target: int
 		if level < thresholds.size():
@@ -140,7 +142,9 @@ func show_achievements():
 		var text_vbox = VBoxContainer.new()
 		row.add_child(text_vbox)
 		
+		# achievement name label
 		var ach_label = Label.new()
+		# display level or max
 		if level == thresholds.size():
 			ach_label.text = key + " (max)"
 		else:
@@ -149,26 +153,25 @@ func show_achievements():
 		format_labels(ach_label)
 		text_vbox.add_child(ach_label)
 
+		# description label
 		var desc_label = Label.new()
 		desc_label.text = meta["description"] % next_target
 		desc_label.add_theme_font_size_override("font_size", 20)
 		format_labels(desc_label)
 		text_vbox.add_child(desc_label)
-
+		
+		# status label/progress on level of achievement
 		var status_label = Label.new()
 		status_label.text = "Progress: %d / %d" % [value, next_target]
 		desc_label.add_theme_font_size_override("font_size", 15)
 		format_labels(status_label)
 		text_vbox.add_child(status_label)
 
+# format all the labels
 func format_labels(lbl: Label):
 	lbl.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	lbl.custom_minimum_size.x = 400
 	lbl.add_theme_font_override("font", load("res://Assets/Fonts/Symtext.ttf"))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 # change tabs
 func _on_tab_container_tab_changed(tab: int) -> void:
