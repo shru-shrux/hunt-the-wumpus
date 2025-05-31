@@ -1,30 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpsl4c7j22bm5"]
+[gd_scene load_steps=4 format=3 uid="uid://bb2yadqrunvbn"]
 
-[ext_resource type="Texture2D" uid="uid://0icq4hqosikc" path="res://Assets/Tutorial Screenshots/Main Menu.png" id="1_ka2pi"]
+[ext_resource type="Script" uid="uid://cw2ltion56byg" path="res://Scripts/tutorial.gd" id="1_feyax"]
+[ext_resource type="FontFile" uid="uid://cyu1o16vdvn6x" path="res://Assets/Fonts/Symtext.ttf" id="3_omtrn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_feyax"]
-size = Vector2(48.2955, 9.01575)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omtrn"]
+bg_color = Color(0.396078, 0.431373, 0.545098, 1)
 
-[node name="Tutorial" type="Node2D"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_feyax")
 
-[node name="MainMenu" type="Area2D" parent="."]
-position = Vector2(256, 498)
-scale = Vector2(5.28, 5.08)
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HighlightedCave" type="Sprite2D" parent="MainMenu"]
-position = Vector2(60.6061, -35.8268)
-scale = Vector2(0.189394, 0.19685)
-texture = ExtResource("1_ka2pi")
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -72.0
+offset_right = 200.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_omtrn")
 
-[node name="MainMenuDifficulty" type="Area2D" parent="."]
-position = Vector2(256, 498)
-scale = Vector2(5.28, 5.08)
+[node name="Instructions" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_omtrn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="HighlightedCave" type="Sprite2D" parent="MainMenuDifficulty"]
-position = Vector2(60.6061, -35.8268)
-scale = Vector2(0.189394, 0.19685)
-texture = ExtResource("1_ka2pi")
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 435.0
+offset_right = 1135.0
+offset_bottom = 478.0
+theme_override_fonts/font = ExtResource("3_omtrn")
+text = "Back"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainMenuDifficulty"]
-position = Vector2(-11.2689, -29.311)
-shape = SubResource("RectangleShape2D_feyax")
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 490.0
+offset_right = 1135.0
+offset_bottom = 533.0
+theme_override_fonts/font = ExtResource("3_omtrn")
+text = "Next"
+
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 991.0
+offset_top = 544.0
+offset_right = 1135.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("3_omtrn")
+text = "Skip"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

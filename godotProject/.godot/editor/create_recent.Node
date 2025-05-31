@@ -3,6 +3,12 @@ AnimationPlayer
 Control
 Button
 VideoStreamPlayer
+Button
+Panel
+Label
+TextureRect
+Control
+CanvasLayer
 AudioStreamPlayer2D
 AudioListener2D
 Area2D
