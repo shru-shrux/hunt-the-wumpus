@@ -1,1 +1,6 @@
+res://Scenes/main.tscn
+res://Scenes/riddle.tscn
 res://Scenes/shoot_arrow_game.tscn
+res://Scenes/end_scene.tscn
+res://Scripts/shoot_arrow_game.gd
+res://Scenes/cave_default.tscn
