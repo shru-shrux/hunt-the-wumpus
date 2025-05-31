@@ -1,5 +1,6 @@
 extends Node2D
 
+var base_score = 0
 var score = 0
 var last_score_entry = {"username": "placeholder", "score": 0}
 
@@ -21,17 +22,40 @@ func _ready() -> void:
 		$Result.text = "You Lose"
 		
 	# calculates the score
-	score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	base_score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	
+	var difficulty_multiplier 
 	
 	# score gets multiplied by a multiplier based on difficulty of the game
 	if Global.difficulty == "easy":
-		score = score
+		score = base_score
+		difficulty_multiplier = 1.0
 	elif Global.difficulty == "medium":
-		score = score * 1.1
+		score = base_score * 1.1
+		difficulty_multiplier = 1.1
 	elif Global.difficulty == "hard":
-		score = score * 1.2
+		score = base_score * 1.2
+		difficulty_multiplier = 1.2
 	$YourScore.clear()
 	$YourScore.add_text(str(score))
+	
+	# displays the score breakdown
+	#if PlayerData.wumpusKilled:
+		#$ScoreBreakdown.text = "100 - " + str(PlayerData.cavesVisited) + " (Caves Visited)\n" + "+ " + str(PlayerData.goldCount) + " (Gold Count)\n" + "5 * " + str(PlayerData.arrowCount) + " (Arrow Count)\n" + "50 (Wumpus Killed)\n= " + str(base_score) + " * " + str(difficulty_multiplier) + " (Difficulty Multiplier)" 
+	#else:
+		#$ScoreBreakdown.text = "100 - " + str(PlayerData.cavesVisited) + " (Caves Visited)\n" + "+ " + str(PlayerData.goldCount) + " (Gold Count)\n" + "5 * " + str(PlayerData.arrowCount) + " (Arrow Count)\n= " + str(base_score) + " * " + str(difficulty_multiplier) + " (Difficulty Multiplier)" 
+	if PlayerData.wumpusKilled:
+		$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "50 \n" + "x " + str(difficulty_multiplier)
+	else:
+		$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "x " + str(difficulty_multiplier)
+	
+	# displays the reason the game ended
+	if PlayerData.howEnded == 0:
+		$EndReason.text = "Congratulations! You have slain the Wumpus and lived another day."
+	elif PlayerData.howEnded == 1:
+		$EndReason.text = "Try again. You have been defeated by the Wumpus."
+	elif PlayerData.howEnded == 2:
+		$EndReason.text = "Try again. You lost too many coins to continue."
 	
 	# gets the username of the player
 	var username = "placeholder"
@@ -56,7 +80,8 @@ func _ready() -> void:
 		}
 	
 	user_data["achievements"]["score"] += score
-	user_data["achievements"]["wins"] += 1
+	if PlayerData.wumpusKilled:
+		user_data["achievements"]["wins"] += 1
 	user_data["achievements"]["triviaCorrect"] += PlayerData.triviaCorrect
 	user_data["achievements"]["cavesVisited"] += PlayerData.cavesVisited
 	LoginManager.update_user_data(user_data)
@@ -93,7 +118,7 @@ func show_leaderboard():
 		var font = load("res://Assets/Fonts/ThaleahFat.ttf")
 		empty_label.add_theme_font_override("font", font)
 		empty_label.add_theme_font_size_override("font_size", 30)
-		empty_label.add_theme_color_override("font_color", Color.GRAY)
+		empty_label.add_theme_color_override("font_color", Color(168.0, 179.0, 216.0))
 		leaderboard.add_child(empty_label)
 		return
 
@@ -107,7 +132,7 @@ func show_leaderboard():
 		var font = load("res://Assets/Fonts/ThaleahFat.ttf")
 		label.add_theme_font_override("font", font)
 		label.add_theme_font_size_override("font_size", 30)
-		label.add_theme_color_override("font_color", Color.GRAY)
+		label.add_theme_color_override("font_color", Color(168.0, 179.0, 216.0))
 			
 		## Highlight if it's the last score just added
 		#if entry["username"] == last_score_entry["username"] and entry["score"] == last_score_entry["score"]:

@@ -22,18 +22,19 @@ vertical_alignment = 1
 
 [node name="YourScore" type="RichTextLabel" parent="."]
 offset_left = 157.0
-offset_top = 265.0
+offset_top = 298.0
 offset_right = 286.0
-offset_bottom = 305.0
+offset_bottom = 338.0
 theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 30
 text = "BLANK"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 offset_left = 149.0
-offset_top = 199.0
+offset_top = 232.0
 offset_right = 421.0
-offset_bottom = 246.0
+offset_bottom = 279.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 50
 text = "Your Score"
@@ -42,9 +43,10 @@ scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 offset_left = 737.0
-offset_top = 199.0
+offset_top = 232.0
 offset_right = 1030.0
-offset_bottom = 246.0
+offset_bottom = 279.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_8p78e")
 theme_override_font_sizes/normal_font_size = 50
 text = "Leaderboard"
@@ -53,7 +55,7 @@ scroll_active = false
 
 [node name="Leaderboard" type="VBoxContainer" parent="."]
 offset_left = 741.0
-offset_top = 265.0
+offset_top = 297.0
 offset_right = 1027.0
 offset_bottom = 554.0
 size_flags_vertical = 0
@@ -66,5 +68,58 @@ offset_bottom = 617.0
 theme_override_fonts/font = ExtResource("3_8p78e")
 theme_override_font_sizes/font_size = 30
 text = "Back to Home"
+
+[node name="EndReason" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 156.0
+offset_right = 1152.0
+offset_bottom = 184.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_8p78e")
+theme_override_font_sizes/font_size = 30
+text = "REASON GAME ENDED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreBreakdown" type="Label" parent="."]
+offset_left = 359.0
+offset_top = 406.0
+offset_right = 561.0
+offset_bottom = 549.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8p78e")
+theme_override_font_sizes/font_size = 30
+text = "PLACEHOLDER"
+autowrap_mode = 2
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+offset_left = 152.0
+offset_top = 360.0
+offset_right = 525.0
+offset_bottom = 407.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_8p78e")
+theme_override_font_sizes/normal_font_size = 37
+text = "Score Breakdown"
+fit_content = true
+scroll_active = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 406.0
+offset_right = 333.0
+offset_bottom = 589.0
+theme_override_colors/font_color = Color(0.659474, 0.703268, 0.848482, 1)
+theme_override_fonts/font = ExtResource("3_8p78e")
+theme_override_font_sizes/font_size = 30
+text = "Base Score
+Caves Visited
+Gold Count
+Arrow Count
+Is Wumpus Dead
+Difficulty Multiplier"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]

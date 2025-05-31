@@ -118,7 +118,7 @@ func generate_riddle_for_number(number: int, callback: Callable, difficulty: Str
 			prompt = "Give me a short, clever riddle whose answer is the number %d. Make sure no other number fits; do not use ranges. Keep it under 2 sentences." % number
 
 	var body := {
-		"model": "gpt-4.1-2025-04-14",
+		"model": "gpt-4.1",
 		"messages": [
 			{ "role": "system", "content": "You are a riddle generator for a logic-based adventure game." },
 			{ "role": "user", "content": prompt }
@@ -141,7 +141,7 @@ func _on_request_completed(result: HTTPRequest.Result, response_code: int, heade
 	print("📶 HTTP Response Code:", response_code)
 
 	var body_text := body.get_string_from_utf8()
-	print("📄 Raw body:", body_text)
+	#print("📄 Raw body:", body_text)
 
 	if response_code == 200:
 		var parsed = JSON.parse_string(body_text)

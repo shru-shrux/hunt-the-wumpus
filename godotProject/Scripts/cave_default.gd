@@ -326,6 +326,7 @@ func _on_trivia_won() -> void:
 func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
 	await get_tree().create_timer(1.5).timeout
+	PlayerData.howEnded = 1
 	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	# your lose logic here (reset, reduce life, etc.)
 

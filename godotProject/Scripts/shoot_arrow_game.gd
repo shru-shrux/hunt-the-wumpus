@@ -11,6 +11,8 @@ var min_x = 356
 var max_x = 809
 var active = false
 
+var shot_result
+
 # starting game position when you enter the scene
 func _ready():
 	slider.position.x = min_x
@@ -44,9 +46,14 @@ func _input(event):
 			
 			# if the wumpus is at or below 0 health the game is over
 			if WumpusData.health <= 0:
-				# TODO maybe do a cut scene to wumpus dying
+				# TODO cut scene to wumpus dying
 				PlayerData.wumpusKilled = true
+				PlayerData.howEnded = 0
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
+			#elif shot_result == "miss":
+				## cut scene to hitting wall
+			#elif shot_result == "hit":
+				## cut scene to hitting wumpus
 		
 		# wumpus is still alive so game is done and goes back to main game
 		if not active and $".".visible:
@@ -63,26 +70,33 @@ func _stop_game():
 	if slider_center >= 356 and slider_center < 438:
 		# red - 0 damage
 		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
+		shot_result = "miss"
 	elif slider_center >= 438 and slider_center < 501:
 		# orange - 10% damage
 		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 10
+		shot_result = "hit"
 	elif slider_center >= 501 and slider_center < 566:
 		# yellow - 25 % damage
 		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 25
+		shot_result = "hit"
 	elif slider_center >= 566 and slider_center < 613:
 		# green - 50% damage
 		label.text = "Bullseye! A lot of damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 50
+		shot_result = "hit"
 	elif slider_center >= 613 and slider_center < 661:
 		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth- 25
+		shot_result = "hit"
 	elif slider_center >= 661 and slider_center < 733:
 		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 10
+		shot_result = "hit"
 	elif slider_center >= 733 and slider_center < 824:
 		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
+		shot_result = "miss"
 	
 	print(curHealth)
 	print(WumpusData.health)
