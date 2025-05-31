@@ -671,8 +671,8 @@ func _on_player_go_to_wumpus() -> void:
 	
 	
 	$OtherWarnings.text = (
-		"Go into cave " + str(wumpusCave.currentCaveNumber) + " to test the Wumpus Escape"
-		+ " or press 'Q' to test the Shoot Arrow experience"
+		"Go into cave " + str(wumpusCave.currentCaveNumber) + " to test the " +
+		"Wumpus Escape or press 'Q' to test the Shoot Arrow experience"
 	)
 	$OtherWarnings.visible = true
 
