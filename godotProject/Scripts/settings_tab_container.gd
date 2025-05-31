@@ -25,10 +25,10 @@ const ACHIEVEMENT_META = {
 
 # Achievement thresholds by key
 const ACHIEVEMENT_THRESHOLDS = {
-	"score":  [50, 100, 250, 500],
+	"score":  [100, 500],
 	"wins":   [1, 5, 10, 20],
 	"trivia": [10, 25, 50, 100],
-	"caves":  [1, 3, 5, 10]
+	"caves":  [1, 25, 50, 100]
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -92,7 +92,7 @@ func _sort_by_score(a, b) -> bool:
 func show_achievements():
 	var user_data = LoginManager.get_user_data()
 	var progress = user_data.get("achievements", {})
-	print(progress)
+	#print(progress)
 
 	# Clear old entries
 	for child in $TabContainer/Achievements/MarginContainer/ScrollContainer/VBoxContainer.get_children():
@@ -112,10 +112,12 @@ func show_achievements():
 
 		# Determine current level
 		var level = 0
+		print(thresholds.size())
 		for i in thresholds.size():
 			if value >= thresholds[i]:
 				level = i + 1
 
+		print(level)
 		# Determine next target (or last threshold if maxed)
 		var next_target: int
 		if level < thresholds.size():
@@ -139,7 +141,10 @@ func show_achievements():
 		row.add_child(text_vbox)
 		
 		var ach_label = Label.new()
-		ach_label.text = key
+		if level == thresholds.size():
+			ach_label.text = key + " (max)"
+		else:
+			ach_label.text = key + " (%d)" % level
 		ach_label.add_theme_font_size_override("font_size", 30)
 		format_labels(ach_label)
 		text_vbox.add_child(ach_label)
