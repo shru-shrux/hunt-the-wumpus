@@ -1,7 +1,2 @@
-res://Scenes/main.tscn
-res://Scenes/riddle.tscn
-res://Scenes/shoot_arrow_game.tscn
-res://Scenes/end_scene.tscn
-res://Scenes/cave_default.tscn
 res://Scenes/backstory.tscn
-res://Scripts/settings_tab_container.gd
+res://Scripts/cave_default.gd
