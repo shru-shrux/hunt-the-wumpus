@@ -35,11 +35,14 @@ var pickup: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# define scenes
 	player = get_parent().get_node("Player")
 	wumpus = get_parent().get_node("Wumpus")
 	trivia_popup = get_parent().get_node("Trivia") as TriviaPopup
-
+	
+	# hide trivia popup to start
 	trivia_popup.visible = false
+	
 	# connect the two signals with the 2-arg overload
 	trivia_popup.connect("trivia_won",  Callable(self, "_on_trivia_won"))
 	trivia_popup.connect("trivia_lost", Callable(self, "_on_trivia_lost"))
@@ -51,12 +54,44 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Interact"):
 		_on_player_interact()
+		
+# called by game control once caveList is defined, gets refrences for key
+# variables
+func loadCave():
+	caveList = get_parent().caveList
+	wumpusCave = get_parent().wumpusCave
+	batList = get_parent().batList
+	pitList = get_parent().pitList
+	playerSpawn = get_parent().playerSpawn
+
+# checks the surrounding caves for special caves and lets the user know
+func checkHazards():
+	# if there is a bat nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasBat:
+			$BatSound.play()
+			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
+			$Warnings/BatBackground.visible = true
+	
+	# if there is a pit cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasPit:
+			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
+			$Warnings/PitBackground.visible = true
+	
+	# if there is a wumpus cave nearby, let the user know
+	for cave in connectingCaves:
+		if cave.hasWumpus:
+			$Warnings/WumpusBackground/WumpusWarning.text = "You smell a Wumpus"
+			$Warnings/WumpusBackground.visible = true
 
 # newCave - the cave the player is being sent to
 # Sets up the next cave that the player wants to go to.
 # - Checks if there is a hazard, and updates hazard warnings
 func updateCave(newCave:Cave):
-		
+	
+	$OtherWarnings.visible = false
+	
 	# play the animation and freeze the player, also make sure the pause button
 	# isn't available
 	$"../OptionsButton".disabled = true
@@ -184,18 +219,27 @@ func updateCave(newCave:Cave):
 				$OtherWarnings.visible = false
 			PlayerData.hasAntiBatEffect = false
 		
+		# if the bat cave has been picked
 		var caveBatPicked = false
-		var cavePlayerPicked
+		# if the player cave has been picked
+		var cavePlayerPicked = false
+		# the cave the bat will go to
 		var randomBatCave : Cave
+		# the cave the player will go to
 		var randomPlayerCave : Cave
+		
+		# the bat cave will be different than this one so make this a normal
+		# cave again
 		hasBat = false
-		# choose the cave the bat will go to
+		newCave.hasBat = false
+		# choose the cave the bat will go to, can't be another hazard and can't
+		# be the current cave
 		while not caveBatPicked:
 			randomBatCave = caveList[randi_range(0, 29)]
 			if randomBatCave.currentCaveNumber != currentCaveNumber:
 				if randomBatCave.currentCaveNumber != currentCaveNumber:
-					if randomBatCave.currentCaveNumber != pitList[0].currentCaveNumber or randomBatCave.currentCaveNumber != pitList[1].currentCaveNumber:
-						if randomBatCave.currentCaveNumber != batList[0].currentCaveNumber or randomBatCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if randomBatCave.currentCaveNumber != pitList[0].currentCaveNumber and randomBatCave.currentCaveNumber != pitList[1].currentCaveNumber:
+						if randomBatCave.currentCaveNumber != batList[0].currentCaveNumber and randomBatCave.currentCaveNumber != batList[1].currentCaveNumber:
 							caveBatPicked = true
 		
 		# update that cave to be a bat cave and update batList
@@ -203,19 +247,22 @@ func updateCave(newCave:Cave):
 		batList[batIdx] = randomBatCave
 		randomBatCave.hasBat = true
 		
-		# picking the place where the player will go
+		# picking the place where the player will go, can't be current and can't
+		# be another hazard 
 		while not cavePlayerPicked:
 			randomPlayerCave = caveList[randi_range(0, 29)]
 			if randomPlayerCave.currentCaveNumber != currentCaveNumber:
 				if randomPlayerCave.currentCaveNumber != currentCaveNumber:
-					if randomPlayerCave.currentCaveNumber != pitList[0].currentCaveNumber or randomPlayerCave.currentCaveNumber != pitList[1].currentCaveNumber:
-						if randomPlayerCave.currentCaveNumber != batList[0].currentCaveNumber or randomPlayerCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if randomPlayerCave.currentCaveNumber != pitList[0].currentCaveNumber and randomPlayerCave.currentCaveNumber != pitList[1].currentCaveNumber:
+						if randomPlayerCave.currentCaveNumber != batList[0].currentCaveNumber and randomPlayerCave.currentCaveNumber != batList[1].currentCaveNumber:
 							cavePlayerPicked = true
 		
 		# make the wumpus invisible if it was a wumpus and bat cave
 		wumpus.visible = false
 		$Bat.hide()
 		
+		# if the player was picked up by the bat, can avoid through anti-bat
+		# and then winning the minigame
 		if pickup:
 			updateCave(randomPlayerCave)
 			$Bat.hide()
@@ -226,7 +273,6 @@ func updateCave(newCave:Cave):
 			player.goldChange(-5)
 		player.can_move = true
 		$Warnings/BatBackground.visible = true
-		# TODO make sure bats run away to new cave
 		
 	
 	# make wumpus visible
@@ -270,8 +316,6 @@ func updateCave(newCave:Cave):
 		if $"../Riddle".shownOnUpdate:
 			$"../Riddle".visible = true
 		
-
-
 	# checking connecting caves for hazards to show -----------------------
 	checkHazards()
 
@@ -283,7 +327,11 @@ func wait_for_space():
 # called when the player wins the trivia
 func _on_trivia_won() -> void:
 	$Info.text = "You outsmarted the Wumpus!"
+	$Info.visible = true
 	await get_tree().create_timer(1.5).timeout
+	$Info.visible = false
+	
+	# becomes normal room/gameplay again
 	wumpus.visible = false
 	player.can_move = true
 	player.visible = true
@@ -293,16 +341,15 @@ func _on_trivia_won() -> void:
 	if $"../Riddle".shownOnUpdate:
 		$"../Riddle".visible = true
 	
-	
+	# change wumpus health
 	WumpusData.health = WumpusData.health - 5
 	# game_control checks in process if wumpus dead
-	
-	wumpus.visible = false
 	
 	# change the wumpusCave to two random caves away from it 
 	var picked = false
 	wumpusCave.hasWumpus = false
 	
+	# print new wumpus cave to keep track
 	print("wumpus now: " + str(wumpusCave.currentCaveNumber))
 	
 	# change the wumpus 2 caves away randomly away from what is was
@@ -321,14 +368,12 @@ func _on_trivia_won() -> void:
 	# update to current cave to reload the cave
 	updateCave(caveList[currentCaveNumber-1])
 
-
-# called when the player loses the trivia
+# called when the player loses the trivia -> game ends
 func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
 	await get_tree().create_timer(1.5).timeout
 	PlayerData.howEnded = 1
 	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-	# your lose logic here (reset, reduce life, etc.)
 
 # if the player exists any of the 3 Area2D this runs
 # it makes the text invisible again
@@ -494,37 +539,6 @@ func _on_shoot_arrow_game_arrow_game_done() -> void:
 	$Warnings/WumpusBackground.visible = false
 	#updateCave(caveList[currentCaveNumber-1])
 
-
-# called by game control once caveList is defined, gets refrences for key
-# variables
-func loadCave():
-	caveList = get_parent().caveList
-	wumpusCave = get_parent().wumpusCave
-	batList = get_parent().batList
-	pitList = get_parent().pitList
-	playerSpawn = get_parent().playerSpawn
-
-# checks the surrounding caves for special caves and lets the user know
-func checkHazards():
-	# if there is a bat nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasBat:
-			$BatSound.play()
-			$Warnings/BatBackground/BatWarning.text = "You hear bats near you"
-			$Warnings/BatBackground.visible = true
-	
-	# if there is a pit cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasPit:
-			$Warnings/PitBackground/PitWarning.text = "You feel a draft"
-			$Warnings/PitBackground.visible = true
-	
-	# if there is a wumpus cave nearby, let the user know
-	for cave in connectingCaves:
-		if cave.hasWumpus:
-			$Warnings/WumpusBackground/WumpusWarning.text = "You smell a Wumpus"
-			$Warnings/WumpusBackground.visible = true
-
 # start_index - the starting point of the search
 # goal_index - the ending point of the search
 # finds the shortest path to the end point from the start point and returns
@@ -547,8 +561,9 @@ func bfs_shortest_path(start_index: int, goal_index: int) -> Array:
 	fringe.append(start)
 
 	# BFS loop
+	# while still rooms able to be checked
 	while fringe.size() > 0:
-		var current = fringe.pop_front()
+		var current = fringe.pop_front() # get room at front of list
 		visited.append(current)
 
 		# goal test
@@ -589,6 +604,77 @@ func _on_cps_minigame_cps_minigame_over() -> void:
 		wumpus.position = Vector2(733,498)
 	await wait(2.0)
 	updateCave(caveList[playerSpawn])
+
+# Shortcuts to experience game -------------------------------------------------
+
+
+# when the tester wants to experience the bat cave put them in a cave that is
+# next to it and tell which cave to go into
+func _on_player_go_to_bat() -> void:
+	
+	var transferCave : Cave
+	var pickedTransferCave = false
+	while !pickedTransferCave:
+		transferCave = batList[0].connectingCaves[randi_range(0,2)]
+		if transferCave.currentCaveNumber != currentCaveNumber:
+			if transferCave.currentCaveNumber != pitList[0].currentCaveNumber and transferCave.currentCaveNumber != pitList[1].currentCaveNumber:
+				if transferCave.currentCaveNumber != batList[0].currentCaveNumber and transferCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if transferCave.currentCaveNumber != wumpusCave.currentCaveNumber:
+						pickedTransferCave = true
+	
+	updateCave(transferCave)
+	
+	$OtherWarnings.text = (
+		"Go into cave " + str(batList[0].currentCaveNumber) + " to test the " + 
+		"Bat Cave"
+	)	
+	$OtherWarnings.visible = true
+
+func _on_player_go_to_pit() -> void:
+	var transferCave : Cave
+	var pickedTransferCave = false
+	while !pickedTransferCave:
+		transferCave = pitList[0].connectingCaves[randi_range(0,2)]
+		if transferCave.currentCaveNumber != currentCaveNumber:
+			if transferCave.currentCaveNumber != pitList[0].currentCaveNumber and transferCave.currentCaveNumber != pitList[1].currentCaveNumber:
+				if transferCave.currentCaveNumber != batList[0].currentCaveNumber and transferCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if transferCave.currentCaveNumber != wumpusCave.currentCaveNumber:
+						pickedTransferCave = true
+	
+	updateCave(transferCave)
+	
+	$OtherWarnings.text = (
+		"Go into cave " + str(pitList[0].currentCaveNumber) + " to test the " + 
+		"Pit Cave"
+	)
+	$OtherWarnings.visible = true
+
+
+func _on_player_go_to_wumpus() -> void:
+	
+	# give them an extra arrow to fight
+	if player.arrowCount == 0:
+		player.arrowChange(1)
+	
+	var transferCave : Cave
+	var pickedTransferCave = false
+	while !pickedTransferCave:
+		transferCave = wumpusCave.connectingCaves[randi_range(0,2)]
+		if transferCave.currentCaveNumber != currentCaveNumber:
+			if transferCave.currentCaveNumber != pitList[0].currentCaveNumber and transferCave.currentCaveNumber != pitList[1].currentCaveNumber:
+				if transferCave.currentCaveNumber != batList[0].currentCaveNumber and transferCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if transferCave.currentCaveNumber != wumpusCave.currentCaveNumber:
+						pickedTransferCave = true
+	
+	updateCave(transferCave)
+	
+	
+	$OtherWarnings.text = (
+		"Go into cave " + str(wumpusCave.currentCaveNumber) + " to test the " +
+		"Wumpus Escape or press 'Q' to test the Shoot Arrow experience"
+	)
+	$OtherWarnings.visible = true
+
 
 # helper function for animations
 func wait(seconds:float):

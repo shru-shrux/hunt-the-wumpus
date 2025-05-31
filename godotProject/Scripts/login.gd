@@ -1,20 +1,23 @@
 extends Panel
 
+# references to frequently used fields
 @onready var username_field = $VBoxContainer/HBoxContainer/Username
 @onready var password_field = $VBoxContainer/HBoxContainer2/Password
 @onready var error_label = $Error
-var login_manager = LoginManager
+var login_manager = LoginManager # singleton handling logins
 
 func _ready():
-	LoginManager.load_accounts()
-	$LoginButton.pressed.connect(_on_login_button_button_down)
-	connect("visibility_changed", Callable(self, "_on_visibility_changed"))
-	visible = false
+	LoginManager.load_accounts() # load all accounts
+	$LoginButton.pressed.connect(_on_login_button_button_down) # connect button press to function
+	connect("visibility_changed", Callable(self, "_on_visibility_changed")) # connect visibility signal to function
+	visible = false # start with login hidden
 
+# when login button pressed
 func _on_login_button_button_down():
 	var user = username_field.text.strip_edges()
 	var password = password_field.text
 	
+	# check for problems - empty, already exists, etc.
 	if user.is_empty():
 		error_label.text = "No username entered."
 		return
@@ -35,18 +38,22 @@ func _on_login_button_button_down():
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
-
+	
+	# submit form on enter
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER:
 			get_viewport().set_input_as_handled()  # Prevents Enter from going into TextEdits
 			_on_login_button_button_down()
 
+# close login panel
 func _on_cancel_button_button_down() -> void:
 	get_parent().call_deferred("close_panels")
 
+# show login panel
 func _on_to_sign_up_button_button_down():
 	get_parent().call_deferred("show_signup")
 
+# clear fields when hidden and shown later
 func _on_visibility_changed():
 	if visible:
 		error_label.text = ""

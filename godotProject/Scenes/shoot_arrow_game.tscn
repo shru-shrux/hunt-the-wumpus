@@ -20,19 +20,6 @@ script = ExtResource("1_5y7m5")
 position = Vector2(580, 326)
 texture = ExtResource("2_8qmae")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 448.0
-offset_top = 153.0
-offset_right = 734.0
-offset_bottom = 181.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_pe4pw")
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
-
 [node name="CenterMarker" type="TextureRect" parent="."]
 offset_left = 356.0
 offset_top = 282.0
@@ -46,5 +33,18 @@ offset_top = 282.0
 offset_right = 537.0
 offset_bottom = 347.0
 color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 448.0
+offset_top = 153.0
+offset_right = 734.0
+offset_bottom = 181.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_pe4pw")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

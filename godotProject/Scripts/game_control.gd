@@ -20,6 +20,7 @@ var wumpusCave: Cave
 # where the player spawns
 var playerSpawn: int
 
+# difficulty of game - all other nodes access
 var difficulty: String
 
 # Called when the node enters the scene tree for the first time.
@@ -200,8 +201,8 @@ func populate_connecting_caves():
 func _process(delta: float) -> void:
 	update_timer_label()
 	
+	# keep checking if wumpus is dead
 	if WumpusData.health <= 0:
-		# TODO maybe do a cut scene to wumpus dying
 		PlayerData.wumpusKilled = true
 		PlayerData.howEnded = 1
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
@@ -248,6 +249,7 @@ func _on_options_button_pressed() -> void:
 	print(menu.visible)
 	in_game_menu()
 
+# hide/show in game menu
 func in_game_menu():
 	if paused:
 		menu.hide()

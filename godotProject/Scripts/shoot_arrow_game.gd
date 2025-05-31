@@ -5,16 +5,33 @@ signal arrowGameDone
 @onready var label = $Label
 @onready var center_marker = $CenterMarker
 
+var wumpus_dead_animation : Control
+var wumpus_hit_animation : Control
+var wall_hit_animation : Control
+var player : Node2D
+
 var speed = 500.0  # pixels per second
 var direction = 1  # 1 = right, -1 = left
 var min_x = 356
 var max_x = 809
 var active = false
 
-var shot_result
+var shot_result = "hit"
 
 # starting game position when you enter the scene
 func _ready():
+	# set the animations
+	wumpus_dead_animation = get_parent().get_parent().get_node("WumpusDead")
+	wumpus_hit_animation = get_parent().get_parent().get_node("WumpusHit")
+	wall_hit_animation = get_parent().get_parent().get_node("WallHit")
+	
+	player = get_parent().get_parent().get_node("Player")
+	
+	assert(wumpus_dead_animation != null, "Missing node: WumpusDead")
+	assert(wumpus_hit_animation != null, "Missing node: WumpusHit")
+	assert(wall_hit_animation != null, "Missing node: WallHit")
+	assert(player != null, "Missing node: Player")
+	
 	slider.position.x = min_x
 	label.text = "Shoot the Wumpus!\nPress SPACE when the slider is in the green."
 	
@@ -46,14 +63,9 @@ func _input(event):
 			
 			# if the wumpus is at or below 0 health the game is over
 			if WumpusData.health <= 0:
-				# TODO cut scene to wumpus dying
 				PlayerData.wumpusKilled = true
 				PlayerData.howEnded = 0
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-			#elif shot_result == "miss":
-				## cut scene to hitting wall
-			#elif shot_result == "hit":
-				## cut scene to hitting wumpus
 		
 		# wumpus is still alive so game is done and goes back to main game
 		if not active and $".".visible:
@@ -67,40 +79,67 @@ func _stop_game():
 	var slider_center = slider.global_position.x + slider.size.x / 2
 	var curHealth = WumpusData.health
 	
+	var text_to_show = ""
+	
 	if slider_center >= 356 and slider_center < 438:
 		# red - 0 damage
-		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show= "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
 		shot_result = "miss"
 	elif slider_center >= 438 and slider_center < 501:
 		# orange - 10% damage
-		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 10
 		shot_result = "hit"
 	elif slider_center >= 501 and slider_center < 566:
 		# yellow - 25 % damage
-		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 25
 		shot_result = "hit"
 	elif slider_center >= 566 and slider_center < 613:
 		# green - 50% damage
-		label.text = "Bullseye! A lot of damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "Bullseye! A lot of damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 50
 		shot_result = "hit"
 	elif slider_center >= 613 and slider_center < 661:
-		label.text = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "Medium damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth- 25
 		shot_result = "hit"
 	elif slider_center >= 661 and slider_center < 733:
-		label.text = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "Slight damage was done to the Wumpus.\nPress SPACE to continue."
 		WumpusData.health = curHealth - 10
 		shot_result = "hit"
 	elif slider_center >= 733 and slider_center < 824:
-		label.text = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
+		text_to_show = "You missed! No damage was done to the Wumpus.\nPress SPACE to continue."
 		shot_result = "miss"
 	
 	print(curHealth)
 	print(WumpusData.health)
 	
+	label.text = text_to_show
+	
+	# play the animation that corresponds with the scenario
+	if WumpusData.health <= 0:
+		wumpus_dead_animation.visible = true
+		wumpus_dead_animation.play()
+		player.can_move = false
+		await wumpus_dead_animation.finished
+		wumpus_dead_animation.visible = false
+		player.can_move = true
+	elif shot_result == "miss":
+		wall_hit_animation.visible = true
+		wall_hit_animation.play()
+		player.can_move = false
+		await wall_hit_animation.finished
+		wall_hit_animation.visible = false
+		player.can_move = true
+	elif shot_result == "hit":
+		wumpus_hit_animation.visible = true
+		wumpus_hit_animation.play()
+		player.can_move = false
+		await wumpus_hit_animation.finished
+		wumpus_hit_animation.visible = false
+		player.can_move = true
+
 	#var screen_center = (min_x + max_x) / 2
 	#var distance = abs(slider_center - screen_center)
 	#var score = max(0, 100 - int(distance))  # Score out of 100
