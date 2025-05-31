@@ -11,11 +11,9 @@ res://Scenes/player.tscn
 res://Scenes/bat.tscn
 res://Scenes/login.tscn
 res://Scenes/cps_minigame.tscn
-res://Scenes/cps_minigame.gd
 res://Scenes/global/game_bg_music.tscn
-res://default_bus_layout.tres
-res://Scripts/cave_default.gd
-res://Scripts/game_control.gd
-res://Scenes/global/game_bg_music.gd
 res://Scenes/volume_slider.tscn
-res://Scripts/player.gd
+res://Scenes/tutorial.tscn
+res://Scripts/tutorial.gd
+res://Scripts/login_manager.gd
+res://Scenes/shoot_arrow_game.tscn
