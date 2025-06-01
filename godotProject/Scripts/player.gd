@@ -201,4 +201,6 @@ func changeAntiBat(gotEffect:bool):
 
 # helper function for animations
 func wait(seconds:float):
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(seconds).timeout

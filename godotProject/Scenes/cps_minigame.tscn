@@ -88,12 +88,11 @@ text = "After the Countodwn, Click as FAST as you can for 5 seconds!"
 label_settings = SubResource("LabelSettings_6iopv")
 
 [node name="Goal" type="Label" parent="."]
-visible = false
 offset_left = 181.0
 offset_top = 84.0
 offset_right = 985.0
 offset_bottom = 133.0
-text = "Reach the TOP STEP to escape with ALL your gold"
+text = "Reach the TOP STEP (7.0), to escape with ALL your gold"
 label_settings = SubResource("LabelSettings_6iopv")
 horizontal_alignment = 1
 
