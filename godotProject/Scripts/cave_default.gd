@@ -352,7 +352,7 @@ func _on_trivia_won() -> void:
 	if WumpusData.health <= 0:
 		PlayerData.wumpusKilled = true
 		PlayerData.howEnded = 1
-		var timer = get_node("Timer")
+		var timer = get_parent().get_node("Timer")
 		PlayerData.timeTaken = timer.get_time()
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
@@ -387,7 +387,7 @@ func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
 	await get_tree().create_timer(1.5).timeout
 	PlayerData.howEnded = 1
-	var timer = get_parent().get_parent().get_node("Timer")
+	var timer = get_parent().get_node("Timer")
 	PlayerData.timeTaken = timer.get_time()
 	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 
