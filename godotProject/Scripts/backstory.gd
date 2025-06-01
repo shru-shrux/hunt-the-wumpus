@@ -12,7 +12,7 @@ var waiting_for_input = false
 
 # Typing effect
 var full_text := """
-You are a hunter, chosen for your cunning and courage. Rumors speak of the Wumpus, a shadowy beast with terrible fangs and an appetite for the foolish.
+You are a hunter, chosen for your courage and skill. Rumors speak of the Wumpus, a shadowy beast with terrible fangs and an appetite for the foolish.
 Somewhere in this cavern, it sleeps—until disturbed.
 
 But beware—deadly pits lie beneath your feet, and giant bats may carry you to unknown parts of the cave.

@@ -57,7 +57,7 @@ scroll_active = false
 
 [node name="Leaderboard" type="VBoxContainer" parent="."]
 offset_left = 741.0
-offset_top = 297.0
+offset_top = 252.0
 offset_right = 1027.0
 offset_bottom = 554.0
 size_flags_vertical = 0

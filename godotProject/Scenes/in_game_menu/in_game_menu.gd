@@ -44,4 +44,5 @@ func _on_back_from_options_pressed() -> void:
 
 # when leave game button pressed, bring back to main menu scene
 func _on_leave_game_pressed() -> void:
+	Global.reset_game()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

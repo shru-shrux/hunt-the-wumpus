@@ -98,7 +98,7 @@ func _ready() -> void:
 	user_data["achievements"]["caves"] += PlayerData.cavesVisited
 	LoginManager.update_user_data(user_data)
 	
-	reset_game()
+	Global.reset_game()
 
 # saves the new soore to the high score file
 # saves the username, score, and difficulty
@@ -180,13 +180,3 @@ func _process(delta: float) -> void:
 # brings you to the main menu
 func _on_home_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-
-# resets the game so it can be replayed
-func reset_game() -> void:
-	WumpusData.health = 100
-	PlayerData.arrowCount = 3
-	PlayerData.goldCount = 0
-	PlayerData.wumpusKilled = false
-	PlayerData.hasAntiBatEffect = false
-	PlayerData.cavesVisited = 0
-	PlayerData.triviaCorrect = 0

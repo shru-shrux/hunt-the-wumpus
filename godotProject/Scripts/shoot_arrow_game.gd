@@ -60,13 +60,6 @@ func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
 		if active:
 			_stop_game()
-			
-			# if the wumpus is at or below 0 health the game is over
-			if WumpusData.health <= 0:
-				PlayerData.wumpusKilled = true
-				PlayerData.howEnded = 0
-				PlayerData.timeTaken = get_parent().get_parent().get_node("Timer").time
-				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		
 		# wumpus is still alive so game is done and goes back to main game
 		if not active and $".".visible:
@@ -140,6 +133,14 @@ func _stop_game():
 		await wumpus_hit_animation.finished
 		wumpus_hit_animation.visible = false
 		player.can_move = true
+		
+	# if the wumpus is at or below 0 health the game is over
+	if WumpusData.health <= 0:
+		PlayerData.wumpusKilled = true
+		PlayerData.howEnded = 0
+		var timer = get_parent().get_parent().get_node("Timer")
+		PlayerData.timeTaken = timer.get_time()
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 
 	#var screen_center = (min_x + max_x) / 2
 	#var distance = abs(slider_center - screen_center)

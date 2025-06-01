@@ -201,13 +201,6 @@ func populate_connecting_caves():
 func _process(delta: float) -> void:
 	update_timer_label()
 	
-	# keep checking if wumpus is dead
-	if WumpusData.health <= 0:
-		PlayerData.wumpusKilled = true
-		PlayerData.howEnded = 1
-		PlayerData.timeTaken = get_parent().get_node("Timer").time
-		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
-	
 	# display for the wumpus health indicator
 	# font color is red when health is between 0 to 30 percent
 	# font color is orange when health is between 30 to 60 percent

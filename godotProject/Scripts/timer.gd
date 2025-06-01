@@ -20,3 +20,6 @@ func time_to_string() -> String:
 	var format_string = "%02d : %02d : %02d"
 	var actual_string = format_string % [min, sec, msec]
 	return actual_string
+
+func get_time() -> int:
+	return time
