@@ -9,3 +9,8 @@ res://Scenes/login_signup/opening_scene.tscn
 res://Scenes/login.tscn
 res://Scenes/trivia.tscn
 res://Scripts/cave_default.gd
+res://Scenes/in_game_menu/options.tscn
+res://Scenes/in_game_menu/options.gd
+res://Scripts/settings_tab_container.gd
+res://Scripts/game_control.gd
+res://Scenes/in_game_menu/in_game_menu.tscn
