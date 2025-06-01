@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://xlsqjkn06yxb"]
+[gd_scene load_steps=22 format=3 uid="uid://xlsqjkn06yxb"]
 
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="1_ckcec"]
 [ext_resource type="Script" uid="uid://h8npt4ksrq44" path="res://Scenes/minigame/player.gd" id="1_n63t7"]
@@ -105,10 +105,7 @@ radius = 32.0
 height = 84.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgfa"]
-size = Vector2(891, 64)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_778g3"]
-bg_color = Color(0.2, 0.27451, 0.501961, 1)
+size = Vector2(892, 64)
 
 [node name="Minigame" type="Node2D"]
 
@@ -128,20 +125,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_juleb")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 549.0
-offset_top = 16.0
-offset_right = 872.0
+offset_left = 823.0
+offset_top = 10.0
+offset_right = 1146.0
 offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("1_ckcec")
-theme_override_font_sizes/font_size = 35
-text = "Time remaining: 0:20"
+theme_override_font_sizes/font_size = 40
+text = "20"
 
 [node name="game" type="Node2D" parent="Panel"]
 script = ExtResource("1_st4mu")
 mob_scene = ExtResource("2_u8kfg")
 
 [node name="player" type="CharacterBody2D" parent="Panel/game"]
-texture_filter = 1
 position = Vector2(96, 213)
 script = ExtResource("1_n63t7")
 
@@ -155,11 +151,10 @@ animation = &"idle"
 shape = SubResource("CapsuleShape2D_2yffx")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Panel/game"]
-texture_filter = 1
 position = Vector2(8, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Panel/game/StaticBody2D"]
-position = Vector2(437.5, 280)
+position = Vector2(438, 280)
 shape = SubResource("RectangleShape2D_tbgfa")
 
 [node name="enemy spawn" type="Timer" parent="Panel/game"]
@@ -203,12 +198,14 @@ text = "V i c t o r y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="Panel" parent="."]
-offset_left = 137.0
-offset_top = 397.0
-offset_right = 1028.0
-offset_bottom = 467.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_778g3")
+[node name="instructions" type="Label" parent="Panel"]
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 530.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("1_ckcec")
+theme_override_font_sizes/font_size = 30
+text = "Survive for 20s to chase the bat away!"
 
 [connection signal="visibility_changed" from="Panel/game" to="Panel/game" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Panel/game" to="Panel/game/player" method="_on_game_visibility_changed"]
