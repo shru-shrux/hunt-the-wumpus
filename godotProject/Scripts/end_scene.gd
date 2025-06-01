@@ -15,17 +15,17 @@ func _ready() -> void:
 		print("No user logged in.")
 		return
 	
-	# displays whether you won or lsot
+	# displays whether you won or lsot and determines time bonus
 	var wumpusScore = 0
+	var timeBonus = 0
 	if PlayerData.wumpusKilled == true:
 		wumpusScore = 50
 		$Result.text = "You Win!"
+		# if you win the game you have the opportunity to get the time bonus
+		if PlayerData.timeTaken < 120:
+			timeBonus = 50
 	else:
 		$Result.text = "You Lose"
-		
-	var timeBonus = 0
-	if PlayerData.timeTaken < 120:
-		timeBonus = 50
 		
 	# calculates the score
 	base_score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore + timeBonus
@@ -56,10 +56,7 @@ func _ready() -> void:
 		else:
 			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "50 \n" + "0 \n " + "x " + str(difficulty_multiplier)
 	else:
-		if PlayerData.timeTaken < 120:
-			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "50 \n " + "x " + str(difficulty_multiplier)
-		else:
-			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "0 \n " + "x " + str(difficulty_multiplier)
+		$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "0 \n " + "x " + str(difficulty_multiplier)
 	
 	# displays the reason the game ended
 	if PlayerData.howEnded == 0:

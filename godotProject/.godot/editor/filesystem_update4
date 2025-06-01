@@ -1,10 +1,2 @@
-res://Scenes/end_scene.tscn
-res://Scenes/in_game_menu/shop.gd
-res://Scenes/timer.tscn
 res://Scenes/main.tscn
-res://Scenes/main_menu.tscn
-res://Scenes/profile/settings_tab_container.tscn
-res://Scripts/button.gd
-res://Scenes/profile/profile.tscn
-res://Scenes/shoot_arrow_game.tscn
-res://Scripts/cave_default.gd
+res://Scripts/end_scene.gd
