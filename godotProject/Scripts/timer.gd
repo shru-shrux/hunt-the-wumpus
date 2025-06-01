@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 func reset():
 	time = 0.00
-	
+
 func time_to_string() -> String:
 	var msec = fmod(time, 1) *1000
 	var sec = fmod(time, 60)

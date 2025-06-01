@@ -291,6 +291,7 @@ func updateCave(newCave:Cave):
 		player.can_move  = false
 		player.visible   = false
 
+		$Info.visible = true
 		$Info.text = "The Wumpus has awoken..."
 		await get_tree().create_timer(1.5).timeout
 		$Info.text = "You must fight to stay alive..."
@@ -323,6 +324,8 @@ func updateCave(newCave:Cave):
 # helper function for wumpus cave
 func wait_for_space():
 	while not Input.is_action_just_pressed("ui_accept"):
+		if not is_inside_tree():
+			return
 		await get_tree().process_frame
 
 # called when the player wins the trivia

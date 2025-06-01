@@ -14,3 +14,9 @@ res://Scenes/in_game_menu/options.gd
 res://Scripts/settings_tab_container.gd
 res://Scripts/game_control.gd
 res://Scenes/in_game_menu/in_game_menu.tscn
+res://Scenes/in_game_menu/shop_card.tscn
+res://Scripts/backstory.gd
+res://Scripts/tutorial.gd
+res://Scenes/timer.tscn
+res://Scripts/timer.gd
+res://Scripts/player.gd
