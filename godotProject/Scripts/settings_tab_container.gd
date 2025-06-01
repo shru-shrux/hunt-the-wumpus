@@ -14,11 +14,11 @@ const ACHIEVEMENT_META = {
 		"description": "Win %d games"
 	},
 	"trivia": {
-		"icon": "res://Assets/Coins/gold/gold.png",
+		"icon": "res://Assets/Art/trivia.png",
 		"description": "Answer %d questions correctly"
 	},
 	"caves": {
-		"icon": "res://Assets/Coins/gold/gold.png",
+		"icon": "res://Assets/Art/cave.png",
 		"description": "Explore %d caves"
 	}
 }

@@ -643,6 +643,8 @@ func _on_player_go_to_bat() -> void:
 	)	
 	$OtherWarnings.visible = true
 
+# when the tester wants to experience the pit cave put them in a cave adjacent
+# to it and tell them which cave to enter
 func _on_player_go_to_pit() -> void:
 	var transferCave : Cave
 	var pickedTransferCave = false
@@ -662,7 +664,8 @@ func _on_player_go_to_pit() -> void:
 	)
 	$OtherWarnings.visible = true
 
-
+# when the tester wants to experience the wumpus cave put them in a cave that is
+# next to it and tell which cave to go into
 func _on_player_go_to_wumpus() -> void:
 	
 	# give them an extra arrow to fight
@@ -688,7 +691,30 @@ func _on_player_go_to_wumpus() -> void:
 	)
 	$OtherWarnings.visible = true
 
-
+# when the tester wants to experience the bat cave with the anit bat effect
+# put them in a cave that is next to it and tell which cave to go into
+func _on_player_go_to_anti_bat() -> void:
+	
+	player.changeAntiBat(true)
+	
+	var transferCave : Cave
+	var pickedTransferCave = false
+	while !pickedTransferCave:
+		transferCave = batList[0].connectingCaves[randi_range(0,2)]
+		if transferCave.currentCaveNumber != currentCaveNumber:
+			if transferCave.currentCaveNumber != pitList[0].currentCaveNumber and transferCave.currentCaveNumber != pitList[1].currentCaveNumber:
+				if transferCave.currentCaveNumber != batList[0].currentCaveNumber and transferCave.currentCaveNumber != batList[1].currentCaveNumber:
+					if transferCave.currentCaveNumber != wumpusCave.currentCaveNumber:
+						pickedTransferCave = true
+	
+	updateCave(transferCave)
+	
+	$OtherWarnings.text = (
+		"Go into cave " + str(batList[0].currentCaveNumber) + " to test the " + 
+		"Bat Cave"
+	)	
+	$OtherWarnings.visible = true
+	
 # helper function for animations
 func wait(seconds:float):
 	await get_tree().create_timer(seconds).timeout
