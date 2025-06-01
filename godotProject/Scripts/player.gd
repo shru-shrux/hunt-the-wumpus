@@ -3,6 +3,7 @@ signal hit
 signal interact
 signal goToPit
 signal goToBat
+signal goToAntiBat
 signal goToWumpus
 
 # this code controls the movement of the player
@@ -87,6 +88,15 @@ func _process(delta):
 			if Input.is_action_pressed("press_b"):
 				
 				goToBat.emit()
+		
+		if Input.is_action_pressed("CTRL"):
+			
+			if Input.is_action_pressed("SHIFT"):
+			
+				if Input.is_action_pressed("press_b"):
+				
+					goToAntiBat.emit()
+		
 		
 		# CTRL-W shortut to experience wumpus
 		if Input.is_action_pressed("CTRL"):
