@@ -118,7 +118,7 @@ func _on_minigame_over() -> void:
 	player.can_move = true
 	self.disabled = false
 	player.position = Vector2(119,528)
-	
+
 
 func _on_cps_minigame_visibility_changed() -> void:
 	# if the CpsMinigame Node is visible the game needs to be set up.
