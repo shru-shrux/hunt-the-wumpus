@@ -1,5 +1,6 @@
 res://Scenes/in_game_menu/in_game_menu.tscn
 res://Scenes/in_game_menu/in_game_menu.gdshader
+res://Scripts/settings_tab_container.gd
 res://Scenes/in_game_menu/shop.tscn
 res://Scenes/in_game_menu/shop_card.tscn
 res://Scenes/cave_default.tscn
@@ -14,5 +15,5 @@ res://Scenes/cps_minigame.tscn
 res://Scenes/global/game_bg_music.tscn
 res://Scenes/volume_slider.tscn
 res://Scenes/tutorial.tscn
-res://Scripts/Global.gd
-res://Scripts/login_manager.gd
+res://Scenes/trivia.tscn
+res://Scenes/profile/settings_tab_container.tscn
