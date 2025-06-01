@@ -1,3 +1,4 @@
+AudioStreamPlayer2D
 Panel
 Label
 AnimationPlayer
@@ -9,6 +10,5 @@ Label
 TextureRect
 Control
 CanvasLayer
-AudioStreamPlayer2D
 AudioListener2D
 Area2D
