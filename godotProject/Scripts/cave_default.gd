@@ -514,9 +514,13 @@ func _on_player_shoot_arrow() -> void:
 			# set the new wumpus cave to have a wumpus
 			wumpusCave.hasWumpus = true
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+			GameData.wumpusCave = wumpusCave
+			
+			# regenerate riddle
+			$"../Riddle"._generate_riddle(bestOption)
+			
 			$Warnings/WumpusBackground.visible = false
 			$ShootCaveResult.text = "You damaged the Wumpus!"
-			GameData.wumpusCave = wumpusCave
 			WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber
 		else:
 			$ShootCaveResult.text = "No Wumpus in that cave. Arrow lost."
@@ -527,6 +531,7 @@ func _on_player_shoot_arrow() -> void:
 			wumpusCave.hasWumpus = true
 			$Warnings/WumpusBackground.visible = false
 			print("wumpus now: " + str(wumpusCave.currentCaveNumber))
+			$"../Riddle"._generate_riddle(bestOption) # regenerate riddle
 			$"../Riddle".visible = true
 			GameData.wumpusCave = wumpusCave
 			WumpusData.currentRoomNumber = wumpusCave.currentCaveNumber

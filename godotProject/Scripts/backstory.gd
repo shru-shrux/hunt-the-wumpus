@@ -29,7 +29,7 @@ func _ready():
 	scroll_label.visible = false
 	typing_label.visible = false
 	continue_label.visible = false
-	anim_player.play("grow_title")
+	anim_player.play("grow_title") # starts with the title growing in size
 	anim_player.animation_finished.connect(_on_animation_finished)
 
 func _on_animation_finished(anim_name):
@@ -42,16 +42,16 @@ func _unhandled_input(event):
 		hide_continue_label()
 
 		match phase:
-			0:
+			0: # second phase has the scrolling intro
 				title_label.visible = false
 				show_scroll_intro()
 				phase = 1
-			1:
+			1: # third phase has the typing intro
 				scroll_label.visible = false
 				set_process(false)
 				show_typing_intro()
 				phase = 2
-			2:
+			2: # now it goes to the main menu
 				get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func show_continue_label():
