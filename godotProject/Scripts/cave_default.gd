@@ -344,7 +344,14 @@ func _on_trivia_won() -> void:
 	
 	# change wumpus health
 	WumpusData.health = WumpusData.health - 5
-	# game_control checks in process if wumpus dead
+	
+	# checking if wumpus is dead
+	if WumpusData.health <= 0:
+		PlayerData.wumpusKilled = true
+		PlayerData.howEnded = 1
+		var timer = get_node("Timer")
+		PlayerData.timeTaken = timer.get_time()
+		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
 	# change the wumpusCave to two random caves away from it 
 	var picked = false
@@ -377,7 +384,8 @@ func _on_trivia_lost() -> void:
 	$Info.text = "The Wumpus feasts… Game Over."
 	await get_tree().create_timer(1.5).timeout
 	PlayerData.howEnded = 1
-	PlayerData.timeTaken = get_parent().get_node("Timer").time
+	var timer = get_parent().get_parent().get_node("Timer")
+	PlayerData.timeTaken = timer.get_time()
 	get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 
 # if the player exists any of the 3 Area2D this runs

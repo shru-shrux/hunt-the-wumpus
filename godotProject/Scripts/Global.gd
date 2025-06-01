@@ -29,3 +29,13 @@ func clear_high_scores():
 	file.store_var([])  # Store an empty array to clear the scores
 	file.close()
 	print("High scores cleared.")
+
+# resets the game so it can be replayed
+func reset_game() -> void:
+	WumpusData.health = 100
+	PlayerData.arrowCount = 3
+	PlayerData.goldCount = 0
+	PlayerData.wumpusKilled = false
+	PlayerData.hasAntiBatEffect = false
+	PlayerData.cavesVisited = 0
+	PlayerData.triviaCorrect = 0
