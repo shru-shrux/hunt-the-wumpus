@@ -1,28 +1,29 @@
 extends Control
 class_name TriviaPopup
 
+# signals to cave_default based on what happens
 signal trivia_won
 signal trivia_lost
 
-var trivia_generator = TriviaGenerator.new()
+var trivia_generator = TriviaGenerator.new() # generates trivia
 @onready var question_label = $Panel/Question
 @onready var answers_container = $Panel/GridContainer
 @onready var player = get_parent().get_node("Player")
 
-var difficulty : String
+var difficulty : String # difficulty, get from parent later
 
 var total_questions: int
 var required_correct: int
-var questions: Array = [] # dictionaries
-var seen_questions: Array = [] # questions
-var seen_topics: Array = []
-var current_index: int
-var correct_count: int
-var current_correct: String
-var pending_to_generate = 0
+var questions: Array = [] # dictionaries of questions
+var seen_questions: Array = [] # questions seen during entire game
+var seen_topics: Array = [] # topics seen during only one time cave
 
-# Track whether we're waiting for the next question to arrive
-var waiting_for_next = false
+var current_index: int # location in questions array
+var correct_count: int # correct so far
+var current_correct: String # correct answer of current question
+
+var pending_to_generate = 0 # how many questions left to generate
+var waiting_for_next = false # track whether we're waiting for the next question to arrive
 
 
 func _ready():
@@ -34,17 +35,18 @@ func _ready():
 	for btn in answers_container.get_children():
 		btn.connect("pressed", Callable(self, "_on_answer_button_pressed").bind(btn))
 
-	visible = false
+	visible = false # start hidden
 	
 	# pull difficulty off parent
 	difficulty = get_parent().difficulty
 
+# new round of trivia 
 func start_trivia(total: int = 5, required: int = 3) -> void:
-	#visible = true
+	# reset values
 	total_questions = total
 	required_correct = required
 	questions.clear()
-	#seen_questions.clear()
+	#seen_questions.clear() - don't want the same questions within a game
 	current_index = 0
 	correct_count = 0
 	pending_to_generate = total_questions
@@ -54,64 +56,69 @@ func start_trivia(total: int = 5, required: int = 3) -> void:
 	## generate them all - breaks because can't have multiple at once
 	#for i in range(total_questions):
 		#trivia_generator.generate_trivia(_on_single_ready, difficulty)
-		
-	# Start the first one
+	
+	# generate first question
 	_generate_next_trivia()
 
+# if questions left, generate another
 func _generate_next_trivia():
 	if pending_to_generate > 0:
 		trivia_generator.generate_trivia(_on_single_ready, difficulty)
-		
+
+# callback from generate_trivia once data ready
 func _on_single_ready(data: Dictionary) -> void:
-	# If we've already seen this question text, discard it and fetch another:
-	var qtext = data.get("question", "")
+	# if already seen this question text, discard it and fetch another
+	var qtext = data.get("question", "") # extract question 
+	var topic = _detect_topic(qtext) # detect topic based on keywords
 	
-	# Detect the “topic” of this candidate question
-	var topic = _detect_topic(qtext)
-	
-	# If it’s the same topic as had before, discard and ask again
+	# it’s the same topic as had before, discard and ask again
 	if topic in seen_topics:
 		print("Discarded a '%s' question because we've already used that topic before." % topic)
 		_generate_next_trivia()
 		return
-		
+	
+	# if already had question, discard and ask again
 	if qtext in seen_questions:
-		# Don't decrement pending_to_generate (we still need the same number of unique questions)
 		print("Discarded duplicate question: '%s'. Fetching a new one…" % qtext)
 		_generate_next_trivia()
 		return
-		
+	
+	# update question tracking
 	questions.append(data)
 	seen_questions.append(qtext)
-	seen_topics.append(topic)
+	if topic != "other": # lots of questions flagged other, so doens't count as topic
+		seen_topics.append(topic)
 	pending_to_generate -= 1 
 	
 	if questions.size() == 1:
-		# First question in the list: show it right now
+		# first question in the list, show it right now
 		_show_question(0)
 		visible = true
 	else:
-		# If we were waiting for “next” (waiting_for_next = true), and now it’s available:
+		# if waiting for “next” (waiting_for_next = true) and now it’s available:
 		if waiting_for_next and questions.size() > current_index:
 			_show_question(current_index)
 			waiting_for_next = false
 			# visible is already true
-
+		
 		print("Queued a new unique trivia question.")
 
-
+# display question number idx from questions array
 func _show_question(idx: int) -> void:
-	player.goldChange(-1)
+	player.goldChange(-1) # takes 1 gold to do trivia
 	
 	current_index = idx
 	var q = questions[idx]
-	question_label.text = q.question
-
+	question_label.text = q.question # set question text
+	
+	# array of all answers then shuffle, so not always same button
 	var answers = q.incorrect.duplicate()
 	answers.append(q.correct)
 	answers.shuffle()
 
-	current_correct = q.correct
+	current_correct = q.correct # store correct answer
+	
+	# create button for each answer
 	for i in range(answers_container.get_child_count()):
 		var btn = answers_container.get_child(i)
 		btn.text = answers[i]
@@ -119,10 +126,11 @@ func _show_question(idx: int) -> void:
 		btn.disabled = false  # enable buttons
 
 func _on_answer_button_pressed(btn: Button) -> void:
-	# disable all buttons immediately
+	# disable all buttons immediately, otherwise can answer same question multiple times
 	for child in answers_container.get_children():
 		child.disabled = true
 
+	# check if answer correct
 	if btn.get_meta("answer") == current_correct:
 		correct_count += 1
 		print("correct")
@@ -130,34 +138,33 @@ func _on_answer_button_pressed(btn: Button) -> void:
 	else:
 		print("wrong")
 
-	current_index += 1  # move this down
+	current_index += 1  # move onto next question
 
-	if current_index < total_questions:
-		if current_index < questions.size():
+	if current_index < total_questions: # if questions left
+		if current_index < questions.size(): # next question ready
 			_show_question(current_index)
 			
-			# Kick off generating the next one in background if needed:
+			# kick off generating the next one in background if needed:
 			if pending_to_generate > 0:
 				_generate_next_trivia()
-		else:
-			# Next question is not yet ready → enter “waiting” mode:
+		else: # next question not ready yet
+			# next question is not yet ready -> enter “waiting” mode
 			print("Waiting for next trivia question to load...")
 			waiting_for_next = true  # remember that we want to show index =current_index
-			# Kick off generating next if we haven’t already:
 			
+			# kick off generating next if we haven’t already
 			if pending_to_generate > 0:
 				_generate_next_trivia()
-			# We will re-enable buttons when _on_single_ready() actually shows it.
-
-	else:
+		
+	else: # showed all questions already
 		visible = false
 		print(correct_count)
-		if correct_count >= required_correct:
+		if correct_count >= required_correct: # got the needed amount of questions correct
 			emit_signal("trivia_won")
 		else:
 			emit_signal("trivia_lost")
 
-# guess topic based on keywords
+# guess topic based on keywords, so the same types of questions aren't asked over and over
 func _detect_topic(qtext: String) -> String:
 	var t = qtext.to_lower()
 
