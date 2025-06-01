@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1748736020
+::res://::1748736356
 default_bus_layout.tres::AudioBusLayout/AudioBusLayout::7451237478222333559::1747590342::0::1::::<><><>0<>0<><>::
 export_presets.cfg::TextFile/TextFile::-1::1748639180::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::3855597117786292836::1741237481::1744997147::1::::<><><>0<>0<>0fe3a490cf3483d27c9d7825d1bd7173<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -7,7 +7,7 @@ openai_key.txt::TextFile/TextFile::-1::1748360629::0::1::::<><><>0<>0<><>::
 trivia.tscn::PackedScene/PackedScene::6561003147493449699::1747869544::0::1::::<><><>0<>0<><>::uid://cyoc0phgbu4s1::::res://Scripts/trivia_test.gd
 volume_slider.gd::GDScript/GDScript::4982729468970818885::1747590342::0::1::::<>HSlider<><>0<>0<><>::
 ::res://Assets/::1748717548
-::res://Assets/Art/::1748585227
+::res://Assets/Art/::1748736102
 antibat.png::CompressedTexture2D/CompressedTexture2D::3768710724046697599::1748319563::1748359853::1::::<><><>0<>0<>e34a6f1d7e1fed61732f1c4c76f50c49<>res://.godot/imported/antibat.png-964a98b35e70ac36075e3115d0c6986a.ctex::
 ArrowPixelArt.png::CompressedTexture2D/CompressedTexture2D::942967251658808497::1748359792::1748359853::1::::<><><>0<>0<>fabd288da3b59124830f02676333e970<>res://.godot/imported/ArrowPixelArt.png-e56a04b1c9827c5f9acd95feb3a6fd7b.ctex::
 Background color.png::CompressedTexture2D/CompressedTexture2D::6506541954695948018::1747616515::1747616558::1::::<><><>0<>0<>0a2b0cfc79e016d16a158a6c20af109d<>res://.godot/imported/Background color.png-20c768907087bdf4061698baceafea53.ctex::
@@ -15,6 +15,7 @@ Bottomless Pit_darker.png::CompressedTexture2D/CompressedTexture2D::302759866406
 Bottomless Pit_RotatedLadder.png::CompressedTexture2D/CompressedTexture2D::8676775115938548766::1747590341::1747590386::1::::<><><>0<>0<>fb324c2ffbfe11e651641847d10a6814<>res://.godot/imported/Bottomless Pit_RotatedLadder.png-15c94914a39cba595d2bf3392c917db3.ctex::
 Bow-and-arrow.png::CompressedTexture2D/CompressedTexture2D::694564149484886395::1748319563::1748359853::1::::<><><>0<>0<>94a1dd81ed6f2a01c01acc481b8cb748<>res://.godot/imported/Bow-and-arrow.png-a929c9713d96e9d15f4b2b17e2872672.ctex::
 Cave Scene.png::CompressedTexture2D/CompressedTexture2D::3323525974787764183::1747590341::1747590386::1::::<><><>0<>0<>acf923df7d15250af416180a0f740c44<>res://.godot/imported/Cave Scene.png-c07766081b5f0927a324f76f8b7caf16.ctex::
+cave.png::CompressedTexture2D::8125487771660440975::1748736102::1748736358::1::::<><><>0<>0<>87450b4f14e9b0c3a78d6b4430799aba<>res://.godot/imported/cave.png-dd82fedd5984d69624842e2e8f518fe7.ctex::
 CoinPixelArt.png::CompressedTexture2D/CompressedTexture2D::5244511697562168450::1748359792::1748359853::1::::<><><>0<>0<>f35ea453ed9823f0eaa526c9fed713b2<>res://.godot/imported/CoinPixelArt.png-c7518d531f3a1c1ee74acdcf476c04c4.ctex::
 DinoSprites - doux.png::CompressedTexture2D/CompressedTexture2D::1615328911732039368::1748440466::1748440631::1::::<><><>0<>0<>eb04a8d1541684ed2b53c73f77d86d99<>res://.godot/imported/DinoSprites - doux.png-dc8ff4277e3776f0ebffd503f1fdd2aa.ctex::
 EmptyFrame.png::CompressedTexture2D/CompressedTexture2D::2540189680833073091::1748359792::1748359853::1::::<><><>0<>0<>c17bdd88782522df89e9e77cccba00f0<>res://.godot/imported/EmptyFrame.png-1ff85d74d2593c906b094c277a226b82.ctex::
@@ -31,6 +32,7 @@ secrets2.png::CompressedTexture2D/CompressedTexture2D::8339263860395782845::1748
 secrets.jpg::CompressedTexture2D/CompressedTexture2D::6652260518360582088::1748319563::1748359853::1::::<><><>0<>0<>920ff3814b919274f1d243d4bb3b4135<>res://.godot/imported/secrets.jpg-759491db31b5313027134efa0ae64801.ctex::
 Shoot arrow minigame background.jpg::CompressedTexture2D/CompressedTexture2D::5983644303694589610::1747602527::1747602529::1::::<><><>0<>0<>7a6c48d570490049f09a2f806ef03bfa<>res://.godot/imported/Shoot arrow minigame background.jpg-088ba6614fbcad9f93356a189d02a9ac.ctex::
 tile_0010.png::CompressedTexture2D/CompressedTexture2D::1316380955420379462::1748440466::1748440631::1::::<><><>0<>0<>bbdbc79c425f40243ca26ccd9b4a72b9<>res://.godot/imported/tile_0010.png-eab2e6001dec163ba7d7704113ed1694.ctex::
+trivia.png::CompressedTexture2D::5920985883853652442::1748736102::1748736358::1::::<><><>0<>0<>ffe83d40f967229a981b3455a093b2fa<>res://.godot/imported/trivia.png-743bd5d8e55427ff8d5efd87de3a536d.ctex::
 WarningBackground.png::CompressedTexture2D/CompressedTexture2D::3558917627493277310::1748440466::1748440631::1::::<><><>0<>0<>9fa01bccc7c6bc9a9e75a23eb7f769f2<>res://.godot/imported/WarningBackground.png-242a14337e82b30a074d2f6401cb655c.ctex::
 wumpus in game.png::CompressedTexture2D/CompressedTexture2D::776045987901353911::1747619813::1747619867::1::::<><><>0<>0<>ba63f9afdbd353b019a6fbce7d6c7573<>res://.godot/imported/wumpus in game.png-98ffed076ff9b294807d7339c8b3da6f.ctex::
 wumpus pixel art.png::CompressedTexture2D/CompressedTexture2D::759430950196114274::1744996199::1744997148::1::::<><><>0<>0<>68461e117dede77857e3cef1e2c8bd54<>res://.godot/imported/wumpus pixel art.png-2e6cd24cf7bba2108e01dd3b9dcb6e63.ctex::
@@ -204,7 +206,7 @@ Walk (10).png::CompressedTexture2D/CompressedTexture2D::2140461934010827787::174
 monster_dead.ogv::VideoStreamTheora/VideoStreamTheora::1006934648137016469::1748666739::0::1::::<><><>0<>0<><>::
 monster_sad.ogv::VideoStreamTheora/VideoStreamTheora::8205743895438348919::1748666739::0::1::::<><><>0<>0<><>::
 wall_hit.ogv::VideoStreamTheora/VideoStreamTheora::2089729159416115867::1748666739::0::1::::<><><>0<>0<><>::
-::res://Scenes/::1748735949
+::res://Scenes/::1748736087
 backstory.tscn::PackedScene/PackedScene::2552701966371237139::1748718656::0::1::::<><><>0<>0<><>::uid://b2gkvcr61wkyb::::res://Scripts/backstory.gd<>uid://cyx22bpp2lffm::::res://Assets/Art/Background color.png<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 bat.tscn::PackedScene/PackedScene::8646242937959108623::1748440466::0::1::::<><><>0<>0<><>::uid://dfscmc63sggn::::res://Assets/Bat/bat normal.png<>uid://cda0q2abuii7u::::res://Scripts/bat.gd
 blur.gdshader::Shader/Shader::7000316361500832480::1748319563::0::1::::<><><>0<>0<><>::
@@ -223,7 +225,7 @@ riddleTest.tscn::PackedScene/PackedScene::4961535174861125205::1748440466::0::1:
 shoot_arrow_game.tscn::PackedScene/PackedScene::8172584539233639168::1748717750::0::1::::<><><>0<>0<><>::uid://4shsqun1sudf::::res://Scripts/shoot_arrow_game.gd<>uid://crir0ocglwqf7::::res://Assets/Art/Shoot arrow minigame background.jpg<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf
 timer.tscn::PackedScene/PackedScene::565744244964364147::1748319564::0::1::::<><><>0<>0<><>::uid://tjjlw7keb6ph::::res://Scripts/timer.gd
 trivia.tscn::PackedScene/PackedScene::4415505120551508356::1748713640::0::1::::<><><>0<>0<><>::uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://c1w50kocec7pc::::res://Scripts/trivia.gd<>uid://cyu1o16vdvn6x::::res://Assets/Fonts/Symtext.ttf
-tutorial.tscn::PackedScene::2513805117603727819::1748735949::0::1::::<><><>0<>0<><>::uid://cw2ltion56byg::::res://Scripts/tutorial.gd<>uid://cyu1o16vdvn6x::::res://Assets/Fonts/Symtext.ttf
+tutorial.tscn::PackedScene::2513805117603727819::1748736087::0::1::::<><><>0<>0<><>::uid://cw2ltion56byg::::res://Scripts/tutorial.gd<>uid://cyu1o16vdvn6x::::res://Assets/Fonts/Symtext.ttf
 volume_slider.tscn::PackedScene/PackedScene::8657428504614439006::1747590342::0::1::::<><><>0<>0<><>::uid://cc8w3djtnlkrt::::res://volume_slider.gd
 ::res://Scenes/global/::1748662829
 game_bg_music.gd::GDScript/GDScript::5850022480738157907::1748662829::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
@@ -255,17 +257,17 @@ player.gd::GDScript/GDScript::560263522386813535::1748627164::0::1::::<>Characte
 ::res://Scenes/profile/::1748638284
 profile.tscn::PackedScene/PackedScene::1861358359550161702::1748638283::0::1::::<><><>0<>0<><>::uid://dmu8eelddqexq::::res://Scripts/profile.gd<>uid://cyx22bpp2lffm::::res://Assets/Art/Background color.png<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dfsuuew2hwexr::::res://Scenes/profile/settings_tab_container.tscn
 settings_tab_container.tscn::PackedScene/PackedScene::7548615369892046895::1748638284::0::1::::<><><>0<>0<><>::uid://wachdfwiqwjs::::res://Scripts/settings_tab_container.gd<>uid://q1kfaq4hjaog::::res://Assets/Fonts/ThaleahFat.ttf<>uid://dvlyt2qx4c8ik::::res://Scenes/volume_slider.tscn
-::res://Scripts/::1748735947
-backstory.gd::GDScript::4294550532796496841::1748735947::0::1::::<>Control<><>0<>0<><>::
+::res://Scripts/::1748736102
+backstory.gd::GDScript/GDScript::4294550532796496841::1748735947::0::1::::<>Control<><>0<>0<><>::
 bat.gd::GDScript/GDScript::4984955814024880020::1748440466::0::1::::<>Area2D<><>0<>0<><>::
 button.gd::GDScript/GDScript::2990643297464816558::1748564739::0::1::::<>Button<><>0<>0<><>::
-cave_default.gd::GDScript/GDScript::9078974782839006102::1748718656::0::1::::Cave<>Node2D<><>0<>0<><>::
+cave_default.gd::GDScript::9078974782839006102::1748736102::0::1::::Cave<>Node2D<><>0<>0<><>::
 end_scene.gd::GDScript/GDScript::1995023013921170567::1748708184::0::1::::<>Node2D<><>0<>0<><>::
 game_control.gd::GDScript/GDScript::8011032809508811240::1748708184::0::1::::<>Node2D<><>0<>0<><>::
 game_data.gd::GDScript/GDScript::4037995160078872604::1748642092::0::1::::<>Node<><>0<>0<><>::
 Global.gd::GDScript/GDScript::6955066484218890644::1748643156::0::1::::<>Node<><>0<>0<><>::
 login.gd::GDScript/GDScript::3134399103335102016::1748713274::0::1::::<>Panel<><>0<>0<><>::
-login_manager.gd::GDScript/GDScript::5446578691556592263::1748717548::0::1::::loginManager<>Node<><>0<>0<><>::
+login_manager.gd::GDScript::5446578691556592263::1748736102::0::1::::loginManager<>Node<><>0<>0<><>::
 main_menu.gd::GDScript/GDScript::3711824645929887213::1748642020::0::1::::<>Control<><>0<>0<><>::
 opening_scene.gd::GDScript/GDScript::9214209217308711805::1748734792::0::1::::<>Control<><>0<>0<><>::
 player.gd::GDScript/GDScript::2922624653754044578::1748713033::0::1::::<>Area2D<><>0<>0<><>::
@@ -275,9 +277,9 @@ riddle.gd::GDScript/GDScript::7546961756147061538::1748734792::0::1::::<>Node<><
 riddle_generator.gd::GDScript/GDScript::888622681239082365::1748734792::0::1::::RiddleGenerator<>Node<><>0<>0<><>::
 settings_tab_container.gd::GDScript/GDScript::1544288660884576796::1748734792::0::1::::<>Control<><>0<>0<><>::
 shoot_arrow_game.gd::GDScript/GDScript::2073093300211495051::1748712796::0::1::::<>Node2D<><>0<>0<><>::
-sign_up.gd::GDScript/GDScript::2797968200800933358::1748713259::0::1::::<>Panel<><>0<>0<><>::
+sign_up.gd::GDScript::2797968200800933358::1748736102::0::1::::<>Panel<><>0<>0<><>::
 timer.gd::GDScript/GDScript::1352734730984225033::1748319564::0::1::::MyTimer<>Node<><>0<>0<><>::
-trivia.gd::GDScript/GDScript::6645034314152071056::1748713640::0::1::::TriviaPopup<>Control<><>0<>0<><>::
-trivia_generator.gd::GDScript/GDScript::5317325543899816386::1748713640::0::1::::TriviaGenerator<>Node<><>0<>0<><>::
-tutorial.gd::GDScript::6373436386233186610::1748735947::0::1::::<>Control<><>0<>0<><>::
+trivia.gd::GDScript::6645034314152071056::1748736102::0::1::::TriviaPopup<>Control<><>0<>0<><>::
+trivia_generator.gd::GDScript::5317325543899816386::1748736102::0::1::::TriviaGenerator<>Node<><>0<>0<><>::
+tutorial.gd::GDScript::6373436386233186610::1748736087::0::1::::<>Control<><>0<>0<><>::
 wumpus_data.gd::GDScript/GDScript::3644651327417457699::1748640971::0::1::::<>Node<><>0<>0<><>::

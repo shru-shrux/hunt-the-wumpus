@@ -135,6 +135,7 @@ func goldChange(addedGold:int):
 	
 	if goldCount <= -1:
 		PlayerData.howEnded = 2
+		PlayerData.timeTaken = get_parent().get_node("Timer").time
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		return
 	if addedGold > 0:

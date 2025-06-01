@@ -21,8 +21,12 @@ func _ready() -> void:
 	else:
 		$Result.text = "You Lose"
 		
+	var timeBonus = 0
+	if PlayerData.timeTaken < 120:
+		timeBonus = 50
+		
 	# calculates the score
-	base_score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore
+	base_score = 100 - PlayerData.cavesVisited + PlayerData.goldCount + 5*PlayerData.arrowCount + wumpusScore + timeBonus
 	
 	var difficulty_multiplier 
 	
@@ -45,9 +49,15 @@ func _ready() -> void:
 	#else:
 		#$ScoreBreakdown.text = "100 - " + str(PlayerData.cavesVisited) + " (Caves Visited)\n" + "+ " + str(PlayerData.goldCount) + " (Gold Count)\n" + "5 * " + str(PlayerData.arrowCount) + " (Arrow Count)\n= " + str(base_score) + " * " + str(difficulty_multiplier) + " (Difficulty Multiplier)" 
 	if PlayerData.wumpusKilled:
-		$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "50 \n" + "x " + str(difficulty_multiplier)
+		if PlayerData.timeTaken < 120:
+			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "50 \n" + "50 \n " + "x " + str(difficulty_multiplier)
+		else:
+			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "50 \n" + "0 \n " + "x " + str(difficulty_multiplier)
 	else:
-		$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "x " + str(difficulty_multiplier)
+		if PlayerData.timeTaken < 120:
+			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "50 \n " + "x " + str(difficulty_multiplier)
+		else:
+			$ScoreBreakdown.text = "100\n" + str(PlayerData.cavesVisited) + "\n" + str(PlayerData.goldCount) + "\n" + "5 x " + str(PlayerData.arrowCount) + "\n" + "0 \n" + "0 \n " + "x " + str(difficulty_multiplier)
 	
 	# displays the reason the game ended
 	if PlayerData.howEnded == 0:
