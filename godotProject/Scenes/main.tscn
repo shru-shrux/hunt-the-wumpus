@@ -230,18 +230,21 @@ texture = ExtResource("14_wsu2k")
 
 [node name="WumpusDead" type="VideoStreamPlayer" parent="."]
 visible = false
+texture_filter = 1
 offset_right = 1152.0
 offset_bottom = 648.0
 stream = ExtResource("18_pdsj5")
 
 [node name="WumpusHit" type="VideoStreamPlayer" parent="."]
 visible = false
+texture_filter = 1
 offset_right = 1152.0
 offset_bottom = 648.0
 stream = ExtResource("19_ee4r6")
 
 [node name="WallHit" type="VideoStreamPlayer" parent="."]
 visible = false
+texture_filter = 1
 offset_right = 1161.0
 offset_bottom = 649.0
 stream = ExtResource("20_gt3je")
