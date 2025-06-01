@@ -65,6 +65,7 @@ func _input(event):
 			if WumpusData.health <= 0:
 				PlayerData.wumpusKilled = true
 				PlayerData.howEnded = 0
+				PlayerData.timeTaken = get_parent().get_parent().get_node("Timer").time
 				get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 		
 		# wumpus is still alive so game is done and goes back to main game

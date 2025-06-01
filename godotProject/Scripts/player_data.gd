@@ -7,6 +7,7 @@ var goldCount = 0
 var wumpusKilled = false
 var hasAntiBatEffect = false
 var currentRoomNumber
+var timeTaken
 
 var howEnded # 0 for killing wumpus, 1 for losing from wumpus, 2 for losing from coins
 

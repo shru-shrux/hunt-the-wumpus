@@ -205,6 +205,7 @@ func _process(delta: float) -> void:
 	if WumpusData.health <= 0:
 		PlayerData.wumpusKilled = true
 		PlayerData.howEnded = 1
+		PlayerData.timeTaken = get_parent().get_node("Timer").time
 		get_tree().change_scene_to_file("res://Scenes/end_scene.tscn")
 	
 	# display for the wumpus health indicator
