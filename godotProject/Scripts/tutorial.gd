@@ -50,7 +50,7 @@ var instructions = [
 	unless you have the anti-bat effect which you can buy in shop",
 	"and the pit cave. When you fall in, you must play a CPS game to determine how much gold you lose. You want to reach the top
 	of the ladder to minimize losings.",
-	"Lastly, if you enter the Wumpus cave, you must fight to stay alive",
+	"Lastly, if you enter the Wumpus cave, you must fight to stay alive. HINT: Avoid entering the Wumpus cave, instead shoot arrows into it!",
 	"There are 5 trivia questions you must answer. If you get 3/5 correct, you stay alive. If not, you lose",
 	"Now, you are ready to play the game! Good luck!"
 ]
