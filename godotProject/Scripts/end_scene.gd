@@ -6,6 +6,8 @@ var last_score_entry = {"username": "placeholder", "score": 0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameBgMusic.stop_music()
+	$AudioStreamPlayer2D.play()
 	var user_data = LoginManager.get_user_data()
 	
 	# Make sure user is logged in

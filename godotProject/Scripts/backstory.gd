@@ -26,6 +26,7 @@ var char_index = 0
 var typing_speed = 0.025
 
 func _ready():
+	$AudioStreamPlayer2D.play()
 	scroll_label.visible = false
 	typing_label.visible = false
 	continue_label.visible = false

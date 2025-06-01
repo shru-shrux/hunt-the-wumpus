@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://chige1ofaejn4"]
+[gd_scene load_steps=5 format=3 uid="uid://chige1ofaejn4"]
 
 [ext_resource type="Script" uid="uid://3on0cvfxirqt" path="res://Scripts/end_scene.gd" id="1_fgb5u"]
 [ext_resource type="Texture2D" uid="uid://cyx22bpp2lffm" path="res://Assets/Art/Background color.png" id="2_8jdvl"]
 [ext_resource type="FontFile" uid="uid://q1kfaq4hjaog" path="res://Assets/Fonts/ThaleahFat.ttf" id="3_8p78e"]
+[ext_resource type="AudioStream" uid="uid://ben4t52uemxg5" path="res://Assets/Music/end_scene.mp3" id="4_8jdvl"]
 
 [node name="EndScene" type="Node2D"]
 script = ExtResource("1_fgb5u")
@@ -123,5 +124,9 @@ Is Wumpus Dead
 Time Bonus
 Difficulty Multiplier"
 horizontal_alignment = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8jdvl")
+bus = &"Music"
 
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
